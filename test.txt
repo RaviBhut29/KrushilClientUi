@@ -1,1 +1,2 @@
-test done
+Okh vs push and commit done
+let's check with comman line..
