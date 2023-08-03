@@ -1,0 +1,139 @@
+.ant-drawer-title {
+    color: var(--theme-primary, #0C0D48);
+    font-size: 24px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    line-height: 33.063px;
+}
+
+.PaymentCardPopup {
+    color: var(--theme-success, #198754);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    line-height: 25.189px;
+    border-radius: 7px;
+    border: 1px solid var(--theme-success, #198754);
+    background: #E7FCF2;
+    padding: 5px 10px;
+    gap: 10px;
+}
+
+.PaymentCard .col-md-12 {
+    /* border-radius: 10px; */
+    /* border: 1px solid var(--gray-200, #E9ECEF); */
+    /* background: #FFF; */
+    /* padding-top: 20px; */
+}
+
+.PaymentCard .PaymentCardText {
+    color: var(--theme-primary, #0C0D48);
+    font-size: 16px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+}
+
+.PaymentCard .PaymentCardText+p {
+    color: var(--gray-600, #6C757D);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    line-height: 25.189px;
+    display: flex;
+    width: 296px;
+    flex-direction: column;
+}
+
+.PaymentCard .StanderdPlanPrice {
+    color: var(--theme-secondary, #E71D7C);
+    text-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    font-size: 34.645px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.PaymentCard .PaymentCharges {
+    color: var(--orange-500, #FD7E14);
+    font-size: 14.422px;
+    font-family: var(--Inter_Header);
+    font-weight: 700;
+    line-height: 21.633px;
+    border-radius: 6.012px;
+    border: 0.859px solid var(--orange-500, #FD7E14);
+    background: #FFF9F3;
+    padding: 4.294px 8.588px;
+    margin-left: 10px;
+}
+
+/* Count */
+
+.PaymentCardText span {
+    cursor: pointer;
+}
+
+.PaymentCardText .number {
+    margin-left: auto;
+}
+
+.PaymentCardText .minus,
+.PaymentCardText .plus {
+    width: 20px;
+    height: 20px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 8px 5px 8px 5px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.PaymentCardText .NumbersInput {
+    height: 34px;
+    width: 60px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+/* Count */
+
+.StandardPlanCard {
+    border-radius: 10px;
+    background: #FFF;
+    width: 100% !important;
+    height: 250px;
+    flex-shrink: 0;
+}
+
+.StandardPlanCard .card-header {
+    background-color: #FFF;
+    font-size: 18px;
+    color: var(--theme-primary, #0C0D48);
+    font-weight: 600;
+    line-height: 120%;
+    font-family: var(--Inter_Header);
+}
+
+.StandardPlanCard .StandardPlanSubHeader {
+    color: var(--gray-600, #6C757D);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    line-height: 25.189px;
+    width: 296px;
+}
+
+.Total {
+    background: #80808017;
+}
+
+.btn{
+    background: #0C0D48;
+}

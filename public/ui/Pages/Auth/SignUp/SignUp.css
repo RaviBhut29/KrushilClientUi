@@ -1,0 +1,132 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+body .cursor-pointer {
+  cursor: pointer;
+}
+body .btn-warning {
+  background-image: -webkit-linear-gradient(97.5deg, #e71d7c 7.2%, #3e4581 57.6%, #e71d7c 84%);
+  color: #fff;
+  border: none;
+}
+
+.form-card-container {
+  width: 100%;
+}
+.form-card-container .SignupForm {
+  width: 500px;
+  background: #fff;
+  margin: 85px auto;
+  padding: 38px;
+  top: 50%;
+  box-shadow: 0px 1.70526px 3.41053px rgba(0, 0, 0, 0.075);
+}
+.form-card-container .SignupForm label,
+.form-card-container .SignupForm input {
+  font-size: 18px;
+}
+.form-card-container .SignupForm h2 {
+  font-weight: 700;
+  font-size: 27.2842px;
+  color: #0C0D48;
+  margin-top: 34px;
+}
+.form-card-container .SignupForm .upload-btn {
+  background: #f8f9fa;
+  border: 1px dashed #6c757d;
+  border-radius: 2px;
+  color: #6c757d;
+}
+.form-card-container .SignupForm .upload-btn svg {
+  margin-right: 8px;
+}
+.form-card-container .SignupForm .viewPassword {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+.form-card-container .SignupForm .signup-btn {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 10px;
+  margin-top: 30px;
+}
+
+.orOption {
+  font-weight: 400;
+  font-size: 17;
+  line-height: 164%;
+  color: #6c757d;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.otherLoginOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.otherLoginOptions .option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.852632px solid #212529;
+  border-radius: 3.41053px;
+  width: 190px;
+  padding: 9px;
+}
+.otherLoginOptions .option span {
+  margin-left: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.otherLoginOptions .option:nth-child(1) {
+  margin-right: 18px;
+}
+
+.disabled {
+  background-color: #adb5bd;
+  border: none;
+  cursor: not-allowed;
+}
+
+.mobile-input .PhoneInput {
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.375rem;
+  gap: 5px;
+}
+.mobile-input .PhoneInput .PhoneInputCountrySelectArrow {
+  display: none;
+}
+.mobile-input .PhoneInput .PhoneInputInput {
+  border: none;
+}
+.mobile-input .PhoneInput--focus input {
+  border: none !important;
+}
+
+.profile-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 4px;
+  margin-right: 17px;
+}
+
+.title-name {
+  font-weight: 500;
+  font-size: 18.24px;
+  color: #212529 !important;
+}
+
+.img-name {
+  font-weight: 400;
+  font-size: 14.05px;
+  color: #0a58ca !important;
+}/*# sourceMappingURL=SignUp.css.map */

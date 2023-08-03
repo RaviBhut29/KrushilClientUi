@@ -1,0 +1,336 @@
+/* * {
+    margin: 0;
+    padding: 0;
+}
+
+.breaddiv {
+    position: relative;
+    align-items: center;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: flex-start;
+    padding: 13px 23px;
+    gap: 10px;
+    width: 197px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 0.5px solid #DEE2E6;
+    box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
+    border-radius: 25px;
+}
+
+.breadcrumb a {
+    width: 46px;
+    height: 24px;
+    font-family: 'system-ui';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #212529;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+} */
+
+.User_Profile .user-info-desc {
+    width: 554px;
+    height: 48px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6C757D;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/*  -----------Profile Photo------------ */
+
+.User_Profile .profile-user-img {
+    width: 111px;
+    height: 111px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+.User_Profile .avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin-top: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Download Button */
+
+.User_Profile .whitebutton {
+    margin: 20px auto;
+    padding: 20px 0;
+    width: 152px;
+    height: 38.85px;
+}
+
+.User_Profile .whitebutton .upload {
+    background: #E7F1FF;
+    border: 0.692308px dashed #0D6EFD;
+    border-radius: 2.76923px;
+    background: #fff;
+    color: #0D6EFD;
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: sans-serif;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;
+    z-index: 2;
+    transition: 1s;
+}
+
+.User_Profile .whitebutton .upload:before {
+    content: '\e09a';
+    font-family: FontAwesome;
+    font-weight: normal;
+    padding: 5px;
+    margin-left: -12px;
+    margin-right: 6px;
+    color: #0D6EFD;
+}
+
+.User_Profile .whitebutton .upload:hover {
+    background: linear-gradient(0deg, #E7F1FF, #E7F1FF),
+        linear-gradient(0deg, #0D6EFD, #0D6EFD);
+
+}
+
+.User_Profile .whitebutton .remove {
+    background: #fff;
+    border: 0.692308px dashed #DC3545;
+    border-radius: 2.76923px;
+    color: #DC3545;
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: sans-serif;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;
+    z-index: 2;
+    transition: 1s;
+}
+
+.User_Profile .whitebutton .remove:before {
+    content: '\f2ed';
+    font-family: FontAwesome;
+    font-weight: normal;
+    padding: 5px;
+    margin-left: -12px;
+    margin-right: 6px;
+    color: #DC3545;
+}
+
+.User_Profile .whitebutton .remove:hover {
+    background: linear-gradient(0deg, #ffe7e7, #ffe7e7), linear-gradient(0deg, #fd0d0d, #fd0d0d);
+}
+
+/* Download Button */
+
+.User_Profile .buttonInside {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.User_Profile .txt_pswrd {
+    height: 25px;
+    width: 100%;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.User_Profile #btn_change {
+    position: absolute;
+    right: 55px;
+    top: 4px;
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: transparent;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px;
+    color: #198754;
+}
+
+/*  -----------Profile Photo------------ */
+/*  -----------HR------------ */
+.User_Profile .hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: 1;
+    font-size: 16px;
+}
+
+.User_Profile .hr-text:before {
+    content: "";
+    /* background: linear-gradient(to right, transparent, #818078, transparent); */
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    opacity: 0.5;
+}
+
+.User_Profile .hr-text:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+    padding: 0 0.5em;
+    line-height: 1.5em;
+    color: #818078;
+    background-color: #fcfcfa;
+}
+
+/*  -----------HR------------ */
+/*  -----------CHK------------ */
+.User_Profile .form-check-label {
+    font-weight: 400;
+}
+
+.User_Profile 
+/* .container */
+ .btn {
+    position: relative;
+    height: 48px;
+    width: 183px;
+    background: #0C0D48;
+    border: 1.05px solid #0C0D48;
+    width: 163px;
+    height: 38px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 4px;
+    color: #fff;
+}
+
+.User_Profile .FL-Name-Group {
+    display: flex;
+}
+
+.User_Profile .l-name{
+    margin-left: 3rem;
+}
+
+.User_Profile p{
+    position: relative;
+}
+/*  -----------CHK------------ */
+/*  -----------Media------------ */
+@media only screen and (max-width: 991px) {
+    .breaddiv {
+        display: none;
+    }
+
+    .User_Profile .user-info,
+    .User_Profile .user-info-desc {
+        width: auto;
+    }
+
+    .User_Profile .row .col-4 .row {
+        display: inline-flex;
+    }
+
+    .User_Profile .col-4,
+    .User_Profile .col-3,
+    .User_Profile .col {
+        max-width: 100% !important;
+    }
+
+    .User_Profile .noti-info {
+        width: auto;
+    }
+
+    .User_Profile .FL-Name-Group{
+        display: block;
+    }
+    .User_Profile .l-name{
+        margin-left: 0;
+    }
+
+    .User_Profile .user-info-desc{
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    
+
+    .User_Profile .content .row,.User_Profile  .form-row{
+        flex-direction: column;
+    }
+
+    .User_Profile .mx-3,.User_Profile .mx-1,.User_Profile .mx-2,.User_Profile .mx-5{
+        margin-left: 0px !important;
+    }
+
+    .User_Profile .noti-info{
+        width: 100% !important;
+    }
+
+    .User_Profile .row .my-3 {
+        margin-left: 0px !important;
+    }
+
+    .User_Profile .row .my-3 .row {
+        margin-left: 0px !important;
+        flex-direction: column;
+        min-height: auto !important;
+        width: auto;
+    }
+
+    .User_Profile .col,.User_Profile .col-4{
+        flex: 1;
+    }
+
+    .User_Profile .row .my-3 .row .col {
+        min-height: auto !important;
+    }
+
+    .User_Profile .form-control {
+        width: 100%;
+    }
+
+    .User_Profile .FL-Name-Group {
+        display: block;
+    }
+
+    /* .profile-container{
+        margin-top: 0.1rem;
+    } */
+}
+
+/*  -----------Media------------ */

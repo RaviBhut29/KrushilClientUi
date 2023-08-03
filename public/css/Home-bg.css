@@ -1,0 +1,28 @@
+.home {
+    position: relative;
+}
+.home:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("../ui/Images/bg_straigth.png");
+    background-repeat: no-repeat;
+    width: 1669px;
+    height: fit-content !important;
+    z-index: -1;
+    background-size: cover;
+    opacity: 0.3;
+}
+.home:before {
+    background-image: url("../ui/Images/bg_white.png");
+    content: "";
+    position: absolute;
+    top: -165px;
+    right: 0;
+    height: fit-content !important;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}

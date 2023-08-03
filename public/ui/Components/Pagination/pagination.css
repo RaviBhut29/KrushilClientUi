@@ -1,0 +1,43 @@
+.showing-page-limit {
+  color: #b9b9c3;
+  font-family: Roboto;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 21px;
+}
+
+.portFolio-pagination {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+  margin-top: 88.19px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #212529;
+}
+.portFolio-pagination .active > .page-link {
+  color: #fff;
+}
+.portFolio-pagination > * {
+  width: unset;
+}
+.portFolio-pagination ul {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.portFolio-pagination a.page-link {
+  background-color: #fff;
+}
+
+.portFolio-pagination .active > .page-link {
+  background-color: #212529 !important;
+}
+
+.page-item .prev {
+  display: none;
+}/*# sourceMappingURL=pagination.css.map */

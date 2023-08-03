@@ -1,0 +1,142 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+body .cursor-pointer {
+  cursor: pointer;
+}
+body .btn-warning {
+  background-image: -webkit-linear-gradient(97.5deg, #e71d7c 7.2%, #3e4581 57.6%, #e71d7c 84%);
+  color: #fff;
+  border: none;
+}
+
+.profile-section {
+  position: relative;
+}
+.profile-section .profile-main-sec {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  font-family: "Inter";
+  font-style: normal;
+}
+.profile-section .profile-main-sec .navigation-bar {
+  padding: 13px 23px;
+  gap: 8px;
+  cursor: pointer;
+  background: #ffffff;
+  border: 0.5px solid #dee2e6;
+  box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
+  border-radius: 25px;
+  margin-bottom: 48px;
+}
+
+.profile-edit-area {
+  margin-bottom: 65px;
+}
+.profile-edit-area .edit-statement .title-statement {
+  font-weight: 600;
+  font-size: 18.77px;
+  line-height: 27px;
+  color: #212529;
+}
+.profile-edit-area .edit-statement .statement {
+  width: 540px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #6c757d;
+}
+
+.edit-form {
+  width: 986px;
+  font-family: "Inter";
+  font-style: normal;
+}
+.edit-form .form-label {
+  font-weight: 400;
+  font-size: 18.2424px;
+  line-height: 150%;
+}
+.edit-form .profile-pic-sec {
+  width: 320px;
+  font-weight: 500;
+  font-size: 14.3591px;
+}
+.edit-form .upload-btn,
+.edit-form .delete-btn {
+  background: #e7f1ff;
+  border: 1px dashed #0d6efd;
+  border-radius: 2px;
+  color: #0d6efd;
+  padding: 8px 12px;
+}
+.edit-form .upload-btn svg,
+.edit-form .delete-btn svg {
+  margin-right: 8px;
+}
+.edit-form .delete-btn {
+  background: #ffeef0;
+  border: 1px dashed #dc3545;
+  color: #dc3545;
+  margin-top: 22px;
+}
+.edit-form .profile-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 4px;
+  margin-right: 17px;
+}
+.edit-form .title-name {
+  font-weight: 500;
+  font-size: 18.24px;
+  color: #212529 !important;
+}
+.edit-form .img-name {
+  font-weight: 400;
+  font-size: 14.05px;
+  color: #0a58ca !important;
+}
+.edit-form input {
+  background-color: #ffffff;
+  padding: 9.4px 13px;
+  border: 1.14015px solid #6c757d;
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 16px;
+}
+.edit-form .PhoneInput {
+  padding: 1px 0px 1px 12px !important;
+  border: 1.14015px solid #6c757d !important;
+}
+.edit-form .PhoneInputInput:focus {
+  border: none !important;
+}
+.edit-form .viewPassword {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  margin-top: 10px;
+}
+
+.settings .border-bottom {
+  border-bottom: 1px solid #ced4da !important;
+  width: -webkit-fill-available;
+  margin: 0px 16px;
+}
+.settings .settings-title {
+  color: #495057;
+}
+.settings .checkbox-group {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #0c0d48;
+}
+.settings .checkbox-group .row {
+  margin-bottom: 15px !important;
+}/*# sourceMappingURL=Profile.css.map */

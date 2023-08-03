@@ -1,0 +1,371 @@
+.breaddiv {
+    position: relative;
+    align-items: center;
+}
+
+.breadcrumb {
+    /* box-sizing: border-box; */
+
+    /* Auto layout */
+    /* left: 100px; */
+    /* top: 160px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 13px 23px;
+    gap: 10px;
+
+    /* position: absolute; */
+    width: 197px;
+    height: 50px;
+
+
+    background: #FFFFFF;
+    /* Gray/300 */
+
+    border: 0.5px solid #DEE2E6;
+    box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
+    border-radius: 25px;
+
+}
+
+.breadcrumb a {
+    width: 46px;
+    height: 24px;
+
+    font-family: 'system-ui';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+    text-decoration-line: underline;
+    /* Gray/900 */
+    color: #212529;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.Services .row .col-3 .card {
+    width: 330.62px;
+    height: auto;
+    min-height: 300px;
+    background: #FFFFFF;
+    box-shadow: 0px 126px 51px rgba(0, 0, 0, 0.01), 0px 71px 43px rgba(0, 0, 0, 0.03), 0px 32px 32px rgba(0, 0, 0, 0.04), 0px 8px 17px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
+    /* border-radius: 7.06667px; */
+    border: none;
+    transition: 0.5s;
+}
+
+.Services .row .col-3 .card .card-body .card-text {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.5312px;
+    line-height: 30px;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    color: #6C757D;
+}
+
+.Services .title1 {
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 57.8265px;
+    line-height: 84px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(97.5deg,
+            #e71d7c 5%,
+            #3E4581 40%,
+            #e71d7c 59%);
+    /* background: linear-gradient(97.5deg,
+            #e71d7c 7.2%,
+            #3e4581 57.6%,
+            #e71d7c 84%); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.Services .title2 {
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 37px;
+    color: #0c0d48;
+    width: 750px;
+}
+
+
+.Services .b1 {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 100%;
+    text-align: center;
+    background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.Services .b2 {
+    display: inline-block;
+    width: 533.5px;
+    height: 59px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.1667px;
+    line-height: 29px;
+    text-align: center;
+    color: #6C757D;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin-top: 1rem;
+}
+
+.Services .lead .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+}
+
+.Services .rhead p {
+    width: 179.66px;
+    height: auto;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20.0554px;
+    line-height: 25px;
+    text-transform: capitalize;
+    color: #0C0D48;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.Services .rbody p {
+    width: 225.62px;
+    height: auto;
+    font-family: unset;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.8142px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    color: #495057;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.Services .lead .col-3 .card .card-body .card-title {
+    font-size: 25px;
+    font-family: var(--Inter-Bold);
+}
+
+@media only screen and (max-width: 991px) {
+    .breaddiv {
+        display: none;
+    }
+
+    .col-3 {
+        width: 100%;
+    }
+
+    .title1 {
+        text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25.5852px;
+        line-height: 137%;
+    }
+
+    .title2 {
+        text-align: center;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 25px;
+        width: auto;
+    }
+
+    .container .lead .col-3 {
+        margin-left: 0rem !important;
+        margin-right: 0rem !important;
+    }
+
+    p .b1 {
+        width: auto !important;
+        height: auto;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22.5852px;
+        line-height: 137%;
+    }
+
+    .b2 {
+        width: auto !important;
+        height: auto;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 25px;
+        margin-top: 1rem;
+    }
+
+    .py-5 {
+        padding-top: 0% !important;
+        padding-right: 0% !important;
+    }
+
+}
+
+/*  Home Card  */
+.home .exploreCategories-serv {
+    z-index: 99;
+    position: relative;
+    margin-bottom: 100px;
+    /* margin-top: 140px; */
+}
+
+.home .exploreCategories-serv h3.head {
+    font-family: var(--Inter_SemiBold);
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+    background: linear-gradient(77.5deg, #e71d7c 34.2%, #3e4581 57.6%, #e71d7c 65%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home .exploreCategories-serv .brandingCards {
+    max-width: 1200px;
+    margin: 50px auto;
+    /* justify-content: center; */
+}
+
+.home .exploreCategories-serv .brandingCards .btn-primary {
+    background-color: #0C0D48;
+    color: #fff;
+    display: block;
+    margin: 50px auto;
+    padding: 10px;
+    max-width: 180px;
+    font-weight: 600;
+    font-size: 18px;
+    border: none;
+    transition: 0.5s;
+    box-shadow: 0px 8px 16px 0px #00000026;
+}
+
+.home .exploreCategories-serv .brandingCards .btn-primary:hover {
+    background-image: var(--gradient);
+    color: var(--white);
+    border: none;
+}
+
+.home .exploreCategories-serv .brandingCards .brands-card {
+    box-shadow: 0px 4px 120px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: none;
+    background-color: var(--white);
+    height: 100%;
+    padding: 32px 35px;
+    max-width: 340px;
+    /* width: 100%; */
+    width: 320px;
+    height: 264px;
+    margin: 20px 0;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.home .exploreCategories-serv .brandingCards .brands-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+.home .exploreCategories-serv .brandingCards .brands-card h3 {
+    font-weight: 700;
+    font-family: var(--Inter_Header);
+    color: #0c0d48;
+    margin: 15px 0;
+}
+
+.home .exploreCategories-serv .brandingCards .brands-card p {
+    color: #6c757d;
+    font-size: 18px;
+    font-family: var(--Inter_Regular);
+    font-weight: 400;
+    /* font-size: 17px; */
+}
+
+.home .exploreCategories-serv .subtext {
+    color: #6C757D;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+    margin-bottom: 60px;
+}
+
+.home .exploreCategories-serv .card {
+    box-shadow: 0px 4px 120px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: none;
+}
+
+.home .exploreCategories-serv .card:nth-child(2) {
+    margin: 0 40px;
+}
+
+.home .exploreCategories-serv .card img {
+    width: 44px;
+    margin: 32px 0 20px 0;
+}
+
+.home .exploreCategories-serv .card h3 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: var(--primary);
+}
+
+/*  Home Card  */
+@media only screen and (max-width: 992px) {
+
+    .home .exploreCategories-serv .brandingCards {
+        margin: 0;
+    }
+
+    .home .exploreCategories-serv .brandingCards .brands-card {
+        margin: 30px 0;
+        height: 285px;
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .home .exploreCategories-serv .brandingCards {
+        text-align: -webkit-center;
+    }
+
+    .home .exploreCategories-serv .brandingCards .col-lg-4 {
+        margin: 10px 0;
+    }
+
+    .home .exploreCategories-serv .brandingCards .brands-card {
+        margin: 0;
+        text-align: initial;
+    }
+}
