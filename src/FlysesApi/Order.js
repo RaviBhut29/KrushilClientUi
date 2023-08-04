@@ -1,5 +1,5 @@
-import { apiGet } from "./FlysesApi";
+import { apiGet, apiPost } from "./FlysesApi";
 
-export const getOrder = (id) => {
-    return apiGet(`order/getUserOrder/${id}`);
+export const getOrder = (obj) => {
+    return apiPost(`order/getUserOrder`,obj);
 };

@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import Header from "../../Layout/Header";
 import BreadCrub from "../../Layout/BreadCrub";
 import { useState } from "react";
+import {
+  getOrderDelivery,
+  getOrderFeature,
+  updateOrderStatus,
+} from "../../FlysesApi/PlanOrderDetailApi";
+import { toastError, toastWarning } from "../../FlysesApi/FlysesApi";
+import { REACT_APP, setLoadingStatus } from "../../FlysesApi";
 
-const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
+const OrderDetails = ({
+  orderDetailsList,
+  setOrderDetailsShow,
+  setOrderDetailsList,
+}) => {
+  const [featurePanelShow, setFeaturePanelShow] = useState(true);
   const [siteMapPath, setSiteMapPath] = useState([
     {
       name: "Home",
@@ -27,7 +39,101 @@ const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
   ]);
 
   const handlePathClick = (name) => {
-    setOrderDetailsShow(false)
+    setOrderDetailsShow(false);
+  };
+
+  const [servicesList, setServicesList] = useState([]);
+  const [orderDeliveryList, setOrderDeliveryList] = useState([]);
+  const [orderDeliveryNotes, setOrderDeliveryNotes] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getAllOrderFeature();
+    getOrderDeliveryFun();
+  }, []);
+
+  const getAllOrderFeature = () => {
+    const userId = sessionStorage.getItem("userId");
+    getOrderFeature(userId, orderDetailsList?.orId)
+      .then((response) => {
+        if (response.length > 0) {
+          setServicesList(response);
+        } else {
+          setServicesList([]);
+        }
+        setLoadingStatus(false);
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      });
+  };
+
+  const getOrderDeliveryFun = () => {
+    getOrderDelivery(orderDetailsList?.orNumber)
+      .then((response) => {
+        setOrderDeliveryNotes(response?.odDesc);
+        if (response?.orderDeliveryMultiFile.length > 0) {
+          setOrderDeliveryList(response?.orderDeliveryMultiFile);
+        } else {
+          setOrderDeliveryList([]);
+        }
+        setLoadingStatus(false);
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      });
+  };
+
+  const downloadService = (id) => {
+    setLoadingStatus(true);
+    var url = String(
+      REACT_APP + "orderdelivery/DownloadOrderDeliveryFile/" + id
+    );
+    const downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.click();
+    setLoadingStatus(false);
+  };
+
+  const handleConfirmClick = (status) => {
+    updateOrderStatus(orderDetailsList?.orId, status)
+      .then((response) => {
+        setOrderDetailsList({
+          ...orderDetailsList,
+          orStatus: status === 6 ? "Completed" : "Revision",
+        });
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      });
+  };
+
+  const [ratingNumberList, setRatingNumberList] = useState({
+    Service: 0,
+    Communication: 0,
+    BuyAgain: 0,
+    txtRating: "",
+  });
+
+  const submitUserRating = (name, ratingNumber) => {
+    setRatingNumberList({
+      ...ratingNumberList,
+      [name]: ratingNumber,
+    });
+  };
+
+  const reviewSubmit = () => {
+    if (
+      ratingNumberList.BuyAgain !== 0 &&
+      ratingNumberList.Service !== 0 &&
+      ratingNumberList.Communication !== 0
+    ) {
+      console.clear();
+      console.warn("ratingNumberList");
+      console.warn(ratingNumberList);
+    } else {
+      toastWarning("Please provide all retnings !!");
+    }
   };
 
   return (
@@ -37,80 +143,148 @@ const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
 
         <Header />
         {/* Navigation */}
-        <BreadCrub siteMapPath={siteMapPath}  handleSiteMapClick={handlePathClick}/>
+        <BreadCrub
+          siteMapPath={siteMapPath}
+          handleSiteMapClick={handlePathClick}
+        />
 
         <p className="order-id my-3">
           Order ID :<span> #{orderDetailsList?.orNumber}</span>
         </p>
+
         <div className="row gy-5">
-          <div className="col-8 card1">
-            <div className="card">
-              <div className="card-header py-3">
-                <div className="card1-info d-flex">
-                  <span className="info">{orderDetailsList?.ctTitle}</span>
-                  <span className="info-date ms-2">
-                    {orderDetailsList?.orDate}
-                  </span>
-                  <button
-                    type="button"
-                    style={{ marginLeft: "auto" }}
-                    className="btn-edit"
+          {featurePanelShow && (
+            <div className="col-8 card1">
+              <div className="card">
+                <div className="card-header py-3">
+                  <div className="card1-info d-flex">
+                    <span className="info">{orderDetailsList?.ctTitle}</span>
+                    <span className="info-date ms-2">
+                      {orderDetailsList?.orDate}
+                    </span>
+
+                    <button
+                      type="button"
+                      className="btn-close"
+                      aria-label="Close"
+                      style={{ position: "absolute", right: "15px" }}
+                      onClick={() => setFeaturePanelShow(false)}
+                    />
+                  </div>
+                </div>
+                <div className="card-body">
+                  <p>
+                    <svg
+                      width={20}
+                      height={20}
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="me-2"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M9.94165 19.4136C15.1583 19.4136 19.3872 15.1847 19.3872 9.96802C19.3872 4.75138 15.1583 0.522461 9.94165 0.522461C4.72501 0.522461 0.496094 4.75138 0.496094 9.96802C0.496094 15.1847 4.72501 19.4136 9.94165 19.4136ZM14.3186 8.44151C14.7797 7.98042 14.7797 7.23284 14.3186 6.77175C13.8575 6.31066 13.1099 6.31066 12.6489 6.77175L8.76096 10.6597L7.23445 9.13314C6.77336 8.67205 6.02578 8.67205 5.56469 9.13314C5.1036 9.59423 5.1036 10.3418 5.56469 10.8029L7.92608 13.1643C8.38717 13.6254 9.13474 13.6254 9.59583 13.1643L14.3186 8.44151Z"
+                        fill="#198754"
+                      />
+                    </svg>
+                    <span className="card1-title ">1 Day Delivery</span>
+                  </p>
+                  <p className="card-text mx-2 card1-Features">
+                    Included Features
+                  </p>
+                  <ul
+                    className="mx-2 card1-Features-li"
+                    style={{ height: "fit-content" }}
                   >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    aria-label="Close"
-                  />
+                    {servicesList.length > 0 &&
+                      servicesList.map((item, index) => {
+                        return <li key={index}>{item?.osServiceName}</li>;
+                      })}
+                  </ul>
                 </div>
               </div>
-              <div className="card-body">
-                <p>
-                  <svg
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M9.94165 19.4136C15.1583 19.4136 19.3872 15.1847 19.3872 9.96802C19.3872 4.75138 15.1583 0.522461 9.94165 0.522461C4.72501 0.522461 0.496094 4.75138 0.496094 9.96802C0.496094 15.1847 4.72501 19.4136 9.94165 19.4136ZM14.3186 8.44151C14.7797 7.98042 14.7797 7.23284 14.3186 6.77175C13.8575 6.31066 13.1099 6.31066 12.6489 6.77175L8.76096 10.6597L7.23445 9.13314C6.77336 8.67205 6.02578 8.67205 5.56469 9.13314C5.1036 9.59423 5.1036 10.3418 5.56469 10.8029L7.92608 13.1643C8.38717 13.6254 9.13474 13.6254 9.59583 13.1643L14.3186 8.44151Z"
-                      fill="#198754"
-                    />
-                  </svg>
-                  <span className="card1-title">1 Day Delivery</span>
-                  <svg
-                    className="ms-2"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M9.94165 19.4136C15.1583 19.4136 19.3872 15.1847 19.3872 9.96802C19.3872 4.75138 15.1583 0.522461 9.94165 0.522461C4.72501 0.522461 0.496094 4.75138 0.496094 9.96802C0.496094 15.1847 4.72501 19.4136 9.94165 19.4136ZM14.3186 8.44151C14.7797 7.98042 14.7797 7.23284 14.3186 6.77175C13.8575 6.31066 13.1099 6.31066 12.6489 6.77175L8.76096 10.6597L7.23445 9.13314C6.77336 8.67205 6.02578 8.67205 5.56469 9.13314C5.1036 9.59423 5.1036 10.3418 5.56469 10.8029L7.92608 13.1643C8.38717 13.6254 9.13474 13.6254 9.59583 13.1643L14.3186 8.44151Z"
-                      fill="#198754"
-                    />
-                  </svg>
-                  <span className="card1-title">Unlimited Revisions</span>
-                </p>
-                <p className="card-text mx-2 card1-Features">
-                  Included Features
-                </p>
-                <ul className="mx-2 card1-Features-li">
-                  <li>4 concepts included</li>
-                  <li>Logo transparency</li>
-                  <li>Vector file</li>
-                  <li>Printable file</li>
-                </ul>
+            </div>
+          )}
+
+          {!featurePanelShow && (
+            <div className="col-8 card3 ">
+              <div className="card">
+                <div className="card-header py-3">
+                  <div className="card1-info d-flex">
+                    <span className="info">Your Delivery</span>
+                  </div>
+                </div>
+                <div className="card-body">
+                  {orderDeliveryList.length <= 0 && (
+                    <div className="row no-order">
+                      <div className="col-2">
+                        <img
+                          height={150}
+                          width={150}
+                          src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
+                        />
+                      </div>
+                      <div className="col-auto pt-4 ps-5">
+                        <span className="info">Nothing here to see yet</span>
+                        <p className="mt-1" style={{ width: 450 }}>
+                          Your delivery will appear here. your delivery date
+                          will be determined once you submit the requirements.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {orderDeliveryList.length > 0 && (
+                    <div className="row pending-order">
+                      {orderDeliveryNotes !== "" && (
+                        <>
+                          <div>
+                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                              Comment Admin Notifier :
+                            </h6>
+                            <p className="mt-1">{orderDeliveryNotes}</p>
+                          </div>
+                          <br />
+                        </>
+                      )}
+
+                      {orderDeliveryList.map((item, index) => {
+                        return (
+                          <div className="col-5" key={index}>
+                            <div className="info-box">
+                              <span
+                                className="info-box-icon"
+                                style={{
+                                  backgroundImage:
+                                    "url(../ui/Images/upload-list-image-card.png)",
+                                  backgroundSize: "cover",
+                                }}
+                              ></span>
+                              <div className="info-box-content">
+                                <span className="info-box-text">
+                                  {item?.name}
+                                </span>
+                                <span className="info-box-number"></span>
+                              </div>
+                              <div
+                                className="info-box-icon"
+                                onClick={() => downloadService(item?.uid)}
+                              >
+                                <img src="../ui/Images/Vector.png" />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
+
           {/* Right First Card */}
           <div className="col-4 card2">
             <div className="card">
@@ -180,167 +354,82 @@ const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
           </div>
           {/* Right First Card */}
           {/* Left Second Card */}
-          <div className="col-8 card3 mt-3">
-            <div className="card">
-              <div className="card-header py-3">
-                <div className="card1-info d-flex">
-                  <span className="info">Your Delivery</span>
-                </div>
-              </div>
-              <div className="card-body">
-                <div className="row no-order">
-                  <div className="col-2">
-                    <img
-                      height={150}
-                      width={150}
-                      src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
-                    />
-                  </div>
-                  <div className="col-auto pt-4 ps-5">
-                    <span className="info">Nothing here to see yet</span>
-                    <p className="mt-1" style={{ width: 450 }}>
-                      Your delivery will appear here. your delivery date will be
-                      determined once you submit the requirements.
-                    </p>
+          {featurePanelShow && (
+            <div className="col-8 card3 mt-3">
+              <div className="card">
+                <div className="card-header py-3">
+                  <div className="card1-info d-flex">
+                    <span className="info">Your Delivery</span>
                   </div>
                 </div>
+                <div className="card-body">
+                  {orderDeliveryList.length <= 0 && (
+                    <div className="row no-order">
+                      <div className="col-2">
+                        <img
+                          height={150}
+                          width={150}
+                          src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
+                        />
+                      </div>
+                      <div className="col-auto pt-4 ps-5">
+                        <span className="info">Nothing here to see yet</span>
+                        <p className="mt-1" style={{ width: 450 }}>
+                          Your delivery will appear here. your delivery date
+                          will be determined once you submit the requirements.
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
-                <div className="row pending-order">
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      >
-                        </span>
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                       
-                      </div>
+                  {orderDeliveryList.length > 0 && (
+                    <div className="row pending-order">
+                      {orderDeliveryNotes !== "" && (
+                        <>
+                          <div>
+                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                              Comment Admin Notifier :
+                            </h6>
+                            <p className="mt-1">{orderDeliveryNotes}</p>
+                          </div>
+                          <br />
+                        </>
+                      )}
+                      {orderDeliveryList.map((item, index) => {
+                        return (
+                          <div className="col-5" key={index}>
+                            <div className="info-box">
+                              <span
+                                className="info-box-icon"
+                                style={{
+                                  backgroundImage:
+                                    "url(../ui/Images/upload-list-image-card.png)",
+                                  backgroundSize: "cover",
+                                }}
+                              ></span>
+                              <div className="info-box-content">
+                                <span className="info-box-text">
+                                  {item?.name}
+                                </span>
+                                <span className="info-box-number"></span>
+                              </div>
+                              <div
+                                className="info-box-icon"
+                                onClick={() => downloadService(item?.uid)}
+                              >
+                                <img src="../ui/Images/Vector.png" />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  </div>
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      />
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      >
-                        </span>
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                       
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      />
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      >
-                        </span>
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5">
-                    <div className="info-box">
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          backgroundImage:
-                            "url(../ui/Images/upload-list-image-card.png)",
-                          backgroundSize: "cover",
-                        }}
-                      />
-                      <div className="info-box-content">
-                        <span className="info-box-text">Typography logo</span>
-                        <span className="info-box-number">
-                          Source file (AI)
-                        </span>
-                      </div>
-                      <div className="info-box-icon">
-                        <img src="../ui/Images/Vector.png" />
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
+          )}
+
           {/* Left Second Card */}
           {/* Right Second Card */}
           <div className="col-4 card4 mt-3">
@@ -401,241 +490,322 @@ const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
             {/*  */}
           </div>
           {/* Review */}
-          <div className="col-12 card5">
-            <div className="card">
-              <div className="card-body">
-                <div className="border-bottom row justify-content-between pending-order">
-                  <div className="col-8">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <span className="info-box-number">
-                          Service as Described
-                        </span>
-                        <span className="info-box-text">
-                          Please give us a review, Your review should be about
-                          your experience with the product.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-4">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star5"
-                            name="rate"
-                            defaultValue={5}
-                          />
-                          <label htmlFor="star5" title="text" />
-                          <input
-                            type="radio"
-                            id="star4"
-                            name="rate"
-                            defaultValue={4}
-                          />
-                          <label htmlFor="star4" title="text" />
-                          <input
-                            type="radio"
-                            id="star3"
-                            name="rate"
-                            defaultValue={3}
-                          />
-                          <label htmlFor="star3" title="text" />
-                          <input
-                            type="radio"
-                            id="star2"
-                            name="rate"
-                            defaultValue={2}
-                          />
-                          <label htmlFor="star2" title="text" />
-                          <input
-                            type="radio"
-                            id="star1"
-                            name="rate"
-                            defaultValue={1}
-                          />
-                          <label htmlFor="star1" title="text" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-bottom row justify-content-between pending-order">
-                  <div className="col-8">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <span className="info-box-number">
-                          Communication with us
-                        </span>
-                        <span className="info-box-text">
-                          Please give us a review, Your review should be about
-                          your experience with the product.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-4">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star6"
-                            name="rate1"
-                            defaultValue={5}
-                          />
-                          <label htmlFor="star6" title="text" />
-                          <input
-                            type="radio"
-                            id="star7"
-                            name="rate1"
-                            defaultValue={4}
-                          />
-                          <label htmlFor="star7" title="text" />
-                          <input
-                            type="radio"
-                            id="star8"
-                            name="rate1"
-                            defaultValue={3}
-                          />
-                          <label htmlFor="star8" title="text" />
-                          <input
-                            type="radio"
-                            id="star9"
-                            name="rate1"
-                            defaultValue={2}
-                          />
-                          <label htmlFor="star9" title="text" />
-                          <input
-                            type="radio"
-                            id="star10"
-                            name="rate1"
-                            defaultValue={1}
-                          />
-                          <label htmlFor="star10" title="text" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-bottom row justify-content-between pending-order">
-                  <div className="col-8">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <span className="info-box-number">
-                          Buy again or Recommend
-                        </span>
-                        <span className="info-box-text">
-                          Please give us a review, Your review should be about
-                          your experience with the product.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-4">
-                    <div
-                      className="info-box"
-                      style={{ border: "none", boxShadow: "none" }}
-                    >
-                      <div className="info-box-content">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star15"
-                            name="rate2"
-                            defaultValue={5}
-                          />
-                          <label htmlFor="star15" title="text" />
-                          <input
-                            type="radio"
-                            id="star14"
-                            name="rate2"
-                            defaultValue={4}
-                          />
-                          <label htmlFor="star14" title="text" />
-                          <input
-                            type="radio"
-                            id="star13"
-                            name="rate2"
-                            defaultValue={3}
-                          />
-                          <label htmlFor="star13" title="text" />
-                          <input
-                            type="radio"
-                            id="star12"
-                            name="rate2"
-                            defaultValue={2}
-                          />
-                          <label htmlFor="star12" title="text" />
-                          <input
-                            type="radio"
-                            id="star11"
-                            name="rate2"
-                            defaultValue={1}
-                          />
-                          <label htmlFor="star11" title="text" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row my-3 input-g">
-                  <div className="col-12">
-                    <div className="row justify-content-between pending-order">
-                      <div className="col-12">
-                        <div
-                          className="info-box"
-                          style={{
-                            alignItems: "center",
-                            minHeight: 60,
-                            background: "#f8f9fa",
-                          }}
-                        >
-                          <span
-                            className="info-box-icon"
-                            style={{
-                              height: "fit-content",
-                              borderRight: "1px solid #c8c8c8",
-                              borderRadius: 0,
-                            }}
-                          >
-                            <img src="../ui/Images/Smile-group-24.png" />
+          {orderDetailsList?.orStatus === "Completed" && (
+            <div className="col-12 card5">
+              <div className="card">
+                <div className="card-body">
+                  <div className="border-bottom row justify-content-between pending-order">
+                    <div className="col-8">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <span className="info-box-number">
+                            Service as Described
                           </span>
-                          <span
-                            className="info-box-icon"
-                            style={{
-                              height: "fit-content",
-                              borderRight: "1px solid #c8c8c8",
-                              borderRadius: 0,
-                            }}
-                          >
-                            <img src="../ui/Images/icon-paperclip.png" />
+                          <span className="info-box-text">
+                            Please give us a review, Your review should be about
+                            your experience with the product.
                           </span>
-                          <div className="ms-3 input-g">
-                            <input
-                              className="form-control"
-                              style={{ border: "none" }}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <div className="rate">
+                            <label
+                              htmlFor="star5"
+                              title="text"
+                              onClick={() => submitUserRating("Service", 5)}
+                              style={{
+                                color:
+                                  ratingNumberList.Service !== 5
+                                    ? "#e8e8e8"
+                                    : "#deb217",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star4"
+                              title="text"
+                              onClick={(e) => submitUserRating("Service", 4)}
+                              style={{
+                                color:
+                                  ratingNumberList.Service >= 4
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star3"
+                              title="text"
+                              onClick={(e) => submitUserRating("Service", 3)}
+                              style={{
+                                color:
+                                  ratingNumberList.Service >= 3
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star2"
+                              title="text"
+                              onClick={(e) => submitUserRating("Service", 2)}
+                              style={{
+                                color:
+                                  ratingNumberList.Service >= 2
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star1"
+                              title="text"
+                              onClick={(e) => submitUserRating("Service", 1)}
+                              style={{
+                                color:
+                                  ratingNumberList.Service >= 1
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
                             />
                           </div>
-                          <div className="info-box-icon download-triangle">
-                            <img src="../ui/Images/download-tri.png" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border-bottom row justify-content-between pending-order">
+                    <div className="col-8">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <span className="info-box-number">
+                            Communication with us
+                          </span>
+                          <span className="info-box-text">
+                            Please give us a review, Your review should be about
+                            your experience with the product.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <div className="rate">
+                            <label
+                              htmlFor="star6"
+                              title="text"
+                              onClick={(e) =>
+                                submitUserRating("Communication", 5)
+                              }
+                              style={{
+                                color:
+                                  ratingNumberList.Communication >= 5
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star7"
+                              title="text"
+                              onClick={(e) =>
+                                submitUserRating("Communication", 4)
+                              }
+                              style={{
+                                color:
+                                  ratingNumberList.Communication >= 4
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star8"
+                              title="text"
+                              onClick={(e) =>
+                                submitUserRating("Communication", 3)
+                              }
+                              style={{
+                                color:
+                                  ratingNumberList.Communication >= 3
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star9"
+                              title="text"
+                              onClick={(e) =>
+                                submitUserRating("Communication", 2)
+                              }
+                              style={{
+                                color:
+                                  ratingNumberList.Communication >= 2
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star10"
+                              title="text"
+                              onClick={(e) =>
+                                submitUserRating("Communication", 1)
+                              }
+                              style={{
+                                color:
+                                  ratingNumberList.Communication >= 1
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border-bottom row justify-content-between pending-order">
+                    <div className="col-8">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <span className="info-box-number">
+                            Buy again or Recommend
+                          </span>
+                          <span className="info-box-text">
+                            Please give us a review, Your review should be about
+                            your experience with the product.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div
+                        className="info-box"
+                        style={{ border: "none", boxShadow: "none" }}
+                      >
+                        <div className="info-box-content">
+                          <div className="rate">
+                            <label
+                              htmlFor="star15"
+                              title="text"
+                              onClick={(e) => submitUserRating("BuyAgain", 5)}
+                              style={{
+                                color:
+                                  ratingNumberList.BuyAgain >= 5
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star14"
+                              title="text"
+                              onClick={(e) => submitUserRating("BuyAgain", 4)}
+                              style={{
+                                color:
+                                  ratingNumberList.BuyAgain >= 4
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star13"
+                              title="text"
+                              onClick={(e) => submitUserRating("BuyAgain", 3)}
+                              style={{
+                                color:
+                                  ratingNumberList.BuyAgain >= 3
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star12"
+                              title="text"
+                              onClick={(e) => submitUserRating("BuyAgain", 2)}
+                              style={{
+                                color:
+                                  ratingNumberList.BuyAgain >= 2
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+
+                            <label
+                              htmlFor="star11"
+                              title="text"
+                              onClick={(e) => submitUserRating("BuyAgain", 1)}
+                              style={{
+                                color:
+                                  ratingNumberList.BuyAgain >= 1
+                                    ? "#deb217"
+                                    : "#e8e8e8",
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row my-3 input-g">
+                    <div className="col-12">
+                      <div className="row justify-content-between pending-order">
+                        <div className="col-12">
+                          <div
+                            className="info-box"
+                            style={{
+                              alignItems: "center",
+                              minHeight: 60,
+                              background: "#f8f9fa",
+                            }}
+                          >
+                            <span
+                              className="info-box-icon"
+                              style={{
+                                height: "fit-content",
+                                borderRight: "1px solid #c8c8c8",
+                                borderRadius: 0,
+                              }}
+                            >
+                              <img src="../ui/Images/Smile-group-24.png" />
+                            </span>
+
+                            <div className="ms-3 input-g">
+                              <input
+                                className="form-control"
+                                style={{ border: "none" }}
+                                onChange={(e) =>
+                                  setRatingNumberList({
+                                    ...ratingNumberList,
+                                    txtRating: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div className="info-box-icon download-triangle">
+                              <img src="../ui/Images/download-tri.png" onClick={reviewSubmit}/>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -644,29 +814,45 @@ const OrderDetails = ({ orderDetailsList,setOrderDetailsShow }) => {
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
-      <footer className="Order-status-footer">
-        <div className="container">
-          <div className="footer">
-            <div className="row">
-              <div className="col confirm-ord">
-                <p>Do you want to confirm this order?</p>
-              </div>
-              <div className="col d-flex">
-                <button
-                  className="btn btn-outline-dark"
-                  style={{ color: "white" }}
-                >
-                  Request Revisions
-                </button>
-                <button className="btn btn-dark">Confirm</button>
+      {(orderDetailsList?.orStatus === "Delivered" ||
+        orderDetailsList?.orStatus === "Completed" ||
+        orderDetailsList?.orStatus === "Revision") && (
+        <footer className="Order-status-footer">
+          <div className="container">
+            <div className="footer">
+              <div className="row">
+                <div className="col confirm-ord">
+                  <p>Do you want to revisions this order?</p>
+                </div>
+                <div className="col d-flex">
+                  {orderDetailsList?.orStatus !== "Revision" && (
+                    <button
+                      className="btn btn-outline-dark"
+                      style={{ color: "white" }}
+                      onClick={() => handleConfirmClick(5)}
+                    >
+                      Request Revisions
+                    </button>
+                  )}
+
+                  {orderDetailsList?.orStatus === "Delivered" ||
+                    (orderDetailsList?.orStatus === "Revision" && (
+                      <button
+                        className="btn btn-dark"
+                        onClick={() => handleConfirmClick(6)}
+                      >
+                        Confirm
+                      </button>
+                    ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </>
   );
 };

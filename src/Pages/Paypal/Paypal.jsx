@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { toastError, toastSuccess } from "../../FlysesApi/FlysesApi";
-import { createPlanOrder } from "../../FlysesApi/CouponCode";
+import {
+  CreateUserWiseModifyOrder,
+  createPlanOrder,
+} from "../../FlysesApi/CouponCode";
 import { useNavigate } from "react-router-dom";
 
 const PayPal = (props) => {
-  const { paymentDetails, setOpen } = props;
+  const {
+    paymentDetails,
+    setOpen,
+    orderModifyDetails,
+    setOrderModifyDetails,
+    couponCode,
+  } = props;
   const history = useNavigate();
   let path = window.location.pathname;
   let splitdata = path.split("/");
@@ -64,9 +73,18 @@ const PayPal = (props) => {
         orPlanId: paymentDetails?.planId,
         orUserId: userId,
         orNumber: orderID,
+        orPrice: paymentDetails?.price,
+        orCouponCode: couponCode,
       };
       createPlanOrder(obj)
         .then((response) => {
+          const obj = {
+            uoUserId: Number(userId),
+            uoOrderId: response?.id,
+            planDetail: orderModifyDetails,
+          };
+
+          insertOrderModifyServices(obj);
           history(`/requirement/${splitdata[splitdata.length - 1]}`);
         })
         .catch(() => {
@@ -75,6 +93,12 @@ const PayPal = (props) => {
       setOpen(false);
     }
   }, [success]);
+
+  const insertOrderModifyServices = (obj) => {
+    CreateUserWiseModifyOrder(obj).then(() => {
+      setOrderModifyDetails([]);
+    });
+  };
 
   return (
     <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>

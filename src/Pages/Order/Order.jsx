@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Header from "../../Layout/Header";
 import BreadCrub from "../../Layout/BreadCrub";
 import { useEffect } from "react";
@@ -8,8 +8,11 @@ import { toastError, toastSuccess } from "../../FlysesApi/FlysesApi";
 import { getOrder } from "../../FlysesApi/Order";
 import OrderDetails from "./OrderDetails";
 import copy from "copy-to-clipboard";
+import "./Order.css";
 
 const Order = () => {
+  const currentYear = new Date().getFullYear();
+
   const siteMapPath = [
     {
       name: "Home",
@@ -25,22 +28,46 @@ const Order = () => {
     },
   ];
 
+  const userId = sessionStorage.getItem("userId");
+  const [filterDetail, setFilterDetail] = useState({
+    orUserId: userId,
+    orderNumber: "",
+    year: "",
+    lastMonth: 0,
+    progress: 0,
+    delivered: 0,
+    cancelled: 0,
+    revision: 0,
+    completed: 0,
+    refund: 0
+  });
+
   const [orderDetailsShow, setOrderDetailsShow] = useState(false);
   //const [orderId, setOrderId] = useState(0);
-  const [orderObj,setOrderObj] = useState(null);
+  const [orderObj, setOrderObj] = useState(null);
 
   useEffect(() => {
+    console.clear();
+    console.warn("filterDetail");
+    console.warn(filterDetail);
+
+    if (filterDetail.orderNumber === "") {
+      setLoadingStatus(true);
+    }
+
     getOrderFun();
-  }, []);
+  }, [filterDetail]);
 
   const [orderList, setOrderList] = useState([]);
 
   const getOrderFun = () => {
-    const userId = sessionStorage.getItem("userId");
-    getOrder(userId)
+    getOrder(filterDetail)
       .then((response) => {
         if (response.length > 0) {
           setOrderList(response);
+          if (!resetDiv) {
+            setResetDiv(true);
+          }
         } else {
           setOrderList([]);
         }
@@ -51,10 +78,58 @@ const Order = () => {
       });
   };
 
-  const handleCopyOrderNumber = (copyText) =>{
+  const handleCopyOrderNumber = (copyText) => {
     copy(copyText);
     toastSuccess(`You have copied "${copyText}"`);
-  }
+  };
+
+  const [resetDiv, setResetDiv] = useState(true);
+
+  useMemo(() => {
+    if (!resetDiv) {
+      setFilterDetail({
+        ...filterDetail,
+        orUserId: userId,
+        orderNumber: "",
+        year: "",
+        lastMonth: 0,
+        progress: 0,
+        delivered: 0,
+        cancelled: 0,
+        revision: 0,
+      });
+    }
+  }, [resetDiv]);
+
+  const handleResetFliterClick = () => {
+    setResetDiv(false);
+  };
+
+  const handleFilterClick = (e, name) => {
+    setFilterDetail({
+      ...filterDetail,
+      [name]: e.target.checked ? 1 : 0,
+    });
+  };
+
+  const handleYearFilterChange = (e, year) => {
+    let yearStr = filterDetail?.year;
+    if (e.target.checked) {
+      yearStr += yearStr !== "" ? ", " + year : year;
+    } else {
+      yearStr = yearStr.includes(", " + year)
+        ? yearStr.replace(", " + year, "")
+        : yearStr.includes(year + ", ")
+        ? yearStr.replace(year + ", ", "")
+        : yearStr.includes(year)
+        ? yearStr.replace(year, "")
+        : "";
+    }
+    setFilterDetail({
+      ...filterDetail,
+      year: yearStr,
+    });
+  };
 
   return (
     <>
@@ -71,14 +146,22 @@ const Order = () => {
                 <div className="row">
                   <div className="col d-flex btn-search-head">
                     <span>My Orders</span>
-                    <div className="search">
-                      <img src="../ui/Images/search.svg" alt="Search icon" />
-                      <input
-                        className="form-control"
-                        placeholder="Search"
-                        style={{ width: "234px" }}
-                      />
-                    </div>
+                    {resetDiv && (
+                      <div className="search">
+                        <img src="../ui/Images/search.svg" alt="Search icon" />
+                        <input
+                          className="form-control"
+                          placeholder="Search"
+                          style={{ width: "234px" }}
+                          onChange={(e) =>
+                            setFilterDetail({
+                              ...filterDetail,
+                              orderNumber: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {orderList.length > 0 &&
@@ -121,7 +204,7 @@ const Order = () => {
                                   width: "fit-content",
                                 }}
                               >
-                                <p>${item?.ctPrice}</p>
+                                <p>${item?.orPrice}</p>
                               </div>
                               <div className="hr" />
                               <div className="col-12 row">
@@ -138,7 +221,11 @@ const Order = () => {
                                             marginLeft: "5px",
                                             cursor: "pointer",
                                           }}
-                                          onClick={() => handleCopyOrderNumber(item?.orNumber)}
+                                          onClick={() =>
+                                            handleCopyOrderNumber(
+                                              item?.orNumber
+                                            )
+                                          }
                                         />
                                       </span>
                                     </p>
@@ -159,7 +246,6 @@ const Order = () => {
                                     onClick={() => {
                                       setOrderDetailsShow(true);
                                       setOrderObj(orderList[index]);
-                                      console.warn(orderList[index])
                                     }}
                                   >
                                     View Order
@@ -177,75 +263,114 @@ const Order = () => {
                 <div className="card Filter">
                   <div className="card-header d-flex">
                     Filters
-                    <span style={{ marginLeft: "auto" }}>Reset</span>
+                    <span
+                      className="resetLabel"
+                      onClick={handleResetFliterClick}
+                    >
+                      Reset
+                    </span>
                   </div>
-                  <div className="card-body">
-                    <div className="check-list">
-                      <span className="left">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        On the way
-                      </span>
-                      <span className="right">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        Last 30 days
-                      </span>
-                      <span className="left">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        Delivered
-                      </span>
-                      <span className="right">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        2022
-                      </span>
-                      <span className="left">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        Cancelled
-                      </span>
-                      <span className="right">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        2021
-                      </span>
-                      <span className="left">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        Returned
-                      </span>
-                      <span className="right">
-                        <input
-                          type="checkbox"
-                          style={{ marginRight: "5px", marginTop: "-2px" }}
-                        />
-                        Older
-                      </span>
+                  {resetDiv && (
+                    <div className="card-body">
+                      <div className="check-list">
+                        <label className="left" for="group1">
+                          <input
+                            type="checkbox"
+                            id="group1"
+                            onChange={(e) => handleFilterClick(e, "progress")}
+                          />
+                          On the way
+                        </label>
+                        <label className="right" for="group2">
+                          <input
+                            type="checkbox"
+                            id="group2"
+                            onChange={(e) => handleFilterClick(e, "lastMonth")}
+                          />
+                          Last 30 days
+                        </label>
+                        <label className="left" for="group3">
+                          <input
+                            type="checkbox"
+                            id="group3"
+                            onChange={(e) => handleFilterClick(e, "delivered")}
+                          />
+                          Delivered
+                        </label>
+                        <label className="right" for="group4">
+                          <input
+                            type="checkbox"
+                            id="group4"
+                            onChange={(e) =>handleYearFilterChange(e,String(Number(currentYear) - 2))}
+                          />
+                          {Number(currentYear) - 2}
+                        </label>
+                        <label className="left" for="group5">
+                          <input
+                            type="checkbox"
+                            id="group5"
+                            onChange={(e) => handleFilterClick(e, "cancelled")}
+                          />
+                          Cancelled
+                        </label>
+                        <label className="right" for="group6">
+                          <input
+                            type="checkbox"
+                            id="group6"
+                            onChange={(e) =>handleYearFilterChange(e,String(Number(currentYear) - 1))}
+                          />
+                          {Number(currentYear) - 1}
+                        </label>
+                        <label
+                          className="left"
+                          for="group7"
+                          style={{ marginBottom: "-15px" }}
+                        >
+                          <input
+                            type="checkbox"
+                            id="group7"
+                            onChange={(e) => handleFilterClick(e, "revision")}
+                          />
+                          Returned
+                        </label>
+                        <label className="right" for="group8">
+                          <input
+                            type="checkbox"
+                            id="group8"
+                            onChange={(e) =>handleYearFilterChange(e,String(currentYear))}
+                          />
+                          {currentYear}
+                        </label>
+                        <label className="left" for="group9">
+                          <input
+                            type="checkbox"
+                            id="group9"
+                            onChange={(e) => handleFilterClick(e, "completed")}
+                          />
+                          Completed
+                        </label>
+                        <label className="left" for="group10">
+                          <input
+                            type="checkbox"
+                            id="group10"
+                            onChange={(e) => handleFilterClick(e, "refund")}
+                          />
+                          Refund
+                        </label>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <OrderDetails orderDetailsList={orderObj} setOrderDetailsShow={setOrderDetailsShow}/>
+        <OrderDetails
+          orderDetailsList={orderObj}
+          setOrderDetailsShow={setOrderDetailsShow}
+          setOrderDetailsList={setOrderObj}
+        />
       )}
     </>
   );

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 
 const CouponCode = (props) => {
-  const { couponDiscount,setCouponDiscount, orderDetails,setIsPayPal } = props;
+  const { couponDiscount,setCouponDiscount, orderDetails,setIsPayPal,setCouponCode } = props;
   const [text, setText] = useState({
     name: "",
   });
@@ -24,6 +24,7 @@ const CouponCode = (props) => {
         .then((response) => {
           if (response.isValid) {
             setCodeValid(true);
+            setCouponCode(text.name);
             toastSuccess("Coupon code apply successfully.");
             if (response.ccPercentage !== 0) {
               setCouponDiscount(response?.ccPercentage);
@@ -47,6 +48,7 @@ const CouponCode = (props) => {
     setCouponDiscount(0);
     setIsPayPal(false);
     setText({name:""})
+    setCouponCode("");
   };
 
   return (

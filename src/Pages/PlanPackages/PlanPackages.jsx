@@ -23,8 +23,10 @@ const PlanPackages = (props) => {
   const [paymentDetails, setPaymentDetails] = useState({
     planId: "",
     price: "",
-    planName: ""
+    planName: "",
   });
+  const [couponCode, setCouponCode] = useState("");
+  const [orderModifyDetails, setOrderModifyDetails] = useState([]);
 
   useEffect(() => {
     setLoadingStatus(true);
@@ -90,18 +92,16 @@ const PlanPackages = (props) => {
 
   const handlePlanClick = (id) => {
     const userId = sessionStorage.getItem("userId");
-    if(Number(userId) !== 0 && userId !== null && userId !== undefined)
-    {
+    if (Number(userId) !== 0 && userId !== null && userId !== undefined) {
       setOpen(true);
       bindOrderDetails(id);
       setPaymentDetails({
         ...paymentDetails,
         planId: id,
-        planName: orderDetails[0]?.pnName
+        planName: orderDetails[0]?.pnName,
       });
-    }
-    else{
-      history(`/login`)
+    } else {
+      history(`/login`);
     }
   };
 
@@ -131,6 +131,7 @@ const PlanPackages = (props) => {
   const onClose = () => {
     setOpen(false);
     setIsPayPal(false);
+    setOrderModifyDetails([]);
   };
 
   const handlePlusClick = (index, charge, action) => {
@@ -156,10 +157,54 @@ const PlanPackages = (props) => {
         }
         Array[index]["osIncrementerDefaultValue"] =
           Number(orderDetails[index]?.osIncrementerDefaultValue) + 1;
+
+        if (
+          Number(orderDetails[index]?.osIncrementerDefaultValue) ===
+          bckArray[index]?.osIncrementerDefaultValue
+        ) {
+          setOrderModifyDetails(
+            orderModifyDetails.filter(
+              (x) => x.uoOsId !== orderDetails[index]?.osId
+            )
+          );
+        } else {
+          const existsOsId = orderModifyDetails.findIndex(
+            (x) => x.uoOsId === orderDetails[index]?.osId
+          );
+          if (existsOsId < 0) {
+            const obj = {
+              uoOsId: orderDetails[index]?.osId,
+              uoSelectedDefaultValue: Number(
+                orderDetails[index]?.osIncrementerDefaultValue
+              ),
+            };
+
+            setOrderModifyDetails([...orderModifyDetails, obj]);
+          } else {
+            const obj = {
+              uoOsId: orderDetails[index]?.osId,
+              uoSelectedDefaultValue: Number(
+                orderDetails[index]?.osIncrementerDefaultValue
+              ),
+            };
+
+            setOrderModifyDetails([
+              ...orderModifyDetails.slice(0, existsOsId),
+              obj,
+              ...orderModifyDetails.slice(existsOsId + 1),
+            ]);
+          }
+        }
+
         setOrderDetails([...Array]);
       }
     }
   };
+
+  useMemo(() => {
+    console.clear();
+    console.warn(orderModifyDetails);
+  }, [orderModifyDetails]);
 
   const handleMinusClick = (index, charge, action) => {
     const bckArray = JSON.parse(orderDetailsBCK);
@@ -185,6 +230,45 @@ const PlanPackages = (props) => {
         }
         Array[index]["osIncrementerDefaultValue"] =
           Number(orderDetails[index]?.osIncrementerDefaultValue) - 1;
+
+        if (
+          Number(orderDetails[index]?.osIncrementerDefaultValue) ===
+          bckArray[index]?.osIncrementerDefaultValue
+        ) {
+          setOrderModifyDetails(
+            orderModifyDetails.filter(
+              (x) => x.uoOsId !== orderDetails[index]?.osId
+            )
+          );
+        } else {
+          const existsOsId = orderModifyDetails.findIndex(
+            (x) => x.uoOsId === orderDetails[index]?.osId
+          );
+          if (existsOsId < 0) {
+            const obj = {
+              uoOsId: orderDetails[index]?.osId,
+              uoSelectedDefaultValue: Number(
+                orderDetails[index]?.osIncrementerDefaultValue
+              ),
+            };
+
+            setOrderModifyDetails([...orderModifyDetails, obj]);
+          } else {
+            const obj = {
+              uoOsId: orderDetails[index]?.osId,
+              uoSelectedDefaultValue: Number(
+                orderDetails[index]?.osIncrementerDefaultValue
+              ),
+            };
+
+            setOrderModifyDetails([
+              ...orderModifyDetails.slice(0, existsOsId),
+              obj,
+              ...orderModifyDetails.slice(existsOsId + 1),
+            ]);
+          }
+        }
+
         setOrderDetails([...Array]);
       }
     }
@@ -198,27 +282,39 @@ const PlanPackages = (props) => {
       if (e.target.checked) {
         Array[0]["pnPrice"] = Number(orderDetails[0]?.pnPrice) + Number(charge);
         setOrderDetails([...Array]);
+
+        const obj = {
+          uoOsId: orderDetails[index]?.osId,
+          uoSelectedDefaultValue: 0,
+        };
+        setOrderModifyDetails([...orderModifyDetails, obj]);
       } else {
         Array[0]["pnPrice"] = Number(orderDetails[0]?.pnPrice) - Number(charge);
         setOrderDetails([...Array]);
+
+        setOrderModifyDetails(
+          orderModifyDetails.filter(
+            (x) => x.uoOsId !== orderDetails[index]?.osId
+          )
+        );
       }
     }
   };
 
-  const displayTotalPrice = (price,isPaymentValue = false) => {
+  const displayTotalPrice = (price, isPaymentValue = false) => {
     if (couponDiscount !== 0) {
       const currentPrice =
         Number(price) -
         Math.round((Number(price) * Number(couponDiscount)) / 100);
-      return (isPaymentValue ? currentPrice : ("$" + currentPrice));
-    } else return (isPaymentValue ? price : ("$" + price));
+      return isPaymentValue ? currentPrice : "$" + currentPrice;
+    } else return isPaymentValue ? price : "$" + price;
   };
 
   const handleCheckOutClick = () => {
     setIsPayPal(true);
     setPaymentDetails({
       ...paymentDetails,
-      price: displayTotalPrice(orderDetails[0]["pnPrice"],true),
+      price: displayTotalPrice(orderDetails[0]["pnPrice"], true),
     });
   };
 
@@ -334,140 +430,154 @@ const PlanPackages = (props) => {
           </Space>
         }
       >
-        {open && <div className="container PaymentCard">
-          <div className="row">
-            <div className="col-md-12 mb-3 pt-3 border rounded-3">
-              <p className="PaymentCardText">
-                {orderDetails[0]?.pnName}
-                <span className="StanderdPlanPrice">
-                  {" "}
-                  {planPrice !== 0 && `$${planPrice}`}
-                </span>
-              </p>
-              <p>{orderDetails[0]?.pnDesc}</p>
-            </div>
+        {open && (
+          <div className="container PaymentCard">
+            <div className="row">
+              <div className="col-md-12 mb-3 pt-3 border rounded-3">
+                <p className="PaymentCardText">
+                  {orderDetails[0]?.pnName}
+                  <span className="StanderdPlanPrice">
+                    {" "}
+                    {planPrice !== 0 && `$${planPrice}`}
+                  </span>
+                </p>
+                <p>{orderDetails[0]?.pnDesc}</p>
+              </div>
 
-            {orderDetails.length > 0 &&
-              orderDetails.map((item, index) => {
-                if (String(item?.osType) === "1") {
-                  return (
-                    <div
-                      className="col-md-12 mb-3 pt-3 border rounded-3"
-                      key={item?.osId}
-                    >
-                      <p className="PaymentCardText">
-                        {item?.osServiceName}{" "}
-                        <span className="PaymentCharges">
-                          ${item?.osServiceCharge} / {item?.osServiceChargeName}
-                        </span>
-                        <div className="number">
-                          <Button
-                            classNames="minus"
-                            onClick={() =>
-                              handleMinusClick(
-                                index,
-                                item?.osServiceCharge,
-                                item?.osPriceIncreaseActionType
-                              )
-                            }
-                            disabled={
-                              JSON.parse(orderDetailsBCK)[index]
-                                ?.osIncrementerDefaultValue ===
-                                item?.osIncrementerDefaultValue &&
-                              Number(item?.osPriceIncreaseActionType) !== 2
-                            }
-                          >
-                            -
-                          </Button>
-                          <input
-                            className="NumbersInput"
-                            type="text"
-                            value={item?.osIncrementerDefaultValue}
-                          />
-                          <Button
-                            classNames="plus"
-                            onClick={() =>
-                              handlePlusClick(
-                                index,
-                                item?.osServiceCharge,
-                                item?.osPriceIncreaseActionType
-                              )
-                            }
-                            disabled={
-                              JSON.parse(orderDetailsBCK)[index]
-                                ?.osIncrementerDefaultValue ===
-                                item?.osIncrementerDefaultValue &&
-                              Number(item?.osPriceIncreaseActionType) === 2
-                            }
-                          >
-                            +
-                          </Button>
-                        </div>
-                      </p>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div
-                      className="col-md-12 mb-3 pt-3 border rounded-3"
-                      key={item?.osId}
-                    >
-                      <input
-                        type="checkbox"
-                        id={item?.osId}
-                        className="me-3"
-                        onChange={(e) =>
-                          handleIncludeFeature(e, index, item?.osServiceCharge)
-                        }
-                      ></input>
-                      <label htmlFor={item?.osId}>
+              {orderDetails.length > 0 &&
+                orderDetails.map((item, index) => {
+                  if (String(item?.osType) === "1") {
+                    return (
+                      <div
+                        className="col-md-12 mb-3 pt-3 border rounded-3"
+                        key={item?.osId}
+                      >
                         <p className="PaymentCardText">
                           {item?.osServiceName}{" "}
                           <span className="PaymentCharges">
-                            ${item?.osServiceCharge}
+                            ${item?.osServiceCharge} /{" "}
+                            {item?.osServiceChargeName}
                           </span>
+                          <div className="number">
+                            <Button
+                              classNames="minus"
+                              onClick={() =>
+                                handleMinusClick(
+                                  index,
+                                  item?.osServiceCharge,
+                                  item?.osPriceIncreaseActionType
+                                )
+                              }
+                              disabled={
+                                JSON.parse(orderDetailsBCK)[index]
+                                  ?.osIncrementerDefaultValue ===
+                                  item?.osIncrementerDefaultValue &&
+                                Number(item?.osPriceIncreaseActionType) !== 2
+                              }
+                            >
+                              -
+                            </Button>
+                            <input
+                              className="NumbersInput"
+                              type="text"
+                              value={item?.osIncrementerDefaultValue}
+                            />
+                            <Button
+                              classNames="plus"
+                              onClick={() =>
+                                handlePlusClick(
+                                  index,
+                                  item?.osServiceCharge,
+                                  item?.osPriceIncreaseActionType
+                                )
+                              }
+                              disabled={
+                                JSON.parse(orderDetailsBCK)[index]
+                                  ?.osIncrementerDefaultValue ===
+                                  item?.osIncrementerDefaultValue &&
+                                Number(item?.osPriceIncreaseActionType) === 2
+                              }
+                            >
+                              +
+                            </Button>
+                          </div>
                         </p>
-                      </label>
-                    </div>
-                  );
-                }
-              })}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div
+                        className="col-md-12 mb-3 pt-3 border rounded-3"
+                        key={item?.osId}
+                      >
+                        <input
+                          type="checkbox"
+                          id={item?.osId}
+                          className="me-3"
+                          onChange={(e) =>
+                            handleIncludeFeature(
+                              e,
+                              index,
+                              item?.osServiceCharge
+                            )
+                          }
+                        ></input>
+                        <label htmlFor={item?.osId}>
+                          <p className="PaymentCardText">
+                            {item?.osServiceName}{" "}
+                            <span className="PaymentCharges">
+                              ${item?.osServiceCharge}
+                            </span>
+                          </p>
+                        </label>
+                      </div>
+                    );
+                  }
+                })}
 
-            <div className="col-12 mb-3">{/* Card Here */}</div>
+              <div className="col-12 mb-3">{/* Card Here */}</div>
 
-            <CouponCode
-              couponDiscount={couponDiscount}
-              setCouponDiscount={setCouponDiscount}
-              orderDetails={orderDetails}
-              setIsPayPal={setIsPayPal}
-            />
+              <CouponCode
+                couponDiscount={couponDiscount}
+                setCouponDiscount={setCouponDiscount}
+                orderDetails={orderDetails}
+                setIsPayPal={setIsPayPal}
+                setCouponCode={setCouponCode}
+              />
 
-            <div className="col-md-12 my-3 border-bottom"></div>
-            <div className="col-md-12 border Total">
-              <div className="d-flex py-2">
-                <span className="PaymentCardText">Total</span>
-                <span className="PaymentCardText ms-auto mb-1">
-                  {displayTotalPrice(orderDetails[0]?.pnPrice)}
-                </span>
+              <div className="col-md-12 my-3 border-bottom"></div>
+              <div className="col-md-12 border Total">
+                <div className="d-flex py-2">
+                  <span className="PaymentCardText">Total</span>
+                  <span className="PaymentCardText ms-auto mb-1">
+                    {displayTotalPrice(orderDetails[0]?.pnPrice)}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="col-md-12 my-3 text-center px-0">
-              <button
-                className="btn btn-primary rounded-0 w-100 p-2"
-                style={{ border: "#0C0D48" }}
-                onClick={handleCheckOutClick}
-              >
-                Continue to Checkout
-              </button>
-            </div>
-
-            {isPayPal && (
               <div className="col-md-12 my-3 text-center px-0">
-                <PayPal paymentDetails={paymentDetails} setOpen={setOpen}/>
+                <button
+                  className="btn btn-primary rounded-0 w-100 p-2"
+                  style={{ border: "#0C0D48" }}
+                  onClick={handleCheckOutClick}
+                >
+                  Continue to Checkout
+                </button>
               </div>
-            )}
+
+              {isPayPal && (
+                <div className="col-md-12 my-3 text-center px-0">
+                  <PayPal
+                    paymentDetails={paymentDetails}
+                    setOpen={setOpen}
+                    orderModifyDetails={orderModifyDetails}
+                    setOrderModifyDetails={setOrderModifyDetails}
+                    couponCode={couponCode}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        </div>}
+        )}
       </Drawer>
     </>
   );
