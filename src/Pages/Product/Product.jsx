@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import rightTick from "../../Assets/Images/right-tick.png";
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import CommanFaq from "../../Common/CommanFaq";
@@ -165,7 +166,7 @@ export const Product = () => {
             <p className="item">{categoryDetails.ctName}</p>
             <p className="item_title">{categoryDetails.ctTitle}</p>
             {/* ------Rating--------- */}
-            <div className="container row align-items-end p-0 Rating-Row">
+            <div className="row align-items-end p-0 Rating-Row">
               <div className="col-2 px-0">
                 <fieldset
                   className="rating"
@@ -303,7 +304,7 @@ export const Product = () => {
               </div>
               <div
                 className="col col-lg-auto row on-web"
-                style={{ marginLeft: "auto", marginRight: 30 }}
+                style={{ marginLeft: "auto"}}
               >
                 <button type="button" className="con-btn mx-4">
                   Start Conversation
@@ -347,15 +348,14 @@ export const Product = () => {
                   <main
                     className="primary"
                     style={{
-                      backgroundImage: `url(${
-                        mainImage !== "" ? mainImage : categoryImages[0]?.url
-                      })`,
+                      backgroundImage: `url(${mainImage !== "" ? mainImage : categoryImages[0]?.url
+                        })`,
                     }}
                   />
                 </div>
               </div>
-              {/* -------------------------------------- */}
-              {planFeatureList?.length > 0 && (
+              {/* -----------------Krushi Temp--------------------- */}
+              {/* {planFeatureList?.length > 0 && (
                 <div className="col-3 col-lg-auto p-4 Price">
                   <div className="card">
                     <div className="card-body p-4">
@@ -434,21 +434,112 @@ export const Product = () => {
                           Explore all Package
                         </button>
                       </div>
-                      {/* <button type="button" class="explore-btn">
-          Start Conversation
-        </button> */}
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
+              <div className="service-pricing-card mt-5 mb-5 planCard col">
+                <div className="">
+                  {planFeatureList?.length > 0 && (
+                    <div className="col-lg-auto pt-4 Price">
+                      <div className="pricing-card  position-relative">
+                        <div className="pricing-inner-col">
+                          <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
+                            <h4 className="m-0 planTitle">{planFeatureList[0]?.pnName}</h4>
+                            <h1 className="m-0 pink-text planPrice">${planFeatureList[0]?.pnPrice}</h1>
+                          </div>
+                          <div className="pricing-card-body">
+                            <p className="green-text">Save up to {planFeatureList[0]?.pnSaveUpTo}%</p>
+                            <p className="grey-text">{planFeatureList[0]?.pnDesc}</p>
+
+                            <div>
+                              {planFeatureList[0]?.planServiceDetailsList?.length > 0 &&
+                                planFeatureList[0]?.planServiceDetailsList.map(
+                                  (item) => {
+                                    return (
+                                      <div
+                                        className="d-flex align-items-center planInclude"
+                                        key={item.srPdId}
+                                        style={{
+                                          opacity:
+                                            item?.pnIsInclude === 1
+                                              ? ""
+                                              : "0.4",
+                                        }}>
+                                        {/* <svg
+                                          width={20}
+                                          height={20}
+                                          viewBox="0 0 20 20"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M9.94165 19.4136C15.1583 19.4136 19.3872 15.1847 19.3872 9.96802C19.3872 4.75138 15.1583 0.522461 9.94165 0.522461C4.72501 0.522461 0.496094 4.75138 0.496094 9.96802C0.496094 15.1847 4.72501 19.4136 9.94165 19.4136ZM14.3186 8.44151C14.7797 7.98042 14.7797 7.23284 14.3186 6.77175C13.8575 6.31066 13.1099 6.31066 12.6489 6.77175L8.76096 10.6597L7.23445 9.13314C6.77336 8.67205 6.02578 8.67205 5.56469 9.13314C5.1036 9.59423 5.1036 10.3418 5.56469 10.8029L7.92608 13.1643C8.38717 13.6254 9.13474 13.6254 9.59583 13.1643L14.3186 8.44151Z"
+                                            fill="#198754"
+                                          />
+                                        </svg> */}
+                                        <img
+                                          src={rightTick}
+                                          alt=""
+                                          className="mb-1 me-1"
+                                        />
+                                        <p className="bold-content">
+                                          {item.pnIncludedService}
+                                        </p>
+                                      </div>
+                                    );
+                                  }
+                                )}
+                            </div>
+
+                            <p className="capital-text-forplan">
+                              Included Features
+                            </p>
+                            <ul className="pricing-list">
+                              {planFeatureList[0]?.planFeatureDetailsList?.length > 0 &&
+                                planFeatureList[0]?.planFeatureDetailsList.map(
+                                  (item) => {
+                                    return (
+                                      <li
+                                        key={item?.faPdId}
+                                        style={{
+                                          opacity:
+                                            item?.pnIsInclude === 1
+                                              ? ""
+                                              : "0.4",
+                                        }}
+                                      >
+                                        <a href="#" className="dark-text">
+                                          {item?.pnIncludedFeature}</a>
+                                      </li>
+                                    );
+                                  }
+                                )}
+                              <li className="li-feact opacity-25">Vector File</li>
+                            </ul>
+                            <button
+                              type="button"
+                              className="blue-btn mt-2 w-100"
+                              onClick={() => setPricePlanPackages(true)}
+                            >
+                              Explore all Package
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
             {/* --------------Tabs-------------------- */}
-            <ul className="nav nav-tabs mt-4">
+            <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a
-                  className={`AClick nav-link ${
-                    tabClick === "" || tabClick === "Des" ? " active" : ""
-                  }`}
+                  className={`AClick nav-link ${tabClick === "" || tabClick === "Des" ? " active" : ""
+                    }`}
                   aria-current="page"
                   onClick={() => setTabClick("Des")}
                 >
@@ -494,8 +585,8 @@ export const Product = () => {
                           </button>
                           {index !==
                             categoryDetails?.ctTags.split("*").length - 1 && (
-                            <hr />
-                          )}
+                              <hr />
+                            )}
                         </>
                       );
                     })}

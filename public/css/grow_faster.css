@@ -80,3 +80,9 @@
         line-height: 25px;
     }
 }
+
+@media only screen and (max-width: 942px) {
+    .col-3{
+        max-width: fit-content;
+    }
+}

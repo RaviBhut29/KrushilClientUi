@@ -56,7 +56,7 @@ export const HowItWork = () => {
               alt=""
             />
             <div className="col-12 col-lg-6">
-              <div className="content" style={{ display: "block" }}>
+              <div className="content text-1-responsive">
                 <h3>Create Account</h3>
                 <p>
                   we know your home is more than just a place to live, that’s
@@ -65,20 +65,13 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_1.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-1.svg" style={{ float: "right" }} />
+              <img src="../ui/Images/card-1.svg" className="card-1-responsive" style={{ float: "right" }} />
             </div>
           </div>
           <div className="row">
             <div className="col-12 col-lg-6">
               <div
-                className="content"
-                style={{ display: "block", float: "right" }}
+                className="content text-2-responsive"
               >
                 <h3>Search for Services</h3>
                 <p>
@@ -90,7 +83,7 @@ export const HowItWork = () => {
             </div>
             <div className="col-12 col-lg-6">
               <div
-                className="img"
+                className="img card-2-responsive"
                 style={{
                   background: 'url("../ui/Images/card-2.svg") no-repeat center',
                   backgroundSize: "cover",
@@ -101,7 +94,7 @@ export const HowItWork = () => {
           </div>
           <div className="row First">
             <div className="col-12 col-lg-6">
-              <div className="content" style={{ display: "block" }}>
+              <div className="content text-3-responsive">
                 <h3>Select Packages</h3>
                 <p>
                   we know your home is more than just a place to live, that’s
@@ -110,20 +103,13 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_1.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-1.svg" style={{ float: "right" }} />
+              <img src="../ui/Images/card-1.svg" className="card-3-responsive" style={{ float: "right" }} />
             </div>
           </div>
           <div className="row">
             <div className="col-12 col-lg-6">
               <div
-                className="content"
-                style={{ display: "block", float: "right" }}
+                className="content text-4-responsive"
               >
                 <h3>Payment</h3>
                 <p>
@@ -135,7 +121,7 @@ export const HowItWork = () => {
             </div>
             <div className="col-12 col-lg-6">
               <div
-                className="img"
+                className="img card-4-responsive"
                 style={{
                   background: 'url("../ui/Images/card-4.svg") no-repeat center',
                   backgroundSize: "cover",
@@ -146,7 +132,7 @@ export const HowItWork = () => {
           </div>
           <div className="row First">
             <div className="col-12 col-lg-6">
-              <div className="content" style={{ display: "block" }}>
+              <div className="content text-5-responsive">
                 <h3>Submit your Requirements</h3>
                 <p>
                   we know your home is more than just a place to live, that’s
@@ -155,21 +141,14 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_5.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-5.svg" style={{ float: "right" }} />
+              <img src="../ui/Images/card-5.svg" className="card-5-responsive" style={{ float: "right" }} />
             </div>
           </div>
           <div className="row">
             <img className="polygon" src="../ui/Images/Polygon 1.png" alt="" />
             <div className="col-12 col-lg-6">
               <div
-                className="content"
-                style={{ display: "block", float: "right" }}
+                className="content text-6-responsive"
               >
                 <h3>Get delivery</h3>
                 <p>
@@ -180,18 +159,18 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_6.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-6.svg" />
+              <div
+                className="img card-6-responsive"
+                style={{
+                  background: 'url("../ui/Images/card-6.svg") no-repeat center',
+                  backgroundSize: "cover",
+                  height: 400,
+                }} />
             </div>
           </div>
           <div className="row First">
             <div className="col-12 col-lg-6">
-              <div className="content" style={{ display: "block" }}>
+              <div className="content text-7-responsive">
                 <h3>Revision Request (if any)</h3>
                 <p>
                   we know your home is more than just a place to live, that’s
@@ -200,20 +179,13 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_7.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-7.svg" style={{ float: "right" }} />
+              <img src="../ui/Images/card-7.svg" className="card-7-responsive" style={{ float: "right" }} />
             </div>
           </div>
           <div className="row">
             <div className="col-12 col-lg-6">
               <div
-                className="content"
-                style={{ display: "block", float: "right" }}
+                className="content text-8-responsive"
               >
                 <h3>Get Final delivery</h3>
                 <p>
@@ -224,13 +196,13 @@ export const HowItWork = () => {
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              {/* <div
-        class="img"
-        style="
-          background: url('../ui/Images/Group_8.png') no-repeat center;
-          background-size: cover;
-        "></div> */}
-              <img src="../ui/Images/card-8.svg" />
+              <div
+                className="img card-8-responsive"
+                style={{
+                  background: 'url("../ui/Images/card-8.svg") no-repeat center',
+                  backgroundSize: "cover",
+                  height: 400,
+                }} />
             </div>
           </div>
         </div>

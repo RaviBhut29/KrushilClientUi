@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { Pagination } from "antd";
 import Header from "../../Layout/Header";
 import BreadCrub from "../../Layout/BreadCrub";
 import { useEffect } from "react";
@@ -12,6 +13,10 @@ import "./Order.css";
 
 const Order = () => {
   const currentYear = new Date().getFullYear();
+  const handlePaginationChange = (page) => {
+    setFilterDetail({ ...filterDetail, pageNo: page });
+  };
+  const [totalRecord, setTotalRecord] = useState(0);
 
   const siteMapPath = [
     {
@@ -39,7 +44,8 @@ const Order = () => {
     cancelled: 0,
     revision: 0,
     completed: 0,
-    refund: 0
+    refund: 0,
+    pageNo: 1,
   });
 
   const [orderDetailsShow, setOrderDetailsShow] = useState(false);
@@ -47,14 +53,10 @@ const Order = () => {
   const [orderObj, setOrderObj] = useState(null);
 
   useEffect(() => {
-    console.clear();
-    console.warn("filterDetail");
-    console.warn(filterDetail);
-
     if (filterDetail.orderNumber === "") {
       setLoadingStatus(true);
     }
-
+    setTotalRecord(0);
     getOrderFun();
   }, [filterDetail]);
 
@@ -64,6 +66,7 @@ const Order = () => {
     getOrder(filterDetail)
       .then((response) => {
         if (response.length > 0) {
+          setTotalRecord(response[0]?.totalRecord);
           setOrderList(response);
           if (!resetDiv) {
             setResetDiv(true);
@@ -151,7 +154,7 @@ const Order = () => {
                         <img src="../ui/Images/search.svg" alt="Search icon" />
                         <input
                           className="form-control"
-                          placeholder="Search"
+                          placeholder="Search Order Id"
                           style={{ width: "234px" }}
                           onChange={(e) =>
                             setFilterDetail({
@@ -235,7 +238,7 @@ const Order = () => {
                                   className="col btn-rate d-flex m-auto"
                                   style={{ cursor: "pointer" }}
                                 >
-                                  <a className="ms-auto">Rate &amp; Review</a>
+                                  
                                 </div>
                                 <div
                                   className="col-2 btn-order d-flex m-auto"
@@ -258,6 +261,17 @@ const Order = () => {
                       );
                     })}
                 </div>
+                {totalRecord > 5 && (
+                  <center>
+                    <Pagination
+                      onChange={handlePaginationChange}
+                      current={filterDetail?.pageNo}
+                      total={totalRecord}
+                      //pageSizeOptions={[5]}
+                      defaultPageSize={5}
+                    />
+                  </center>
+                )}
               </div>
               <div className="col-4 my-Filter">
                 <div className="card Filter">
@@ -301,7 +315,12 @@ const Order = () => {
                           <input
                             type="checkbox"
                             id="group4"
-                            onChange={(e) =>handleYearFilterChange(e,String(Number(currentYear) - 2))}
+                            onChange={(e) =>
+                              handleYearFilterChange(
+                                e,
+                                String(Number(currentYear) - 2)
+                              )
+                            }
                           />
                           {Number(currentYear) - 2}
                         </label>
@@ -317,7 +336,12 @@ const Order = () => {
                           <input
                             type="checkbox"
                             id="group6"
-                            onChange={(e) =>handleYearFilterChange(e,String(Number(currentYear) - 1))}
+                            onChange={(e) =>
+                              handleYearFilterChange(
+                                e,
+                                String(Number(currentYear) - 1)
+                              )
+                            }
                           />
                           {Number(currentYear) - 1}
                         </label>
@@ -337,7 +361,9 @@ const Order = () => {
                           <input
                             type="checkbox"
                             id="group8"
-                            onChange={(e) =>handleYearFilterChange(e,String(currentYear))}
+                            onChange={(e) =>
+                              handleYearFilterChange(e, String(currentYear))
+                            }
                           />
                           {currentYear}
                         </label>

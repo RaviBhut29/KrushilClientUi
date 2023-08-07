@@ -42,7 +42,7 @@
     font-family: var(--Inter_Header);
     line-height: 25.189px;
     display: flex;
-    width: 296px;
+    /* width: 296px; */
     flex-direction: column;
 }
 
@@ -76,6 +76,7 @@
 
 .PaymentCardText .number {
     margin-left: auto;
+    text-align: -webkit-center;
 }
 
 .PaymentCardText .minus,
@@ -100,7 +101,7 @@
     border-radius: 4px;
     display: inline-block;
     vertical-align: middle;
-    margin: 0 10px;
+    margin: 10px;
 }
 
 /* Count */

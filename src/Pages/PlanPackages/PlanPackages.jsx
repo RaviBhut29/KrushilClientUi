@@ -330,11 +330,11 @@ const PlanPackages = (props) => {
             handleSiteMapClick={handleCategorySiteMap}
           />
           <div className="service-pricing-card mt-5 mb-5 planCard">
-            <div className="row">
+            <div className="row justify-content-center">
               {planDetails.length > 0 &&
                 planDetails.map((item) => {
                   return (
-                    <div className="col-4" key={item?.pnId}>
+                    <div className="col-md-3 my-2" key={item?.pnId}>
                       <div className="pricing-card  position-relative">
                         <div className="pricing-inner-col">
                           <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
@@ -433,7 +433,7 @@ const PlanPackages = (props) => {
         {open && (
           <div className="container PaymentCard">
             <div className="row">
-              <div className="col-md-12 mb-3 pt-3 border rounded-3">
+              <div className="col-md-12 mb-3 p-3 border rounded-3">
                 <p className="PaymentCardText">
                   {orderDetails[0]?.pnName}
                   <span className="StanderdPlanPrice">
@@ -441,7 +441,7 @@ const PlanPackages = (props) => {
                     {planPrice !== 0 && `$${planPrice}`}
                   </span>
                 </p>
-                <p>{orderDetails[0]?.pnDesc}</p>
+                <p className="mb-0">{orderDetails[0]?.pnDesc}</p>
               </div>
 
               {orderDetails.length > 0 &&
@@ -449,10 +449,10 @@ const PlanPackages = (props) => {
                   if (String(item?.osType) === "1") {
                     return (
                       <div
-                        className="col-md-12 mb-3 pt-3 border rounded-3"
+                        className="col-md-12 mb-3 p-3 border rounded-3"
                         key={item?.osId}
                       >
-                        <p className="PaymentCardText">
+                        <p className="PaymentCardText mb-0">
                           {item?.osServiceName}{" "}
                           <span className="PaymentCharges">
                             ${item?.osServiceCharge} /{" "}
@@ -507,7 +507,7 @@ const PlanPackages = (props) => {
                   } else {
                     return (
                       <div
-                        className="col-md-12 mb-3 pt-3 border rounded-3"
+                        className="col-md-12 mb-3 p-3 border rounded-3"
                         key={item?.osId}
                       >
                         <input
@@ -523,7 +523,7 @@ const PlanPackages = (props) => {
                           }
                         ></input>
                         <label htmlFor={item?.osId}>
-                          <p className="PaymentCardText">
+                          <p className="PaymentCardText mb-0">
                             {item?.osServiceName}{" "}
                             <span className="PaymentCharges">
                               ${item?.osServiceCharge}

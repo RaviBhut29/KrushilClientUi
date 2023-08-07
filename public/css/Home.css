@@ -332,7 +332,7 @@ body ul {
 }
 
 .home .hero-section .branding:before {
-    background-image: url("../ui/Images/Abstract.png");
+    background-image: url("../ui/Images/Abstract-star.svg");
     content: "";
     position: absolute;
     top: 117%;
@@ -1606,3 +1606,19 @@ body ul {
 
 /* Contect us */
 /*  */
+
+@media only screen and (max-width: 321px) {	
+    .home .hero-section .branding h2.heading,	
+    .home .exploreCategories h3.head,	
+    .home .about-section .top-area h3,	
+    .home .brandTrust .gradient-text,	
+    .home .contact-us-section .contact-head,	
+    .home .contact-text h3,	
+    .home .faq-section .faq-title,	
+    .footer-sec .mailing-section .mailing-col .text-gradient {	
+        font-size: 20px;	
+    }	
+    .dotted-img, .dotted-img-2{	
+        display: none;	
+    }	
+}

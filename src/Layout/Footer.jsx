@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -23,93 +24,11 @@ const Footer = () => {
           <div className="logo cursor-pointer">
             <img src="../ui/Images/logo.svg" alt="main logo" />
           </div>
-          <div className="row mt-1 mb-2">
-            <div className="col">
-              <div className="footer-col">
-                <ul>
-                  <li>
-                    <a>Services</a>
-                  </li>
-                  <li>
-                    <a>Portfolio</a>
-                  </li>
-                  <li>
-                    <a>How it work</a>
-                  </li>
-                  <li>
-                    <a>FAQs</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col">
-              <ul>
-                <li>
-                  <a>About us</a>
-                </li>
-                <li>
-                  <a>Contact us</a>
-                </li>
-                <li>
-                  <a>Privacy &amp; Policy</a>
-                </li>
-                <li>
-                  <a>Trust &amp; Safety</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col">
-              <ul>
-                <li>
-                  <a>Logo Design</a>
-                </li>
-                <li>
-                  <a>Brand Design</a>
-                </li>
-                <li>
-                  <a>Stationery Design</a>
-                </li>
-                <li>
-                  <a>Social Media</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col">
-              <ul>
-                <li>
-                  <a>Business Card Design</a>
-                </li>
-                <li>
-                  <a>Lable Design</a>
-                </li>
-                <li>
-                  <a>Banner Design</a>
-                </li>
-                <li>
-                  <a>Hoardings Design</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col">
-              <ul>
-                <li>
-                  <a>Billboard Design</a>
-                </li>
-                <li>
-                  <a>Brochure Design</a>
-                </li>
-                <li>
-                  <a>Catalogue Design</a>
-                </li>
-                <li>
-                  <a>Flayer Design</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
           <div className="bottom-col d-flex align-items-center justify-content-between">
             <p className="cursor-pointer grey-text">
-              © 2023 Flyses. All rights reserved. Terms &amp; Condition.
+              © 2023 Flyses. All rights reserved. {" "}
+              <Link to="">Terms &amp; Condition.</Link>
             </p>
             <div className="d-flex align-items-center">
               <div className="footer-link-icon">
@@ -128,20 +47,7 @@ const Footer = () => {
                 {/* <linkedin> </linkedin> */}
                 <i className="fa-brands fa-linkedin-in" />
               </div>
-              <div className="footer-ddl me-3">
-                <select>
-                  <option
-                    style={{ backgroundImage: "url(../ui/Images/VISA.png)" }}
-                  >
-                    INR
-                  </option>
-                </select>
-              </div>
-              <div className="footer-ddl">
-                <select>
-                  <option>Eng</option>
-                </select>
-              </div>
+             
             </div>
           </div>
         </div>

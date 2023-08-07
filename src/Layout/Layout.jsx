@@ -8,7 +8,7 @@ export const Layout = ({ Component, footer, type,path }) => {
 
   if (
     (getLoginToken === null || getLoginToken === "") &&
-    path === "/chat"
+    (path === "/chat" || path.includes("/order"))
   ) {
     return <Navigate to="/Login" replace={true} />;
   } else {

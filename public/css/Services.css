@@ -178,7 +178,7 @@
         display: none;
     }
 
-    .col-3 {
+    .Services .col-3 {
         width: 100%;
     }
 
@@ -367,5 +367,22 @@
     .home .exploreCategories-serv .brandingCards .brands-card {
         margin: 0;
         text-align: initial;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .Services .title2{
+        width: fit-content;
+    }
+    .Services .title1{
+        font-size: 42px;
+        line-height: normal;
+    }
+}
+
+
+@media only screen and (max-width: 426px) {
+    .Services .title1{
+        font-size: 32px;
     }
 }

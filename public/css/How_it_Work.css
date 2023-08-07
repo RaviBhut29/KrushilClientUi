@@ -142,8 +142,103 @@
     left: 100px;
 }
 
+.half-half-image-text-How .text-1-responsive,
+.text-3-responsive,
+.text-5-responsive,
+.text-7-responsive {
+    display: block !important;
+}
+
+.half-half-image-text-How .text-2-responsive,
+.text-4-responsive,
+.text-6-responsive,
+.text-8-responsive {
+    display: block !important;
+    float: right;
+}
+
 @media only screen and (max-width: 991px) {
     .breaddiv {
         display: none;
+    }
+
+    /* .half-half-image-text-How .text-1-responsive,
+    .text-3-responsive,
+    .text-5-responsive,
+    .text-7-responsive {
+        text-align: center;
+    }
+    
+    .half-half-image-text-How .text-2-responsive,
+    .text-4-responsive,
+    .text-6-responsive,
+    .text-8-responsive {
+        text-align: center;
+        float: none;
+    } */
+
+    .half-half-image-text-How .card-1-responsive,
+    .half-half-image-text-How .card-2-responsive,
+    .half-half-image-text-How .card-3-responsive,
+    .half-half-image-text-How .card-4-responsive,
+    .half-half-image-text-How .card-5-responsive,
+    .half-half-image-text-How .card-6-responsive,
+    .half-half-image-text-How .card-7-responsive,
+    .half-half-image-text-How .card-8-responsive {
+        float: none !important;
+        text-align: center;
+        height: 200px !important;
+        width: 300px;
+    }
+
+}
+
+@media only screen and (max-width: 426px) {
+    .half-half-image-text-How .row .col-12 h3 {
+        font-size: 20px;
+    }
+
+    .half-half-image-text-How .row div .content h3 {
+        font-size: 20px;
+    }
+
+    .half-half-image-text-How .card-1-responsive {
+        height: 200px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-2-responsive {
+        height: 140px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-3-responsive {
+        height: 200px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-4-responsive {
+        height: 140px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-5-responsive {
+        height: 200px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-6-responsive {
+        height: 200px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-7-responsive {
+        height: 200px !important;
+        width: 300px;
+    }
+
+    .half-half-image-text-How .card-8-responsive {
+        height: 200px !important;
+        width: 300px;
     }
 }

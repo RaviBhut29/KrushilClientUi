@@ -108,7 +108,7 @@ export const Home = () => {
                 get things done—from quick turnarounds to big transformations.
               </span>
               <div className="d-flex">
-                <button className="me-2 btn btn-primary">Order Now</button>
+                <Link to="/services" style={{padding:"13px"}} className="me-2 btn btn-primary">Order Now</Link>
                 <Link to={(sessionStorage.getItem("userSortName") || "") === "" ? "/login" : "/chat"}>
                   <button className="btn msg-btn-outline">Message us</button>
                 </Link>
@@ -120,7 +120,7 @@ export const Home = () => {
             <div className="cards">
               <div>
                 <img
-                  src="../ui/Images/hero-content.png"
+                  src="../ui/Images/Home-Content.svg"
                   alt="heroContent"
                   className="w-100"
                 />
@@ -229,7 +229,7 @@ export const Home = () => {
             </div>
           </div>
           {/* class="btn btn-primary d-flex align-items-center justify-content-center"> */}
-          <button className="btn btn-SeeAll">See all</button>
+          <Link style={{padding:"13px"}} className="btn btn-SeeAll" to="/services">See all</Link>
         </div>
       </div>
       {/* Explore Section */}
@@ -380,31 +380,31 @@ export const Home = () => {
             <div className="col-md-4">
               <div className="about-card">
                 <div>
-                  <img src="../ui/Images/community-icon.png" />
+                  <img src="../ui/Images/community-icon.svg" />
                 </div>
                 <h5>Community Support</h5>
                 <p>
                   General Committee for National and General Association
                   Activities for General Society Association
                 </p>
-              </div>
+              </div>  
             </div>
             <div className="col-md-4">
               <div className="about-card">
-                <div>
-                  <img src="../ui/Images/security-icon.png" />
-                </div>
+                <div>  
+                  <img src="../ui/Images/security-icon.svg" />
+                </div>  
                 <h5>Security First</h5>
                 <p>
                   Website security is thus important to protect your business,
                   brand, and website.
-                </p>
-              </div>
-            </div>
+                </p>  
+              </div> 
+            </div> 
             <div className="col-md-4">
               <div className="about-card">
                 <div>
-                  <img src="../ui/Images/sheild-icon.png" />
+                  <img src="../ui/Images/shield-icon.svg" />
                 </div>
                 <h5>24/7 Admin Support</h5>
                 <p>
@@ -524,10 +524,10 @@ export const Home = () => {
             </div>
           </div>
           <div className="dotted-img">
-            <img src="../ui/Images/dotted-1.png" alt="" />
+            <img src="../ui/Images/dotted-1.svg" alt="" />
           </div>
           <div className="dotted-img-2">
-            <img src="../ui/Images/dotted-2.png" alt="" />
+            <img src="../ui/Images/dotted-2.svg" alt="" />
           </div>
         </div>
       </div>

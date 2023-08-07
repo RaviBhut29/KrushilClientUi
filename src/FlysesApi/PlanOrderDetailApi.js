@@ -1,4 +1,4 @@
-import { apiGet, apiPut } from "./FlysesApi";
+import { apiGet, apiPost, apiPut } from "./FlysesApi";
 
 export const getPlanWiseOrderOptionDetails = (id) => {
     return apiGet(`OrderOption/GetPlanWiseOrderOption/${id}`);
@@ -14,4 +14,12 @@ export const getOrderDelivery = (orderId) => {
 
 export const updateOrderStatus = (id,status) => {
     return apiPut(`order/${id}/${status}`);
+};
+
+export const submitReview = (obj) => {
+    return apiPost(`review`,obj);
+};
+
+export const ReviewAlreadyExists = (id) => {
+    return apiGet(`review/checkAlreadReviewExists/${id}`);
 };

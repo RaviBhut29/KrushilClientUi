@@ -268,17 +268,15 @@ const Header = () => {
                   />
                   Profile
                 </Link>
-                <a href="#">
+                <Link to="/order">
                   <img
                     className="img_profile"
                     src="../ui/Images/orders-icon.png"
                     alt="userProfile"
                   />
                   Orders
-                </a>
+                </Link>
                 <hr />
-                <a href="#">English</a>
-                <a href="#">INR</a>
                 <a href="#">Help and Support</a>
                 <hr />
                 <a onClick={handleLogOutClick}>

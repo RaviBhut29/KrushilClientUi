@@ -389,7 +389,7 @@ header hr {
 
     header .navbar a:hover,
     .active {
-        background-color: #757575;
+        /* background-color: #757575; */
         color: #fff;
     }
 

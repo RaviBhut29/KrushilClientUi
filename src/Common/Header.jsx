@@ -98,8 +98,6 @@ const Header = () => {
                 Orders
               </a>
               <hr />
-              <a href="#">English</a>
-              <a href="#">INR</a>
               <a href="#">Help and Support 11</a>
               <hr />
               <a href="#">
