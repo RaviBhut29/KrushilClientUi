@@ -78,7 +78,11 @@ const OrderDetails = ({
       .then((response) => {
         if (response.length > 0) {
           setServicesList(response);
-          if (response[0]?.orStatus === "Delivered" || response[0]?.orStatus === "Completed" || response[0]?.orStatus === "Revision") {
+          if (
+            response[0]?.orStatus === "Delivered" ||
+            response[0]?.orStatus === "Completed" ||
+            response[0]?.orStatus === "Revision"
+          ) {
             getOrderDeliveryFun();
           }
           if (response[0]?.orStatus === "Completed") {
@@ -197,9 +201,9 @@ const OrderDetails = ({
           Order ID :<span> #{orderDetailsList?.orNumber}</span>
         </p>
 
-        <div className="row gy-5">
+        <div className="form-row gy-5">
           {featurePanelShow && (
-            <div className="col-8 card1">
+            <div className="col-md-8 card1">
               <div className="card">
                 <div className="card-header py-3">
                   <div className="card1-info d-flex">
@@ -261,7 +265,7 @@ const OrderDetails = ({
           )}
 
           {!featurePanelShow && (
-            <div className="col-8 card3 ">
+            <div className="col-md-8 card3 ">
               <div className="card">
                 <div className="card-header py-3">
                   <div className="card1-info d-flex">
@@ -270,15 +274,15 @@ const OrderDetails = ({
                 </div>
                 <div className="card-body">
                   {orderDeliveryList.length <= 0 && (
-                    <div className="row no-order">
-                      <div className="col-2">
+                    <div className="form-row no-order">
+                      <div className="col-md-2">
                         <img
                           height={150}
                           width={150}
                           src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
                         />
                       </div>
-                      <div className="col-auto pt-4 ps-5">
+                      <div className="col-md-auto pt-4 ps-5">
                         <span className="info">Nothing here to see yet</span>
                         <p className="mt-1" style={{ width: 450 }}>
                           Your delivery will appear here. your delivery date
@@ -289,47 +293,48 @@ const OrderDetails = ({
                   )}
 
                   {orderDeliveryList.length > 0 && (
-                    <div className="row pending-order">
+                    <div className="form-row pending-order">
                       {orderDeliveryNotes !== "" && (
-                        <>
-                          <div>
-                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                              Comment Admin Notifier :
-                            </h6>
-                            <p className="mt-1">{orderDeliveryNotes}</p>
+                          <div className="row" style={{width:"100%"}}>
+                          <div className="col-12">
+                          <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                            Comment Admin Notifier :
+                          </h6>
+                          <p className="mt-1">{orderDeliveryNotes}</p>
                           </div>
-                          <br />
-                        </>
+                        </div>
                       )}
 
-                      {orderDeliveryList.map((item, index) => {
-                        return (
-                          <div className="col-5" key={index}>
-                            <div className="info-box">
-                              <span
-                                className="info-box-icon"
-                                style={{
-                                  backgroundImage:
-                                    "url(../ui/Images/upload-list-image-card.png)",
-                                  backgroundSize: "cover",
-                                }}
-                              ></span>
-                              <div className="info-box-content">
-                                <span className="info-box-text">
-                                  {item?.name}
-                                </span>
-                                <span className="info-box-number"></span>
-                              </div>
-                              <div
-                                className="info-box-icon"
-                                onClick={() => downloadService(item?.uid)}
-                              >
-                                <img src="../ui/Images/Vector.png" />
+                      <div className="row">
+                        {orderDeliveryList.map((item, index) => {
+                          return (
+                            <div className="col-md-6" key={index}>
+                              <div className="info-box">
+                                <span
+                                  className="info-box-icon"
+                                  style={{
+                                    backgroundImage:
+                                      "url(../ui/Images/upload-list-image-card.png)",
+                                    backgroundSize: "cover",
+                                  }}
+                                ></span>
+                                <div className="info-box-content">
+                                  <span className="info-box-text">
+                                    {item?.name}
+                                  </span>
+                                  <span className="info-box-number"></span>
+                                </div>
+                                <div
+                                  className="info-box-icon"
+                                  onClick={() => downloadService(item?.uid)}
+                                >
+                                  <img src="../ui/Images/Vector.png" />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -338,7 +343,7 @@ const OrderDetails = ({
           )}
 
           {/* Right First Card */}
-          <div className="col-4 card2">
+          <div className="col-md-4 card2">
             <div className="card">
               <div className="card-header py-3">
                 <div className="card1-info d-flex">
@@ -346,9 +351,9 @@ const OrderDetails = ({
                 </div>
               </div>
               <div className="card-body">
-                <div className="row">
-                  <div className="col-6 details">Order Status</div>
-                  <div className="col-6" style={{ textAlign: "end" }}>
+                <div className="form-row">
+                  <div className="details">Order Status</div>
+                  <div className="ml-auto">
                     {servicesList[0]?.orStatus !== "Requirment pending" && (
                       <svg
                         width={19}
@@ -380,34 +385,34 @@ const OrderDetails = ({
                     </span>
                   </div>
                 </div>
-                <div className="row mt-4">
-                  <div className="col-6 details">Order created</div>
-                  <div className="col-6" style={{ textAlign: "end" }}>
-                    <span className="info" style={{ color: "#000" }}>
+                <div className="form-row mt-4">
+                  <div className="details">Order created</div>
+                  <div className="ml-auto">
+                    <span className="info FontBold" style={{ color: "#000" }}>
                       {orderDetailsList?.orDate}
                     </span>
                   </div>
                 </div>
-                <div className="row mt-4">
-                  <div className="col-6 details">Order number</div>
-                  <div className="col-6" style={{ textAlign: "end" }}>
-                    <span className="info" style={{ color: "#000" }}>
+                <div className="form-row mt-4">
+                  <div className="details">Order number</div>
+                  <div className="ml-auto">
+                    <span className="info FontBold" style={{ color: "#000" }}>
                       #{orderDetailsList?.orNumber}
                     </span>
                   </div>
                 </div>
-                <div className="row mt-4">
-                  <div className="col-6 details">Delivery date &amp; time</div>
-                  <div className="col-6" style={{ textAlign: "end" }}>
-                    <span className="info" style={{ color: "#000" }}>
+                <div className="form-row mt-4">
+                  <div className="details">Delivery date &amp; time</div>
+                  <div className="ml-auto">
+                    <span className="info FontBold" style={{ color: "#000" }}>
                       {servicesList[0]?.deliveryDate}
                     </span>
                   </div>
                 </div>
-                <div className="row mt-4">
-                  <div className="col-6 details">Total</div>
-                  <div className="col-6" style={{ textAlign: "end" }}>
-                    <span className="info" style={{ color: "#000" }}>
+                <div className="form-row mt-4">
+                  <div className="details">Total</div>
+                  <div className="ml-auto">
+                    <span className="info FontBold" style={{ color: "#000" }}>
                       ${orderDetailsList?.orPrice}
                     </span>
                   </div>
@@ -418,7 +423,7 @@ const OrderDetails = ({
           {/* Right First Card */}
           {/* Left Second Card */}
           {featurePanelShow && (
-            <div className="col-8 card3 mt-3">
+            <div className="col-md-8 card3 mt-3">
               <div className="card">
                 <div className="card-header py-3">
                   <div className="card1-info d-flex">
@@ -427,17 +432,17 @@ const OrderDetails = ({
                 </div>
                 <div className="card-body">
                   {orderDeliveryList.length <= 0 && (
-                    <div className="row no-order">
-                      <div className="col-2">
+                    <div className="form-row no-order">
+                      <div className="col-md-2">
                         <img
                           height={150}
                           width={150}
                           src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
                         />
                       </div>
-                      <div className="col-auto pt-4 ps-5">
+                      <div className="col-md-auto pt-4 ps-5">
                         <span className="info">Nothing here to see yet</span>
-                        <p className="mt-1" style={{ width: 450 }}>
+                        <p className="mt-1" style={{ maxWidth: 450 }}>
                           Your delivery will appear here. your delivery date
                           will be determined once you submit the requirements.
                         </p>
@@ -446,46 +451,48 @@ const OrderDetails = ({
                   )}
 
                   {orderDeliveryList.length > 0 && (
-                    <div className="row pending-order">
+                    <div className="form-row pending-order">
                       {orderDeliveryNotes !== "" && (
-                        <>
-                          <div>
-                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                              Comment Admin Notifier :
-                            </h6>
-                            <p className="mt-1">{orderDeliveryNotes}</p>
+                        <div className="row" style={{width:"100%"}}>
+                          <div className="col-12">
+                          <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                            Comment Admin Notifier :
+                          </h6>
+                          <p className="mt-1">{orderDeliveryNotes}</p>
                           </div>
-                          <br />
-                        </>
+                        </div>
                       )}
-                      {orderDeliveryList.map((item, index) => {
-                        return (
-                          <div className="col-5" key={index}>
-                            <div className="info-box">
-                              <span
-                                className="info-box-icon"
-                                style={{
-                                  backgroundImage:
-                                    "url(../ui/Images/upload-list-image-card.png)",
-                                  backgroundSize: "cover",
-                                }}
-                              ></span>
-                              <div className="info-box-content">
-                                <span className="info-box-text">
-                                  {item?.name}
-                                </span>
-                                <span className="info-box-number"></span>
-                              </div>
-                              <div
-                                className="info-box-icon"
-                                onClick={() => downloadService(item?.uid)}
-                              >
-                                <img src="../ui/Images/Vector.png" />
+
+                      <div className="row">
+                        {orderDeliveryList.map((item, index) => {
+                          return (
+                            <div className="col-md-6" key={index}>
+                              <div className="info-box">
+                                <span
+                                  className="info-box-icon"
+                                  style={{
+                                    backgroundImage:
+                                      "url(../ui/Images/upload-list-image-card.png)",
+                                    backgroundSize: "cover",
+                                  }}
+                                ></span>
+                                <div className="info-box-content">
+                                  <span className="info-box-text">
+                                    {item?.name}
+                                  </span>
+                                  <span className="info-box-number"></span>
+                                </div>
+                                <div
+                                  className="info-box-icon"
+                                  onClick={() => downloadService(item?.uid)}
+                                >
+                                  <img src="../ui/Images/Vector.png" />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -495,7 +502,7 @@ const OrderDetails = ({
 
           {/* Left Second Card */}
           {/* Right Second Card */}
-          <div className="col-4 card4 mt-3">
+          <div className="col-md-4 card4 mt-3">
             <div className="card">
               <div className="card-header py-3">
                 <div className="card1-info d-flex">
@@ -551,11 +558,11 @@ const OrderDetails = ({
           </div>
           {/* Review */}
           {servicesList[0]?.orStatus === "Completed" && !isReview && (
-            <div className="col-12 card5">
+            <div className="col-md-12 card5">
               <div className="card">
                 <div className="card-body">
-                  <div className="border-bottom row justify-content-between pending-order">
-                    <div className="col-8">
+                  <div className="border-bottom form-row justify-content-between pending-order">
+                    <div className="col-md-8">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -571,7 +578,7 @@ const OrderDetails = ({
                         </div>
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-md-4">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -642,8 +649,8 @@ const OrderDetails = ({
                       </div>
                     </div>
                   </div>
-                  <div className="border-bottom row justify-content-between pending-order">
-                    <div className="col-8">
+                  <div className="border-bottom form-row justify-content-between pending-order">
+                    <div className="col-md-8">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -659,7 +666,7 @@ const OrderDetails = ({
                         </div>
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-md-4">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -740,8 +747,8 @@ const OrderDetails = ({
                       </div>
                     </div>
                   </div>
-                  <div className="border-bottom row justify-content-between pending-order">
-                    <div className="col-8">
+                  <div className="border-bottom form-row justify-content-between pending-order">
+                    <div className="col-md-8">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -757,7 +764,7 @@ const OrderDetails = ({
                         </div>
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-md-4">
                       <div
                         className="info-box"
                         style={{ border: "none", boxShadow: "none" }}
@@ -828,10 +835,10 @@ const OrderDetails = ({
                       </div>
                     </div>
                   </div>
-                  <div className="row my-3 input-g">
-                    <div className="col-12">
-                      <div className="row justify-content-between pending-order">
-                        <div className="col-12">
+                  <div className="form-row my-3 input-g">
+                    <div className="col-md-12">
+                      <div className="form-row justify-content-between pending-order">
+                        <div className="col-md-12">
                           <div
                             className="info-box"
                             style={{
@@ -886,11 +893,13 @@ const OrderDetails = ({
         <footer className="Order-status-footer">
           <div className="container">
             <div className="footer">
-              <div className="row">
-                <div className="col confirm-ord">
-                  <p>Do you want to revisions this order?</p>
+              <div className="form-row">
+                <div className="confirm-ord">
+                  <p style={{ marginTop: "10px", marginBottom: "0px" }}>
+                    Do you want to revisions this order?
+                  </p>
                 </div>
-                <div className="col d-flex">
+                <div className="d-flex ml-auto">
                   {servicesList[0]?.orStatus !== "Revision" && (
                     <button
                       className="btn btn-outline-dark"
@@ -904,7 +913,8 @@ const OrderDetails = ({
                   {(servicesList[0]?.orStatus === "Delivered" ||
                     servicesList[0]?.orStatus === "Revision") && (
                     <button
-                      className="btn btn-dark"
+                      className="btn btn-outline-dark"
+                      style={{ color: "white" }}
                       onClick={() => handleConfirmClick(6)}
                     >
                       Confirm

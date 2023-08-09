@@ -5,13 +5,13 @@ import axios from "axios";
 // export const REACT_APP_URL = "http://api.flyses.com/";
 // axios.defaults.baseURL = "http://api.flyses.com/api/";
 
-// export const REACT_APP = "https://api.flyses.com/api/";
-// export const REACT_APP_URL = "https://api.flyses.com/";
-// axios.defaults.baseURL = "https://api.flyses.com/api/";
+export const REACT_APP = "https://api.flyses.com/api/";
+export const REACT_APP_URL = "https://api.flyses.com/";
+axios.defaults.baseURL = "https://api.flyses.com/api/";
 
-export const REACT_APP = "http://localhost:7289/api/";
-export const REACT_APP_URL = "http://localhost:7289/";
-axios.defaults.baseURL = "http://localhost:7289/api/";
+// export const REACT_APP = "http://localhost:7289/api/";
+// export const REACT_APP_URL = "http://localhost:7289/";
+// axios.defaults.baseURL = "http://localhost:7289/api/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 

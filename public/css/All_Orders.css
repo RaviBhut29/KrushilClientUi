@@ -1,11 +1,16 @@
+.FontBold{
+    font-family: var(--Inter_Bold);
+}
+.HeaderFont{
+    font-family: var(--Inter_Header);
+}
 
-
-.All_Order .row .my-order .row .btn-search-head span {
+.All_Order .form-row .my-order .form-row .btn-search-head span {
     font-family: var(--Inter_Bold);
     font-size: large;
 }
 
-.All_Order .row .my-order .row .btn-search-head {
+.All_Order .form-row .my-order .form-row .btn-search-head {
     flex-wrap: wrap;
 }
 
@@ -91,12 +96,12 @@
     width: 100%;
 }
 
-.All_Order .col-12 span .status-details {
+.All_Order .col-md-12 span .status-details {
     display: flex;
     flex-wrap: wrap;
 }
 
-.All_Order .col-12 span .status-details .count {
+.All_Order .col-md-12 span .status-details .count {
     background-color: #198754;
     border-radius: 100%;
     /* border: 1px solid #198754; */
@@ -110,7 +115,7 @@
     align-self: center;
 }
 
-.All_Order .col-12 span .status-details .sub-des {
+.All_Order .col-md-12 span .status-details .sub-des {
     font-family: var(--Inter_Header);
     color: #198754;
     margin: 0 10px;
@@ -154,7 +159,7 @@
     opacity: 1;
 }
 
-.All_Order .col-12 .col-3 {
+.All_Order .col-md-12 .col-md-3 {
     flex: none;
     width: fit-content;
 }
@@ -293,26 +298,26 @@
 }
 
 @media only screen and (max-width: 529px) {
-
-    .All_Order .row .my-order {
+    
+    .All_Order .form-row .my-order {
         width: 100%;
         margin-top: 2rem;
     }
 
-    .All_Order .row .col-4 {
+    .All_Order .form-row .col-md-4 {
         order: -1;
         width: 100%;
     }
-
+    
     .All_Order .d-one .col .main .header .head {
         margin-bottom: 0.5rem;
         margin-top: 0.5rem;
     }
-
-    .All_Order .row .my-order .row .btn-search-head span {
+    
+    .All_Order .form-row .my-order .form-row .btn-search-head span {
         align-self: center;
     }
-
+    
     .All_Order .d-one .col .main .hr {
         margin-top: auto;
     }
@@ -320,22 +325,44 @@
     .All_Order .left,
     .All_Order .right {
         font-family: 15px;
-        padding: 1px;
+        /* padding: 1px; */
     }
-
-    .All_Order .row .col-7 {
+    
+    .All_Order .form-row .col-md-7 {
         width: fit-content;
     }
-
+    
     .All_Order .btn-order a {
         font-size: 14px;
         text-wrap: nowrap;
         margin-bottom: 1rem;
     }
-
+    
     .All_Order .btn-rate a {
         font-size: 14px;
         text-wrap: nowrap;
         margin-bottom: 1rem;
     }
 }
+@media only screen and (max-width: 360px) {
+    .All_Order .search input{
+        width: 184px !important;
+    }
+
+    .All_Order .left, .All_Order .right{
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    .All_Order .order-id span{
+        font-size: 13px;
+    }
+
+    .All_Order .btn-order a{
+        font-size: 17px;
+    }
+}
+
+/* .All_Order *{
+    font-family: var(--Inter_SemiBold);
+} */

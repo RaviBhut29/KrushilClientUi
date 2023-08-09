@@ -338,7 +338,7 @@ export const Order_Status = () => {
                                 <div className="row mt-4">
                                     <div className="col-6 details">Order created</div>
                                     <div className="col-6" style={{ textAlign: "end" }}>
-                                        <span className="info" style={{ color: "#000" }}>
+                                        <span className="info FontBold" style={{ color: "#000" }}>
                                             06 April, 2023
                                         </span>
                                     </div>

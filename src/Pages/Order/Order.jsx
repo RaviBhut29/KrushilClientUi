@@ -144,9 +144,9 @@ const Order = () => {
             {/* Navigation */}
             <BreadCrub siteMapPath={siteMapPath} />
 
-            <div className="row">
-              <div className="col-8 my-order">
-                <div className="row">
+            <div className="form-row">
+              <div className="col-md-8 my-order">
+                <div className="form-row">
                   <div className="col d-flex btn-search-head">
                     <span>My Orders</span>
                     {resetDiv && (
@@ -210,8 +210,8 @@ const Order = () => {
                                 <p>${item?.orPrice}</p>
                               </div>
                               <div className="hr" />
-                              <div className="col-12 row">
-                                <span className="col-7">
+                              <div className="col-md-12 form-row">
+                                <span className="">
                                   <div className="order-id my-3">
                                     <p>
                                       Order ID :
@@ -234,14 +234,14 @@ const Order = () => {
                                     </p>
                                   </div>
                                 </span>
-                                <div
+                                {/* <div
                                   className="col btn-rate d-flex m-auto"
                                   style={{ cursor: "pointer" }}
                                 >
                                   
-                                </div>
+                                </div> */}
                                 <div
-                                  className="col-2 btn-order d-flex m-auto"
+                                  className="btn-order my-3 ml-auto"
                                   style={{ cursor: "pointer" }}
                                 >
                                   <a
@@ -273,7 +273,7 @@ const Order = () => {
                   </center>
                 )}
               </div>
-              <div className="col-4 my-Filter">
+              <div className="col-md-4 my-Filter">
                 <div className="card Filter">
                   <div className="card-header d-flex">
                     Filters

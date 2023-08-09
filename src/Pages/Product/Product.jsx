@@ -568,7 +568,7 @@ export const Product = () => {
                 {replaceDescription(categoryDetails?.ctDescription)}
                 <p className="m-0 F-inc">Format included:</p>
                 <div
-                  className="btn-toolbar mb-3"
+                  className="btn-toolbar mb-3 mt-2"
                   role="toolbar"
                   aria-label="Toolbar with button groups"
                 >
@@ -580,7 +580,7 @@ export const Product = () => {
                     {categoryDetails?.ctTags.split("*").map((itemC, index) => {
                       return (
                         <>
-                          <button type="button" className="btn">
+                          <button type="button" className="btn formateBtn">
                             {itemC}
                           </button>
                           {index !==
