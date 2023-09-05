@@ -3,6 +3,7 @@ import $ from "jquery";
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import { Link } from "react-router-dom";
+import ContectUs from "../../Layout/ContactUs";
 
 /* JS */
 const nextSlide = () => {
@@ -108,7 +109,7 @@ export const Home = () => {
                 get things done—from quick turnarounds to big transformations.
               </span>
               <div className="d-flex">
-                <Link to="/services" style={{padding:"13px"}} className="me-2 btn btn-primary">Order Now</Link>
+                <Link to="/services" style={{ padding: "13px" }} className="me-2 btn btn-primary">Order Now</Link>
                 <Link to={(sessionStorage.getItem("userSortName") || "") === "" ? "/login" : "/chat"}>
                   <button className="btn msg-btn-outline">Message us</button>
                 </Link>
@@ -117,14 +118,42 @@ export const Home = () => {
             </div>
           </div>
           <div className="col-lg-7">
-            <div className="cards">
-              <div>
-                <img
+            <div className="ImagesClass">
+              {/* <img
                   src="../ui/Images/Home-Content.svg"
                   alt="heroContent"
                   className="w-100"
-                />
-              </div>
+                /> */}
+              <img
+                // src="../ui/Images/Home-Content-Card-1.svg"
+                src="../ui/Images/1st-01.jpg"
+                alt="heroContent"
+                className="Home-Content-Card-1"
+              />
+              <img
+                // src="../ui/Images/Home-Content-Card-2.svg"
+                src="../ui/Images/2nd-01.jpg"
+                alt="heroContent"
+                className="Home-Content-Card-2"
+              />
+              <img
+                // src="../ui/Images/Home-Content-Card-3.svg"
+                src="../ui/Images/4th.jpg"
+                alt="heroContent"
+                className="Home-Content-Card-3"
+              />
+              <img
+                // src="../ui/Images/Home-Content-Card-4.svg"
+                src="../ui/Images/5th.jpg"
+                alt="heroContent"
+                className="Home-Content-Card-4"
+              />
+              <img
+                // src="../ui/Images/Home-Content-Card-5.svg"
+                src="../ui/Images/3rd-01.jpg"
+                alt="heroContent"
+                className="Home-Content-Card-5"
+              />
             </div>
           </div>
         </div>
@@ -229,7 +258,7 @@ export const Home = () => {
             </div>
           </div>
           {/* class="btn btn-primary d-flex align-items-center justify-content-center"> */}
-          <Link style={{padding:"13px"}} className="btn btn-SeeAll" to="/services">See all</Link>
+          <Link style={{ padding: "13px" }} className="btn btn-SeeAll" to="/services">See all</Link>
         </div>
       </div>
       {/* Explore Section */}
@@ -387,20 +416,20 @@ export const Home = () => {
                   General Committee for National and General Association
                   Activities for General Society Association
                 </p>
-              </div>  
+              </div>
             </div>
             <div className="col-md-4">
               <div className="about-card">
-                <div>  
+                <div>
                   <img src="../ui/Images/security-icon.svg" />
-                </div>  
+                </div>
                 <h5>Security First</h5>
                 <p>
                   Website security is thus important to protect your business,
                   brand, and website.
-                </p>  
-              </div> 
-            </div> 
+                </p>
+              </div>
+            </div>
             <div className="col-md-4">
               <div className="about-card">
                 <div>
@@ -443,86 +472,86 @@ export const Home = () => {
           <div className="img-div-6">
             <img src="../ui/Images/PP_6.png" alt="" />
           </div>
-          <div>
-            <div className="container-slide">
-              <h3 className="head gradient-text">
-                Trusted by leading
-                <br />
-                brands and startups
-              </h3>
-              <div className="slider">
-                <div
-                  className="slide"
-                  data-slide={1}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide slide--active"
-                  data-slide={2}
-                  style={{ backgroundColor: "#fff" }}
-                >
-                  <div className="subtext">
-                    <p>
-                      I was very pleased to work with flyses on logo project.
-                      The work went well, and he was available for questions and
-                      clarifications as needed. I look forward to working on
-                      further projects with him.
-                    </p>
-                    <p className="footer">Leslie Alexander</p>
-                    <p className="sub-footer">CtO Of flyses</p>
-                  </div>
+          {/* <div> */}
+          <div className="container-slide">
+            <h3 className="head gradient-text">
+              Trusted by leading
+              <br />
+              brands and startups
+            </h3>
+            <div className="slider">
+              <div
+                className="slide"
+                data-slide={1}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide slide--active"
+                data-slide={2}
+                style={{ backgroundColor: "#fff" }}
+              >
+                <div className="subtext">
+                  <p>
+                    I was very pleased to work with flyses on logo project.
+                    The work went well, and he was available for questions and
+                    clarifications as needed. I look forward to working on
+                    further projects with him.
+                  </p>
+                  <p className="footer">Leslie Alexander</p>
+                  <p className="sub-footer">CtO Of flyses</p>
                 </div>
-                <div
-                  className="slide"
-                  data-slide={3}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide"
-                  data-slide={4}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide"
-                  data-slide={5}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide"
-                  data-slide={5}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide"
-                  data-slide={5}
-                  style={{ backgroundColor: "#fff" }}
-                />
-                <div
-                  className="slide"
-                  data-slide={5}
-                  style={{ backgroundColor: "#fff" }}
+              </div>
+              <div
+                className="slide"
+                data-slide={3}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide"
+                data-slide={4}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide"
+                data-slide={5}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide"
+                data-slide={5}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide"
+                data-slide={5}
+                style={{ backgroundColor: "#fff" }}
+              />
+              <div
+                className="slide"
+                data-slide={5}
+                style={{ backgroundColor: "#fff" }}
+              />
+            </div>
+            <div className="controls">
+              <div id="back" onClick={prevSlide}>
+                <img
+                  src="../ui/Images/right.svg"
+                  height={20}
+                  width={20}
+                  alt=""
                 />
               </div>
-              <div className="controls">
-                <div id="back" onClick={prevSlide}>
-                  <img
-                    src="../ui/Images/right.svg"
-                    height={20}
-                    width={20}
-                    alt=""
-                  />
-                </div>
-                <div id="forvard" className="active" onClick={nextSlide}>
-                  <img
-                    src="../ui/Images/right.svg"
-                    height={20}
-                    width={20}
-                    alt=""
-                  />
-                </div>
+              <div id="forvard" className="active" onClick={nextSlide}>
+                <img
+                  src="../ui/Images/right.svg"
+                  height={20}
+                  width={20}
+                  alt=""
+                />
               </div>
             </div>
           </div>
+          {/* </div> */}
           <div className="dotted-img">
             <img src="../ui/Images/dotted-1.svg" alt="" />
           </div>
@@ -600,7 +629,8 @@ export const Home = () => {
           </a>
         </div>
       </div>
-      <div className="contact-us-section">
+      <ContectUs />
+      {/* <div className="contact-us-section">
         <div className="container sub-section">
           <div className="row text-center justify-content-center">
             <div className="col-3">
@@ -631,7 +661,7 @@ export const Home = () => {
             <button className="con-us-btn btn btn-secondary">Contact Us</button>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* ContactUs Section */}
       {/* FAQ */}
       <div className="faq-section">

@@ -16,12 +16,11 @@ export const Services = () => {
     let path = window.location.pathname;
     let splitdata = path.split("/");
 
-    if(splitdata.length > 2)
-    {
+    if (splitdata.length > 2) {
       history(`/category/${splitdata[splitdata.length - 1]}`);
     }
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     getAllServices();
   }, []);
 
@@ -68,7 +67,7 @@ export const Services = () => {
       path: "/services",
     },
   ];
-  
+
   return (
     <div className="home">
       <div className="container Services" style={{ position: "relative" }}>
@@ -111,6 +110,15 @@ export const Services = () => {
             </div>
           </div>
         </div>
+
+        {/* <div class="containerT">
+          <div class="single-boxT"></div>
+          <div class="single-boxT"></div>
+          <div class="single-boxT"></div>
+          <div class="single-boxT"></div>
+          <div class="single-boxT"></div>
+        </div> */}
+
         {/* Home Card */}
         <RatingsAndReviews />
       </div>

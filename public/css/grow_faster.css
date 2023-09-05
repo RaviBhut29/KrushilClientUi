@@ -1,7 +1,7 @@
 .b1 {
-    font-family: sans-serif;
+    font-family: var(--Inter_SemiBold);
     font-style: normal;
-    font-weight: 600;
+    /* font-weight: 600; */
     font-size: 42px;
     line-height: 100%;
     text-align: center;
@@ -16,9 +16,9 @@
     width: 533.5px;
     min-height: 59px;
     height: auto;
-    font-family: sans-serif;
+    font-family: var(--Inter_Header);
     font-style: normal;
-    font-weight: 400;
+    /* font-weight: 400; */
     font-size: 16.1667px;
     line-height: 36px;
     text-align: center;
@@ -29,11 +29,12 @@
 }
 
 .rhead p {
-    width: 179.66px;
-    height: 26px;
-    font-family: sans-serif;
+    /* width: 179.66px; */
+    /* width: 205.568px;
+    height: 26px; */
+    font-family: var(--Inter_Bold);
     font-style: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 20.0554px;
     line-height: 25px;
     text-transform: capitalize;
@@ -41,15 +42,16 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    text-align: center;
 }
 
 .rbody p {
     width: 225.62px;
-    min-height: 81px;
+    /* min-height: 81px; */
     height: auto;
-    font-family: sans-serif;
+    font-family: var(--Inter_Header);
     font-style: normal;
-    font-weight: 400;
+    /* font-weight: 400; */
     font-size: 13.8142px;
     line-height: 27px;
     text-align: center;
@@ -85,4 +87,8 @@
     .col-3{
         max-width: fit-content;
     }
+}
+
+.margin-def{
+    margin-top: 80px;
 }

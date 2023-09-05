@@ -64,10 +64,11 @@ export const Product = () => {
       path: `/product/${splitdata[splitdata.length - 1]}`,
     },
   ];
-
+  
   useEffect(() => {
     bindProduct(splitdata[splitdata.length - 1]);
     bindPlan(splitdata[splitdata.length - 1]);
+    console.log(planFeatureList);
   }, []);
 
   const [planFeatureList, setPlanFeatureList] = useState([]);
@@ -141,7 +142,7 @@ export const Product = () => {
         />
       )}
       {!pricePlanPackages && (
-        <div className="home">
+        <div className={"home productPageC"}>
           <div
             className="container minimalist-logo"
             style={{
@@ -153,20 +154,21 @@ export const Product = () => {
             <Header />
             <BreadCrub siteMapPath={siteMapPath} />
 
-            <div className="row on-mobile justify-content-center m-0">
+            <div className="row on-mobile justify-content-center m-0 d-none">
               <div className="col col-lg-auto row justify-content-center">
                 <button type="button" className="con-btn">
                   Start Conversation
                 </button>
                 <button type="button" className="link-btn">
-                  <img src="../ui/Images/share-icon.png" />
+                  <img src="../ui/Images/share-icon.svg" />
                 </button>
               </div>
             </div>
             <p className="item">{categoryDetails.ctName}</p>
-            <p className="item_title">{categoryDetails.ctTitle}</p>
+            {/* Old Date Before 16/08/2023 */}
+            {/* <p className="item_title">{categoryDetails.ctTitle}</p> */}
             {/* ------Rating--------- */}
-            <div className="row align-items-end p-0 Rating-Row">
+            {/* <div className="row align-items-end p-0 Rating-Row">
               <div className="col-2 px-0">
                 <fieldset
                   className="rating"
@@ -313,12 +315,173 @@ export const Product = () => {
                   <img src="../ui/Images/share-icon.png" />
                 </button>
               </div>
-            </div>
+            </div> */}
             {/* ------Rating--------- */}
+            {/* Old Date Before 16/08/2023 */}
+            {/* New Date After 16/08/2023  */}
+            <div className="row align-items-end p-0 Rating-Row">
+              <div className="col row">
+                <div className="col-12" style={{width:"760px"}}>
+                  <p className="item_title">{categoryDetails.ctTitle}</p>
+                </div>
+                <div class="col-12 row">
+                  <div class="col-2 px-0 Mobile-Margin" style={{ height: "auto", alignSelf: "center" }}>
+                    <fieldset
+                      className="rating"
+                      style={{ display: "inline-table" }}
+                    >
+                      <input
+                        type="radio"
+                        id="star5"
+                        name="rating"
+                        defaultValue={5}
+                      />
+                      <label
+                        className="full"
+                        htmlFor="star5"
+                        title="Awesome - 5 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star4half"
+                        name="rating"
+                        defaultValue="4 and a half"
+                      />
+                      <label
+                        className="half"
+                        htmlFor="star4half"
+                        title="Pretty good - 4.5 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star4"
+                        name="rating"
+                        defaultValue={4}
+                      />
+                      <label
+                        className="full"
+                        htmlFor="star4"
+                        title="Pretty good - 4 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star3half"
+                        name="rating"
+                        defaultValue="3 and a half"
+                      />
+                      <label
+                        className="half"
+                        htmlFor="star3half"
+                        title="Meh - 3.5 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star3"
+                        name="rating"
+                        defaultValue={3}
+                      />
+                      <label
+                        className="full"
+                        htmlFor="star3"
+                        title="Meh - 3 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star2half"
+                        name="rating"
+                        defaultValue="2 and a half"
+                      />
+                      <label
+                        className="half"
+                        htmlFor="star2half"
+                        title="Kinda bad - 2.5 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star2"
+                        name="rating"
+                        defaultValue={2}
+                      />
+                      <label
+                        className="full"
+                        htmlFor="star2"
+                        title="Kinda bad - 2 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star1half"
+                        name="rating"
+                        defaultValue="1 and a half"
+                      />
+                      <label
+                        className="half"
+                        htmlFor="star1half"
+                        title="Meh - 1.5 stars"
+                      />
+                      <input
+                        type="radio"
+                        id="star1"
+                        name="rating"
+                        defaultValue={1}
+                      />
+                      <label
+                        className="full"
+                        htmlFor="star1"
+                        title="Sucks big time - 1 star"
+                      />
+                      <input
+                        type="radio"
+                        id="starhalf"
+                        name="rating"
+                        defaultValue="half"
+                      />
+                      <label
+                        className="half"
+                        htmlFor="starhalf"
+                        title="Sucks big time - 0.5 stars"
+                      />
+                    </fieldset>
+                  </div>
+                  <div className="col-2 mt-2 px-0" style={{ alignContent: "center" }}>
+                    <p className="rating_p">4.6 | 45k</p>
+                  </div>
+                  <div className="col-2 mt-2 px-0">
+                    <p className="rating_p2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={16}
+                        height={16}
+                        fill="currentColor"
+                        className="bi bi-dot d-none"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                      </svg>
+                      {/* Avg. response time: Less than 2hr */}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <div className="col row align-self-start">
+                <div className="col on-web row">
+                  <button type="button" className="con-btn ml-auto mx-4">
+                    Start Conversation
+                  </button>
+                  <button type="button" className="link-btn">
+                    {/* <img src="../ui/Images/share-icon.png" /> */}
+                    <img src="../ui/Images/share-icon.svg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/* New Date After 16/08/2023  */}
+
             {/* -----------------Product--------------------- */}
-            <div className="row">
+            <div className="row mob-margin">
               <div className="col-3 wrapper">
-                <div className="image-gallery my-3 p-3">
+                <div className="image-gallery mb-3 mt-2">
+                {/* <div className="image-gallery my-3 p-3"> */}
                   <aside className="thumbnails">
                     {categoryImages.map((item, index) => {
                       if (index < 4) {
@@ -350,9 +513,15 @@ export const Product = () => {
                     style={{
                       backgroundImage: `url(${mainImage !== "" ? mainImage : categoryImages[0]?.url
                         })`,
+                      marginLeft:"auto",
+                      marginRight:"auto"
                     }}
                   />
                 </div>
+
+                {/* Date:20/08/2023. */}
+                
+                {/* Date:20/08/2023. */}
               </div>
               {/* -----------------Krushi Temp--------------------- */}
               {/* {planFeatureList?.length > 0 && (
@@ -441,7 +610,8 @@ export const Product = () => {
               <div className="service-pricing-card mt-5 mb-5 planCard col">
                 <div className="">
                   {planFeatureList?.length > 0 && (
-                    <div className="col-lg-auto pt-4 Price">
+                    // <div className="col-lg-auto pt-4 Price">
+                    <div className="col-lg-auto Price">
                       <div className="pricing-card  position-relative">
                         <div className="pricing-inner-col">
                           <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
@@ -452,7 +622,7 @@ export const Product = () => {
                             <p className="green-text">Save up to {planFeatureList[0]?.pnSaveUpTo}%</p>
                             <p className="grey-text">{planFeatureList[0]?.pnDesc}</p>
 
-                            <div>
+                            <div className="mt-4">
                               {planFeatureList[0]?.planServiceDetailsList?.length > 0 &&
                                 planFeatureList[0]?.planServiceDetailsList.map(
                                   (item) => {
@@ -466,25 +636,12 @@ export const Product = () => {
                                               ? ""
                                               : "0.4",
                                         }}>
-                                        {/* <svg
-                                          width={20}
-                                          height={20}
-                                          viewBox="0 0 20 20"
-                                          fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M9.94165 19.4136C15.1583 19.4136 19.3872 15.1847 19.3872 9.96802C19.3872 4.75138 15.1583 0.522461 9.94165 0.522461C4.72501 0.522461 0.496094 4.75138 0.496094 9.96802C0.496094 15.1847 4.72501 19.4136 9.94165 19.4136ZM14.3186 8.44151C14.7797 7.98042 14.7797 7.23284 14.3186 6.77175C13.8575 6.31066 13.1099 6.31066 12.6489 6.77175L8.76096 10.6597L7.23445 9.13314C6.77336 8.67205 6.02578 8.67205 5.56469 9.13314C5.1036 9.59423 5.1036 10.3418 5.56469 10.8029L7.92608 13.1643C8.38717 13.6254 9.13474 13.6254 9.59583 13.1643L14.3186 8.44151Z"
-                                            fill="#198754"
-                                          />
-                                        </svg> */}
+                                          
                                         <img
-                                          src={rightTick}
-                                          alt=""
-                                          className="mb-1 me-1"
-                                        />
+                                          src={item?.pnIsInclude === 1
+                                                ? "../ui/Images/wrong right icons-01.svg"
+                                                : "../ui/Images/wrong right icons-02.svg"}
+                                          alt="" className="mb-1 me-1"/>
                                         <p className="bold-content">
                                           {item.pnIncludedService}
                                         </p>
@@ -500,24 +657,26 @@ export const Product = () => {
                             <ul className="pricing-list">
                               {planFeatureList[0]?.planFeatureDetailsList?.length > 0 &&
                                 planFeatureList[0]?.planFeatureDetailsList.map(
-                                  (item) => {
+                                  (item, index) => {
                                     return (
                                       <li
                                         key={item?.faPdId}
                                         style={{
                                           opacity:
-                                            item?.pnIsInclude === 1
-                                              ? ""
-                                              : "0.4",
+                                            // item?.pnIsInclude === 1
+                                            index == 0
+                                              ? "" : index == 1
+                                              ? "0.6" : "0.3",
                                         }}
                                       >
                                         <a href="#" className="dark-text">
-                                          {item?.pnIncludedFeature}</a>
+                                          {item?.pnIncludedFeature} </a>
                                       </li>
                                     );
                                   }
                                 )}
-                              <li className="li-feact opacity-25">Vector File</li>
+                              {/* <li className="li-feact opacity-25">
+                              <a href="#" className="dark-text">Vector File</a></li> */}
                             </ul>
                             <button
                               type="button"
@@ -565,7 +724,9 @@ export const Product = () => {
             </ul>
             {(tabClick === "" || tabClick === "Des") && (
               <div className="my-4 desc">
-                {replaceDescription(categoryDetails?.ctDescription)}
+                <div className="Desc-Text">
+                  {replaceDescription(categoryDetails?.ctDescription)}
+                </div>
                 <p className="m-0 F-inc">Format included:</p>
                 <div
                   className="btn-toolbar mb-3 mt-2"

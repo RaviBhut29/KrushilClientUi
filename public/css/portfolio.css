@@ -1,14 +1,12 @@
-.portfolio .nav-tabs{
+.portfolio .nav-tabs {
     width: fit-content;
 }
 
 .portfolio .nav-tabs .nav-item a {
     color: #6C757D;
-    font-family: var(--Inter_Thin);
+    font-family: var(--Inter_Header);
     font-size: 17px;
-    font-weight: 700;
     line-height: 27px;
-    letter-spacing: 1px;
     text-align: left;
 }
 
@@ -42,18 +40,19 @@
     box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 
-.portfolio{
+.portfolio {
     position: relative;
 }
 
-.portfolio .row .col .card .card-body .card-title{
+.portfolio .row .col .card .card-body .card-title {
     font-family: var(--Inter_Header);
     text-align: start;
     font-weight: 600;
     font-size: 22px;
+    color: #0C0D48;
 }
 
-.portfolio .row .col .card .card-body .card-text{
+.portfolio .row .col .card .card-body .card-text {
     font-family: var(--Inter_Local);
     text-align: start;
     font-weight: 400;
@@ -106,11 +105,11 @@
 
 .portfolio .discription {
     width: 640px;
-    font-family: var(--Inter_Light);
+    font-family: var(--Inter_Header);
     font-style: normal;
-    font-weight: 600;
+    /* font-weight: 600; */
     font-size: 20px;
-    line-height: 40px;
+    line-height: 35px;
     color: #0c0d48;
     margin-bottom: 5rem;
 }
@@ -148,7 +147,7 @@
     .portfolio .h1 {
         text-align: left;
         font-size: 23px;
-        line-height: 40px;
+        line-height: 35px;
         letter-spacing: 0;
     }
 
@@ -169,8 +168,65 @@
 }
 
 @media only screen and (max-width: 350px) {
-    .portfolio .card-img-top{
+    .portfolio .card-img-top {
         height: 170px;
         width: 270px;
+    }
+}
+
+.portfolio .containerT {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media only screen and (max-width: 1190px) {
+    .portfolio .containerT {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .portfolio .containerT {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .portfolio .discription{
+        margin-bottom: 2rem;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    .portfolio .containerT {
+        grid-template-columns: repeat(1,1fr) !important;
+    }
+
+    .portfolio .containerT .col .card{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 321px) {
+    .portfolio .h1{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .portfolio .discription{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .portfolio .discription{
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .portfolio .h1{
+        margin-top: 30px;
+    }
+    .portfolio .discription{
+        font-size: 14px;
+        line-height: 22px;
     }
 }

@@ -37,9 +37,9 @@
     margin-top: 3rem;
     width: 660px;
     /* height: 37px; */
-    font-family: var(--Inter_Header);
+    font-family: var(--Inter_Medium);
     font-style: normal;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 15px;
     line-height: 37px;
     letter-spacing: 0.13em;
@@ -48,7 +48,7 @@
 }
 
 .item_title {
-    width: 573px;
+    width: fit-content;
     /* height: 38px; */
     align-items: flex-start;
     font-family: var(--Inter_Header);
@@ -233,7 +233,7 @@
     align-items: center;
     padding: 10.3051px;
     gap: 10.31px;
-    width: 371px;
+    width: 345px;
     height: 49px;
     background: #212529;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
@@ -416,9 +416,9 @@
 
 .minimalist-logo .nav .nav-item .active {
     /* height: 30px; */
-    font-family: var(--Inter_Header);
+    font-family: var(--Inter_Medium);
     font-style: normal;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 20px;
     /* line-height: 150%; */
     color: #E71D7C !important;
@@ -429,7 +429,7 @@
 
 .minimalist-logo .nav .nav-item .nav-link {
     color: #6C757D;
-    transition: 0.5s;
+    /* transition: 0.5s; */
     font-size: 20px;
 }
 
@@ -494,13 +494,6 @@
     font-style: italic;
 }
 
-.minimalist-logo .F-inc {
-    color: #198754;
-    font-weight: 600;
-    font-family: var(--Inter_Header);
-    font-size: 20px;
-}
-
 .minimalist-logo .btn-toolbar {
     box-sizing: border-box;
     display: flex;
@@ -522,7 +515,7 @@
 }
 
 .minimalist-logo .btn-group hr {
-    border: 1px solid;
+    border: 2px solid;
     border-color: #94989c !important;
     height: 20px;
     margin: 0;
@@ -675,7 +668,7 @@
 .minimalist-logo .rev {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    /* font-family: var(--Inter_Medium); */
     box-sizing: border-box;
 }
 
@@ -775,6 +768,7 @@
 
 .minimalist-logo .client-comment p {
     font-size: 0.9rem;
+    font-family: var(--Inter_Header);
     color: #4b4b4b;
 }
 
@@ -1246,13 +1240,6 @@ nav .pagination .page-item a:focus {
     margin-top: calc(-.5 * 0.5rem);
 }
 
-.lead .col-3 {
-    flex: none;
-    padding-left: 12px;
-    padding-right: 12px;
-    max-width: 29%;
-}
-
 /* .minimalist-logo .row {
     margin-left: calc(-.5 * var(--bs-gutter-x));
     margin-right: calc(-.5 * var(--bs-gutter-x));
@@ -1305,39 +1292,6 @@ nav .pagination .page-item a:focus {
     .minimalist-logo .con-btn{
         width: 271px;
     }
-}.breaddiv {
-    position: relative;
-    align-items: center;
-}
-
-.breadcrumb {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 13px 23px;
-    gap: 10px;
-    width: fit-content;
-    height: fit-content;
-    background: #FFFFFF;
-    border: 0.5px solid #DEE2E6;
-    box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
-    border-radius: 25px;
-}
-
-.breadcrumb a {
-    width: 46px;
-    height: 24px;
-
-    font-family: var(--Inter_Header);
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    text-decoration-line: underline;
-    color: #212529;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
 .item {
@@ -1353,24 +1307,9 @@ nav .pagination .page-item a:focus {
     text-transform: uppercase;
     color: #ADB5BD;
 }
-
-.item_title {
-    width: 573px;
-    /* height: 38px; */
-    align-items: flex-start;
-    font-family: var(--Inter_Header);
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 120%;
-    color: #0C0D48;
-}
-
 /* ------Rating-------- */
 
 
-
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 .minimalist-logo fieldset,
 .minimalist-logo label {
@@ -1534,13 +1473,14 @@ nav .pagination .page-item a:focus {
 }
 
 .minimalist-logo .con-btn {
+    font-size: 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10.3051px;
     gap: 10.31px;
-    width: 355px;
+    width: 345px;
     height: 49px;
     background: #212529;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
@@ -1548,7 +1488,7 @@ nav .pagination .page-item a:focus {
     order: 0;
     flex-grow: 0;
     color: #FFFFFF;
-    font-family: var(--Inter_Header);
+    font-family: var(--Inter_Medium);
     transition: 0.5s;
 }
 
@@ -1715,25 +1655,6 @@ nav .pagination .page-item a:focus {
     padding-right: 15px;
 }
 
-.minimalist-logo .nav .nav-item .active {
-    /* height: 30px; */
-    font-family: var(--Inter_Header);
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    /* line-height: 150%; */
-    color: #E71D7C !important;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.minimalist-logo .nav .nav-item .nav-link {
-    color: #6C757D;
-    transition: 0.5s;
-    font-size: 20px;
-}
-
 .minimalist-logo .nav .nav-item .nav-link:hover {
     background-color: #f9f9f9;
     color: #000;
@@ -1793,13 +1714,6 @@ nav .pagination .page-item a:focus {
     order: 1;
     flex-grow: 0;
     font-style: italic;
-}
-
-.minimalist-logo .F-inc {
-    color: #198754;
-    font-weight: 600;
-    font-family: var(--Inter_Header);
-    font-size: 20px;
 }
 
 .minimalist-logo .btn-toolbar {
@@ -1976,7 +1890,7 @@ nav .pagination .page-item a:focus {
 .minimalist-logo .rev {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    /* font-family: var(--Inter_Medium); */
     box-sizing: border-box;
 }
 
@@ -2072,11 +1986,6 @@ nav .pagination .page-item a:focus {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.minimalist-logo .client-comment p {
-    font-size: 0.9rem;
-    color: #4b4b4b;
 }
 
 .minimalist-logo .cmnt-reply {
@@ -2293,20 +2202,6 @@ nav .pagination .page-item a:focus {
 
     .minimalist-logo .item {
         margin-top: 1rem;
-        margin-bottom: 0;
-    }
-
-    .minimalist-logo .item_title {
-        width: 295px;
-        /* height: 20px; */
-        left: 25px;
-        top: 190.83px;
-        font-family: var(--Inter_Header);
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16.4747px;
-        line-height: 25px;
-        color: #0C0D48;
         margin-bottom: 0;
     }
 
@@ -2608,6 +2503,21 @@ nav .pagination .page-item a:focus {
     }
 }
 
-.formateBtn{
+.minimalist-logo .formateBtn{
     background-color: white !important;
+    font-family: var(--Inter_Medium);
+}
+
+.minimalist-logo .service-pricing-card .pricing-card{
+    width: 100%;
+}
+
+.minimalist-logo .Desc-Text, .minimalist-logo .faq .accordion{
+    max-width: 700px;
+}
+
+.minimalist-logo .cardDescText p{
+    font-family: var(--Inter_Header);
+    font-size: 16px;
+    color: #495057;
 }

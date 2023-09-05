@@ -185,8 +185,8 @@ export const User_Profile = () => {
     if (
       userPassword !== null &&
       (userPassword === "" ||
-      userPassword.length < 4 ||
-      userPassword.length > 12)
+        userPassword.length < 4 ||
+        userPassword.length > 12)
     ) {
       obj.userPassword = true;
       isValid = true;
@@ -219,20 +219,22 @@ export const User_Profile = () => {
         setLoadingStatus(false);
       });
   };
+  // const phoneInputField = document.querySelector("#phone");
+  // const phoneInput = window.intlTelInput(phoneInputField, {
+  //   utilsScript:
+  //     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  // });
 
   return (
     <>
-      <div className="home">
+      <div className="home userNew">
         <div className="container User_Profile">
           {/* Navigation */}
           <Header />
           {/* Navigation */}
           <BreadCrub siteMapPath={siteMapPath} />
 
-          <p
-            className="user-info"
-            style={{ fontWeight: 600, marginTop: "3rem", marginBottom: 0 }}
-          >
+          <p className="user-info">
             User Information
           </p>
           <p className="user-info-desc">
@@ -247,9 +249,9 @@ export const User_Profile = () => {
                 {/* Main content */}
                 <section className="content">
                   <div className="row justify-content-start Profile-Name">
-                    <div className="form-row my-3">
+                    <div className="form-row mt-3">
                       <div className="form-group col-4">
-                        <label htmlFor="inputEmail4">
+                        <label htmlFor="inputEmail4" className="Profile-HeadLabel">
                           First Name
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -275,7 +277,7 @@ export const User_Profile = () => {
                         )}
                       </div>
                       <div className="form-group col-4 mx-5">
-                        <label htmlFor="inputPassword4">
+                        <label htmlFor="inputPassword4" className="Profile-HeadLabel">
                           Last Name
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -301,178 +303,181 @@ export const User_Profile = () => {
                         )}
                       </div>
                     </div>
-                  </div>
-                  <div className="form-row my-3">
-                    <div className="form-group col-4">
-                      <label htmlFor="inputEmail4">
-                        Email
-                        <span style={{ color: "red" }}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        className={
-                          validationFormData.userEmail
-                            ? "form-control is-invalid"
-                            : "form-control"
-                        }
-                        id="inputEmail4"
-                        placeholder=""
-                        name="userEmail"
-                        onChange={(e) =>
-                          handleFormDataChange(e.target.name, e.target.value)
-                        }
-                        value={formData.userEmail}
-                        disabled={isGoogleUser ? true : false}
-                      />
-                      {validationFormData.userEmail && (
-                        <FormFeedback style={{ display: "block" }}>
-                          Please enter a valid email address!
-                        </FormFeedback>
-                      )}
-                    </div>
-                    {!isGoogleUser && (
-                      <div className="form-group col-4 mx-5">
-                        <label htmlFor="inputPassword4">
-                          Enter Number
+                    {/* </div> */}
+                    <div className="form-row mt-3">
+                      <div className="form-group col-4">
+                        <label htmlFor="inputEmail4" className="Profile-HeadLabel">
+                          Email
                           <span style={{ color: "red" }}>*</span>
                         </label>
                         <input
                           type="text"
                           className={
-                            validationFormData.userNumber ||
-                            (!isValidPhoneNumber(formData.userNumber) &&
-                              formData.userNumber !== "")
+                            validationFormData.userEmail
                               ? "form-control is-invalid"
                               : "form-control"
                           }
-                          id="inputPassword4"
-                          name="userNumber"
+                          id="inputEmail4"
                           placeholder=""
+                          name="userEmail"
                           onChange={(e) =>
                             handleFormDataChange(e.target.name, e.target.value)
                           }
-                          value={formData.userNumber}
+                          value={formData.userEmail}
+                          disabled={isGoogleUser ? true : false}
                         />
-
-                        {(validationFormData.userNumber ||
-                          (!isValidPhoneNumber(formData.userNumber) &&
-                            formData.userNumber !== "")) && (
+                        {validationFormData.userEmail && (
                           <FormFeedback style={{ display: "block" }}>
-                            {validationFormData.userNumber
-                              ? "Please enter number"
-                              : !isValidPhoneNumber(formData.userNumber) &&
-                                formData.userNumber !== ""
-                              ? "Invalid number"
-                              : ""}
+                            Please enter a valid email address!
                           </FormFeedback>
                         )}
                       </div>
-                    )}
-                  </div>
-                  {!isGoogleUser && (
-                    <div className="form-row my-4">
-                      <div className="col-4">
-                        <div className="row justify-content-start">
-                          {/*  */}
-                          <div className="form-group col">
-                            <label htmlFor="inputEmail4">
-                              Select Country
-                              <span style={{ color: "red" }}>*</span>
-                            </label>
-                            {countryDefaultValue && country && (
-                              <Select
-                                name="userState"
-                                className="myDropDown"
-                                options={country}
-                                placeholder="... Select"
-                                onChange={(e) =>
-                                  handleFormDataChange("userState", e)
-                                }
-                                styles={
-                                  validationFormData.userState &&
-                                  customStylesError
-                                }
-                                defaultValue={countryDefaultValue}
-                              />
-                            )}
+                      {!isGoogleUser && (
+                        <div className="form-group col-4 mx-5">
+                          <label htmlFor="inputPassword4" className="Profile-HeadLabel">
+                            Enter Number
+                            <span style={{ color: "red" }}>*</span>
+                          </label>
+                          <input
+                            type="tel"
+                            // type="tel"
+                            className={
+                              validationFormData.userNumber ||
+                                (!isValidPhoneNumber(formData.userNumber) &&
+                                  formData.userNumber !== "")
+                                ? "form-control is-invalid"
+                                : "form-control"
+                            }
+                            id="phone"
+                            name="userNumber"
+                            // name="phone"
+                            placeholder=""
+                            onChange={(e) =>
+                              handleFormDataChange(e.target.name, e.target.value)
+                            }
+                            value={formData.userNumber}
+                          />
 
-                            {validationFormData.userState && (
+                          {(validationFormData.userNumber ||
+                            (!isValidPhoneNumber(formData.userNumber) &&
+                              formData.userNumber !== "")) && (
                               <FormFeedback style={{ display: "block" }}>
-                                Please enter state
+                                {validationFormData.userNumber
+                                  ? "Please enter number"
+                                  : !isValidPhoneNumber(formData.userNumber) &&
+                                    formData.userNumber !== ""
+                                    ? "Invalid number"
+                                    : ""}
                               </FormFeedback>
                             )}
+                        </div>
+                      )}
+                    </div>
+                    {!isGoogleUser && (
+                      <div className="form-row mt-3">
+                        <div className="col-4">
+                          <div className="row justify-content-start">
+                            {/*  */}
+                            <div className="form-group col">
+                              <label className="Profile-HeadLabel" htmlFor="inputPassword4">
+                                Select City
+                                <span style={{ color: "red" }}>*</span>
+                              </label>
+                              <input
+                                type="text"
+                                className={
+                                  validationFormData.userCity
+                                    ? "form-control is-invalid"
+                                    : "form-control"
+                                }
+                                id="inputPassword4"
+                                name="userCity"
+                                placeholder=""
+                                onChange={(e) =>
+                                  handleFormDataChange(
+                                    e.target.name,
+                                    e.target.value
+                                  )
+                                }
+                                value={formData.userCity}
+                              />
+                              {validationFormData.userCity && (
+                                <FormFeedback style={{ display: "block" }}>
+                                  Please enter city
+                                </FormFeedback>
+                              )}
+                            </div>
+                            <div className="form-group col">
+                              <label htmlFor="inputEmail4" className="Profile-HeadLabel">
+                                Select Country
+                                <span style={{ color: "red" }}>*</span>
+                              </label>
+                              {countryDefaultValue && country || 1 == 1 && (
+                                <Select
+                                  name="userState"
+                                  className="myDropDown"
+                                  options={country}
+                                  placeholder="Select"
+                                  onChange={(e) =>
+                                    handleFormDataChange("userState", e)
+                                  }
+                                  styles={
+                                    validationFormData.userState &&
+                                    customStylesError
+                                  }
+                                  defaultValue={countryDefaultValue}
+                                />
+                              )}
+
+                              {validationFormData.userState && (
+                                <FormFeedback style={{ display: "block" }}>
+                                  Please enter state
+                                </FormFeedback>
+                              )}
+                            </div>
+                            {/*  */}
                           </div>
-                          <div className="form-group col">
-                            <label htmlFor="inputPassword4">
-                              Select city
-                              <span style={{ color: "red" }}>*</span>
-                            </label>
+                        </div>
+                        <div className="form-group col-4 mx-5">
+                          <label htmlFor="txt_pswrd" className="Profile-HeadLabel">
+                            Change Password
+                            <span style={{ color: "red" }}>*</span>
+                          </label>
+                          <div className="buttonInside">
                             <input
-                              type="text"
+                              type="password"
                               className={
-                                validationFormData.userCity
+                                validationFormData.userPassword
                                   ? "form-control is-invalid"
                                   : "form-control"
                               }
                               id="inputPassword4"
-                              name="userCity"
                               placeholder=""
+                              name="userPassword"
                               onChange={(e) =>
                                 handleFormDataChange(
                                   e.target.name,
                                   e.target.value
                                 )
                               }
-                              value={formData.userCity}
+                              value={formData.userPassword}
+                              disabled={true}
                             />
-                            {validationFormData.userCity && (
-                              <FormFeedback style={{ display: "block" }}>
-                                Please enter city
-                              </FormFeedback>
-                            )}
+                            <Link id="btn_change" to="/forgotpassword">
+                              Change
+                            </Link>
                           </div>
-                          {/*  */}
                         </div>
                       </div>
-                      <div className="form-group col-4 mx-5">
-                        <label htmlFor="txt_pswrd">
-                          Change Password
-                          <span style={{ color: "red" }}>*</span>
-                        </label>
-                        <div className="buttonInside">
-                          <input
-                            type="password"
-                            className={
-                              validationFormData.userPassword
-                                ? "form-control is-invalid"
-                                : "form-control"
-                            }
-                            id="inputPassword4"
-                            placeholder=""
-                            name="userPassword"
-                            onChange={(e) =>
-                              handleFormDataChange(
-                                e.target.name,
-                                e.target.value
-                              )
-                            }
-                            value={formData.userPassword}
-                            disabled={true}
-                          />
-                          <Link id="btn_change" to="/forgotpassword">
-                            Change
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                   {/* /.row */}
                 </section>
                 {/* /.content */}
               </div>
               {/* Profile Pic */}
             </div>
-            <button type="submit" className="btn">
+            <button type="submit" className="btn mb-5 btn-primary">
               Save Changes
             </button>
           </form>

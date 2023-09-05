@@ -1,8 +1,8 @@
 .nav-tabs .nav-item .serviceActive {
   color: #e71d7c !important;
-  font-family: var(--Inter_Header) !important;
+  font-family: var(--Inter_Medium) !important;
   font-size: 18px !important;
-  /* font-weight: 600; */
+  font-weight: 500 !important;
   line-height: 27px !important;
   letter-spacing: 0em !important;
   text-align: left !important;
@@ -44,7 +44,6 @@ body {
 
 body {
   background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
   margin: 0;
@@ -53,8 +52,8 @@ body {
 
 .swiper {
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  // padding-top: 50px;
+  // padding-bottom: 50px;
 }
 
 .swiper-slide {
@@ -116,7 +115,8 @@ body {
     box-shadow: none !important;
   }
   .swiper-slide {
-    width: 500px;
+    // width: 500px;
+    width: 1000px;
     height: 500px;
   }
   .swiper-slide.swiper-slide-visible.swiper-slide-active {
@@ -135,5 +135,5 @@ body {
   // border:solid;
   // border-width: 2px;
   // border-color: #bdbdbd;
-  box-shadow: 10px -3px 14px 1px rgba(0, 0, 0, 0.5);
+  // box-shadow: 10px -3px 14px 1px rgba(0, 0, 0, 0.5);
 }

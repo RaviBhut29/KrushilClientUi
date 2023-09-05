@@ -13,6 +13,7 @@ import { getPlanWiseOrderOptionDetails } from "../../FlysesApi/PlanOrderDetailAp
 import { Button, Drawer, Space } from "antd";
 import CouponCode from "./CouponCode";
 import PayPal from "../Paypal/Paypal";
+import { Checkbox } from 'antd';
 
 const PlanPackages = (props) => {
   const history = useNavigate();
@@ -320,8 +321,13 @@ const PlanPackages = (props) => {
 
   return (
     <>
-      <div className="home">
-        <div className="container logo-design" style={{ position: "relative" }}>
+      <div className="">
+        <div
+          className="container logo-design planContainer"
+          style={{
+            position: "relative"
+          }}
+        >
           {/* Navigation */}
           <Header />
           {/* Navigation */}
@@ -334,7 +340,7 @@ const PlanPackages = (props) => {
               {planDetails.length > 0 &&
                 planDetails.map((item) => {
                   return (
-                    <div className="col-md-3 my-2" key={item?.pnId}>
+                    <div className="col-md-4 my-2" key={item?.pnId}>
                       <div className="pricing-card  position-relative">
                         <div className="pricing-inner-col">
                           <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
@@ -348,7 +354,7 @@ const PlanPackages = (props) => {
                               Save up to {item?.pnSaveUpTo}%
                             </p>
                             <p className="grey-text">{item?.pnDesc}</p>
-                            <div>
+                            <div className="mt-4">
                               {item?.planServiceDetailsList.length > 0 &&
                                 item?.planServiceDetailsList.map((serItem) => {
                                   return (
@@ -363,10 +369,10 @@ const PlanPackages = (props) => {
                                       }}
                                     >
                                       <img
-                                        src={rightTick}
-                                        alt=""
-                                        className="mb-1 me-1"
-                                      />
+                                        src={serItem?.pnIsInclude === 1
+                                          ? "../ui/Images/wrong right icons-01.svg"
+                                          : "../ui/Images/wrong right icons-02.svg"}
+                                        alt="" className="mb-1 me-1" />
                                       <p className="bold-content">
                                         {serItem?.pnIncludedService}
                                       </p>
@@ -453,7 +459,7 @@ const PlanPackages = (props) => {
                         key={item?.osId}
                       >
                         <p className="PaymentCardText mb-0">
-                          {item?.osServiceName}{" "}
+                          <span className="ServiceName">{item?.osServiceName}</span>
                           <span className="PaymentCharges">
                             ${item?.osServiceCharge} /{" "}
                             {item?.osServiceChargeName}
@@ -471,7 +477,7 @@ const PlanPackages = (props) => {
                               disabled={
                                 JSON.parse(orderDetailsBCK)[index]
                                   ?.osIncrementerDefaultValue ===
-                                  item?.osIncrementerDefaultValue &&
+                                item?.osIncrementerDefaultValue &&
                                 Number(item?.osPriceIncreaseActionType) !== 2
                               }
                             >
@@ -494,7 +500,7 @@ const PlanPackages = (props) => {
                               disabled={
                                 JSON.parse(orderDetailsBCK)[index]
                                   ?.osIncrementerDefaultValue ===
-                                  item?.osIncrementerDefaultValue &&
+                                item?.osIncrementerDefaultValue &&
                                 Number(item?.osPriceIncreaseActionType) === 2
                               }
                             >
@@ -510,7 +516,7 @@ const PlanPackages = (props) => {
                         className="col-md-12 mb-3 p-3 border rounded-3"
                         key={item?.osId}
                       >
-                        <input
+                        {/* <input
                           type="checkbox"
                           id={item?.osId}
                           className="me-3"
@@ -520,11 +526,17 @@ const PlanPackages = (props) => {
                               index,
                               item?.osServiceCharge
                             )
-                          }
-                        ></input>
-                        <label htmlFor={item?.osId}>
+                          }></input> */}
+                        <Checkbox id={item?.osId} onChange={(e) =>
+                          handleIncludeFeature(
+                            e,
+                            index,
+                            item?.osServiceCharge
+                          )
+                        }></Checkbox>
+                        <label style={{ margin: "0px" }} htmlFor={item?.osId}>
                           <p className="PaymentCardText mb-0">
-                            {item?.osServiceName}{" "}
+                            {item?.osServiceName}
                             <span className="PaymentCharges">
                               ${item?.osServiceCharge}
                             </span>
@@ -534,6 +546,16 @@ const PlanPackages = (props) => {
                     );
                   }
                 })}
+              <div className="col-md-12 p-3 border mb-3 rounded-3">
+                {/* <input type="checkbox" id="chk_term" className="me-3"></input> */}
+                <Checkbox id="chk_term" className="me-3"></Checkbox>
+                <label htmlFor="chk_term" style={{ margin: "0px" }} >
+                  <p className="Paymentterms mb-0">
+                    I Agree to All
+                    <a>&nbsp;terms and condition & privacy policy</a>
+                  </p>
+                </label>
+              </div>
 
               <div className="col-12 mb-3">{/* Card Here */}</div>
 

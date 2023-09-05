@@ -14,7 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Rate } from 'antd';
 import { abbrNum } from './../../../Functions/abbrNum';
-import rightTick from "../../../Images/right-tick.png"
+import rightTick from "../ui/Images/Green-tick.svg"
 import SpinnerComponent from './../../../Components/spinner/Fallback-spinner';
 import ImageGallery from 'react-image-gallery';
 

@@ -3,6 +3,7 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import CommanFaq from "../../Layout/CommanFaq";
 import ProjectDetails from "../../Layout/ProjectDetails";
+import ContectUs from "../../Layout/ContactUs";
 import BreadCrub from "../../Layout/BreadCrub";
 import ProtfolioFilterSection from "./ProtfolioFilterSection";
 import {
@@ -14,6 +15,7 @@ import { REACT_APP, setLoadingStatus } from "../../FlysesApi";
 import { toastError } from "../../FlysesApi/FlysesApi";
 import "./Protfolio.scss";
 import { Pagination } from "antd";
+import { Image } from 'antd';
 import { Modal } from "reactstrap";
 import ImagePreview from "./ImagePreview";
 import { getServiceWisePortfolios, getbyIdPortfolio } from "../../FlysesApi/PortFolio";
@@ -130,15 +132,14 @@ const Portfolio = () => {
           />
 
           {/* All Works Menu */}
-          <div className="container my-5 text-center justify-content-center">
-            <div className="row" style={{ marginBottom: "0 !important" }}>
+          {/* <div className="container my-5 text-center justify-content-center"> */}
+          <div className="container text-center justify-content-center" style={{marginTop:"60px", marginBottom:"60px"}}>
+            <div className="row containerT" style={{ marginBottom: "0 !important" }}>
               {categoryList &&
                 categoryList.map((item) => {
                   return (
-                    <div
-                      className="col d-flex justify-content-center"
-                      onClick={() => handleProtfolioClick(item.pfId)}
-                    >
+                    // <div className="col d-flex justify-content-center"onClick={() => handleProtfolioClick(item.pfId)}>
+                    <div className="col"onClick={() => handleProtfolioClick(item.pfId)}>
                       <div
                         className="card"
                         style={{ width: "18rem", cursor: "pointer" }}
@@ -169,7 +170,8 @@ const Portfolio = () => {
           {/* Pagination For Big Screen */}
         </div>
 
-        <ProjectDetails />
+        {/* <ProjectDetails /> */}
+        <ContectUs />
 
         <CommanFaq />
 
@@ -182,6 +184,9 @@ const Portfolio = () => {
       >
         <ImagePreview data={categoryImages} />
       </Modal>
+      {/* <Image.PreviewGroup preview={{onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),}}>
+
+      </Image.PreviewGroup> */}
     </>
   );
 };

@@ -123,15 +123,23 @@ const Order = () => {
       yearStr = yearStr.includes(", " + year)
         ? yearStr.replace(", " + year, "")
         : yearStr.includes(year + ", ")
-        ? yearStr.replace(year + ", ", "")
-        : yearStr.includes(year)
-        ? yearStr.replace(year, "")
-        : "";
+          ? yearStr.replace(year + ", ", "")
+          : yearStr.includes(year)
+            ? yearStr.replace(year, "")
+            : "";
     }
     setFilterDetail({
       ...filterDetail,
       year: yearStr,
     });
+  };
+
+  // const [showfilterDetail, isFilterDetail] = useState(false);
+  const [showfilterDetail, isFilterDetail] = useState(true);
+
+  const ShowFilter = () => {
+    // isFilterDetail(!showfilterDetail);
+    isFilterDetail(showfilterDetail);
   };
 
   return (
@@ -145,33 +153,34 @@ const Order = () => {
             <BreadCrub siteMapPath={siteMapPath} />
 
             <div className="form-row">
-              <div className="col-md-8 my-order">
+              <div className="col-md-8 my-order mb-5">
                 <div className="form-row">
-                  <div className="col d-flex btn-search-head">
-                    <span>My Orders</span>
-                    {resetDiv && (
-                      <div className="search">
-                        <img src="../ui/Images/search.svg" alt="Search icon" />
-                        <input
-                          className="form-control"
-                          placeholder="Search Order Id"
-                          style={{ width: "234px" }}
-                          onChange={(e) =>
-                            setFilterDetail({
-                              ...filterDetail,
-                              orderNumber: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                    )}
+                  {/* <div className="d-one mb-4"> */}
+                    <div className="col d-flex btn-search-head">
+                      <span>My Orders</span>
+                      {resetDiv && (
+                        <div className="search">
+                          <img src="../ui/Images/search.svg" alt="Search icon" />
+                          <input
+                            className="form-control"
+                            placeholder="Search"
+                            style={{ width: "144px" }}
+                            onChange={(e) =>
+                              setFilterDetail({
+                                ...filterDetail,
+                                orderNumber: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      )}
+                    {/* </div> */}
                   </div>
-
                   {orderList.length > 0 &&
                     orderList.map((item, index) => {
                       return (
                         <div className="d-one my-4">
-                          <div className="col">
+                          <div className={index == 0 ? "col PendingOrder" : "col"}>
                             <div className="main">
                               <div
                                 className="logo"
@@ -191,7 +200,8 @@ const Order = () => {
                                 <span>
                                   <p className="status-details">
                                     <img
-                                      src="../ui/Images/status.png"
+                                      // src="../ui/Images/status.png"
+                                      src="../ui/Images/Pending-Order.svg"
                                       alt=""
                                       style={{ marginRight: "5px" }}
                                     />
@@ -210,9 +220,9 @@ const Order = () => {
                                 <p>${item?.orPrice}</p>
                               </div>
                               <div className="hr" />
-                              <div className="col-md-12 form-row">
+                              <div className="col-md-12 py-3 form-row">
                                 <span className="">
-                                  <div className="order-id my-3">
+                                  <div className="order-id">
                                     <p>
                                       Order ID :
                                       <span style={{ marginLeft: "5px" }}>
@@ -238,10 +248,10 @@ const Order = () => {
                                   className="col btn-rate d-flex m-auto"
                                   style={{ cursor: "pointer" }}
                                 >
-                                  
+
                                 </div> */}
                                 <div
-                                  className="btn-order my-3 ml-auto"
+                                  className="btn-order ml-auto"
                                   style={{ cursor: "pointer" }}
                                 >
                                   <a
@@ -275,7 +285,7 @@ const Order = () => {
               </div>
               <div className="col-md-4 my-Filter">
                 <div className="card Filter">
-                  <div className="card-header d-flex">
+                  <div className="card-header d-flex" onClick={ShowFilter}>
                     Filters
                     <span
                       className="resetLabel"
@@ -284,8 +294,8 @@ const Order = () => {
                       Reset
                     </span>
                   </div>
-                  {resetDiv && (
-                    <div className="card-body">
+                  {resetDiv && showfilterDetail &&  (
+                    <div className="card-body" style={{paddingBottom:"0px"}}>
                       <div className="check-list">
                         <label className="left" for="group1">
                           <input

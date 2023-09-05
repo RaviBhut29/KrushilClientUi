@@ -33,9 +33,10 @@
     width: 46px;
     height: 24px;
 
-    font-family: 'system-ui';
+    /* font-family: var(--Inter_Medium); */
+    font-family: var(--Inter_Header);
     font-style: normal;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 16px;
     line-height: 150%;
     /* identical to box height, or 24px */
@@ -51,7 +52,7 @@
 .Services .row .col-3 .card {
     width: 330.62px;
     height: auto;
-    min-height: 300px;
+    /* min-height: 300px; */
     background: #FFFFFF;
     box-shadow: 0px 126px 51px rgba(0, 0, 0, 0.01), 0px 71px 43px rgba(0, 0, 0, 0.03), 0px 32px 32px rgba(0, 0, 0, 0.04), 0px 8px 17px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
     /* border-radius: 7.06667px; */
@@ -60,7 +61,7 @@
 }
 
 .Services .row .col-3 .card .card-body .card-text {
-    font-family: sans-serif;
+    font-family: var(--Inter_Header);
     font-style: normal;
     font-weight: 400;
     font-size: 16.5312px;
@@ -102,7 +103,7 @@
 
 
 .Services .b1 {
-    font-family: sans-serif;
+    font-family: var(--Inter_SemiBold);
     font-style: normal;
     font-weight: 600;
     font-size: 42px;
@@ -117,8 +118,7 @@
 .Services .b2 {
     display: inline-block;
     width: 533.5px;
-    height: 59px;
-    font-family: sans-serif;
+    font-family: var(--Inter_Header);
     font-style: normal;
     font-weight: 400;
     font-size: 16.1667px;
@@ -136,37 +136,6 @@
     box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
 }
 
-.Services .rhead p {
-    width: 179.66px;
-    height: auto;
-    font-family: sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20.0554px;
-    line-height: 25px;
-    text-transform: capitalize;
-    color: #0C0D48;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.Services .rbody p {
-    width: 225.62px;
-    height: auto;
-    font-family: unset;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13.8142px;
-    line-height: 27px;
-    text-align: center;
-    letter-spacing: 0.02em;
-    text-transform: capitalize;
-    color: #495057;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
 
 .Services .lead .col-3 .card .card-body .card-title {
     font-size: 25px;
@@ -250,7 +219,9 @@
 
 .home .exploreCategories-serv .brandingCards {
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 50px 0px;
+    margin-left: auto;
+    margin-right: auto;
     /* justify-content: center; */
 }
 
@@ -288,6 +259,8 @@
     margin: 20px 0;
     border-radius: 8px;
     transition: 0.5s;
+    margin-left: auto;
+    margin-right: auto !important;
 }
 
 .home .exploreCategories-serv .brandingCards .brands-card:hover {
@@ -296,8 +269,8 @@
 }
 
 .home .exploreCategories-serv .brandingCards .brands-card h3 {
-    font-weight: 700;
-    font-family: var(--Inter_Header);
+    font-weight: 600;
+    font-family: var(--Inter_SemiBold);
     color: #0c0d48;
     margin: 15px 0;
 }
@@ -305,8 +278,9 @@
 .home .exploreCategories-serv .brandingCards .brands-card p {
     color: #6c757d;
     font-size: 18px;
-    font-family: var(--Inter_Regular);
+    font-family: var(--Inter_Header);
     font-weight: 400;
+    margin-bottom: 0px;
     /* font-size: 17px; */
 }
 
@@ -383,6 +357,24 @@
 
 @media only screen and (max-width: 426px) {
     .Services .title1{
-        font-size: 32px;
+        font-size: 22px;
+    }
+    .Services .title2{
+        font-size: 12px;
+        line-height: 25.37px;
+    }
+    .Services .b1{
+        font-size: 22px;
+        line-height: 30.94px;
+    }
+    .Services .b2{
+        font-size: 12px;
+    }
+    .home .exploreCategories-serv{
+        margin-bottom: 50px;
+    }
+    .margin-def{
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
     }
 }

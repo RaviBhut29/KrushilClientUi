@@ -1,6 +1,6 @@
 .showing-page-limit {
 	color: #b9b9c3;
-	font-family: Roboto;
+	font-family: var(--Inter_Header);
 	font-size: 14px;
 	letter-spacing: 0;
 	line-height: 21px;
@@ -13,7 +13,7 @@
 	width: 100%;
 	justify-content: center;
 	margin-top: 88.19px;
-	font-family: "Inter";
+	font-family: var(--Inter_Header);
 	font-style: normal;
 	font-weight: 400;
 	font-size: 18px;

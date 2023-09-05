@@ -16,7 +16,7 @@
 
 .footer-sec .mailing-section:before {
     content: "";
-    background-image: url("../ui/Images/mailing-decorate-1.png");
+    background-image: url("../ui/Images/mailing-decorate-1.svg");
     width: 300px;
     height: 297.9px;
     position: absolute;
@@ -28,7 +28,7 @@
 
 .footer-sec .mailing-section:after {
     content: "";
-    background-image: url("../ui/Images/mailing-decorate-2.png");
+    background-image: url("../ui/Images/mailing-decorate-2.svg");
     width: 200px;
     height: 235px;
     position: absolute;
@@ -44,12 +44,13 @@
 
 .footer-sec .mailing-section .mailing-col p {
     max-width: 690px;
+    font-family: var(--Inter_Header);
     margin: 0 auto;
 }
 
 .footer-sec .mailing-section .mailing-col .text-gradient {
     font-family: var(--Inter_Bold);
-    font-weight: 900;
+    /* font-weight: 900; */
 }
 
 .footer-sec .mailing-section .mailing-col .mailing-input {
@@ -63,6 +64,7 @@
     width: 100%;
     margin: 50px auto 0;
     transition: 0.3s;
+    font-family: var(--Inter_Header);
 }
 
 .footer-sec .mailing-section .mailing-col .mailing-input input {
@@ -70,6 +72,7 @@
     border: none !important;
     outline: none !important;
     transition: 0.3s;
+    font-family: var(--Inter_Header);
 }
 
 .footer-sec .mailing-section .mailing-col .mailing-input:focus {
@@ -91,7 +94,8 @@
     top: 50%;
     transform: translateY(-50%);
     right: 8px;
-    font-weight: 600 !important;
+    font-family: var(--Inter_SemiBold);
+    /* font-weight: 600 !important; */
     margin: unset !important;
     width: 9rem;
     border-radius: 0;
@@ -162,7 +166,7 @@
 }
 
 .footer-sec .footer .logo {
-    margin-left: 20px;
+    /* margin-left: 20px;    Comment as per dicussion on date:20/08/2023. */
     margin-bottom: 1rem;
 }
 
@@ -185,13 +189,15 @@
     max-width: 1200px;
 }
 
+@media only screen and (max-width: 376px) {}
+
 @media only screen and (max-width: 426px) {
     .mailing-input {
         flex-direction: column;
     }
 
     .footer-sec .mailing-section .mailing-col .mailing-input input {
-        width: 100px;
+        width: 230px;
     }
 
     .footer .container .row .col {
@@ -208,13 +214,14 @@
     .footer .container .row {
         margin: 0;
     }
+
     .footer .container .row .col ul {
         margin-bottom: 0;
         line-height: 30px;
         padding: 0px;
     }
 
-    .footer-sec .footer li{
+    .footer-sec .footer li {
         padding: 0;
     }
 
@@ -224,10 +231,37 @@
 
     .footer .container .bottom-col .d-flex {
         flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    .footer .container .bottom-col .grey-text {
+        margin-left: 10px;
     }
 
     .footer .container .bottom-col .d-flex .footer-ddl select {
         margin-top: 10px;
+    }
+
+    .footer-sec .footer {
+        padding: 25px 20px 0px 20px;
+    }
+
+    .footer-sec .mailing-section .mailing-col .mailing-input {
+        padding: 6px;
+    }
+
+    .footer-sec .mailing-section .mailing-col .mailing-input button {
+        right: 4px;
+        width: 5.5rem;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 2px;
+    }
+
+    .footer-sec .mailing-section .mailing-col .mailing-input input::placeholder {
+        font-size: 14px;
     }
 }
 
@@ -238,4 +272,18 @@
     min-width: 75px;
     min-height: 42.83px;
     text-align: center;
+}
+
+.footer-sec .footer .footer-link-icon .fa-lg {
+    font-size: 1.58em;
+}
+
+@media only screen and (max-width: 1005px) {
+    .footer-sec .mailing-section:before {
+        background-image: none;
+    }
+
+    .footer-sec .mailing-section:after {
+        background-image: none;
+    }
 }

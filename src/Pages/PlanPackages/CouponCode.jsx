@@ -72,7 +72,7 @@ const CouponCode = (props) => {
       {!codeValid && (
         <div className="col-md-12 border">
           <div className="d-flex py-2">
-            <span className="PaymentCardText col-4">Apply Coupon Code :</span>
+            <span className="PaymentCardTextCoupon col-4">Apply Coupon Code:</span>
             <input
               className="PaymentCardText ms-auto mb-1 form-control col-8"
               value={text.name}

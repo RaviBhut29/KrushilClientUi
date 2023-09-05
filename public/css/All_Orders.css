@@ -1,17 +1,21 @@
-.FontBold{
+.FontBold {
     font-family: var(--Inter_Bold);
 }
-.HeaderFont{
+
+.HeaderFont {
     font-family: var(--Inter_Header);
 }
 
 .All_Order .form-row .my-order .form-row .btn-search-head span {
-    font-family: var(--Inter_Bold);
-    font-size: large;
+    font-family: var(--Inter_SemiBold);
+    font-size: 17.77px;
+    align-self: center;
 }
 
 .All_Order .form-row .my-order .form-row .btn-search-head {
     flex-wrap: wrap;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .All_Order .search {
@@ -20,8 +24,8 @@
     position: relative;
     /* border: 1px solid black; */
     padding: 0.5vh;
-
     margin-left: auto;
+    /* margin-right: 10px; */
 }
 
 .All_Order .search img {
@@ -39,16 +43,19 @@
     height: 2.8rem;
     font-size: 14px;
     background-color: rgba(248, 248, 248, 1);
+    font-family: var(--Inter_Header);
 }
 
-.All_Order .search input::placeholder{
+.All_Order .search input::placeholder {
     color: #ADB5BD;
-    font-family: var(--Inter_Local);
+    font-family: var(--Inter_Header);
+    font-size: 14.5px;
 }
 
 .All_Order .d-one .col .main {
     /* border: 1px solid #FD7E14; */
     border: 1px solid #E9ECEF;
+    background-color: #fff;
     border-radius: 10px;
     padding: 20px 16px 0 16px;
     display: flex;
@@ -61,10 +68,10 @@
 }
 
 .All_Order .d-one .col .main .header .head {
-    font-family: var(--Inter_Header);
+    font-family: var(--Inter_SemiBold);
     font-weight: 600;
     font-size: 17px;
-    color: #000;
+    color: #0C0D48;
     margin-bottom: 0.5rem;
 }
 
@@ -80,7 +87,7 @@
 }
 
 .All_Order .d-one .col .main .price p {
-    font-family: var(--Inter_Bold);
+    font-family: var(--Inter_SemiBold);
     font-size: 20px;
     text-align: center;
     vertical-align: middle;
@@ -167,13 +174,15 @@
 .All_Order .order-id p {
     font-family: var(--Inter_Header);
     color: #ADB5BD;
-    font-size: 15px;
+    font-size: 16px;
+    margin-bottom: 0px;
 }
 
 .All_Order .order-id span {
+    font-family: var(--Inter_Bold);
     color: #212529;
-    font-weight: bold;
-    font-size: 17px;
+    /* font-weight: bold; */
+    font-size: 16.237px;
 }
 
 .All_Order .btn-order a {
@@ -192,16 +201,21 @@
 
 
 /* Filter */
+.All_Order .Filter{
+    width: 380px;
+    margin-left: auto;
+}
+
 .All_Order .Filter .card-header {
     background-color: transparent;
-    font-family: var(--Inter_Bold);
+    font-family: var(--Inter_SemiBold);
     font-size: 18px;
     padding: 12px 20px;
 }
 
 .All_Order .Filter .card-header span {
     font-family: var(--Inter_Header);
-    color: #CED4DA;
+    color: #CED4DA !important;
     font-weight: 400;
 }
 
@@ -298,7 +312,7 @@
 }
 
 @media only screen and (max-width: 529px) {
-    
+
     .All_Order .form-row .my-order {
         width: 100%;
         margin-top: 2rem;
@@ -308,16 +322,16 @@
         order: -1;
         width: 100%;
     }
-    
+
     .All_Order .d-one .col .main .header .head {
         margin-bottom: 0.5rem;
         margin-top: 0.5rem;
     }
-    
+
     .All_Order .form-row .my-order .form-row .btn-search-head span {
         align-self: center;
     }
-    
+
     .All_Order .d-one .col .main .hr {
         margin-top: auto;
     }
@@ -327,42 +341,81 @@
         font-family: 15px;
         /* padding: 1px; */
     }
-    
+
     .All_Order .form-row .col-md-7 {
         width: fit-content;
     }
-    
+
     .All_Order .btn-order a {
-        font-size: 14px;
+        font-size: 17px;
         text-wrap: nowrap;
         margin-bottom: 1rem;
     }
-    
+
     .All_Order .btn-rate a {
         font-size: 14px;
         text-wrap: nowrap;
         margin-bottom: 1rem;
     }
 }
+
 @media only screen and (max-width: 360px) {
-    .All_Order .search input{
+    .All_Order .search input {
         width: 184px !important;
     }
 
-    .All_Order .left, .All_Order .right{
-        padding: 5px;
+    .All_Order .left,
+    .All_Order .right {
+        /* padding: 5px; */
         font-size: 16px;
+        flex: 1 0 49%;
     }
 
-    .All_Order .order-id span{
-        font-size: 13px;
+    .All_Order .order-id span {
+        font-size: 17px;
     }
 
-    .All_Order .btn-order a{
+    .All_Order .btn-order a {
         font-size: 17px;
     }
 }
 
-/* .All_Order *{
-    font-family: var(--Inter_SemiBold);
-} */
+@media only screen and (max-width: 422px) {
+    .All_Order .form-row .my-order .form-row .btn-search-head {
+        padding: 0px 10px;
+    }
+}
+
+.PendingOrder {
+    border: 0px solid;
+    background: linear-gradient(93.49deg, #FD7E14 0.2%, rgba(73, 80, 87, 0) 51.84%, #FD7E14 100.35%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 1px;
+}
+
+.d-one{
+    margin: 1.5rem 15px;
+}
+
+@media only screen and (max-width: 426px) {
+    .All_Order .Filter{
+        width: auto;
+    }
+    .All_Order .d-one .main .header {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    .All_Order .order-id span{
+        font-size: 13px;
+    }
+    .All_Order .order-id p{
+        font-size: 12px;
+    }
+    .All_Order .d-one .btn-order{
+        margin-left: auto !important;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+}

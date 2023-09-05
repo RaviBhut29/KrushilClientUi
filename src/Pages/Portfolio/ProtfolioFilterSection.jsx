@@ -47,12 +47,11 @@ const ProtfolioFilterSection = ({ serviceId, setServiceId }) => {
 
   useMemo(() => {
     const outerDiv = outerDivRef.current;
-    
-    if(servicesNameList.length > 0)
-    {
+
+    if (servicesNameList.length > 0) {
       console.warn("test");
-      console.warn(outerDiv?.scrollWidth)
-      console.warn(outerDiv?.clientWidth)
+      console.warn(outerDiv?.scrollWidth);
+      console.warn(outerDiv?.clientWidth);
       console.warn(outerDiv?.scrollWidth > outerDiv?.clientWidth);
       //setIsScrollable(outerDiv?.scrollWidth > outerDiv?.clientWidth);
     }
@@ -82,36 +81,39 @@ const ProtfolioFilterSection = ({ serviceId, setServiceId }) => {
   };
 
   return (
-    <ul className="nav nav-tabs FilterScroll" ref={outerDivRef}>
-      {isScrollableLeft && (
-        <BsArrowLeftShort
-          className="scroll-left-arrow"
-          onClick={handleScrollLeft}
-        />
-      )}
+    <>
+      <ul className="nav nav-tabs FilterScroll" ref={outerDivRef}>
+        {isScrollableLeft && (
+          <BsArrowLeftShort
+            className="scroll-left-arrow"
+            onClick={handleScrollLeft}
+          />
+        )}
+
+        {servicesNameList &&
+          servicesNameList.map((item, index) => {
+            return (
+              <li className="nav-item" style={{ display: "inline-block" }}>
+                <Link
+                  className={`nav-link ${
+                    item.srId === serviceId ? "serviceActive" : ""
+                  }`}
+                  aria-current="page"
+                  onClick={() => setServiceId(item.srId)}
+                >
+                  {item.srName}
+                </Link>
+              </li>
+            );
+          })}
+      </ul>
       {isScrollable && (
         <BsArrowRightShort
           class="scroll-right-arrow"
           onClick={handleScrollRight}
         />
       )}
-      {servicesNameList &&
-        servicesNameList.map((item, index) => {
-          return (
-            <li className="nav-item" style={{ display: "inline-block" }}>
-              <Link
-                className={`nav-link ${
-                  item.srId === serviceId ? "serviceActive" : ""
-                }`}
-                aria-current="page"
-                onClick={() => setServiceId(item.srId)}
-              >
-                {item.srName}
-              </Link>
-            </li>
-          );
-        })}
-    </ul>
+    </>
   );
 };
 

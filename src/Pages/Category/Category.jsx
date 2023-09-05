@@ -7,7 +7,7 @@ import { toastError, toastWarning } from "../../FlysesApi/FlysesApi";
 import { getCategory } from "../../FlysesApi/Category";
 import "./Category.css";
 import { useNavigate } from "react-router-dom";
-
+import RatingsAndReviews from "../../Layout/RatingsAndReviews";
 export const Category = () => {
   const history = useNavigate();
   const [serviceName,setServiceName] = useState("");
@@ -108,20 +108,24 @@ export const Category = () => {
         </div>
       </div>
       <div className="container text-center justify-content-center pb-5 Product-cards logo-design">
-        <div
+        {/* <div
           className="row lead text-lg-start justify-content-center"
           style={{ background: "#ffffff" }}
-        >
+        > Date:09/08/2023. */}
+        <div
+          className="row lead text-lg-start containerT"
+          >
+            {/* style={{ background: "#ffffff" }} */}
           {categoriesList &&
             categoriesList.map((item) => {
               return (
                 <div
-                  className="col-3 d-flex justify-content-center mb-3"
+                  className=""
                   onClick={() => handleCategoryClick(item.ctId)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer"}}
                 >
                   <div className="card">
-                    <div className="card-body">
+                    <div className="card-body" style={{padding:"0px"}}>
                       {getCategoryIcon(item.ctImageId)}
                       <h5 className="card-title my-3 px-3">{item?.ctName}</h5>
                       <p className="card-text mx-3">
@@ -139,241 +143,9 @@ export const Category = () => {
             })}
         </div>
       </div>
-      <p className="text-center mb-5 logo-design">
-        <span className="b1">Grow faster with help your customers</span>
-        <br />
-        <span className="b2 mt-3">
-          Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-          consectetur.Lorem ipsum dolor sit amet consectetur.
-        </span>
-      </p>
-      <section>
-        <div className="container logo-design">
-          <div className="row justify-content-center">
-            <div className="col-3 d-flex justify-content-center">
-              <div
-                className="card icon-link"
-                style={{ width: "18rem", border: "none", boxShadow: "none" }}
-              >
-                <img
-                  className="my-3"
-                  src="../ui/Images/rating-review.svg"
-                  alt="Card image cap"
-                />
-                <div
-                  className="rhead"
-                  style={{ backgroundColor: "#ffffff", border: "none" }}
-                >
-                  <p>Ratings &amp; Reviews</p>
-                </div>
-                <div className="rbody">
-                  <p>
-                    Collect reviews, Q&amp;A and other content from your
-                    customers started.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 d-flex justify-content-center">
-              <div
-                className="card icon-link"
-                style={{ width: "18rem", border: "none", boxShadow: "none" }}
-              >
-                <img
-                  className="my-3"
-                  src="../ui/Images/rating-review.svg"
-                  alt="Card image cap"
-                />
-                <div
-                  className="rhead"
-                  style={{ backgroundColor: "#ffffff", border: "none" }}
-                >
-                  <p>Ratings &amp; Reviews</p>
-                </div>
-                <div className="rbody">
-                  <p>
-                    Collect reviews, Q&amp;A and other content from your
-                    customers started.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 d-flex justify-content-center">
-              <div
-                className="card icon-link"
-                style={{ width: "18rem", border: "none", boxShadow: "none" }}
-              >
-                <img
-                  className="my-3"
-                  src="../ui/Images/rating-review.svg"
-                  alt="Card image cap"
-                />
-                <div
-                  className="rhead"
-                  style={{ backgroundColor: "#ffffff", border: "none" }}
-                >
-                  <p>Ratings &amp; Reviews</p>
-                </div>
-                <div className="rbody">
-                  <p>
-                    Collect reviews, Q&amp;A and other content from your
-                    customers started.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RatingsAndReviews />
       {/* Footer */}
-      <div className="footer-sec">
-        <div className="mailing-section">
-          <div className="container">
-            <div className="mailing-col">
-              <h3 className="text-gradient">Ready to get started?</h3>
-              <p className="grey-text text-center">
-                Products on online services or over the Internet. Electronic
-                commerce draws on technologies such as mobile commerce
-                application
-              </p>
-              <div className="mailing-input">
-                <input type="text" placeholder="Enter mail address" />
-                <button className="blue-btn btn btn-secondary mt-3">
-                  Send
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="footer">
-          <div className="container">
-            <div className="logo cursor-pointer">
-              <img src="../ui/Images/logo.svg" alt="main logo" />
-            </div>
-            <div className="row mt-1 mb-2">
-              <div className="col">
-                <div className="footer-col">
-                  <ul>
-                    <li>
-                      <a>Services</a>
-                    </li>
-                    <li>
-                      <a>Portfolio</a>
-                    </li>
-                    <li>
-                      <a>How it work</a>
-                    </li>
-                    <li>
-                      <a>FAQs</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col">
-                <ul>
-                  <li>
-                    <a>About us</a>
-                  </li>
-                  <li>
-                    <a>Contact us</a>
-                  </li>
-                  <li>
-                    <a>Privacy &amp; Policy</a>
-                  </li>
-                  <li>
-                    <a>Trust &amp; Safety</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col">
-                <ul>
-                  <li>
-                    <a>Logo Design</a>
-                  </li>
-                  <li>
-                    <a>Brand Design</a>
-                  </li>
-                  <li>
-                    <a>Stationery Design</a>
-                  </li>
-                  <li>
-                    <a>Social Media</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col">
-                <ul>
-                  <li>
-                    <a>Business Card Design</a>
-                  </li>
-                  <li>
-                    <a>Lable Design</a>
-                  </li>
-                  <li>
-                    <a>Banner Design</a>
-                  </li>
-                  <li>
-                    <a>Hoardings Design</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col">
-                <ul>
-                  <li>
-                    <a>Billboard Design</a>
-                  </li>
-                  <li>
-                    <a>Brochure Design</a>
-                  </li>
-                  <li>
-                    <a>Catalogue Design</a>
-                  </li>
-                  <li>
-                    <a>Flayer Design</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="bottom-col d-flex align-items-center justify-content-between">
-              <p className="cursor-pointer grey-text">
-                © 2023 Flyses. All rights reserved. Terms &amp; Condition
-              </p>
-              <div className="d-flex align-items-center">
-                <div className="footer-link-icon">
-                  {/* <twitter> </twitter> */}
-                  <i className="fa-brands fa-twitter" />
-                </div>
-                <div className="footer-link-icon">
-                  {/* <instagram> </instagram> */}
-                  <i className="fa-brands fa-instagram" />
-                </div>
-                <div className="footer-link-icon">
-                  {/* <facebook> </facebook> */}
-                  <i className="fa-brands fa-facebook-f" />
-                </div>
-                <div className="footer-link-icon">
-                  {/* <linkedin> </linkedin> */}
-                  <i className="fa-brands fa-linkedin-in" />
-                </div>
-                <div className="footer-ddl me-3">
-                  <select>
-                    <option
-                      style={{ backgroundImage: "url(../ui/Images/VISA.png)" }}
-                    >
-                      INR
-                    </option>
-                  </select>
-                </div>
-                <div className="footer-ddl">
-                  <select>
-                    <option>Eng</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 };

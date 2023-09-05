@@ -338,7 +338,7 @@ export const Order_Status = () => {
                                 <div className="row mt-4">
                                     <div className="col-6 details">Order created</div>
                                     <div className="col-6" style={{ textAlign: "end" }}>
-                                        <span className="info FontBold" style={{ color: "#000" }}>
+                                        <span className="info FontBold" style={{ color: "#00002A" }}>
                                             06 April, 2023
                                         </span>
                                     </div>
@@ -346,7 +346,7 @@ export const Order_Status = () => {
                                 <div className="row mt-4">
                                     <div className="col-6 details">Order number</div>
                                     <div className="col-6" style={{ textAlign: "end" }}>
-                                        <span className="info" style={{ color: "#000" }}>
+                                        <span className="info" style={{ color: "#00002A" }}>
                                             #26562356
                                         </span>
                                     </div>
@@ -354,7 +354,7 @@ export const Order_Status = () => {
                                 <div className="row mt-4">
                                     <div className="col-6 details">Delivery date &amp; time</div>
                                     <div className="col-6" style={{ textAlign: "end" }}>
-                                        <span className="info" style={{ color: "#000" }}>
+                                        <span className="info" style={{ color: "#00002A" }}>
                                             10 April, 10:30PM
                                         </span>
                                     </div>
@@ -362,7 +362,7 @@ export const Order_Status = () => {
                                 <div className="row mt-4">
                                     <div className="col-6 details">Total</div>
                                     <div className="col-6" style={{ textAlign: "end" }}>
-                                        <span className="info" style={{ color: "#000" }}>
+                                        <span className="info" style={{ color: "#00002A" }}>
                                             $120
                                         </span>
                                     </div>

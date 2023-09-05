@@ -158,7 +158,7 @@ export const Chat = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    
+
     if (messageInputText !== "") {
       const messageObj = {
         ctUserId: loginUserId,
@@ -315,18 +315,18 @@ export const Chat = () => {
   return (
     <div className="container chat">
       <Header />
-      <div className="container chat">
+      <div className="container">
         <input
           type="hidden"
           ref={MessageListREf}
           value={JSON.stringify(messageList)}
         />
-
-        <div className="card mt-5" style={{ marginBottom: "25px" }}>
+        <div className="card mt-2" style={{ marginBottom: "25px" }}>
           <h5 className="card-header" style={{ backgroundColor: "white" }}>
-            <div className="row">
+            {/* <div className="row">
               <div className="col-1">
-                <img src="../ui/images/chat-logo.svg" />
+                {/* <img src="../ui/images/chat-logo.svg" /> *-/}
+                <img src="../ui/images/ChatLogo.svg" />
               </div>
               <div className="col" style={{ position: "relative" }}>
                 <span className="header">Team Flyses</span>
@@ -341,13 +341,31 @@ export const Chat = () => {
                 >
                   {isOnlineStatus}
                 </span>
-                {/* <span className="local-time">Local time: 6:30PM</span> */}
+                {/* <span className="local-time">Local time: 6:30PM</span> *-/}
               </div>
               <div className="col Availability-time-div">
                 <span className="Availability-time">
                   Availability 9:30AM to 9:30PM IST
                 </span>
-                {/* <img src="../ui/images/dustbin.svg" /> */}
+                {/* <img src="../ui/images/dustbin.svg" /> *-/}
+              </div>
+            </div> */}
+            <div className="row">
+              <div className="col-md-1 ChatLogoDiv">
+                <img src="../ui/images/ChatLogo.svg" className="ChatLogo" />
+              </div>
+              <div className="col">
+                <span className="header">Team Flyses</span>
+                <br />
+
+                <span className={isOnlineStatus === "Online" ? "online-text" : "offlineText"} >
+                  <div className={isOnlineStatus === "Online" ? "dot" : "offlineDot"} />
+                  {isOnlineStatus}
+                  <span className="ChatLocalTime">&nbsp; Local time: 6:30PM</span>
+                </span>
+                <span className="Availability-time">
+                  Availability: Weekdays 10:30AM to 8:30PM IST
+                </span>
               </div>
             </div>
           </h5>
@@ -412,12 +430,7 @@ export const Chat = () => {
                               {" "}
                               {item.messageTime}
                             </span>
-                            <label
-                              className="admin-msg-time"
-                              style={{ fontSize: "12px", marginLeft: "5px" }}
-                            >
-                              {item.sendDateStatus}
-                            </label>
+                            {/* <label className="admin-msg-time"style={{ fontSize: "12px", marginLeft: "5px" }}>{item.sendDateStatus}</label> */}
                             <p className="admin-msg">
                               <div className="documentText">
                                 {item.ctOriginalDocument}
@@ -438,12 +451,7 @@ export const Chat = () => {
                             <span className="admin-msg-time">
                               {item.messageTime}
                             </span>
-                            <label
-                              className="admin-msg-time"
-                              style={{ fontSize: "12px", marginLeft: "-10px" }}
-                            >
-                              {item.sendDateStatus}
-                            </label>
+                            {/* <label className="admin-msg-time" style={{ fontSize: "12px", marginLeft: "-10px" }} > {item.sendDateStatus} </label> */}
                             <p className="admin-msg">{item.ctMessage}</p>
                           </div>
                         )}
@@ -479,96 +487,97 @@ export const Chat = () => {
               </div>
             )}
 
-            <form onSubmit={sendMessage}>
-              <div className="chat-box">
-                <div className="row">
-                  <div ref={panelRef}>
-                    {showPanel && (
-                      <div className="EmojiPickerDiv">
-                        <Picker onEmojiClick={onEmojiClick} />
-                      </div>
-                    )}
-                    <div
-                      className="message-input info-box"
+            {/* <form onSubmit={sendMessage}> */}
+            <div className="chat-box">
+              <div className="row">
+                <div ref={panelRef}>
+                  {showPanel && (
+                    <div className="EmojiPickerDiv">
+                      <Picker onEmojiClick={onEmojiClick} />
+                    </div>
+                  )}
+                  <div
+                    className="message-input info-box"
+                    style={{
+                      alignItems: "center",
+                      minHeight: "60px",
+                      backgroundColor: "#F8F9FA",
+                      padding: "0px",
+                      borderRadius: 36,
+                    }}
+                  >
+                    <span
+                      className="info-box-icon"
                       style={{
-                        alignItems: "center",
-                        minHeight: "60px",
-                        background: "rgb(245 245 245)",
-                        padding: "0px",
-                        borderRadius: 36,
+                        borderRight: "1px solid #c8c8c8",
                       }}
                     >
-                      <span
-                        className="info-box-icon"
-                        style={{
-                          borderRight: "1px solid #c8c8c8",
-                        }}
-                      >
-                        <img
-                          src="../ui/Images/smile.svg"
-                          style={{ marginRight: "10px", cursor: "pointer" }}
-                          onClick={togglePanel}
-                        />
-                      </span>
-                      <span
-                        className="info-box-icon"
-                        style={{ marginLeft: "5px" }}
-                      >
-                        {fileUpload && (
-                          <IoCloseSharp
-                            className="deleteIconClass"
-                            onClick={handleAttachmentClearClick}
-                            style={{
-                              fontSize: "24px",
-                              marginRight: "5px",
-                              cursor: "pointer",
-                              color: "#546be0",
-                            }}
-                          />
-                        )}
-                        {!fileUpload && (
-                          <img
-                            src="../ui/Images/paperclip.svg"
-                            style={{ marginRight: "5px", cursor: "pointer" }}
-                            onClick={handleAttachmentClick}
-                          />
-                        )}
-                        {!fileUpload && (
-                          <input
-                            type="file"
-                            ref={hiddenFileInput}
-                            onChange={handleChange}
-                            style={{ display: "none" }}
-                          />
-                        )}
-                      </span>
-                      <input
-                        className="form-control text-input"
-                        style={{
-                          border: "none",
-                          backgroundColor: "#ededed",
-                          marginTop: "3px",
-                        }}
-                        value={messageInputText}
-                        onChange={(e) => setMessageInputText(e.target.value)}
-                        disabled={fileUpload}
-                      ></input>
-                      <div className="">
-                        <img
-                          src="../ui/Images/download-tri.png"
+                      <img
+                        src="../ui/Images/smile.svg"
+                        className="Smile-icon"
+                        onClick={togglePanel}
+                      />
+                    </span>
+                    <span
+                      className="info-box-icon"
+                      style={{ marginLeft: "5px" }}
+                    >
+                      {fileUpload && (
+                        <IoCloseSharp
+                          className="deleteIconClass"
+                          onClick={handleAttachmentClearClick}
                           style={{
-                            borderRadius: "50%",
-                            width: "40px",
-                            marginLeft: "10px",
+                            fontSize: "24px",
+                            marginRight: "5px",
+                            cursor: "pointer",
+                            color: "#546be0",
                           }}
-                          onClick={sendMessage}
                         />
-                      </div>
+                      )}
+                      {!fileUpload && (
+                        <img
+                          src="../ui/Images/paperclip.svg"
+                          className="PaperClip-Icon"
+                          onClick={handleAttachmentClick}
+                        />
+                      )}
+                      {!fileUpload && (
+                        <input
+                          type="file"
+                          ref={hiddenFileInput}
+                          onChange={handleChange}
+                          style={{ display: "none" }}
+                        />
+                      )}
+                    </span>
+                    <input
+                      className="form-control text-input"
+                      style={{
+                        border: "none",
+                        backgroundColor: "transparent",
+                        marginTop: "3px",
+                      }}
+                      value={messageInputText}
+                      onChange={(e) => setMessageInputText(e.target.value)}
+                      disabled={fileUpload}
+                    ></input>
+                    <div className="">
+                      <img
+                        // src="../ui/Images/download-tri.png"
+                        src="../ui/Images/Send-msg.svg"
+                        style={{
+                          borderRadius: "50%",
+                          width: "40px",
+                          marginLeft: "10px",
+                        }}
+                        onClick={sendMessage}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
+            {/* </form> */}
           </div>
         </div>
       </div>

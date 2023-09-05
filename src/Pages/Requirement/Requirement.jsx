@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { Input, Radio, Space } from 'antd'
 import {
   getRequirementList,
   submitFormDetail,
@@ -13,7 +14,6 @@ export const Requirement = () => {
   let splitdata = path.split("/");
   const categoryId = splitdata[splitdata.length - 1];
   const history = useNavigate();
-
   const [requirementFormData, setRequirementFormData] = useState([]);
   const [formData, setFormData] = useState({ requirementDetailList: [] });
 
@@ -36,6 +36,8 @@ export const Requirement = () => {
         ],
       });
     }
+
+    setValue(value);
   };
 
   useEffect(() => {
@@ -72,31 +74,32 @@ export const Requirement = () => {
         toastError("Bad response from server");
       });
   };
-
+  const [value, setValue] = useState();
   return (
     <>
-      <div className="container mx-5 requirements">
-        <Header />
-        <form onSubmit={btnSubmit}>
-          <div className="row">
+      <div className="home requirements">
+        <div className="container">
+          <Header />
+          {/* <form onSubmit={btnSubmit}> */}
+          <div className="form-row">
             {requirementFormData.length > 0 &&
               requirementFormData.map((item, index) => {
                 return (
                   <div
                     className={
                       item?.quQuestionAnsType === 3
-                        ? "col-12 mt-3"
-                        : "col-6 mt-3"
+                        ? "col-md-12 mt-3 px-3"
+                        : "col-md-6 mt-3 px-3"
                     }
                   >
                     {item?.quQuestionAnsType === 1 && (
                       <>
-                        <label htmlFor="inputPassword4">
+                        <label htmlFor="inputPassword4" className="lbl_req_Question">
                           {item?.no} {item?.quQuestion}
                           <span className="text-danger mx-2">*</span>
                         </label>
                         <textarea
-                          className="form-control"
+                          className="form-control txt_requirement"
                           placeholder="Start typing.."
                           id="exampleFormControlTextarea1"
                           rows={1}
@@ -110,17 +113,14 @@ export const Requirement = () => {
                     )}
                     {item?.quQuestionAnsType === 2 && (
                       <>
-                        <label htmlFor="inputEmail4">
+                        <label htmlFor="inputEmail4" className="lbl_req_Question">
                           {item?.no} {item?.quQuestion}
-                          <i
-                            className="fa fa-sharp fa-light fa-circle-exclamation"
-                            style={{ filter: "invert(1)" }}
-                          />
+                          &nbsp;
                           <span className="text-danger">*</span>
                         </label>
                         <select
                           id="inputState"
-                          className="form-select"
+                          className="form-select ddl_require"
                           onChange={(e) =>
                             handleInputChange(item?.quId, e.target.value)
                           }
@@ -140,30 +140,45 @@ export const Requirement = () => {
                     )}
                     {item?.quQuestionAnsType === 3 && (
                       <>
-                        <p>
+                        <label className="lbl_req_Question">
                           {item?.no} {item?.quQuestion}{" "}
                           <span className="text-danger">*</span>
-                        </p>
+                        </label>
                         {item?.ansTypeList.length > 0 &&
                           item?.ansTypeList.map((radioItem, rdIndex) => {
                             return (
-                              <p className="col-12" key={radioItem?.qdId}>
-                                <input
-                                  type="radio"
-                                  id={radioItem?.qdId}
-                                  name={`radio-group-${item?.quId}`}
-                                  onChange={(e) =>
-                                    handleInputChange(
-                                      item?.quId,
-                                      radioItem?.qdId
-                                    )
-                                  }
-                                  required
-                                />
-                                <label htmlFor={radioItem?.qdId}>
-                                  {radioItem?.qdName}
-                                </label>
-                              </p>
+                              // <p className="col-md-12" key={radioItem?.qdId}>
+                              <div className="col-md-12" key={radioItem?.qdId}>
+                                <Radio.Group style={{ color: "green", marginBottom: "10px" }} onChange={(e) =>
+                                  handleInputChange(
+                                    item?.quId,
+                                    radioItem?.qdId
+                                  )
+                                }
+                                  value={value}>
+                                  <Space direction="vertical">
+                                    <Radio value={radioItem?.qdId} className="lbl_rdo_requirement">
+                                      {radioItem?.qdName}
+                                    </Radio>
+                                  </Space>
+                                </Radio.Group>
+                                {/* <input
+                                type="radio"
+                                id={radioItem?.qdId}
+                                name={`radio-group-${item?.quId}`}
+                                onChange={(e) =>
+                                  handleInputChange(
+                                    item?.quId,
+                                    radioItem?.qdId
+                                  )
+                                }
+                                required
+                              />
+                              <label htmlFor={radioItem?.qdId} className="lbl_rdo_requirement">
+                                {radioItem?.qdName}
+                              </label> */}
+                                {/* </p> */}
+                              </div>
                             );
                           })}
                       </>
@@ -171,25 +186,26 @@ export const Requirement = () => {
                   </div>
                 );
               })}
+              <div className="col-md-12 py-5 BlankSpace"></div>
           </div>
 
-          <footer className="Order-status-footer">
-            <div className="container">
-              <div className="footer">
-                <div className="row">
-                  <div className="col confirm-ord">
-                    <p>Please fill all the required fields and submit the form.</p>
-                  </div>
-                  <div className="col d-flex">
-                    <button className="btn btn-dark" type="submit">
-                      Submit
-                    </button>
-                  </div>
+          {/* </form> */}
+        </div>
+        <footer className="Order-status-footer">
+          {/* <div className="container Order-status-footer"> */}
+          <div className="Order-status-footer-req">
+            <div className="footer">
+              <div className="form-row">
+                <div className="col-md-12">
+                  <label className="lbl_requi_footer_note">Please fill all the required fields and submit the form.</label>
+                  <button className="btn btn-dark" type="submit" style={{ float: "right" }}>
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
-          </footer>
-        </form>
+          </div>
+        </footer>
       </div>
     </>
   );

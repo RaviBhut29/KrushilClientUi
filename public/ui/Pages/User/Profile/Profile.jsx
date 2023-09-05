@@ -313,7 +313,7 @@ const Profile = () => {
                         </Col>
                         <Col sm="3">
                             <FormGroup>
-                                <Label className="form-label"> Select city <span style={{ color: 'red' }}>*</span> </Label>
+                                <Label className="form-label"> Select City <span style={{ color: 'red' }}>*</span> </Label>
                                 <Controller
                                     name="city"
                                     control={control}

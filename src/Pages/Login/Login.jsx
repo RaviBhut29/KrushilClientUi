@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Login.scss";
-import logosmall from "../../Assets/Images/logo-small.svg";
+// import logosmall from "../../Assets/Images/logo-small.svg";
+// import logosmall from "../../public/ui/Images/logo.svg";
 import AuthLayout from "../AuthLayout/AuthLayout";
 import {
   Label,
@@ -119,7 +120,7 @@ const Login = () => {
       <AuthLayout>
         <div className="LoginForm">
           <div className="header">
-            <img src={logosmall} alt="logo" />
+            <img src="../ui/Images/NewLogo.svg" alt="logo" />
           </div>
           <div className="description">
             <h2>Hey, Welcome Back 👋</h2>

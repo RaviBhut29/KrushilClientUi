@@ -58,7 +58,7 @@
     border-radius: 10px;
 }
 
-.half-half-image-text-How .row div .content h3 {
+.half-half-image-text-How .form-row div .content h3 {
     font-family: var(--Inter_Medium);
     font-style: normal;
     font-weight: 500;
@@ -72,8 +72,8 @@
     /* text-fill-color: transparent; */
 }
 
-.half-half-image-text-How .row .col-12 h3 {
-    font-family: var(--Inter_Header);
+.half-half-image-text-How .form-row .col-md-12 h3 {
+    font-family: var(--Inter_SemiBold);
     font-style: normal;
     font-weight: 600;
     font-size: 45px;
@@ -85,7 +85,7 @@
     /* text-fill-color: transparent; */
 }
 
-.half-half-image-text-How .row div .content p {
+.half-half-image-text-How .form-row div .content p {
     font-family: var(--Inter_Header);
     font-style: normal;
     font-weight: 400;
@@ -106,10 +106,14 @@
 
 /* desc */
 
-.half-half-image-text-How .row .col-12 .p-desc {
+.half-half-image-text-How .form-row .col-md-12 .p-desc {
     text-align: center;
-    max-width: 643px;
+    max-width: 673px;
     margin-bottom: 5rem;
+    font-family: var(--Inter_Header);
+    font-size: 16px;
+    line-height: 35px;
+    color: #6C757D;
 }
 
 .half-half-image-text-How .polygon {
@@ -123,22 +127,22 @@
 
 .half-half-image-text-How .grp-14 {
     position: absolute;
-    height: 65px;
-    width: 101px;
+    /* height: 65px;
+    width: 101px; */
     right: 100px;
 }
 
 .half-half-image-text-How .Ellipse-131 {
     position: absolute;
-    height: 20px;
-    width: 50px;
+    /* height: 20px;
+    width: 50px; */
 
 }
 
 .half-half-image-text-How .Ellipse-621 {
     position: absolute;
-    height: 30px;
-    width: 50px;
+    /* height: 30px;
+    width: 50px; */
     left: 100px;
 }
 
@@ -168,7 +172,7 @@
     .text-7-responsive {
         text-align: center;
     }
-    
+
     .half-half-image-text-How .text-2-responsive,
     .text-4-responsive,
     .text-6-responsive,
@@ -191,54 +195,146 @@
         width: 300px;
     }
 
+    .half-half-image-text-How .form-row div .content p {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .half-half-image-text-How .form-row div .content h3 {
+        text-align: center;
+    }
+
+    .half-half-image-text-How .text-2-responsive,
+    .text-4-responsive,
+    .text-6-responsive,
+    .text-8-responsive {
+        float: none !important;
+        width: 100% !important;
+    }
 }
 
 @media only screen and (max-width: 426px) {
-    .half-half-image-text-How .row .col-12 h3 {
-        font-size: 20px;
+
+    .grp-14,
+    .Ellipse-131,
+    .Ellipse-621,
+    .about-rect {
+        display: none;
     }
 
-    .half-half-image-text-How .row div .content h3 {
-        font-size: 20px;
+    .half-half-image-text-How .form-row .col-md-12 h3 {
+        font-size: 24px;
+    }
+
+    .half-half-image-text-How .form-row div .content h3 {
+        font-size: 18px;
     }
 
     .half-half-image-text-How .card-1-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-2-responsive {
         height: 140px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-3-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-4-responsive {
         height: 140px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-5-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-6-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-7-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
     }
 
     .half-half-image-text-How .card-8-responsive {
         height: 200px !important;
-        width: 300px;
+        /* width: 300px; */
+        width: 250px !important;
+    }
+
+    .half-half-image-text-How .form-row .col-md-12 .p-desc {
+        margin-bottom: 0px;
+        line-height: 30px;
+    }
+
+    .text-2-responsive,
+    .text-4-responsive,
+    .text-6-responsive,
+    .text-8-responsive {
+        padding-left: 0px !important;
+    }
+
+    .half-half-image-text-How .Mob-Margin{
+        margin-top: 20px;
+    }
+}
+
+.curlLine {
+    position: absolute;
+    top: 1150px;
+    left: 90px
+}
+
+@media only screen and (min-width: 1536px) {
+    .curlLine {
+        position: absolute;
+        top: 1150px;
+        left: 90px
+    }
+}
+
+@media only screen and (max-width: 1396.36px) {
+    .curlLine {
+        top: 1164px;
+        left: -50px
+    }
+
+}
+
+@media only screen and (min-width: 1706.67px) {
+    .curlLine {
+        /* top: 1150px; */
+        left: 260px
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .curlLine {
+        top: 1060px;
+        left: 440px;
+        width: 1470px;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .img-wave {
+        display: none;
     }
 }

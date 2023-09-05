@@ -8,7 +8,7 @@
   padding: 0.93rem 1.4rem;
 }
 .edit-modals .modal-content .modal-header .modal-title {
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Bold) !important;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -16,7 +16,7 @@
   color: #172b4d;
 }
 .edit-modals .modal-content .modal-body .body-title {
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Bold) !important;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -29,7 +29,7 @@
   background-color: #fff;
 }
 .edit-modals .modal-content .modal-body .form-group label {
-  font-family: "SF Pro" !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -42,7 +42,7 @@
   border: 1px solid #ced5e2;
   padding: 8px 16px;
   height: 40px;
-  font-family: "SF Pro" !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -68,7 +68,7 @@
 .edit-modals .modal-content .modal-body .form-group textarea {
   border: 1px solid #ced5e2;
   height: 96px;
-  font-family: "SF Pro" !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -124,7 +124,7 @@
   text-align: center;
 }
 .edit-modals .modal-content .modal-body .calc-formselect label {
-  font-family: "SF Pro" !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -136,7 +136,7 @@
   border: 1px solid #ced5e2;
   padding: 8px 16px;
   height: 40px;
-  font-family: "SF Pro" !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -157,7 +157,7 @@
   border: 1px solid #ea5455;
 }
 .edit-modals .modal-content .modal-body .save-preset .custom-control-label {
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Medium) !important;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -178,7 +178,7 @@
   margin-bottom: 16px;
 }
 .edit-modals .modal-content .modal-body .report-select-box .report-checkbox label {
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Header) !important;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -191,7 +191,7 @@
 .edit-modals .modal-content .modal-footer .accept-btn {
   background: #0c0d48 !important;
   border-radius: 5px;
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Medium) !important;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -203,7 +203,7 @@
 }
 .edit-modals .modal-content .modal-footer .cancel-btn {
   border: 1px solid #0c0d48 !important;
-  font-family: SF Pro !important;
+  font-family: var(--Inter_Medium) !important;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

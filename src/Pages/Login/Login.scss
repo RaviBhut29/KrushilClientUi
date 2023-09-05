@@ -54,14 +54,14 @@
 		margin-top: 0.5rem;
 	}
 
-	.btn {
-		color: $white;
-		font-size: 18px;
-		font-weight: 600;
-		border-radius: 3px;
-		padding: 12px 10px;
-		margin-top: 54px;
-	}
+	// .btn {
+	// 	color: $white;
+	// 	font-size: 18px;
+	// 	font-weight: 600;
+	// 	border-radius: 3px;
+	// 	padding: 12px 10px;
+	// 	margin-top: 54px;
+	// }
 }
 
 .link {
@@ -129,7 +129,7 @@
     padding: 0px !important;
     font-size: 14px !important;
     font-weight: 500 !important;
-    font-family: Roboto, sans-serif !important;
+    font-family: var(--Inter_Medium) !important;
     margin-top: 0px !important;
     border: solid !important;
     border-color: black !important;
@@ -142,4 +142,72 @@
 .googleLoginBtn:hover{
 	background-color: #0c0d48 !important;
     color: white !important;
+}
+
+// Button Hover
+.auth-login-form .btn-primary:before {
+    top: 0;
+    right: 0;
+    left: auto;
+    content: "";
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: 500ms all ease;
+    transition: 500ms all ease;
+    background-image: linear-gradient(40deg, #e71d7c 0%, #131558 100%);
+}
+
+.auth-login-form .btn-primary:hover {
+    color: #fff;
+}
+
+.auth-login-form .btn-primary:hover:before {
+    left: 0;
+    width: 100%;
+    right: auto;
+}
+
+.auth-login-form .btn-primary {
+    z-index: 1;
+    color: #fff;
+    overflow: hidden;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    /* border-radius: 30px; */
+    background-color: #0C0D48;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+    width: 210px;
+    font-weight: 600;
+    border: none;
+	color: $white;
+	font-size: 18px;
+	border-radius: 3px;
+	padding: 12px 10px;
+	margin-top: 54px;
+}
+
+.auth-login-form .btn-primary:hover::before {
+    left: 0;
+    width: 100%;
+    right: auto;
+}
+
+.auth-login-form .btn-primary:hover::after {
+    content: "";
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    border-radius: 30px;
+    -webkit-transition: 500ms all ease;
+    transition: 500ms all ease;
+    background-image: linear-gradient(40deg, #1c3c61 0%, #f94f5a 100%);
 }

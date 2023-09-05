@@ -9,7 +9,7 @@ import { Facebook, Instagram, Linkedin, Twitter } from 'react-feather';
 const Footer = () => {
 	return (
 		<div className='footer-sec'>
-			<div className='mailing-section'>
+			<div className='mailing-section '>
 				<div className="container">
 					<div className="mailing-col">
 						<h3 className='text-gradient'>Ready to get started?</h3>

@@ -1,0 +1,2527 @@
+.breaddiv {
+    position: relative;
+    align-items: center;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 23px;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 0.5px solid #DEE2E6;
+    box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
+    border-radius: 25px;
+}
+
+.breadcrumb a {
+    width: 46px;
+    height: 24px;
+
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #212529;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.item {
+    margin-top: 3rem;
+    width: 660px;
+    /* height: 37px; */
+    font-family: var(--Inter_Medium);
+    font-style: normal;
+    /* font-weight: 500; */
+    font-size: 15px;
+    line-height: 37px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #ADB5BD;
+    margin-bottom: 0px;
+}
+
+.item_title {
+    width: fit-content;
+    /* height: 38px; */
+    align-items: flex-start;
+    font-family: var(--Inter_Bold);
+    font-style: normal;
+    /* font-weight: 700; */
+    font-size: 32px;
+    line-height: 120%;
+    color: #0C0D48;
+    margin-bottom: 10px;
+}
+
+/* ------Rating-------- */
+
+
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.minimalist-logo fieldset,
+.minimalist-logo label {
+    margin: 0;
+    padding: 0;
+}
+
+.minimalist-logo h1 {
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+/****** Style Star Rating Widget *****/
+
+.minimalist-logo .rating {
+    border: none;
+    /* float: left; */
+}
+
+.minimalist-logo .rating>input {
+    display: none;
+}
+
+.minimalist-logo .rating>label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.minimalist-logo .rating>.half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.minimalist-logo .rating>label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.minimalist-logo .rating>input:checked~label,
+/* show gold star when clicked */
+.minimalist-logo .rating:not(:checked)>label:hover,
+/* hover current star */
+.minimalist-logo .rating:not(:checked)>label:hover~label {
+    color: #FFD700;
+}
+
+/* hover previous stars in list */
+
+.minimalist-logo .rating>input:checked+label:hover,
+/* hover current star when changing rating */
+.minimalist-logo .rating>input:checked~label:hover,
+.minimalist-logo .rating>label:hover~input:checked~label,
+/* lighten current selection */
+.minimalist-logo .rating>input:checked~label:hover~label {
+    color: #FFED85;
+}
+
+
+
+/* ------Rating-------- */
+
+
+/* ---------------------------------------------------- */
+.minimalist-logo .wrapper {
+    /* margin: 0 auto; */
+    width: 65%;
+    /* text-align: center; */
+}
+
+.minimalist-logo .image-gallery {
+    /* margin: 0 auto; */
+    display: table;
+}
+
+.minimalist-logo .primary,
+.minimalist-logo .thumbnails {
+    display: table-cell;
+}
+
+.minimalist-logo .thumbnails {
+    /* width: 300px; */
+    padding-right: 2rem;
+}
+
+.minimalist-logo .primary {
+    width: 600px;
+    height: 400px;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.minimalist-logo .thumbnail:hover .thumbnail-image,
+.minimalist-logo .selected .thumbnail-image {
+    opacity: 1;
+    /* border: 4px solid red; */
+}
+
+.minimalist-logo .thumbnail-image {
+    opacity: 0.5;
+    width: 120px;
+    height: 80px;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 4px solid transparent;
+}
+
+.minimalist-logo .image-gallery .thumbnails button {
+    width: 100% !important;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #6C757D;
+    transition: 0.5s;
+}
+
+.minimalist-logo .image-gallery .thumbnails button:hover {
+    border-color: #000;
+    background-color: #00000013;
+    border-radius: 5px;
+}
+
+/* ---------------------------------------------------- */
+
+.minimalist-logo .row .col-2 .rating_p {
+    width: 76px;
+    height: 20px;
+    margin-left: 10px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    /* font-size: 17.9482px; */
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #0C0D48;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .row .col-2 .rating_p2 {
+    width: fit-content;
+    height: 20px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: capitalize;
+    color: #1AA179;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .con-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10.3051px;
+    gap: 10.31px;
+    width: 345px;
+    height: 49px;
+    background: #212529;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #FFFFFF;
+    font-family: var(--Inter_Header);
+    transition: 0.5s;
+}
+
+.minimalist-logo .con-btn:hover {
+    background-color: #777777;
+}
+
+.minimalist-logo .link-btn {
+    height: 49px;
+    width: 3rem;
+    border-radius: 0px;
+    background-color: #fff;
+}
+
+.minimalist-logo .Price {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.minimalist-logo .Price .card {
+    width: 376.56px;
+    height: auto;
+    background: #FFFFFF;
+    /* border-image-source: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%); */
+    border-radius: 10px;
+    border-top: 5px solid #da207c;
+}
+
+.minimalist-logo .Price .card .title-discount {
+    color: #198754;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.minimalist-logo .Price .card .card-body .title-features {
+    color: #ADB5BD;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: var(--Inter_Header);
+    letter-spacing: 2.48567px;
+    font-size: 14px;
+}
+
+.minimalist-logo .Price .card .card-body .only-web h5 span .del-day,
+.minimalist-logo .del-rev {
+    color: #000;
+    font-family: var(--Inter_Header);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.minimalist-logo .Price .card .card-body .only-web .div-feact .ul-feact .li-feact {
+    font-family: var(--Inter_Header);
+    width: 100%;
+    height: 26px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.5711px;
+    line-height: 25px;
+    color: #000;
+}
+
+.minimalist-logo .title1 span {
+    width: 69px;
+    height: 42px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34.6454px;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+    color: #E71D7C;
+}
+
+.minimalist-logo .title1 {
+    width: 100%;
+    /* height: 23px; */
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.8919px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #212529;
+}
+
+.minimalist-logo hr {
+    border: 0.99px solid;
+    border-color: #CED4DA !important;
+    width: 100% !important;
+    /* border-image-source: linear-gradient(90deg, #CED4DA 0%, rgba(206, 212, 218, 0) 86.75%) !important; */
+}
+
+.minimalist-logo .title2 {
+    width: 100%;
+    height: 26px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.8928px;
+    line-height: 25px;
+    color: #198754 !important;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.minimalist-logo .card-subtitle {
+    width: 70%;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 450;
+    font-size: 16.7928px;
+    line-height: 25px;
+    color: #6C757D;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .title3 {
+    width: 100%;
+    height: 26px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.5711px;
+    letter-spacing: 2.48567px;
+    text-transform: uppercase;
+    color: #ADB5BD;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-bottom: 2% !important;
+}
+
+.minimalist-logo .explore-btn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16.7928px;
+    gap: 10.5px;
+    width: 324.68px;
+    height: 47.51px;
+    background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: var(--Inter_Header);
+    margin-bottom: 5rem;
+}
+
+.minimalist-logo .explore-btn1 {
+    width: 324.68px;
+    height: 47px;
+    background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+    color: #FFFFFF;
+    border-color: transparent;
+}
+
+.minimalist-logo .nav-tabs {
+    width: fit-content;
+    padding-right: 15px;
+    margin-top: 50px !important
+}
+
+.minimalist-logo .nav .nav-item .active {
+    /* height: 30px; */
+    font-family: var(--Inter_Medium);
+    font-style: normal;
+    /* font-weight: 500; */
+    font-size: 20px;
+    /* line-height: 150%; */
+    color: #E71D7C !important;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.minimalist-logo .nav .nav-item .nav-link {
+    color: #6C757D;
+    /* transition: 0.5s; */
+    font-size: 20px;
+}
+
+.minimalist-logo .nav .nav-item .nav-link:hover {
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+.minimalist-logo .desc .desc_header {
+    width: auto;
+    height: 37px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 650;
+    font-size: 18px;
+    line-height: 37px;
+    color: #212529;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.minimalist-logo .desc .desc_p {
+    width: 739px;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 37px;
+    color: #495057;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .desc .head {
+    width: auto;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #FD7E14;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .note li {
+    width: auto;
+    height: 45px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 37px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    font-style: italic;
+}
+
+.minimalist-logo .btn-toolbar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 6px;
+    gap: 14px;
+    width: fit-content;
+    height: 52px;
+    background: #FFFFFF;
+    border: 1px solid #ADB5BD;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 7px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    box-shadow: 0px 2px 4px 0px #00000013;
+}
+
+.minimalist-logo .btn-group hr {
+    border: 2px solid;
+    border-color: #94989c !important;
+    height: 20px;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    margin-top: 10px;
+}
+
+/* ---------------------Reco Card----------------------- */
+.minimalist-logo .Recommended_Card {
+    width: 100%;
+    height: auto;
+    font-family: var(--Inter_Bold);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.2px !important;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #0C0D48;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-bottom: 8px;
+}
+
+.minimalist-logo .Recommended_Card span {
+    font-family: var(--Inter_Header);
+    margin-left: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    color: #6C757D;
+}
+
+.minimalist-logo .lead .col-3 .card .card-text {
+    width: fit-content;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.minimalist-logo .card-text .amount {
+    color: #FD7E14;
+    font-size: 14px;
+    font-family: var(--Inter_Bold);
+    font-weight: 500;
+}
+
+.minimalist-logo .card-amount span {
+    color: #ADB5BD;
+    font-size: 12px;
+    font-family: var(--Inter_Header);
+    font-weight: 400;
+}
+
+.minimalist-logo .card-body .reco_desc {
+    width: fit-content;
+    height: auto;
+    font-style: normal;
+    font-family: var(--Inter_Header);
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 100 !important;
+    font-size: 15px;
+    line-height: 20px !important;
+    color: #343A40;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.minimalist-logo .lead .col-3 {
+    width: 29%;
+}
+
+.minimalist-logo .card-body img {
+    width: 100% !important;
+}
+
+.minimalist-logo .lead .col-3 .card .card-body {
+    padding: 0;
+}
+
+.minimalist-logo .discount {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    width: fit-content;
+    height: 37px;
+    background: #FFF9F4;
+    border: 0.5px solid #FD7E14;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: 0.5s;
+}
+
+.minimalist-logo .discount span {
+    width: fit-content;
+    /* height: 24px; */
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #FD7E14;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: 0.5s;
+    margin: 2px;
+}
+
+.minimalist-logo .discount:hover {
+    background-color: #f4f4f4;
+    border-color: #0f0f0f;
+}
+
+.minimalist-logo .discount:hover>span {
+    color: #0f0f0f;
+}
+
+.minimalist-logo .desc .card:hover {
+
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+
+}
+
+/*  -----------------Review---------------------    */
+.minimalist-logo .rev {
+    margin: 0px;
+    padding: 0px;
+    /* font-family: var(--Inter_Medium); */
+    box-sizing: border-box;
+}
+
+.minimalist-logo .rev a {
+    text-decoration: none;
+}
+
+.minimalist-logo #testimonials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.minimalist-logo .testimonial-heading {
+    letter-spacing: 1px;
+    margin: 30px 0px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.minimalist-logo .testimonial-heading span {
+    font-size: 1.3rem;
+    color: #252525;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.minimalist-logo .testimonial-box-container {
+    /* display: flex; */
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.minimalist-logo .testimonial-box {
+    width: 716px;
+    /* box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1); */
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.minimalist-logo .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.minimalist-logo .profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.minimalist-logo .profile {
+    display: flex;
+    align-items: center;
+}
+
+.minimalist-logo .name-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.minimalist-logo .name-user strong {
+    color: #3d3d3d;
+    font-size: 20px;
+    font-family: var(--Inter_SemiBold);
+}
+
+.minimalist-logo .name-user span {
+    color: #979797;
+    font-size: 14px;
+    font-family: var(--Inter_Header);
+}
+
+.minimalist-logo .reviews {
+    color: #f9d71c;
+}
+
+.minimalist-logo .box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.minimalist-logo .client-comment p {
+    font-size: 17px;
+    font-family: var(--Inter_Header);
+    color: #4b4b4b;
+    line-height: 25px;
+}
+
+.minimalist-logo .cmnt-reply {
+    align-items: start;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home .minimalist-logo .forweb {
+    display: flex;
+    justify-content: center;
+}
+
+/* Reply */
+
+.minimalist-logo .reply_hr {
+
+    border: none;
+    border-left: 1px solid black;
+    border-color: #000 !important;
+    height: 10vh;
+    width: 1px;
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+.minimalist-logo .reply_p {
+    display: inline-block;
+    transform: rotate(90deg);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Reply */
+
+/* .testimonial-box:hover {
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+} */
+
+/*  Paging  */
+nav .pagination .page-item {
+    width: 50.37px;
+    height: 45.5px;
+}
+
+nav .pagination .page-item a {
+    margin-left: auto !important;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+
+nav .pagination .page-item a:active,
+nav .pagination .page-item a:focus {
+    color: #FFFFFF;
+    background-color: #000;
+}
+
+.minimalist-logo .forMobile {
+    display: none;
+}
+
+/*  Paging  */
+
+@media(max-width:1060px) {
+    .minimalist-logo .testimonial-box {
+        width: 45%;
+        padding: 10px;
+    }
+}
+
+@media(max-width:790px) {
+    .minimalist-logo .testimonial-box {
+        width: 100%;
+    }
+
+    .minimalist-logo .testimonial-heading h1 {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width:340px) {
+    .minimalist-logo .box-top {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .minimalist-logo .reviews {
+        margin-top: 10px;
+    }
+}
+
+.minimalist-logo ::selection {
+    color: #ffffff;
+    background-color: #252525;
+}
+
+.minimalist-logo .comnt_rating_p {
+    width: auto;
+    height: 19.5px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17.9482px;
+    line-height: 22px;
+    text-transform: capitalize;
+    color: #0C0D48;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-left: 10px;
+}
+
+.minimalist-logo .comnt_rating_p2 {
+    width: auto;
+    height: 18px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ADB5BD;
+    margin-left: 10px;
+}
+
+.minimalist-logo .card {
+    transition: 0.5s;
+}
+
+.minimalist-logo .faq .faq-section {
+    /* width: 716px; */
+    margin: initial !important;
+}
+
+/*  -----------------Review---------------------    */
+
+@media only screen and (max-width: 1025px) {
+    .minimalist-logo .con-btn {
+        width: 272px;
+    }
+}
+
+@media only screen and (min-width: 991px) {
+    .minimalist-logo .on-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+
+    .breaddiv,
+    .home .container .forweb {
+        display: none;
+    }
+
+    .minimalist-logo *:not(.footer-link-icon, .forMobile, header) {
+        /* width: fit-content !important; */
+        /* height: auto !important; */
+    }
+
+    .minimalist-logo .item {
+        width: fit-content;
+    }
+
+    .minimalist-logo .back-main,
+    .minimalist-logo .back {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .row,
+    .minimalist-logo .col-3 {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .col-3 {
+        max-width: fit-content !important;
+    }
+
+    .minimalist-logo .on-web {
+        display: none;
+    }
+
+    .minimalist-logo .on-mobile .row .con-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding: 8.92371px; */
+        margin-right: 1rem;
+        gap: 8.92px;
+        width: 13rem !important;
+        height: 42.43px;
+        background: #212529;
+        box-shadow: 0px 1.7319px 3.46381px rgba(0, 0, 0, 0.075);
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    .minimalist-logo .on-mobile .row .link-btn {
+        height: 42.43px !important;
+    }
+
+    .minimalist-logo .p-0 {
+        /* margin-top: 5%; */
+        padding-left: 1px;
+        font-size: 10px;
+    }
+
+    .minimalist-logo .item {
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    .minimalist-logo .item_title {
+        width: 295px;
+        /* height: 20px; */
+        left: 25px;
+        top: 190.83px;
+        /* font-family: var(--Inter_Header); */
+        font-family: var(--Inter_Bold);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16.4747px;
+        line-height: 25px;
+        color: #0C0D48;
+        margin-bottom: 10px;
+    }
+
+    /* Rating */
+    .minimalist-logo .rating_p {
+        margin-bottom: 5px !important;
+        font-weight: 500 !important;
+        font-size: 10px !important;
+        line-height: 12px !important;
+        padding-top: 5px !important;
+    }
+
+    .minimalist-logo .rating_p2 {
+        font-weight: 500 !important;
+        font-size: 10px !important;
+        line-height: 12px !important;
+        margin-bottom: 5px !important;
+        padding-top: 5px !important;
+    }
+
+    /* Rating */
+
+    /*  -----------------------Product-----------------------   */
+    .minimalist-logo .primary {
+        width: 300px !important;
+        height: 200px;
+        background-color: #ffffff;
+        background-size: cover;
+        /* background-position: center center; */
+        background-repeat: no-repeat;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: 0 2rem;
+    }
+
+    .minimalist-logo .thumbnail-image {
+        width: 100px !important;
+        margin: 0.2rem;
+    }
+
+    .minimalist-logo .image-gallery .thumbnails button {
+        margin: 10px 0;
+    }
+
+    .minimalist-logo .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+    .minimalist-logo .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        padding-right: 0;
+        justify-content: space-around;
+    }
+
+    /*  -----------------------Product-----------------------   */
+    /*  -----------------------Product Card-----------------------   */
+    .minimalist-logo .only-web {
+        display: none;
+    }
+
+    .minimalist-logo .Price .card {
+        height: auto;
+        width: 100% !important;
+    }
+
+    .minimalist-logo .Price .card .card-body {
+        height: auto;
+        width: 100% !important;
+    }
+
+    .minimalist-logo .title1 {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .title {
+        color: #198754 !important;
+        font-weight: 800;
+        font-size: 17.5287px;
+    }
+
+    .minimalist-logo .card-subtitle {
+        font-weight: 400;
+        font-size: 17.5287px;
+        line-height: 22px;
+    }
+
+    .minimalist-logo .explore-btn {
+        margin-top: 2rem;
+        width: 280.9px !important;
+        height: 41.11px;
+    }
+
+    .minimalist-logo .btn-div {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .explore-btn1 {
+        margin-top: 1.2rem;
+        width: 280.9px !important;
+        height: 41.11px;
+    }
+
+    /*  -----------------------Product Card-----------------------   */
+    /*  -----------------------Tabs-----------------------   */
+    .minimalist-logo .nav .nav-item .nav-link {
+        font-weight: 500;
+        font-size: 15.1298px;
+        line-height: 150%;
+    }
+
+    .minimalist-logo .desc .desc_header {
+        font-weight: 600;
+        font-size: 11.9168px;
+        line-height: 22px;
+        margin-bottom: 0;
+    }
+
+    .minimalist-logo .desc .desc_p {
+        font-weight: 400;
+        font-size: 10.9168px;
+        line-height: 22px;
+    }
+
+    .minimalist-logo .desc .head {
+        height: auto !important;
+        font-weight: 500;
+        font-size: 10.9168px;
+        margin-bottom: 0;
+    }
+
+    .minimalist-logo .desc .note li {
+        height: auto !important;
+        font-weight: 500;
+        font-size: 10.9168px;
+        line-height: 22px;
+    }
+
+    /*  -----------------------Tabs-----------------------   */
+
+    /*  -----------------------Formate-----------------------   */
+
+    /*  -----------------------Formate-----------------------   */
+
+    /*  -----------------------Recommand-----------------------   */
+    .minimalist-logo .lead {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .minimalist-logo .lead .mx-5 {
+        margin-top: 1rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .minimalist-logo .discount span {
+        font-weight: 400;
+        font-size: 13.7989px !important;
+        line-height: 150%;
+
+    }
+
+    /*  -----------------------Recommand-----------------------   */
+    /*  -----------------------Paging-----------------------   */
+    .minimalist-logo .forweb {
+        display: none;
+    }
+
+    .minimalist-logo .forMobile {
+        display: block;
+        text-align: -webkit-center;
+        margin-bottom: 50px;
+
+    }
+
+    /*  -----------------------Paging-----------------------   */
+    .minimalist-logo .accordion-item,
+    .footer-sec .mailing-section .mailing-col .mailing-input {
+        width: 100% !important;
+    }
+
+    /* .footer-sec li{
+        width: auto !important;
+    } */
+    .footer .container .row .col {
+        width: 50% !important;
+    }
+
+    .footer .container .row .col ul {
+        padding: 0;
+    }
+
+    /* Navigation */
+    .minimalist-logo header {
+        width: 100% !important;
+    }
+
+    .minimalist-logo header .on-mobile-navbar {
+        width: 75% !important;
+    }
+
+    /* Navigation */
+}
+
+
+
+/*Added After*/
+.minimalist-logo .Rating-Row .col-2 {
+    max-width: fit-content;
+    flex: none;
+}
+
+.minimalist-logo .rev .Rating-Container-Class {
+    max-width: fit-content;
+    flex: none;
+}
+
+.Rating-Row~.row .col-3 {
+    max-width: 65%;
+    flex: none;
+}
+
+.minimalist-logo .Price .card .card-title {
+    float: inherit;
+    margin-bottom: 8px;
+    margin-top: calc(-.5 * 0.5rem);
+}
+
+/* .minimalist-logo .row {
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+} */
+
+.minimalist-logo .service-pricing-card {
+    padding: initial !important;
+    position: absolute;
+    width: 36%;
+    right: 0%;
+}
+
+@media only screen and (max-width: 984px) {
+    .nav {
+        margin-top: 0.5rem !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .lead .col-3 {
+        max-width: fit-content;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: initial;
+    }
+}
+
+@media only screen and (max-width: 325px) {
+    .minimalist-logo .primary {
+        width: 250px !important;
+        height: 180px !important;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: 0.2rem;
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .minimalist-logo .con-btn {
+        width: 291px;
+    }
+}
+
+@media only screen and (max-width: 1152px) {
+    .minimalist-logo .con-btn {
+        width: 321px;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .minimalist-logo .con-btn {
+        width: 271px;
+    }
+}
+
+/* ------Rating-------- */
+
+
+
+.minimalist-logo fieldset,
+.minimalist-logo label {
+    margin: 0;
+    padding: 0;
+}
+
+.minimalist-logo h1 {
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+/****** Style Star Rating Widget *****/
+
+.minimalist-logo .rating {
+    border: none;
+    /* float: left; */
+}
+
+.minimalist-logo .rating>input {
+    display: none;
+}
+
+.minimalist-logo .rating>label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.minimalist-logo .rating>.half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.minimalist-logo .rating>label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.minimalist-logo .rating>input:checked~label,
+/* show gold star when clicked */
+.minimalist-logo .rating:not(:checked)>label:hover,
+/* hover current star */
+.minimalist-logo .rating:not(:checked)>label:hover~label {
+    color: #FFD700;
+}
+
+/* hover previous stars in list */
+
+.minimalist-logo .rating>input:checked+label:hover,
+/* hover current star when changing rating */
+.minimalist-logo .rating>input:checked~label:hover,
+.minimalist-logo .rating>label:hover~input:checked~label,
+/* lighten current selection */
+.minimalist-logo .rating>input:checked~label:hover~label {
+    color: #FFED85;
+}
+
+
+
+/* ------Rating-------- */
+
+
+/* ---------------------------------------------------- */
+
+.minimalist-logo .image-gallery {
+    /* margin: 0 auto; */
+    display: table;
+}
+
+.minimalist-logo .primary,
+.minimalist-logo .thumbnails {
+    display: table-cell;
+}
+
+.minimalist-logo .thumbnails {
+    /* width: 300px; */
+    padding-right: 2rem;
+}
+
+.minimalist-logo .thumbnail:hover .thumbnail-image,
+.minimalist-logo .selected .thumbnail-image {
+    opacity: 1;
+    /* border: 4px solid red; */
+}
+
+.minimalist-logo .thumbnail-image {
+    opacity: 0.5;
+    width: 120px;
+    height: 80px;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 4px solid transparent;
+}
+
+.minimalist-logo .image-gallery .thumbnails button {
+    width: 100% !important;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #6C757D;
+    transition: 0.5s;
+}
+
+.minimalist-logo .image-gallery .thumbnails button:hover {
+    border-color: #000;
+    background-color: #00000013;
+    border-radius: 5px;
+}
+
+/* ---------------------------------------------------- */
+
+.minimalist-logo .row .col-2 .rating_p {
+    width: 76px;
+    height: 20px;
+    margin-left: 10px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    /* font-size: 17.9482px; */
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #0C0D48;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .con-btn {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10.3051px;
+    gap: 10.31px;
+    width: 345px;
+    height: 49px;
+    background: #212529;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #FFFFFF;
+    font-family: var(--Inter_Medium);
+    transition: 0.5s;
+}
+
+.minimalist-logo .con-btn:hover {
+    background-color: #777777;
+}
+
+.minimalist-logo .link-btn {
+    height: 49px;
+    width: 3rem;
+    border-radius: 0px;
+    background-color: #fff;
+}
+
+.minimalist-logo .Price .card {
+    width: 376.56px;
+    height: auto;
+    background: #FFFFFF;
+    /* border-image-source: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%); */
+    border-radius: 10px;
+    border-top: 5px solid #da207c;
+}
+
+.minimalist-logo .Price .card .title-discount {
+    color: #198754;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.minimalist-logo .Price .card .card-body .title-features {
+    color: #ADB5BD;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: var(--Inter_Header);
+    letter-spacing: 2.48567px;
+    font-size: 14px;
+}
+
+.minimalist-logo .Price .card .card-body .only-web h5 span .del-day,
+.minimalist-logo .del-rev {
+    color: #000;
+    font-family: var(--Inter_Header);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.minimalist-logo .Price .card .card-body .only-web .div-feact .ul-feact .li-feact {
+    font-family: var(--Inter_Header);
+    width: 100%;
+    height: 26px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.5711px;
+    line-height: 25px;
+    color: #000;
+}
+
+.minimalist-logo .title1 span {
+    width: 69px;
+    height: 42px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34.6454px;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+    color: #E71D7C;
+}
+
+.minimalist-logo .title1 {
+    width: 100%;
+    /* height: 23px; */
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.8919px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #212529;
+}
+
+.minimalist-logo hr {
+    border: 0.99px solid;
+    border-color: #CED4DA !important;
+    width: 100% !important;
+    /* border-image-source: linear-gradient(90deg, #CED4DA 0%, rgba(206, 212, 218, 0) 86.75%) !important; */
+}
+
+.minimalist-logo .title2 {
+    width: 100%;
+    height: 26px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.8928px;
+    line-height: 25px;
+    color: #198754 !important;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.minimalist-logo .card-subtitle {
+    width: 70%;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 450;
+    font-size: 16.7928px;
+    line-height: 25px;
+    color: #6C757D;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .title3 {
+    width: 100%;
+    height: 26px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.5711px;
+    letter-spacing: 2.48567px;
+    text-transform: uppercase;
+    color: #ADB5BD;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-bottom: 2% !important;
+    margin-top: 5rem !important;
+}
+
+.minimalist-logo .explore-btn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16.7928px;
+    gap: 10.5px;
+    width: 324.68px;
+    height: 47.51px;
+    background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: var(--Inter_Header);
+    margin-bottom: 5rem;
+}
+
+.minimalist-logo .explore-btn1 {
+    width: 324.68px;
+    height: 47px;
+    background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+    color: #FFFFFF;
+    border-color: transparent;
+}
+
+.minimalist-logo .nav .nav-item .nav-link:hover {
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+.minimalist-logo .desc .desc_header {
+    width: auto;
+    height: 37px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 650;
+    font-size: 18px;
+    line-height: 37px;
+    color: #212529;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.minimalist-logo .desc .desc_p {
+    width: 739px;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 37px;
+    color: #495057;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .desc .head {
+    width: auto;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #FD7E14;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.minimalist-logo .note li {
+    width: auto;
+    height: 45px;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 37px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    font-style: italic;
+}
+
+.minimalist-logo .F-inc {
+    color: #198754;
+    /* font-weight: 600; */
+    font-family: var(--Inter_Medium);
+    font-size: 20px;
+    margin-top: 40px !important;
+}
+
+.minimalist-logo .btn-toolbar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 6px;
+    gap: 14px;
+    width: fit-content;
+    height: 52px;
+    background: #FFFFFF;
+    border: 1px solid #ADB5BD;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 7px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    box-shadow: 0px 2px 4px 0px #00000013;
+}
+
+.minimalist-logo .btn-group hr {
+    border: 1px solid;
+    border-color: #94989c !important;
+    height: 20px;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    margin-top: 10px;
+}
+
+/* ---------------------Reco Card----------------------- */
+.minimalist-logo .Recommended_Card {
+    width: 100%;
+    height: auto;
+    font-family: var(--Inter_Bold);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.2px !important;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #0C0D48;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-bottom: 8px;
+}
+
+.minimalist-logo .Recommended_Card span {
+    font-family: var(--Inter_Header);
+    margin-left: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    color: #6C757D;
+}
+
+.minimalist-logo .lead .col-3 .card .card-text {
+    width: fit-content;
+    height: auto;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.minimalist-logo .card-text .amount {
+    color: #FD7E14;
+    font-size: 14px;
+    font-family: var(--Inter_Bold);
+    font-weight: 500;
+}
+
+.minimalist-logo .card-amount span {
+    color: #ADB5BD;
+    font-size: 12px;
+    font-family: var(--Inter_Header);
+    font-weight: 400;
+}
+
+.minimalist-logo .card-body .reco_desc {
+    width: fit-content;
+    height: auto;
+    font-style: normal;
+    font-family: var(--Inter_Header);
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 100 !important;
+    font-size: 15px;
+    line-height: 20px !important;
+    color: #343A40;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.minimalist-logo .lead .col-3 {
+    width: 29%;
+}
+
+.minimalist-logo .card-body img {
+    width: 100% !important;
+}
+
+.minimalist-logo .lead .col-3 .card .card-body {
+    padding: 0;
+}
+
+.minimalist-logo .discount {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    width: fit-content;
+    height: 37px;
+    background: #FFF9F4;
+    border: 0.5px solid #FD7E14;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: 0.5s;
+}
+
+.minimalist-logo .discount span {
+    width: fit-content;
+    /* height: 24px; */
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #FD7E14;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: 0.5s;
+    margin: 2px;
+}
+
+.minimalist-logo .discount:hover {
+    background-color: #f4f4f4;
+    border-color: #0f0f0f;
+}
+
+.minimalist-logo .discount:hover>span {
+    color: #0f0f0f;
+}
+
+.minimalist-logo .desc .card:hover {
+
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+
+}
+
+/*  -----------------Review---------------------    */
+.minimalist-logo .rev {
+    margin: 0px;
+    padding: 0px;
+    /* font-family: var(--Inter_Medium) */
+    box-sizing: border-box;
+}
+
+.minimalist-logo .rev a {
+    text-decoration: none;
+}
+
+.minimalist-logo #testimonials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.minimalist-logo .testimonial-heading {
+    letter-spacing: 1px;
+    margin: 30px 0px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.minimalist-logo .testimonial-heading span {
+    font-size: 1.3rem;
+    color: #252525;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.minimalist-logo .testimonial-box-container {
+    /* display: flex; */
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.minimalist-logo .testimonial-box {
+    width: 716px;
+    /* box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1); */
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.minimalist-logo .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.minimalist-logo .profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.minimalist-logo .profile {
+    display: flex;
+    align-items: center;
+}
+
+.minimalist-logo .name-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.minimalist-logo .reviews {
+    color: #f9d71c;
+}
+
+.minimalist-logo .box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.minimalist-logo .cmnt-reply {
+    align-items: start;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home .minimalist-logo .forweb {
+    display: flex;
+    justify-content: center;
+}
+
+/* Reply */
+
+.minimalist-logo .reply_hr {
+
+    border: none;
+    border-left: 1px solid black;
+    border-color: #000 !important;
+    height: 10vh;
+    width: 1px;
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+.minimalist-logo .reply_p {
+    display: inline-block;
+    transform: rotate(90deg);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Reply */
+
+/* .testimonial-box:hover {
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+} */
+
+/*  Paging  */
+nav .pagination .page-item {
+    width: 50.37px;
+    height: 45.5px;
+}
+
+nav .pagination .page-item a {
+    margin-left: auto !important;
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #212529;
+}
+
+nav .pagination .page-item a:active,
+nav .pagination .page-item a:focus {
+    color: #FFFFFF;
+    background-color: #000;
+}
+
+/*  Paging  */
+
+@media(max-width:1060px) {
+    .minimalist-logo .testimonial-box {
+        width: 45%;
+        padding: 10px;
+    }
+}
+
+@media(max-width:790px) {
+    .minimalist-logo .testimonial-box {
+        width: 100%;
+    }
+
+    .minimalist-logo .testimonial-heading h1 {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width:340px) {
+    .minimalist-logo .box-top {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .minimalist-logo .reviews {
+        margin-top: 10px;
+    }
+}
+
+.minimalist-logo ::selection {
+    color: #ffffff;
+    background-color: #252525;
+}
+
+.minimalist-logo .card {
+    transition: 0.5s;
+}
+
+.minimalist-logo .faq .faq-section {
+    /* width: 716px; */
+    margin: initial !important;
+}
+
+/*  -----------------Review---------------------    */
+
+@media only screen and (max-width: 1025px) {
+    .minimalist-logo .con-btn {
+        width: 272px;
+    }
+
+    .minimalist-logo .service-pricing-card {
+        position: relative;
+        width: 100%;
+    }
+
+    .minimalist-logo .pricing-inner-col {
+        height: 400px;
+        overflow-y: scroll;
+
+    }
+}
+
+@media only screen and (min-width: 991px) {
+    .minimalist-logo .on-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+
+    .breaddiv,
+    .home .container .forweb {
+        display: none;
+    }
+
+    .minimalist-logo *:not(.footer-link-icon, .forMobile, header) {
+        /* width: fit-content !important; */
+        /* height: auto !important; */
+    }
+
+    .minimalist-logo .item {
+        width: fit-content;
+    }
+
+    .minimalist-logo .back-main,
+    .minimalist-logo .back {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .row,
+    .minimalist-logo .col-3 {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .col-3 {
+        max-width: fit-content !important;
+    }
+
+    .minimalist-logo .on-web {
+        display: none;
+    }
+
+    .minimalist-logo .on-mobile .row .con-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding: 8.92371px; */
+        margin-right: 1rem;
+        gap: 8.92px;
+        width: 13rem !important;
+        height: 42.43px;
+        background: #212529;
+        box-shadow: 0px 1.7319px 3.46381px rgba(0, 0, 0, 0.075);
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    .minimalist-logo .on-mobile .row .link-btn {
+        height: 42.43px !important;
+    }
+
+    .minimalist-logo .p-0 {
+        /* margin-top: 5%; */
+        padding-left: 1px;
+        font-size: 10px;
+    }
+
+    .minimalist-logo .item {
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    /* Rating */
+    .minimalist-logo .rating_p {
+        margin-bottom: 5px !important;
+        font-weight: 500 !important;
+        font-size: 10px !important;
+        line-height: 12px !important;
+        padding-top: 5px !important;
+    }
+
+    .minimalist-logo .rating_p2 {
+        font-weight: 500 !important;
+        font-size: 10px !important;
+        line-height: 12px !important;
+        margin-bottom: 5px !important;
+        padding-top: 5px !important;
+    }
+
+    /* Rating */
+
+    /*  -----------------------Product-----------------------   */
+    .minimalist-logo .primary {
+        width: 300px !important;
+        height: 200px;
+        background-color: #ffffff;
+        background-size: cover;
+        /* background-position: center center; */
+        background-repeat: no-repeat;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: 0 2rem;
+    }
+
+    .minimalist-logo .thumbnail-image {
+        width: 100px !important;
+        margin: 0.2rem;
+    }
+
+    .minimalist-logo .image-gallery .thumbnails button {
+        margin: 10px 0;
+    }
+
+    .minimalist-logo .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+    .minimalist-logo .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        padding-right: 0;
+        justify-content: space-around;
+    }
+
+    /*  -----------------------Product-----------------------   */
+    /*  -----------------------Product Card-----------------------   */
+    .minimalist-logo .only-web {
+        display: none;
+    }
+
+    .minimalist-logo .Price .card {
+        height: auto;
+        width: 100% !important;
+    }
+
+    .minimalist-logo .Price .card .card-body {
+        height: auto;
+        width: 100% !important;
+    }
+
+    .minimalist-logo .title1 {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .title {
+        color: #198754 !important;
+        font-weight: 800;
+        font-size: 17.5287px;
+    }
+
+    .minimalist-logo .card-subtitle {
+        font-weight: 400;
+        font-size: 17.5287px;
+        line-height: 22px;
+    }
+
+    .minimalist-logo .explore-btn {
+        margin-top: 2rem;
+        width: 280.9px !important;
+        height: 41.11px;
+    }
+
+    .minimalist-logo .btn-div {
+        width: 100% !important;
+    }
+
+    .minimalist-logo .explore-btn1 {
+        margin-top: 1.2rem;
+        width: 280.9px !important;
+        height: 41.11px;
+    }
+
+    /*  -----------------------Product Card-----------------------   */
+    /*  -----------------------Tabs-----------------------   */
+    .minimalist-logo .nav .nav-item .nav-link {
+        font-weight: 500;
+        font-size: 15.1298px;
+        line-height: 150%;
+    }
+
+    .minimalist-logo .desc .desc_header {
+        font-weight: 600;
+        font-size: 11.9168px;
+        line-height: 22px;
+        margin-bottom: 0;
+    }
+
+    .minimalist-logo .desc .desc_p {
+        font-weight: 400;
+        font-size: 10.9168px;
+        line-height: 22px;
+    }
+
+    .minimalist-logo .desc .head {
+        height: auto !important;
+        font-weight: 500;
+        font-size: 10.9168px;
+        margin-bottom: 0;
+    }
+
+    .minimalist-logo .desc .note li {
+        height: auto !important;
+        font-weight: 500;
+        font-size: 10.9168px;
+        line-height: 22px;
+    }
+
+    /*  -----------------------Tabs-----------------------   */
+
+    /*  -----------------------Formate-----------------------   */
+
+    /*  -----------------------Formate-----------------------   */
+
+    /*  -----------------------Recommand-----------------------   */
+    .minimalist-logo .lead {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .minimalist-logo .lead .mx-5 {
+        margin-top: 1rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .minimalist-logo .discount span {
+        font-weight: 400;
+        font-size: 13.7989px !important;
+        line-height: 150%;
+
+    }
+
+    /*  -----------------------Recommand-----------------------   */
+    /*  -----------------------Paging-----------------------   */
+    .minimalist-logo .forweb {
+        display: none;
+    }
+
+    /*  -----------------------Paging-----------------------   */
+    .minimalist-logo .accordion-item,
+    .footer-sec .mailing-section .mailing-col .mailing-input {
+        width: 100% !important;
+    }
+
+    /* .footer-sec li{
+        width: auto !important;
+    } */
+    .footer .container .row .col {
+        width: 50% !important;
+    }
+
+    .footer .container .row .col ul {
+        padding: 0;
+    }
+
+    /* Navigation */
+    .minimalist-logo header {
+        width: 100% !important;
+    }
+
+    .minimalist-logo header .on-mobile-navbar {
+        width: 75% !important;
+    }
+
+    /* Navigation */
+}
+
+
+
+/*Added After*/
+.minimalist-logo .Rating-Row .col-2 {
+    max-width: fit-content;
+    flex: none;
+}
+
+.minimalist-logo .rev .Rating-Container-Class {
+    max-width: fit-content;
+    flex: none;
+}
+
+.Rating-Row~.row .col-3 {
+    max-width: 65%;
+    flex: none;
+}
+
+.minimalist-logo .Price .card .card-title {
+    float: inherit;
+    margin-bottom: 8px;
+    margin-top: calc(-.5 * 0.5rem);
+}
+
+.lead .col-3 {
+    flex: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    max-width: 29%;
+}
+
+/* .minimalist-logo .row {
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+} */
+
+.minimalist-logo .service-pricing-card {
+    padding: initial !important;
+}
+
+@media only screen and (max-width: 984px) {
+    .nav {
+        margin-top: 0.5rem !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .lead .col-3 {
+        max-width: fit-content;
+    }
+
+    .minimalist-logo .rating_p {
+        padding-top: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: initial;
+    }
+}
+
+@media only screen and (max-width: 325px) {
+    .minimalist-logo .primary {
+        width: 250px !important;
+        height: 180px !important;
+    }
+
+    .minimalist-logo .rating_p {
+        padding-top: 5px !important;
+    }
+
+    .minimalist-logo .primary,
+    .thumbnails a {
+        margin: 0.2rem;
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .minimalist-logo .con-btn {
+        width: 291px;
+    }
+}
+
+@media only screen and (max-width: 1152px) {
+    .minimalist-logo .con-btn {
+        width: 261px;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .minimalist-logo .con-btn {
+        width: 271px;
+    }
+
+    .minimalist-logo .wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.minimalist-logo .formateBtn {
+    background-color: white !important;
+    font-family: var(--Inter_Medium);
+}
+
+.minimalist-logo .service-pricing-card .pricing-card {
+    width: 100%;
+}
+
+.minimalist-logo .Desc-Text,
+.minimalist-logo .faq .accordion {
+    max-width: 700px;
+}
+
+.minimalist-logo .cardDescText p {
+    font-family: var(--Inter_Header);
+    font-size: 16px;
+    color: #495057;
+    line-height: 30px;
+    margin-bottom: 0px;
+}
+
+
+@media only screen and (max-width: 571px) {
+    .minimalist-logo .pricing-inner-col {
+        height: auto;
+        overflow-y: unset;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .minimalist-logo .thumbnails .thumbnail {
+        display: none;
+    }
+
+    .minimalist-logo .item_title {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-bottom: 0px;
+    }
+
+    .minimalist-logo .item {
+        margin-left: 10px;
+    }
+
+    .minimalist-logo .Mobile-Margin {
+        margin-left: 10px;
+    }
+
+    .minimalist-logo .rating>label:before {
+        font-size: 1.95em;
+    }
+
+    .minimalist-logo .rating_p {
+        padding-top: 8px !important;
+        font-size: 12px !important;
+    }
+
+    .minimalist-logo .mob-margin {
+        margin-left: 0px !important;
+    }
+}

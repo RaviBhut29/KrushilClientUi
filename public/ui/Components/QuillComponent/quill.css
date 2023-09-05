@@ -3,7 +3,7 @@ button:focus {
 	outline: none;
 }
 
-.ql-font-arial,
+/* .ql-font-arial,
 .ql-font span[data-value="arial"]::before {
 	font-family: Arial, sans-serif;
 }
@@ -36,7 +36,7 @@ button:focus {
 .ql-font-poppins,
 .ql-font span[data-value="poppins"]::before {
 	font-family: "Poppins", sans-serif;
-}
+} */
 
 /* Set content for sizes */
 .ql-size-extra-small,

@@ -13,18 +13,21 @@
 .grey-text {
     color: #6c757d;
     font-size: 17px;
+    font-family: var(--Inter_Header);
     font-weight: 400;
     margin-bottom: 0;
 }
 .light-text {
     color: #adb5bd;
     font-weight: 400;
+    font-family: var(--Inter_Header);
     font-size: 15px;
     line-height: 180%;
 }
 .dark-text {
     color: #495057;
     font-weight: 400;
+    font-family: var(--Inter_Header);
     font-size: 17px;
     line-height: 180%;
 }
@@ -42,7 +45,7 @@
     margin: 50px auto;
 }
 .blue-btn:hover {
-    background-image: -webkit-linear-gradient(97.5deg, #e71d7c 7.2%, #3e4581 57.6%, #e71d7c 84%);
+    /* background-image: -webkit-linear-gradient(97.5deg, #e71d7c 7.2%, #3e4581 57.6%, #e71d7c 84%); */
     color: white;
     border: none;
 }

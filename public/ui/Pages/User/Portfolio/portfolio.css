@@ -89,7 +89,8 @@ span.text {
   box-shadow: none !important;
 }
 .image-preview-modals .swiper-slide {
-  width: 500px;
+  /* width: 500px; */
+  width: 1000px;
   height: 500px;
 }
 .image-preview-modals .swiper-slide.swiper-slide-visible.swiper-slide-active {

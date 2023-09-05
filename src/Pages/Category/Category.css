@@ -2,5 +2,7 @@
 .cardDescText {
     padding-left: 15px;
     padding-right: 15px;
-    font-size: 16.5312px;
+    font-size: 16px;
+    text-align: left;
+    font-family: var(--Inter_Header);
 }

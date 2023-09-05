@@ -44,7 +44,8 @@
   }
   
   .notfound h1 {
-    font-family: 'Nunito', sans-serif;
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: var(--Inter_Bold);
     font-size: 65px;
     font-weight: 700;
     margin-top: 0px;
@@ -54,7 +55,8 @@
   }
   
   .notfound h2 {
-    font-family: 'Nunito', sans-serif;
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: var(--Inter_Header);
     font-size: 21px;
     font-weight: 400;
     margin: 0;
@@ -63,14 +65,16 @@
   }
   
   .notfound p {
-    font-family: 'Nunito', sans-serif;
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: var(--Inter_Header);
     color: #999fa5;
     font-weight: 400;
     margin-top: 15px;
   }
   
   .notfound a {
-    font-family: 'Nunito', sans-serif;
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: var(--Inter_Header);
     display: inline-block;
     font-weight: 700;
     border-radius: 40px;

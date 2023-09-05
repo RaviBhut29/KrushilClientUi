@@ -25,7 +25,7 @@ const ProjectDetails = () => {
             services and offers.
           </p>
           <button
-            className="btn btn-secondary btn-lg my-5"
+            className="btn btn-secondary btn-lg mt-5"
             style={{ borderRadius: 0, width: 161 }}
           >
             Contact Us

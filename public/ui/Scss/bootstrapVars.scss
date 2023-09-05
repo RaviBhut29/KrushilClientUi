@@ -139,8 +139,8 @@ $box-shadow: 0 4px 24px 0 rgba($black, 0.1) !default;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "Roboto", sans-serif;
-$font-family-monospace: "Roboto", sans-serif;
+$font-family-sans-serif: "Inter";
+$font-family-monospace: "Inter";
 
 // stylelint-enable value-keyword-case
 $font-size-base: 1rem !default;
@@ -159,7 +159,7 @@ $h3-font-size: $font-size-base * 1.5 !default;
 $h4-font-size: $font-size-base * 1.286 !default;
 $h5-font-size: $font-size-base * 1.07 !default;
 
-$headings-font-family: inherit !default;
+$headings-font-family: "inter" !default;
 $headings-color: #5e5873 !default;
 
 $display1-weight: $font-weight-normal !default;

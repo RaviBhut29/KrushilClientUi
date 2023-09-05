@@ -9,6 +9,8 @@
     --Inter_Medium: 'Inter_Medium';
     --Inter_SemiBold: 'Inter_SemiBold';
     --Inter_Thin: 'Inter_Thin';
+    --Montserrat_Regular: 'Montserrat_Regular';
+    --Montserrat_Medium: 'Montserrat_Medium';
     --Header-lin: linear-gradient(97.5deg,
             #e71d7c 7.2%,
             #3e4581 32.6%,
@@ -77,6 +79,16 @@
     src: url(../ui/font/Inter-Thin.woff2);
 }
 
+@font-face {
+    font-family: 'Montserrat_Regular';
+    src: url(../ui/font/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Montserrat_Medium';
+    src: url(../ui/font/Montserrat-Medium.ttf);
+}
+
 .back-main {
     position: absolute;
     opacity: 0.35;
@@ -118,12 +130,13 @@
 .breadcrumb .default {
     width: 46px;
     height: 24px;
-    font-family: 'system-ui';
+    font-family: var(--Inter_Medium);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
     text-decoration-line: underline;
+    text-underline-offset: 4px;
     color: #212529;
     flex: none;
     order: 0;
@@ -132,5 +145,5 @@
 
 .breadcrumb .breadcrumb-item a:hover {
     cursor: pointer !important;
-    color: #000 !important;
+    color: #212529 !important;
 }

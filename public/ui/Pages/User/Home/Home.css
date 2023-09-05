@@ -24,7 +24,7 @@ body ul {
 .home {
   position: relative;
 }
-.home:after {
+/* .home:after {
   content: "";
   position: absolute;
   top: 0;
@@ -35,8 +35,8 @@ body ul {
   height: 1310px;
   z-index: -1;
   background-size: cover;
-}
-.home:before {
+} */
+/* .home:before {
   background-image: url("../../../Images/background-square.png");
   content: "";
   position: absolute;
@@ -44,11 +44,10 @@ body ul {
   right: 0;
   height: 1730px;
   bottom: 0;
-  /* z-index: -1; */
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-}
+} */
 .home .hero-section {
   position: relative;
   z-index: 99;

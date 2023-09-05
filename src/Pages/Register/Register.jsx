@@ -178,7 +178,9 @@ const Register = () => {
           <div className="SignupForm">
             <div className="header d-flex justify-content-start">
               <Back />
-              <img src={logosmall} alt="logo" />
+              {/* <img src={logosmall} alt="logo" /> */}
+              {/* Change on Date:20/08/2023. */}
+              <img src="../ui/Images/NewLogo.svg" alt="logo" />
             </div>
             <div className="description">
               <h2>Hey, Welcome 👋</h2>

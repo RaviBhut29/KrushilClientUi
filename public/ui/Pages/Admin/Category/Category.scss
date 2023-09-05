@@ -8,7 +8,7 @@
 			padding: 0.93rem 1.4rem;
 
 			.modal-title {
-				font-family: SF Pro !important;
+				font-family: var(--Inter_Bold) !important;
 				font-style: normal;
 				font-weight: 700;
 				font-size: 18px;
@@ -19,7 +19,7 @@
 
 		.modal-body {
 			.body-title {
-				font-family: SF Pro !important;
+				font-family: var(--Inter_Bold) !important;
 				font-style: normal;
 				font-weight: 700;
 				font-size: 16px;
@@ -35,7 +35,7 @@
 				}
 
 				label {
-					font-family: "SF Pro" !important;
+					font-family: var(--Inter_Header) !important;
 					font-style: normal;
 					font-weight: 400;
 					font-size: 12px;
@@ -49,7 +49,7 @@
 					border: 1px solid #ced5e2;
 					padding: 8px 16px;
 					height: 40px;
-					font-family: "SF Pro" !important;
+					font-family: var(--Inter_Header) !important;
 					font-style: normal;
 					font-weight: 400;
 					font-size: 12px;
@@ -73,7 +73,7 @@
 				textarea {
 					border: 1px solid #ced5e2;
 					height: 96px;
-					font-family: "SF Pro" !important;
+					font-family: var(--Inter_Header) !important;
 					font-style: normal;
 					font-weight: 400;
 					font-size: 12px;
@@ -158,7 +158,7 @@
 
 			.calc-formselect {
 				label {
-					font-family: "SF Pro" !important;
+					font-family: var(--Inter_Header) !important;
 					font-style: normal;
 					font-weight: 400;
 					font-size: 12px;
@@ -172,7 +172,7 @@
 				border: 1px solid #ced5e2;
 				padding: 8px 16px;
 				height: 40px;
-				font-family: "SF Pro" !important;
+				font-family: var(--Inter_Header) !important;
 				font-style: normal;
 				font-weight: 400;
 				font-size: 12px;
@@ -195,7 +195,7 @@
 
 			.save-preset {
 				.custom-control-label {
-					font-family: SF Pro !important;
+					font-family: var(--Inter_Medium) !important;
 					font-style: normal;
 					font-weight: 500;
 					font-size: 14px;
@@ -221,7 +221,7 @@
 
 				.report-checkbox {
 					label {
-						font-family: SF Pro !important;
+						font-family: var(--Inter_Header) !important;
 						font-style: normal;
 						font-weight: 400;
 						font-size: 12px;
@@ -238,7 +238,7 @@
 			.accept-btn {
 				background: #0c0d48 !important;
 				border-radius: 5px;
-				font-family: SF Pro !important;
+				font-family: var(--Inter_Medium) !important;
 				font-style: normal;
 				font-weight: 500;
 				font-size: 14px;
@@ -251,7 +251,7 @@
 
 			.cancel-btn {
 				border: 1px solid #0c0d48 !important;
-				font-family: SF Pro !important;
+				font-family: var(--Inter_Medium) !important;
 				font-style: normal;
 				font-weight: 500;
 				font-size: 14px;

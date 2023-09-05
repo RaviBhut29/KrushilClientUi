@@ -1,59 +1,119 @@
 /* Radio */
-.requirements [type="radio"]:checked,
-.requirements [type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
+.ant-radio-wrapper:hover .ant-radio-inner {
+    border-color: #198754;
 }
-.requirements [type="radio"]:checked + label,
-.requirements [type="radio"]:not(:checked) + label
-{
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+    background-color: #198754;
+    border-color: #198754;
 }
-.requirements [type="radio"]:checked + label:before,
-.requirements [type="radio"]:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
-}
-.requirements [type="radio"]:checked + label:after,
-.requirements [type="radio"]:not(:checked) + label:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #0cbd0c;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-.requirements [type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-}
-.requirements [type="radio"]:checked + label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
-/* Radio */
 
 @media only screen and (max-width: 770px) {
-    .requirements .mx-5{
+    .requirements .mx-5 {
         margin-right: 0 !important;
         margin-left: 0 !important;
+    }
+}
+
+.requirements .lbl_req_Question {
+    font-family: var(--Inter_Header);
+    font-weight: 400 !important;
+    font-size: 18.24px;
+    color: #212529;
+}
+
+.requirements .txt_requirement {
+    font-family: var(--Inter_Header);
+    font-weight: 400 !important;
+    font-size: 16px;
+    color: #6C757D;
+}
+
+.requirements .lbl_rdo_requirement {
+    font-family: var(--Inter_Header);
+    font-weight: 400 !important;
+    font-size: 17.77px;
+    color: #212529;
+}
+
+.requirements .ddl_require {
+    font-family: var(--Inter_Header);
+    font-weight: 400 !important;
+    font-size: 18.24px;
+    color: #6C757D;
+}
+
+.lbl_requi_footer_note {
+    font-family: var(--Inter_Header);
+    font-weight: 400 !important;
+    font-size: 16.79px;
+    color: #212529;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 321px) {
+    .Order-status-footer .btn-dark {
+        margin-top: 10px;
+        min-height: 36px;
+        min-width: 135.2px;
+        padding: 10px !important;
+        font-size: 12px;
+        float: none !important;
+    }
+    .lbl_requi_footer_note {
+        width: 50%;
+    }
+    .Order-status-footer .btn-dark {
+        top: -40px;
+    }
+
+}
+
+.Order-status-footer .Order-status-footer-req .footer {
+    padding: 20px 30px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+}
+
+.requirements:before {
+    /* height: 500px !important; */
+    height: 100% !important;
+    background: none !important;
+}
+
+.requirements:after {
+    height: 100% !important;
+}
+
+@media only screen and (max-width: 426px) {
+    .Order-status-footer .btn-dark {
+        min-width: 120px;
+        top: 8px;
+        padding: 0px 40px;
+    }
+
+    .Order-status-footer .Order-status-footer-req .footer {
+        padding: 10px 30px;
+    }
+
+    .lbl_requi_footer_note {
+        width: 60%;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .lbl_requi_footer_note {
+        width: 50%;
+    }
+
+    .Order-status-footer .btn-dark {
+        top: 20px;
+    }
+    .requirements .BlankSpace{
+        margin-bottom: 5rem;
     }
 }

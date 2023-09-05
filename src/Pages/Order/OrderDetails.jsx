@@ -187,7 +187,7 @@ const OrderDetails = ({
 
   return (
     <>
-      <div className="container Order-status">
+      <div className="container planContainer Order-status">
         {/* Navigation */}
 
         <Header />
@@ -197,8 +197,9 @@ const OrderDetails = ({
           handleSiteMapClick={handlePathClick}
         />
 
-        <p className="order-id my-3">
+        <p className="order-id" style={{marginBottom:"25px"}}>
           Order ID :<span> #{orderDetailsList?.orNumber}</span>
+          <span className="YourRequi">Your Requirement</span>
         </p>
 
         <div className="form-row gy-5">
@@ -216,13 +217,13 @@ const OrderDetails = ({
                       type="button"
                       className="btn-close"
                       aria-label="Close"
-                      style={{ position: "absolute", right: "15px" }}
+                      style={{ position: "absolute", right: "15px", display:"none" }}
                       onClick={() => setFeaturePanelShow(false)}
                     />
                   </div>
                 </div>
                 <div className="card-body">
-                  <p>
+                  <p style={{marginBottom:"0"}}>
                     <svg
                       width={20}
                       height={20}
@@ -261,51 +262,124 @@ const OrderDetails = ({
                   )}
                 </div>
               </div>
-            </div>
-          )}
+              {/* Date:23/08/2023. */}
+              {featurePanelShow && (
+                <div className="card">
+                  <div className="card-header py-3">
+                    <div className="card1-info d-flex">
+                      <span className="info">Your Delivery</span>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    {orderDeliveryList.length <= 0 && (
+                      <div className="form-row no-order">
+                        <div className="col-md-2">
+                          <img
+                            height={150}
+                            width={150}
+                            src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
+                          />
+                        </div>
+                        <div className="col-md-auto pt-4 ps-5">
+                          <span className="info">Nothing here to see yet</span>
+                          <p className="mt-1" style={{ maxWidth: 450 }}>
+                            Your delivery will appear here. your delivery date
+                            will be determined once you submit the requirements.
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
-          {!featurePanelShow && (
-            <div className="col-md-8 card3 ">
-              <div className="card">
-                <div className="card-header py-3">
-                  <div className="card1-info d-flex">
-                    <span className="info">Your Delivery</span>
+                    {orderDeliveryList.length > 0 && (
+                      <div className="form-row pending-order">
+                        {orderDeliveryNotes !== "" && (
+                          <div className="row" style={{ width: "100%" }}>
+                            <div className="col-12">
+                              <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                                Comment Admin Notifier :
+                              </h6>
+                              <p className="mt-1">{orderDeliveryNotes}</p>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="row">
+                          {orderDeliveryList.map((item, index) => {
+                            return (
+                              <div className="col-md-6" key={index}>
+                                <div className="info-box">
+                                  <span
+                                    className="info-box-icon"
+                                    style={{
+                                      backgroundImage:
+                                        "url(../ui/Images/upload-list-image-card.png)",
+                                      backgroundSize: "cover",
+                                    }}
+                                  ></span>
+                                  <div className="info-box-content">
+                                    <span className="info-box-text">
+                                      {item?.name}
+                                    </span>
+                                    <span className="info-box-number"></span>
+                                  </div>
+                                  <div
+                                    className="info-box-icon"
+                                    onClick={() => downloadService(item?.uid)}
+                                  >
+                                    <img src="../ui/Images/Vector.png" />
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="card-body">
-                  {orderDeliveryList.length <= 0 && (
-                    <div className="form-row no-order">
-                      <div className="col-md-2">
-                        <img
-                          height={150}
-                          width={150}
-                          src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
-                        />
-                      </div>
-                      <div className="col-md-auto pt-4 ps-5">
-                        <span className="info">Nothing here to see yet</span>
-                        <p className="mt-1" style={{ width: 450 }}>
-                          Your delivery will appear here. your delivery date
-                          will be determined once you submit the requirements.
-                        </p>
-                      </div>
+              )}
+
+              {!featurePanelShow && (
+                <div className="card">
+                  <div className="card-header py-3">
+                    <div className="card1-info d-flex">
+                      <span className="info">Your Delivery</span>
                     </div>
-                  )}
-
-                  {orderDeliveryList.length > 0 && (
-                    <div className="form-row pending-order">
-                      {orderDeliveryNotes !== "" && (
-                          <div className="row" style={{width:"100%"}}>
-                          <div className="col-12">
-                          <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                            Comment Admin Notifier :
-                          </h6>
-                          <p className="mt-1">{orderDeliveryNotes}</p>
-                          </div>
+                  </div>
+                  <div className="card-body">
+                    {orderDeliveryList.length <= 0 && (
+                      <div className="form-row no-order">
+                        <div className="col-md-2">
+                          <img
+                            height={150}
+                            width={150}
+                            src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
+                          />
                         </div>
-                      )}
+                        <div className="col-md-auto pt-4 ps-5">
+                          <span className="info">Nothing here to see yet</span>
+                          <p className="mt-1" style={{ maxWidth: 450 }}>
+                            Your delivery will appear here. your delivery date
+                            will be determined once you submit the requirements.
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
-                      <div className="row">
+                    {orderDeliveryList.length > 0 && (
+                      <div className="form-row pending-order">
+                        {orderDeliveryNotes !== "" && (
+                          <div className="row" style={{ width: "100%" }}>
+                            <div className="col-12">
+                              <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                                Comment Admin Notifier :
+                              </h6>
+                              <p className="mt-1">{orderDeliveryNotes}</p>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* <div className="row"> */}
                         {orderDeliveryList.map((item, index) => {
                           return (
                             <div className="col-md-6" key={index}>
@@ -314,8 +388,9 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   style={{
                                     backgroundImage:
-                                      "url(../ui/Images/upload-list-image-card.png)",
-                                    backgroundSize: "cover",
+                                      // "url(../ui/Images/upload-list-image-card.png)",
+                                      "url(../ui/Images/download-file-logo.svg)",
+                                    backgroundSize: "contain", backgroundRepeat: "no-repeat",
                                   }}
                                 ></span>
                                 <div className="info-box-content">
@@ -328,17 +403,46 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   onClick={() => downloadService(item?.uid)}
                                 >
-                                  <img src="../ui/Images/Vector.png" />
+                                  {/* <img src="../ui/Images/Vector.png" /> */}
+                                  <img src="../ui/Images/download-file-icon.svg" />
                                 </div>
                               </div>
                             </div>
                           );
                         })}
+
+                        {/* Demo Date:23/08/2023 */}
+                        <div className="col-md-6" key="0">
+                        <div className="info-box">
+                          <span
+                            className="info-box-icon"
+                            style={{
+                              backgroundImage:
+                                "url(../ui/Images/download-file-logo.svg)",
+                              backgroundSize: "contain", backgroundRepeat: "no-repeat",
+                            }}
+                          ></span>
+                          <div className="info-box-content">
+                            <span className="info-box-text">
+                              demo
+                            </span>
+                            <span className="info-box-number"></span>
+                          </div>
+                          <div
+                            className="info-box-icon"
+                          >
+                            <img src="../ui/Images/download-file-icon.svg" style={{ backgroundSize: "contain", backgroundRepeat: "no-repeat" }} />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                        {/* </div> */}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Date:23/08/2023. */}
             </div>
           )}
 
@@ -385,46 +489,194 @@ const OrderDetails = ({
                     </span>
                   </div>
                 </div>
-                <div className="form-row mt-4">
+                <div className="form-row mt-3">
                   <div className="details">Order created</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#000" }}>
+                    <span className="info FontBold" style={{ color: "#00002A" }}>
                       {orderDetailsList?.orDate}
                     </span>
                   </div>
                 </div>
-                <div className="form-row mt-4">
+                <div className="form-row mt-3">
                   <div className="details">Order number</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#000" }}>
+                    <span className="info FontBold" style={{ color: "#00002A" }}>
                       #{orderDetailsList?.orNumber}
                     </span>
                   </div>
                 </div>
-                <div className="form-row mt-4">
+                <div className="form-row mt-3">
                   <div className="details">Delivery date &amp; time</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#000" }}>
+                    <span className="info FontBold" style={{ color: "#00002A" }}>
                       {servicesList[0]?.deliveryDate}
                     </span>
                   </div>
                 </div>
-                <div className="form-row mt-4">
+                <div className="form-row mt-3">
                   <div className="details">Total</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#000" }}>
+                    <span className="info FontBold" style={{ color: "#00002A" }}>
                       ${orderDetailsList?.orPrice}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
+            {/* Date:23/08/2023 */}
+            <div className="card">
+              <div className="card-header py-3">
+                <div className="card1-info d-flex">
+                  <span className="info">Flyses Support</span>
+                </div>
+              </div>
+              <div className="card-body">
+                <div
+                  className="info-box support"
+                  style={{ boxShadow: "none", minHeight: "auto"}}
+                >
+                  <div className="info-box-content" style={{ paddingLeft:"0px" }}>
+                    <span className="info-box-text">FAQs</span>
+                  </div>
+                  <span
+                    className="info-box-icon"
+                    style={{ transition: "0.5s" }}
+                  >
+                    <img src="../ui/Images/arrow-right.png" />
+                  </span>
+                </div>
+                <div
+                  className="info-box support"
+                  style={{ boxShadow: "none", minHeight: "auto" }}
+                >
+                  <div className="info-box-content" style={{ paddingLeft:"0px" }}>
+                    <span className="info-box-text">Message to our team</span>
+                  </div>
+                  <span
+                    className="info-box-icon"
+                    style={{ transition: "0.5s" }}
+                  >
+                    <img src="../ui/Images/arrow-right.png" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* Date:23/08/2023 */}
           </div>
           {/* Right First Card */}
+
+          {/* {!featurePanelShow && ( */}
+          {!featurePanelShow && (
+            <div className="col-md-8 card3 ">
+              {/* <div className="card">
+                <div className="card-header py-3">
+                  <div className="card1-info d-flex">
+                    <span className="info">Your Delivery</span>
+                  </div>
+                </div>
+                <div className="card-body">
+                  {orderDeliveryList.length <= 0 && (
+                    <div className="form-row no-order">
+                      <div className="col-md-2">
+                        <img
+                          height={150}
+                          width={150}
+                          src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-1394.jpg?size=626&ext=jpg&ga=GA1.2.1238397793.1685471528&semt=ais"
+                        />
+                      </div>
+                      <div className="col-md-auto pt-4 ps-5">
+                        <span className="info">Nothing here to see yet</span>
+                        <p className="mt-1" style={{ width: 450 }}>
+                          Your delivery will appear here. your delivery date
+                          will be determined once you submit the requirements.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* {orderDeliveryList.length > 0 && ( */}
+                  {/*{orderDeliveryList.length > 0 || 1 == 1 && (
+                    <div className="form-row pending-order">
+                      {orderDeliveryNotes !== "" && (
+                        <div className="row" style={{ width: "100%" }}>
+                          <div className="col-12">
+                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                              Comment Admin Notifier :
+                            </h6>
+                            <p className="mt-1">{orderDeliveryNotes}</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* <div className="row"> */}
+                      {/*{orderDeliveryList.map((item, index) => {
+                        return (
+                          <div className="col-md-6" key={index}>
+                            <div className="info-box">
+                              <span
+                                className="info-box-icon"
+                                style={{
+                                  backgroundImage:
+                                    // "url(../ui/Images/upload-list-image-card.png)",
+                                    "url(../ui/Images/download-file-logo.svg)",
+                                  backgroundSize: "contain", backgroundRepeat: "no-repeat",
+                                }}
+                              ></span>
+                              <div className="info-box-content">
+                                <span className="info-box-text">
+                                  {item?.name}
+                                </span>
+                                <span className="info-box-number"></span>
+                              </div>
+                              <div
+                                className="info-box-icon"
+                                onClick={() => downloadService(item?.uid)}
+                              >
+                                {/* <img src="../ui/Images/Vector.png" /> */}
+                                {/*<img src="../ui/Images/download-file-icon.svg" />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      {/* Demo Date:23/08/2023 */}
+                      {/* <div className="col-md-6" key="0">
+                        <div className="info-box">
+                          <span
+                            className="info-box-icon"
+                            style={{
+                              backgroundImage:
+                                "url(../ui/Images/download-file-logo.svg)",
+                              backgroundSize: "contain", backgroundRepeat: "no-repeat",
+                            }}
+                          ></span>
+                          <div className="info-box-content">
+                            <span className="info-box-text">
+                              demo
+                            </span>
+                            <span className="info-box-number"></span>
+                          </div>
+                          <div
+                            className="info-box-icon"
+                          >
+                            <img src="../ui/Images/download-file-icon.svg" style={{ backgroundSize: "contain", backgroundRepeat: "no-repeat" }} />
+                          </div>
+                        </div>
+                      </div> */}
+                      {/* </div> */}
+                    {/*</div>
+                  )}
+                </div>
+              </div> */}
+            </div>
+          )}
+
           {/* Left Second Card */}
           {featurePanelShow && (
             <div className="col-md-8 card3 mt-3">
-              <div className="card">
+              {/* Date:23/08/2023 */}
+              {/* <div className="card">
                 <div className="card-header py-3">
                   <div className="card1-info d-flex">
                     <span className="info">Your Delivery</span>
@@ -453,12 +705,12 @@ const OrderDetails = ({
                   {orderDeliveryList.length > 0 && (
                     <div className="form-row pending-order">
                       {orderDeliveryNotes !== "" && (
-                        <div className="row" style={{width:"100%"}}>
+                        <div className="row" style={{ width: "100%" }}>
                           <div className="col-12">
-                          <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                            Comment Admin Notifier :
-                          </h6>
-                          <p className="mt-1">{orderDeliveryNotes}</p>
+                            <h6 className="mt-1" style={{ fontWeight: 600 }}>
+                              Comment Admin Notifier :
+                            </h6>
+                            <p className="mt-1">{orderDeliveryNotes}</p>
                           </div>
                         </div>
                       )}
@@ -496,14 +748,15 @@ const OrderDetails = ({
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
 
           {/* Left Second Card */}
           {/* Right Second Card */}
           <div className="col-md-4 card4 mt-3">
-            <div className="card">
+            {/* Date:23/08/2023 */}
+            {/* <div className="card">
               <div className="card-header py-3">
                 <div className="card1-info d-flex">
                   <span className="info">Flyses Support</span>
@@ -539,7 +792,8 @@ const OrderDetails = ({
                   </span>
                 </div>
               </div>
-            </div>
+            </div> */}
+            {/* 23/08/2023. */}
             {/*  */}
             <div className="col card3">
               <div className="py-3">
@@ -558,6 +812,7 @@ const OrderDetails = ({
           </div>
           {/* Review */}
           {servicesList[0]?.orStatus === "Completed" && !isReview && (
+            // {1 == 1 && (
             <div className="col-md-12 card5">
               <div className="card">
                 <div className="card-body">
@@ -855,7 +1110,7 @@ const OrderDetails = ({
                                 borderRadius: 0,
                               }}
                             >
-                              <img src="../ui/Images/Smile-group-24.png" />
+                              <img src="../ui/Images/smile-icon-text.svg" />
                             </span>
 
                             <div className="ms-3 input-g">
@@ -890,42 +1145,42 @@ const OrderDetails = ({
       {(servicesList[0]?.orStatus === "Delivered" ||
         servicesList[0]?.orStatus === "Completed" ||
         servicesList[0]?.orStatus === "Revision") && (
-        <footer className="Order-status-footer">
-          <div className="container">
-            <div className="footer">
-              <div className="form-row">
-                <div className="confirm-ord">
-                  <p style={{ marginTop: "10px", marginBottom: "0px" }}>
-                    Do you want to revisions this order?
-                  </p>
-                </div>
-                <div className="d-flex ml-auto">
-                  {servicesList[0]?.orStatus !== "Revision" && (
-                    <button
-                      className="btn btn-outline-dark"
-                      style={{ color: "white" }}
-                      onClick={() => handleConfirmClick(5)}
-                    >
-                      Request Revisions
-                    </button>
-                  )}
+          <footer className="Order-status-footer">
+            <div className="container">
+              <div className="footer">
+                <div className="form-row">
+                  <div className="confirm-ord">
+                    <p style={{ marginTop: "10px", marginBottom: "0px" }}>
+                      Do you want to revisions this order?
+                    </p>
+                  </div>
+                  <div className="d-flex ml-auto">
+                    {servicesList[0]?.orStatus !== "Revision" && (
+                      <button
+                        className="btn btn-outline-dark"
+                        // style={{ color: "white" }}
+                        onClick={() => handleConfirmClick(5)}
+                      >
+                        Request Revisions
+                      </button>
+                    )}
 
-                  {(servicesList[0]?.orStatus === "Delivered" ||
-                    servicesList[0]?.orStatus === "Revision") && (
-                    <button
-                      className="btn btn-outline-dark"
-                      style={{ color: "white" }}
-                      onClick={() => handleConfirmClick(6)}
-                    >
-                      Confirm
-                    </button>
-                  )}
+                    {(servicesList[0]?.orStatus === "Delivered" ||
+                      servicesList[0]?.orStatus === "Revision") && (
+                        <button
+                          className="btn btn-outline-dark"
+                          style={{ backgroundColor:"#0C0D48",borderColor:"#0C0D48",color:"#FFFFFF" }}
+                          onClick={() => handleConfirmClick(6)}
+                        >
+                          Confirm
+                        </button>
+                      )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </footer>
-      )}
+          </footer>
+        )}
     </>
   );
 };

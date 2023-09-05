@@ -5,7 +5,9 @@ const CommanFaq = () => {
     <div className="faq my-5">
       {/* FAQ */}
       <div className="faq-section mt-5">
-        <div className="container">
+        <div
+          className=""
+        >
           <div className="accordion" id="accordionExample">
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingOne">
