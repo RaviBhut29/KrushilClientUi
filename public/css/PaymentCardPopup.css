@@ -1,0 +1,270 @@
+.ant-drawer-title {
+    color: var(--theme-primary, #0C0D48);
+    font-size: 24px !important;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    line-height: 33.063px;
+}
+
+.PaymentCardPopup {
+    color: var(--theme-success, #198754);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    line-height: 25.189px;
+    border-radius: 7px;
+    border: 1px solid var(--theme-success, #198754);
+    background: #E7FCF2;
+    padding: 5px 10px;
+    gap: 10px;
+}
+
+.PaymentCard .col-md-12 {
+    /* border-radius: 10px; */
+    /* border: 1px solid var(--gray-200, #E9ECEF); */
+    /* background: #FFF; */
+    /* padding-top: 20px; */
+}
+
+.PaymentCard .PaymentCardText {
+    color: var(--theme-primary, #0C0D48);
+    font-size: 20px;
+    font-family: var(--Inter_SemiBold);
+    font-weight: 600;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+.PaymentCard .PaymentCardTextCoupon{
+    color: var(--theme-primary, #0C0D48);
+    font-size: 16px;
+    font-family: var(--Inter_SemiBold);
+    font-weight: 600;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+}
+.PaymentCard .PaymentCardText+p {
+    color: var(--gray-600, #6C757D);
+    width: 380px;
+    font-size: 15px;
+    font-family: var(--Inter_Header);
+    line-height: 25.189px;
+    display: flex;
+    /* width: 296px; */
+    flex-direction: column;
+    margin-left: 10px;
+}
+.PaymentCard .PaymentCardTextCoupon + p{
+    color: var(--gray-600, #6C757D);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    line-height: 25.189px;
+    display: flex;
+    /* width: 296px; */
+    flex-direction: column;
+}
+
+.PaymentCard .StanderdPlanPrice {
+    color: var(--theme-secondary, #E71D7C);
+    text-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    font-size: 34.645px;
+    font-family: var(--Inter_Header);
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.PaymentCard .PaymentCharges {
+    color: var(--orange-500, #FD7E14);
+    font-size: 14.422px;
+    font-family: var(--Inter_Bold);
+    font-weight: 700;
+    line-height: 21.633px;
+    border-radius: 6.012px;
+    border: 0.859px solid var(--orange-500, #FD7E14);
+    background: #FFF9F3;
+    padding: 4.294px 8.588px;
+    margin-left: 10px;
+}
+
+/* Count */
+
+.PaymentCardText span {
+    cursor: pointer;
+}
+
+.PaymentCardText .number {
+    margin-left: auto;
+    text-align: -webkit-center;
+}
+
+.PaymentCardText .minus,
+.PaymentCardText .plus {
+    width: 20px;
+    height: 20px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 8px 5px 8px 5px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.PaymentCardText .NumbersInput {
+    height: 34px;
+    width: 60px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+    font-family: var(--Inter_SemiBold);
+}
+
+/* Count */
+
+.StandardPlanCard {
+    border-radius: 10px;
+    background: #FFF;
+    width: 100% !important;
+    height: 250px;
+    flex-shrink: 0;
+}
+
+.StandardPlanCard .card-header {
+    background-color: #FFF;
+    font-size: 18px;
+    color: var(--theme-primary, #0C0D48);
+    font-weight: 600;
+    line-height: 120%;
+    font-family: var(--Inter_Header);
+}
+
+.StandardPlanCard .StandardPlanSubHeader {
+    color: var(--gray-600, #6C757D);
+    font-size: 16.793px;
+    font-family: var(--Inter_Header);
+    line-height: 25.189px;
+    width: 296px;
+}
+
+.Total {
+    background: #80808017;
+}
+
+/* .PaymentCard .btn {
+    background: #0C0D48;
+} */
+
+/* Date:09/08/2023. */
+/* .ant-drawer .btn-primary:hover {
+    background-color: #3b3c7d;
+    border-color: #3b3c7d;
+} */
+
+.PaymentCard .btn-primary:before {
+    top: 0;
+    right: 0;
+    left: auto;
+    content: "";
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: 500ms all ease;
+    transition: 500ms all ease;
+    background-image: linear-gradient(40deg, #e71d7c 0%, #131558 100%);
+}
+
+.PaymentCard .btn-primary:hover {
+    color: #fff;
+}
+
+.PaymentCard .btn-primary:hover:before {
+    left: 0;
+    width: 100%;
+    right: auto;
+}
+
+.PaymentCard .btn-primary {
+    font-family: var(--Inter_SemiBold);
+    z-index: 1;
+    color: #fff;
+    height: 55px;
+    width: 210px;
+    overflow: hidden;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    background-color: #0C0D48;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    width: 210px;
+    /* font-weight: 600; */
+    font-size: 18px;
+    border: none;
+}
+
+.PaymentCard .btn-primary:hover::before {
+    left: 0;
+    width: 100%;
+    right: auto;
+}
+
+.PaymentCard .btn-primary:hover::after {
+    content: "";
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    border-radius: 30px;
+    -webkit-transition: 500ms all ease;
+    transition: 500ms all ease;
+    background-image: linear-gradient(40deg, #1c3c61 0%, #f94f5a 100%);
+}
+
+.PaymentCard .Paymentterms {
+    font-family: var(--Inter_Header);
+    font-weight: 400;
+    font-size: 18.23px;
+    color: #212529;
+}
+
+.PaymentCard .Paymentterms a {
+    color: #0D6EFD;
+}
+
+@media only screen and (max-width: 426px) {
+    .PaymentCard .StanderdPlanPrice {
+        font-size: 25px;
+    }
+    .PaymentCard .PaymentCardText+p{
+        width: fit-content !important;
+    }
+    .PaymentCardText .number{
+        width: 110px;
+    }
+    .PaymentCard .Paymentterms{
+        font-size: 14px;
+    }
+    .ServiceName{
+        max-width: 200px !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .ServiceName{
+        /* background-color: red; */
+        max-width: 370px;
+        word-wrap: break-word;
+    }
+}

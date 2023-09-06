@@ -1,0 +1,20 @@
+.check-list label {
+  cursor: pointer !important;
+  font-weight: 500 !important;
+  margin-top:-15px !important
+}
+
+.check-list input {
+  margin-right: 5px !important;
+  margin-top: -2px !important;
+}
+
+.resetLabel{
+    margin-left: auto !important;
+    cursor: pointer !important;
+    color: #858585 !important;
+}
+.resetLabel:hover{
+    color: black !important;
+    font-weight: bold !important;
+}

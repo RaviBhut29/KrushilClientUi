@@ -1,0 +1,136 @@
+:root {
+    --Inter_Header: 'Inter_Regular';
+    --Inter_Local: 'Inter_Local';
+    --Inter_Black: 'Inter_Black';
+    --Inter_Bold: 'Inter_Bold';
+    --Inter_ExtraBold: 'Inter_ExtraBold';
+    --Inter_ExtraLight: 'Inter_ExtraLight';
+    --Inter_Light: 'Inter_Light';
+    --Inter_Medium: 'Inter_Medium';
+    --Inter_SemiBold: 'Inter_SemiBold';
+    --Inter_Thin: 'Inter_Thin';
+    --Header-lin: linear-gradient(97.5deg,
+            #e71d7c 7.2%,
+            #3e4581 32.6%,
+            #e71d7c 51%)
+}
+
+/* Access var(--Inter-Header); */
+
+@font-face {
+    font-family: 'Inter_Regular';
+    src: url(../ui/font/Inter-Regular.woff);
+    src: url(../ui/font/Inter-Regular.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Local';
+    src: url(../ui/font/Inter-Light.woff);
+    src: url(../ui/font/Inter-Light.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Black';
+    src: url(../ui/font/Inter-Black.woff);
+    src: url(../ui/font/Inter-Black.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Bold';
+    src: url(../ui/font/Inter-Bold.woff);
+    src: url(../ui/font/Inter-Bold.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_ExtraBold';
+    src: url(../ui/font/Inter-ExtraBold.woff);
+    src: url(../ui/font/Inter-ExtraBold.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_ExtraLight';
+    src: url(../ui/font/Inter-ExtraLight.woff);
+    src: url(../ui/font/Inter-ExtraLight.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Light';
+    src: url(../ui/font/Inter-Light.woff);
+    src: url(../ui/font/Inter-Light.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Medium';
+    src: url(../ui/font/Inter-Medium.woff);
+    src: url(../ui/font/Inter-Medium.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_SemiBold';
+    src: url(../ui/font/Inter-SemiBold.woff);
+    src: url(../ui/font/Inter-SemiBold.woff2);
+}
+
+@font-face {
+    font-family: 'Inter_Thin';
+    src: url(../ui/font/Inter-Thin.woff);
+    src: url(../ui/font/Inter-Thin.woff2);
+}
+
+.back-main {
+    position: absolute;
+    opacity: 0.35;
+    top: 0%;
+    z-index: -2;
+    height: auto;
+    width: 100%;
+}
+
+.back {
+    position: absolute;
+    opacity: 0.25;
+    top: 0%;
+    z-index: -1;
+    height: auto;
+    width: 100%;
+    filter: brightness(2);
+}
+
+.breaddiv {
+    position: relative;
+    align-items: center;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 23px;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 0.5px solid #DEE2E6;
+    box-shadow: 0px 36px 22px rgba(0, 0, 0, 0.01), 0px 16px 16px rgba(0, 0, 0, 0.02), 0px 4px 9px rgba(0, 0, 0, 0.02), 0px 0px 0px rgba(0, 0, 0, 0.02);
+    border-radius: 25px;
+}
+
+.breadcrumb .default {
+    width: 46px;
+    height: 24px;
+    font-family: var(--Inter_Medium);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #212529;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+    cursor: pointer !important;
+    color: #000 !important;
+}

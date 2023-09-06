@@ -1,0 +1,57 @@
+.brands-card {
+    .headings {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin: 0;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+            color: #6C757D;
+        }
+    }
+
+    .price {
+        margin-bottom: 10px;
+
+        .bold {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            color: #FD7E14;
+        }
+
+        span {
+            color: #ADB5BD;
+        }
+    }
+
+    div.details {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #343A40;
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+
+    .discount {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        cursor: pointer;
+        color: #FD7E14;
+        padding: 6px 12px;
+        background: #FFF9F4;
+        border: 0.5px solid #FD7E14;
+        border-radius: 4px;
+        width: 142px;
+    }
+}

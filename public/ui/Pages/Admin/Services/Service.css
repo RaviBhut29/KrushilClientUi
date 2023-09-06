@@ -1,0 +1,223 @@
+@charset "UTF-8";
+@media screen and (min-width: 570px) {
+  .edit-modals {
+    max-width: 640px !important;
+  }
+}
+.edit-modals .modal-content .modal-header {
+  padding: 0.93rem 1.4rem;
+}
+.edit-modals .modal-content .modal-header .modal-title {
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #172b4d;
+}
+.edit-modals .modal-content .modal-body .body-title {
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #172b4d;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.edit-modals .modal-content .modal-body .form-group .form-control {
+  background-color: #fff;
+}
+.edit-modals .modal-content .modal-body .form-group label {
+  font-family: "SF Pro" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #172b4d;
+  margin-bottom: 6px;
+}
+.edit-modals .modal-content .modal-body .form-group input,
+.edit-modals .modal-content .modal-body .form-group select {
+  border: 1px solid #ced5e2;
+  padding: 8px 16px;
+  height: 40px;
+  font-family: "SF Pro" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  color: #172b4d;
+  border-radius: 5px;
+}
+.edit-modals .modal-content .modal-body .form-group input:focus,
+.edit-modals .modal-content .modal-body .form-group select:focus {
+  outline: none;
+}
+.edit-modals .modal-content .modal-body .form-group input::-moz-placeholder, .edit-modals .modal-content .modal-body .form-group select::-moz-placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .form-group input::placeholder,
+.edit-modals .modal-content .modal-body .form-group select::placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .form-group input.is-invalid,
+.edit-modals .modal-content .modal-body .form-group select.is-invalid {
+  border: 1px solid #ea5455;
+}
+.edit-modals .modal-content .modal-body .form-group textarea {
+  border: 1px solid #ced5e2;
+  height: 96px;
+  font-family: "SF Pro" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  color: #172b4d;
+}
+.edit-modals .modal-content .modal-body .form-group textarea::-moz-placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .form-group textarea::placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .form-group textarea.is-invalid {
+  border: 1px solid #ea5455;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input {
+  border: 0;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input input {
+  text-align: left;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input .input-group-prepend {
+  position: absolute;
+  right: 14px;
+  bottom: 5px;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input .input-group-prepend button {
+  padding: 0;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input .input-group-append {
+  position: absolute;
+  right: 13px;
+  top: 5px;
+}
+.edit-modals .modal-content .modal-body .form-group .number-of-input .input-group-append button {
+  padding: 0;
+}
+.edit-modals .modal-content .modal-body .form-group .belasting-radio label {
+  margin-bottom: 0;
+}
+.edit-modals .modal-content .modal-body .form-group .belasting-radio label::before {
+  border: 2px solid #e4e8ef !important;
+  top: -1px !important;
+}
+.edit-modals .modal-content .modal-body .form-group .belasting-radio input:checked ~ label::before {
+  content: "•";
+  font-size: 33px;
+  text-align: right;
+  border: 0 !important;
+}
+.edit-modals .modal-content .modal-body .form-group .belasting-radio:nth-child(2) input:checked ~ label::before, .edit-modals .modal-content .modal-body .form-group .belasting-radio:last-child input:checked ~ label::before {
+  content: "•";
+  text-align: center;
+}
+.edit-modals .modal-content .modal-body .calc-formselect label {
+  font-family: "SF Pro" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #172b4d;
+  margin-bottom: 6px;
+}
+.edit-modals .modal-content .modal-body .react-tag-input {
+  border: 1px solid #ced5e2;
+  padding: 8px 16px;
+  height: 40px;
+  font-family: "SF Pro" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  color: #172b4d;
+  border-radius: 5px;
+}
+.edit-modals .modal-content .modal-body .react-tag-input:focus {
+  outline: none;
+}
+.edit-modals .modal-content .modal-body .react-tag-input::-moz-placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .react-tag-input::placeholder {
+  color: #b9b9c3;
+}
+.edit-modals .modal-content .modal-body .react-tag-input.is-invalid {
+  border: 1px solid #ea5455;
+}
+.edit-modals .modal-content .modal-body .save-preset .custom-control-label {
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #0c0d48;
+  background-color: transparent;
+  border: 0;
+  margin-top: 10px;
+  margin-left: -22px;
+}
+.edit-modals .modal-content .modal-body .save-preset .custom-control-label::before, .edit-modals .modal-content .modal-body .save-preset .custom-control-label::after {
+  display: none;
+}
+.edit-modals .modal-content .modal-body .report-select-box {
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.edit-modals .modal-content .modal-body .report-select-box .report-checkbox label {
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #606d84;
+}
+.edit-modals .modal-content .modal-footer {
+  border-top: 1px solid #ced5e2 !important;
+}
+.edit-modals .modal-content .modal-footer .accept-btn {
+  background: #0c0d48 !important;
+  border-radius: 5px;
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+.edit-modals .modal-content .modal-footer .cancel-btn {
+  border: 1px solid #0c0d48 !important;
+  font-family: SF Pro !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  background-color: transparent !important;
+  margin: 0;
+  letter-spacing: 0.4px;
+  color: #0c0d48 !important;
+  margin-right: 16px;
+}
+
+.profile-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 4px;
+}/*# sourceMappingURL=Service.css.map */

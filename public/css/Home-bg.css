@@ -1,0 +1,207 @@
+.home {
+  position: relative;
+}
+
+/* .home:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("../ui/Images/bg_straigth.png") !important;
+  background-repeat: no-repeat;
+  width: 1669px;
+  height: fit-content !important;
+ 
+  background-size: cover;
+  opacity: 0.3;
+} */
+/* .home:before {
+    background: url("../ui/Images/bg_white.png") !important;
+    content: "";
+    position: absolute;
+    top: -165px;
+    right: 0;
+    height: fit-content !important;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+} */
+/* .home:before {
+  /* .home:before { *-/
+  background: url(../ui/Images/bg_white.png) !important;
+  /* background: url("../ui/Images/Rectangle 3741.png") !important; *-/
+  content: "";
+  position: absolute;
+  top: 140px;
+  right: 0px;
+  height: 1229px !important;
+  bottom: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  z-index: -1;
+  opacity: 100% !important;
+} */
+
+.home:before {
+  /* background-image: url(../ui/Images/Frame-svg-bg.svg) !important; */
+  background-image: url(../ui/Images/bg-31.svg) !important;
+  content: "" !important;
+  position: absolute !important;
+  /* top: -142px !important; */
+  top: -112px !important;
+  right: 0px !important;
+  height: 1400px !important;
+  /* height: 25.7% !important; */
+  bottom: 0 !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  width: 100% !important;
+  z-index: -1 !important;
+  opacity: 0.8 !important;
+}
+.home:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../ui/Images/bg_straigth.png) !important;
+  background-repeat: no-repeat;
+  width: 1669px;
+  height: 916px !important;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -3;
+}
+
+.half-half-image-text-How:before {
+  background: none !important;
+}
+
+.half-half-image-text:before {
+  background: none !important;
+}
+
+.userNew:after {
+  height: 500px !important;
+}
+
+.userNew:before {
+  /* height: 500px !important; */
+  height: 1000px !important;
+}
+
+
+/* .float-chat-button {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  z-index: 998;
+} */
+
+.float-chat {
+  margin-top: 21px;
+  margin-right: 2px;
+}
+
+
+/* .float-chat-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #E71D7C;
+  transition: .5s;
+  transform: scale(.9);
+  z-index: -1;
+} */
+
+/* .float-chat-button:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #841a4c;
+}
+
+.float-chat-button:hover {
+  color: #fff;
+  box-shadow: 0 0 5px #ba1e67;
+  text-shadow: 0 0 5px #f90275;
+} */
+
+
+
+.float-chat-button:before {
+  top: 0;
+  right: 0;
+  left: auto;
+  content: "";
+  z-index: -1;
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  /* border-radius: 30px; */
+  -webkit-transition: 500ms all ease;
+  transition: 500ms all ease;
+  /* background-image: linear-gradient(40deg, #137ffc 0%, #f94f5a 100%); */
+  background-image: linear-gradient(40deg, #e71d7c 0%, #131558 100%);
+}
+
+.float-chat-button:hover {
+  color: #fff;
+}
+
+.float-chat-button:hover:before {
+  left: 0;
+  width: 100%;
+  right: auto;
+}
+
+.float-chat-button {
+  position: fixed;
+  width: 75px;
+  height: 75px;
+  bottom: 50px;
+  right: 50px;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  z-index: 998;
+
+  overflow: hidden;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #0C0D48;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.float-chat-button:hover::before {
+  left: 0;
+  width: 100%;
+  right: auto;
+}
+
+.float-chat-button:hover::after {
+  content: "";
+  z-index: -1;
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  border-radius: 30px;
+  -webkit-transition: 500ms all ease;
+  transition: 500ms all ease;
+  background-image: linear-gradient(40deg, #1c3c61 0%, #f94f5a 100%);
+}

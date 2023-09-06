@@ -1,0 +1,309 @@
+@import "../../../Scss/variables";
+
+
+.product-wrap {
+    .modern-text {
+        color: #ADB5BD;
+        ;
+        font-size: 15px;
+        line-height: 37px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        font-weight: 500;
+
+    }
+
+    h1 {
+        color: #0C0D48;
+        font-weight: 700;
+        font-size: 32px;
+    }
+
+    .count-text {
+        font-size: 17.9482px;
+        color: #0C0D48;
+        font-weight: 500;
+    }
+
+    .list-time {
+        list-style-type: disc;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1AA179;
+    }
+
+    .conversation-btn {
+        background: #212529;
+        padding: 10.3051px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+        font-weight: 400;
+        font-size: 18.003px;
+        line-height: 26px;
+        color: #FFFFFF;
+    }
+
+    .share-wrap {
+        border: 1px solid #212529;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 50px;
+        height: 50px !important;
+        background-color: #fff;
+    }
+
+    .pricing-card {
+        background: #FFFFFF;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 26px 28px;
+
+        &:after {
+            content: "" !important;
+            position: absolute !important;
+            top: -10px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            z-index: -1 !important;
+        }
+
+        .pricing-plan {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .pricing-card-body {
+            .green-text {
+                color: #198754;
+                font-weight: 600;
+                font-size: 16.7928px;
+                line-height: 25px;
+            }
+
+            .grey-text {
+                color: #6C757D;
+                font-size: 16.7928px;
+                line-height: 25px;
+            }
+
+            .bold-content {
+                color: #212529;
+                font-weight: 600;
+                font-size: 16.7928px;
+                line-height: 25px;
+            }
+
+            .capital-text {
+                color: #ADB5BD;
+                font-size: 13.5711px;
+                line-height: 25px;
+                letter-spacing: 2.48567px;
+                text-transform: uppercase;
+            }
+
+            .pricing-list {
+                padding-left: 30px;
+
+                li {
+                    list-style-type: disc;
+                    line-height: 30px;
+
+                    a {
+                        color: #212529;
+                        font-size: 15px;
+                    }
+                }
+            }
+
+            .explore-btn {
+                background: linear-gradient(97.5deg, #E71D7C 7.2%, #3E4581 57.6%, #E71D7C 84%);
+                color: #fff;
+                width: 100%;
+                padding: 15px 20px;
+                font-size: 17.293px;
+                border-radius: 4.23349px;
+            }
+        }
+
+    }
+
+    .product-tab {
+        .product-content-head {
+            max-width: 650px;
+        }
+
+        .product-num-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            line-height: 37px;
+        }
+
+        .yellow-text {
+            color: #FD7E14 !important;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .note-content {
+            padding-left: 20px;
+
+            li {
+                list-style-type: disc;
+                font-weight: 400;
+                font-style: italic;
+            }
+        }
+
+        .format-including {
+            .text-green {
+                color: #198754;
+                font-weight: 500;
+                font-size: 19.0853px;
+                line-height: 23px;
+            }
+        }
+
+        .format-including-box {
+            border: 1px solid #ADB5BD;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+            border-radius: 7px;
+            background: #FFFFFF;
+            padding: 10px;
+
+            p {
+                border-right: 1px solid #ccc;
+
+                &:last-child {
+                    border-right: none !important;
+                }
+
+                padding: 7px 15px;
+                font-size: 15px;
+                font-weight: 500;
+                color: #6C757D;
+            }
+        }
+        .recommended-text {
+            color: #ADB5BD;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 37px;
+        }
+        .reco-card{
+            background: rgba(255, 255, 255, 1e-06);
+            border: 1px solid #ADB5BD;
+            border-radius: 5px;
+    
+            .reco-card-head {
+                h1 {
+                    color: #0C0D48;
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 23px;
+                }
+                p{
+                    font-weight: 400;
+                    font-size: 14.1014px;
+                    line-height: 150%;
+                }
+            }
+            .recommended-card-body{
+                padding: 20px;
+                .orange-text{
+                    color: #FD7E14 !important;
+                    font-size: 17px !important;
+                    font-weight: 600;
+                    margin-right: 8px;
+                }
+                .text-sm {
+                    font-size: 14px;
+                }
+                .dark-text{
+                    color: #343A40 !important;
+                    font-weight: 400 !important;
+                }
+                .yellow-btn{
+                    background: #FFF9F4;    
+                    border: 0.440667px solid #FD7E14;
+                    border-radius: 3.52534px;
+                    color: #FD7E14;
+                    font-weight: 400;
+                    font-size: 14.1014px;
+                    line-height: 150%;
+                    padding: 5px 11px;
+                }
+            }
+
+        }
+       
+    }
+    .review-section {
+        .review-col-wrap {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-top: 60px;
+            .review-col {
+                .review-img-wrap{
+                    max-width: 80px;
+                    height: 80px;
+                    width: 100%;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            
+        }
+    }
+    
+    .faq-section {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .faq-title{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 48px;
+            margin-bottom: 41px;
+
+            .color-pink{
+                color: #E71D7C;
+            }
+        }
+
+        h4 {
+            font-size: 40px;
+            color: #000;
+        }
+        .accordion-item{
+            background-color: #fff !important;
+            border: 1px solid #E9ECEF ;
+            margin-bottom: 30px !important;
+            border-radius: 20px !important;
+            box-shadow: 20px 35px 70px rgba(0, 0, 0, 0.04);
+        }
+        .accordion-button:not(.collapsed) {
+            background: #fff !important;
+            box-shadow: none !important;
+        }
+        .accordion-button {
+            background: #fff !important;
+            border-radius: 20px !important;
+            font-size: 18px;
+            color: #212529;
+            padding: 20px 25px;
+        }
+        .accordion-button:focus {
+            box-shadow:  none !important;
+        }
+        .accordion-body {
+            font-size: 16px !important;
+        }
+    }
+}

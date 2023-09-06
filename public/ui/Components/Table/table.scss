@@ -1,0 +1,349 @@
+@font-face {
+	font-family: SF Pro;
+	font-weight: 400;
+	src: url("../../../assets/fonts/SF-Pro-Text-Regular.otf");
+}
+
+@font-face {
+	font-family: SF Pro;
+	font-weight: 500;
+	src: url("../../../assets/fonts/SF-Pro-Text-Medium.otf");
+}
+
+@font-face {
+	font-family: SF Pro;
+	font-weight: 700;
+	src: url("../../../assets/fonts/SF-Pro-Text-Bold.otf");
+}
+
+.user-common-table_header {
+	h1 {
+		// font-family: "SF Pro" !important;
+		font-style: normal;
+		font-size: 32px;
+		font-weight: 700;
+		line-height: 40px;
+		color: #172b4d;
+		margin-bottom: 0 !important;
+	}
+
+	.table-search-box {
+		.dataTable-filter {
+			height: 40px !important;
+			min-width: 224px;
+			padding-right: 25px;
+			border: 1px solid #ced5e2;
+			border-radius: 5px;
+			// font-family: "SF Pro" !important;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 24px;
+			color: #b9b9c3;
+
+			@media screen and (max-width: 768px) {
+				min-width: auto;
+			}
+		}
+
+		.search-icon {
+			position: absolute;
+			right: 10px;
+			top: calc(50% - 7px);
+		}
+	}
+
+	.new-collection-btn {
+		// font-family: "SF Pro" !important;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+		letter-spacing: 0.4px;
+		color: #ffffff !important;
+		background: #0c0d48 !important;
+		border-radius: 5px !important;
+		padding: 0 17px !important;
+	}
+
+	.export-csv-btn {
+		padding: 11px 17px !important;
+	}
+
+	.clock-btn {
+		margin: 0 16px;
+		padding: 0 22px !important;
+		border: 1px solid #0c0d48;
+		border-radius: 5px;
+	}
+}
+
+.user-common-table {
+	.table-hover-animations {
+		thead {
+			tr {
+				th {
+					// font-family: "SF Pro" !important;
+					font-style: normal;
+					font-weight: 500;
+					font-size: 12px;
+					line-height: 14px;
+					letter-spacing: 1px;
+					text-transform: uppercase;
+					color: #606d84;
+					padding: 8.5px 16px;
+					vertical-align: middle;
+					border: 0;
+					background: #f5f6fa !important;
+
+					&:first-child {
+						border-top-left-radius: 5px;
+						border-bottom-left-radius: 5px;
+					}
+
+					&:last-child {
+						border-top-right-radius: 5px;
+						border-bottom-right-radius: 5px;
+					}
+
+					.filter-dropdown {
+						background: #ffffff;
+						border: 1px solid #e4e8ef;
+						box-sizing: border-box;
+						box-shadow: 0px 8px 16px rgba(13, 47, 135, 0.04);
+						border-radius: 5px;
+						padding: 12px;
+
+						.filters-list {
+							padding-bottom: 12px;
+
+							.country-input {
+								&:checked {
+									filter: drop-shadow(0px 2px 4px rgba(115, 103, 240, 0.4));
+								}
+							}
+
+							label {
+								// font-family: "SF Pro";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 14px;
+								color: #172b4d;
+								margin-left: 8px !important;
+							}
+						}
+
+						button {
+							width: 100%;
+							// font-family: "SF Pro";
+							font-style: normal;
+							font-weight: 500;
+							font-size: 12px;
+							line-height: 16px;
+							text-align: center;
+							letter-spacing: 0.366667px;
+							color: #ffffff;
+							padding: 7px 0 !important;
+							background: #0c0d48 !important;
+							border-radius: 5px;
+						}
+					}
+				}
+
+				#version,
+				#date {
+					color: #172b4d !important;
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				border-bottom: 1px solid #e4e8ef;
+
+				td {
+					border: 0;
+					// font-family: "SF Pro" !important;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 20px;
+					padding: 21.25px 16px;
+					color: #172b4d !important;
+
+					.capital_first {
+						// font-family: "SF Pro" !important;
+						font-size: 12px;
+						line-height: 18px;
+						font-weight: 400;
+						padding: 1px 9.7px;
+						border-radius: 4px;
+
+						&.badge-light-secondary {
+							background: #efefef;
+							color: #172b4d !important;
+						}
+
+						&.badge-light-primary {
+							background: rgba(0, 82, 204, 0.12);
+							color: #0c0d48 !important;
+						}
+
+						&.badge-light-success {
+							color: #36b37e;
+						}
+					}
+
+					.table-tag-badge {
+						// font-family: "SF Pro" !important;
+						font-size: 12px;
+						line-height: 18px;
+						font-weight: 400;
+						padding: 1px 9.7px;
+						border-radius: 4px;
+
+						&.badge-light-secondary {
+							background: #f5f6fa;
+							color: #172b4d !important;
+						}
+					}
+
+					.filter-dropdown {
+						width: 264px;
+						background: #ffffff;
+						border: 1px solid #e4e8ef;
+						box-sizing: border-box;
+						// box-shadow: 0px 8px 16px rgba(13, 47, 135, 0.04);
+						border-radius: 5px;
+						padding: 12px;
+
+						.filters-list {
+							padding: 6px 0;
+
+							label {
+								// font-family: "SF Pro";
+								font-style: normal;
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 14px;
+								color: #172b4d;
+								margin-left: 8px !important;
+							}
+						}
+					}
+				}
+
+				&:last-child {
+					td {
+						&:nth-child(2) {
+							.open-version-down {
+								bottom: 100% !important;
+								top: auto !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.action-configation-box {
+	// .dropdown-user-link {
+	.new-collection-btn {
+		// font-family: "SF Pro" !important;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+		letter-spacing: 0.4px;
+		color: #ffffff !important;
+		background: #0c0d48 !important;
+		border-radius: 5px !important;
+		padding: 7px 17px !important;
+	}
+
+	.save-version {
+		background: transparent !important;
+		color: #0c0d48 !important;
+		padding: 10px 17px !important;
+	}
+
+	.save-collection-btn {
+		// font-family: "SF Pro" !important;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+		letter-spacing: 0.4px;
+		color: #ffffff !important;
+		background: #0c0d48 !important;
+		border-radius: 5px !important;
+		// padding: 7px 17px !important;
+	}
+
+	// }
+}
+
+.table_pagination {
+	.showing-page-limit {
+		// font-family: "SF Pro" !important;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 20px;
+		color: #606d84;
+		letter-spacing: 0.3px;
+	}
+
+	.react-paginate {
+		.page-item {
+			&.active {
+				.page-link {
+					background: #0c0d48 !important;
+					// font-family: "SF Pro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 16px;
+					line-height: 20px;
+					text-align: center;
+					color: #ffffff;
+					padding: 8px 14px;
+				}
+			}
+
+			.page-link {
+				padding: 10px;
+				// font-family: "SF Pro";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 21px;
+				text-align: center;
+				color: #606d84;
+				padding: 8px 10px;
+
+				&:first-child {
+					&::before {
+						margin-right: 6px;
+						margin-top: 0 !important;
+						margin-left: 0 !important;
+					}
+				}
+
+				&::after {
+					margin-top: 0 !important;
+					margin-left: 6px;
+				}
+			}
+		}
+	}
+}
+
+.capital_first {
+	text-transform: capitalize;
+}

@@ -1,0 +1,209 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.servicesCard {
+  cursor: pointer;
+}
+
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.269);
+}
+
+.AClick {
+  cursor: pointer !important;
+}
+
+.LoginProfile {
+  width: 50px;
+  height: 50px;
+  background: #e71d7c;
+  border-radius: 50%;
+}
+
+.profileLabel {
+  /* Comment by:Krushi,Date:20/08/2023, Remarks:For Allign Center */
+  /* position: absolute;
+  top: 12px;
+  left: 23px; */
+  font-size: 19px;
+  color: white;
+  font-weight: 600 !important;
+}
+
+.userProfile {
+  margin-left: -4px !important;
+}
+
+.containerT {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .home .faq-section {
+    margin-bottom: 0px !important;
+  }
+
+  .planContainer .service-pricing-card .col-md-4 {
+    flex: none !important;
+    max-width: 50% !important;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 772px) {
+  .containerT {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .containerT {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 1395px) {
+  .home .container {
+    padding-left: 75px;
+    /* !important; */
+    padding-right: 75px !important;
+  }
+
+  .productPageC .container {
+    position: relative !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .planContainer {
+    padding-left: 75px !important;
+    padding-right: 75px !important;
+  }
+}
+
+@media only screen and (max-width: 1260px) {
+  .home .container {
+    padding-left: 40px;
+    /* !important; */
+    padding-right: 40px !important;
+  }
+
+  .productPageC .container {
+    position: relative !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .planContainer {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+/* @media only screen and (max-width: 584px) {
+  .order-id {
+    font-size: 18px !important;
+  }
+} */
+
+@media only screen and (max-width: 425px) {
+  .home .container {
+    padding-left: 10px;
+    /* !important; */
+    padding-right: 10px !important;
+  }
+
+  .productPageC .container {
+    position: relative !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .planContainer {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+}
+
+@media only screen and (max-width: 426px) {
+  .planContainer .service-pricing-card .col-md-4 {
+    max-width: 100% !important;
+  }
+
+}
+
+.navActive {
+  font-weight: bold !important;
+}
