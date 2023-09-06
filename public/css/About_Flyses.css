@@ -333,6 +333,15 @@
     .LineBg {
         width: 984px;
     }
+    .half-half-image-text .faq-illus1{
+        width: 350px;
+    }
+    .half-half-image-text .faq-illus2{
+        width: 350px;
+    }
+    .half-half-image-text .faq-illus3{
+        width: 350px;
+    }
 }
 
 @media only screen and (min-width: 1228.80px) {

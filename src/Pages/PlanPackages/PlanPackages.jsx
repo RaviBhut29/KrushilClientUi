@@ -441,9 +441,8 @@ const PlanPackages = (props) => {
             <div className="row">
               <div className="col-md-12 mb-3 p-3 border rounded-3">
                 <p className="PaymentCardText">
-                  {orderDetails[0]?.pnName}
+                  <span className="ServiceName"> {orderDetails[0]?.pnName}</span>
                   <span className="StanderdPlanPrice">
-                    {" "}
                     {planPrice !== 0 && `$${planPrice}`}
                   </span>
                 </p>
@@ -536,7 +535,7 @@ const PlanPackages = (props) => {
                         }></Checkbox>
                         <label style={{ margin: "0px" }} htmlFor={item?.osId}>
                           <p className="PaymentCardText mb-0">
-                            {item?.osServiceName}
+                            <span className="ServiceName"> {item?.osServiceName}</span>
                             <span className="PaymentCharges">
                               ${item?.osServiceCharge}
                             </span>

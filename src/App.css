@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -101,8 +102,14 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .home .faq-section{
+  .home .faq-section {
     margin-bottom: 0px !important;
+  }
+
+  .planContainer .service-pricing-card .col-md-4 {
+    flex: none !important;
+    max-width: 50% !important;
+    margin-right: auto;
   }
 }
 
@@ -129,7 +136,7 @@
 @media only screen and (max-width: 1395px) {
   .home .container {
     padding-left: 75px;
-     /* !important; */
+    /* !important; */
     padding-right: 75px !important;
   }
 
@@ -148,7 +155,7 @@
 @media only screen and (max-width: 1260px) {
   .home .container {
     padding-left: 40px;
-     /* !important; */
+    /* !important; */
     padding-right: 40px !important;
   }
 
@@ -172,7 +179,7 @@
 
 @media only screen and (max-width: 425px) {
   .home .container {
-    padding-left: 10px; 
+    padding-left: 10px;
     /* !important; */
     padding-right: 10px !important;
   }
@@ -187,8 +194,16 @@
     padding-left: 5px !important;
     padding-right: 5px !important;
   }
+
 }
 
-.navActive{
+@media only screen and (max-width: 426px) {
+  .planContainer .service-pricing-card .col-md-4 {
+    max-width: 100% !important;
+  }
+
+}
+
+.navActive {
   font-weight: bold !important;
 }

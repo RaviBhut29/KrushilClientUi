@@ -143,7 +143,8 @@ export const Category = () => {
             })}
         </div>
       </div>
-      <RatingsAndReviews />
+      {/* <RatingsAndReviews /> */}
+      <RatingsAndReviews ishideGrowfasterPanel={true} />
       {/* Footer */}
       <Footer />
     </div>

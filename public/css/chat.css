@@ -425,7 +425,7 @@
 
   .chat .card .card-body .chat-box {
     padding: 0px;
-    max-height: 442px;
+    max-height: 442px !important;
   }
 
   .Smile-icon {
@@ -441,11 +441,18 @@
     background-color: transparent;
   }
 
-  .Availability-time{
+  .Availability-time {
     display: none;
   }
-  .chat .card .card-body .day{
+
+  .chat .card .card-body .day {
     padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .chat .card .card-body .chat-box {
+    max-height: 46vh;
   }
 }
 

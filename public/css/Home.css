@@ -1392,7 +1392,6 @@ body ul {
 }
 
 /* Cousoul */
-/* @media only screen and (max-width: 769px) { */
 @media only screen and (max-width: 1024px) {
 
     .home .hero-section .branding:after {
@@ -1427,11 +1426,6 @@ body ul {
         text-align: center;
         max-width: fit-content;
         margin: 10px 0;
-        /* padding: 0 180px; */
-    }
-
-    .home .exploreCategories .subtext{
-        /* padding: 0 180px; */
     }
 
     .home .hero-section .branding .d-flex {
@@ -1452,16 +1446,6 @@ body ul {
     .home .exploreCategories h3.head{
         font-size: 40px;
     }
-    /* 
-    
-    .home .hero-section .branding .text{
-        margin: 0;
-    } */
-
-    /* .home:before,
-    .home::after {
-        background-image: url('');
-    } */
 
     .line-svg1,
     .line-svg {
@@ -1494,7 +1478,6 @@ body ul {
     .home .about-section .bottom-area .row {
         flex-direction: column;
         align-content: center;
-        /* text-align: -webkit-center; */
     }
 
     .home .about-section .about-card {
@@ -1502,33 +1485,25 @@ body ul {
         margin-right: auto;
     }
 
-    /* .home .exploreCategories .brandingCards {
-        text-align: -webkit-center;
-    } */
-
-    .home .exploreCategories .brandingCards .col-lg-4 {
-        margin: 10px 0;
-    }
-
     .home .exploreCategories .brandingCards .brands-card {
         margin-left: auto !important;
         margin-right: auto !important;
     }
-
+    
     .home .brandTrust [class*="img-div-"] {
         display: none;
     }
-
+    
     .home .Home-Content-Card-1 {
         left: 120px !important;
         top: 0px !important;
     }
-
+    
     .home .Home-Content-Card-2 {
         left: 320px !important;
         top: 40px !important;
     }
-
+    
     .home .Home-Content-Card-3 {
         left: 290px !important;
         top: 330px !important;
@@ -1543,13 +1518,64 @@ body ul {
         left: -20px !important;
         top: 220px !important;
     }
-
+    
     .home .contact-us-section .sub-section{
-        padding: 0px;
+        padding: 30px !important;
     }
+
+    /* Krushi 05/09/23 */
+    .home .exploreCategories .brandingCards .col-lg-4 {
+        margin: 10px 0;
+        max-width: 100%;
+        flex: none;
+    }
+
+    .home .about-section .bottom-area{
+        margin-top: 50px;
+    }
+
+    .home .brandTrust .gradient-text{
+        margin-top: 0px;
+    }
+    .home .brandTrust{
+        height: 610px;
+    }
+    .controls{
+        top: 80%;
+        left: 65%;
+    }
+    .home .brandTrust .container .dotted-img{
+        top: 20%;
+        right: 14%;
+    }
+    .home .brandTrust .container .dotted-img-2{
+        top: 49%;
+        left: 14%;
+    }
+    .home .HowFlysesWork .gradient-text{
+        font-size: 40px;
+    }
+    .home .about-section .top-area h3{
+        font-size: 40px;
+    }
+    .home .brandTrust .gradient-text{
+        font-size: 40px;
+    }
+    .home .contact-text h3{
+        font-size: 40px;
+    }
+    .home .contact-text{
+        margin-top: 20px;
+    }
+    .home .contact-text .con-us-btn{
+        margin-top: 20px;
+    }
+
 }
 
-@media only screen and (max-width: 426px) {
+/* @media only screen and (max-width: 426px)  */
+@media only screen and (max-width: 426px) 
+{
 
     .home .hero-section .branding h2.heading,
     .home .exploreCategories h3.head,
@@ -1566,11 +1592,12 @@ body ul {
     .home .exploreCategories .subtext,
     .home .about-section .top-area p,
     .home .contact-text p,
-    .home .faq-section .accordion-button,
     .footer-sec .mailing-section .mailing-col p {
         font-size: 18px;
     }
-
+    .home .faq-section .accordion-button{
+        font-size: 16px;
+    }
     .home .contact-us-section h6 {
         font-size: 16px;
         font-weight: 500;
@@ -1751,7 +1778,8 @@ body ul {
 }
 
 @media only screen and (max-width: 768px) {
-    /* .home .Home-Content-Card-1{
+    /*
+    .home .Home-Content-Card-1{
         left: 170px !important;
     }
     .home .Home-Content-Card-2{
@@ -1811,12 +1839,12 @@ body ul {
     .home .about-section .top-area h3,
     .home .brandTrust .gradient-text,
     .home .contact-us-section .contact-head,
-    .home .contact-text h3,
-    .home .faq-section .faq-title,
-    .footer-sec .mailing-section .mailing-col .text-gradient {
+    .home .contact-text h3 {
         font-size: 28px;
     }
-
+    .home .faq-section .faq-title{
+        font-size: 20px;
+    }
     .dotted-img,
     .dotted-img-2 {
         display: none;
@@ -1958,7 +1986,7 @@ body ul {
     }
 
     .home .contact-us-section .sub-section {
-        padding: 10px;
+        padding: 10px !important;
     }
 
     .home .contact-us-section .contact-head {

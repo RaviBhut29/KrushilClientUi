@@ -920,6 +920,11 @@ nav .pagination .page-item a:focus {
     .minimalist-logo .con-btn {
         width: 272px;
     }
+
+
+    .minimalist-logo .on-web {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 991px) {
@@ -1269,6 +1274,48 @@ nav .pagination .page-item a:focus {
 @media only screen and (max-width: 768px) {
     .lead .col-3 {
         max-width: fit-content;
+    }
+
+    .minimalist-logo .item_title {
+        width: fit-content;
+        margin-bottom: 0px;
+    }
+
+    .minimalist-logo .p-0 {
+        font-size: 15px !important;
+    }
+    
+    .lead .col-3 {
+        max-width: fit-content;
+    }
+    
+    /*
+    .minimalist-logo .rating_p {
+        padding-top: 6px !important;
+    }
+    */
+
+    .minimalist-logo .service-pricing-card .pricing-card {
+        width: 60% !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .minimalist-logo .pricing-inner-col {
+        height: 100% !important;
+    }
+
+    .productPageC .Grow .col-3{
+        flex: none !important;
+    }
+    .rbody p{
+        width: 225px;
+    }
+    .minimalist-logo .lead .mx-5{
+        margin-top: 0px !important;
+    }
+    .minimalist-logo .desc .lead .col-3{
+        width: 50% !important;
     }
 }
 
@@ -2406,16 +2453,6 @@ nav .pagination .page-item a:focus {
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .lead .col-3 {
-        max-width: fit-content;
-    }
-
-    .minimalist-logo .rating_p {
-        padding-top: 0px !important;
-    }
-}
-
 @media only screen and (max-width: 376px) {
 
     .minimalist-logo .primary,
@@ -2523,5 +2560,15 @@ nav .pagination .page-item a:focus {
 
     .minimalist-logo .mob-margin {
         margin-left: 0px !important;
+    }
+
+    .minimalist-logo .p-0{
+        font-size: 10px !important;
+    }
+    .minimalist-logo .service-pricing-card .pricing-card{
+        width: 100% !important;
+    }
+    .minimalist-logo .desc .lead .col-3{
+        width: 100% !important;
     }
 }

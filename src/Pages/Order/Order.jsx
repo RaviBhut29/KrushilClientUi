@@ -358,7 +358,7 @@ const Order = () => {
                         <label
                           className="left"
                           for="group7"
-                          style={{ marginBottom: "-15px" }}
+                          // style={{ marginBottom: "-15px" }}
                         >
                           <input
                             type="checkbox"

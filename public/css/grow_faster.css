@@ -46,7 +46,8 @@
 }
 
 .rbody p {
-    width: 225.62px;
+    /* width: 225.62px; */
+    width: fit-content;
     /* min-height: 81px; */
     height: auto;
     font-family: var(--Inter_Header);

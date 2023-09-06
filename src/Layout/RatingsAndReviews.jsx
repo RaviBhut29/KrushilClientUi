@@ -14,7 +14,7 @@ const RatingsAndReviews = (props) => {
           </span>
         </p>
       )}
-      <section>
+      <section className="Grow">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-3 d-flex justify-content-center">

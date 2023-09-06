@@ -84,16 +84,6 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                {/* <div
-                  className="img card-2-responsive"
-                  style={{
-                    // background: 'url("../ui/Images/card-2.svg") no-repeat center',
-                    background: 'url("../ui/Images/card-2.svg") no-repeat',
-                    backgroundSize: "cover",
-                    height: 225.94,
-                    width: 492.02
-                  }}
-                /> */}
                 <img src="../ui/Images/card-2.svg" style={{ width: 492.02, height: 225.94 }} className="img card-2-responsive"></img>
               </div>
             </div>
@@ -126,7 +116,7 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <div
+                {/* <div
                   className="img card-4-responsive"
                   style={{
                     background: 'url("../ui/Images/card-4.svg") no-repeat',
@@ -135,7 +125,14 @@ export const HowItWork = () => {
                     height: 225.94,
                     width: 492.03
                   }}
-                />
+                /> */}
+                <img
+                  className="img card-4-responsive"
+                  style={{
+                    backgroundSize: "cover",
+                    height: 225.94,
+                    width: 492.03
+                  }} src="../ui/Images/card-4.svg"></img>
               </div>
             </div>
             <div className="form-row First">
@@ -155,9 +152,7 @@ export const HowItWork = () => {
             <div className="form-row">
               <img className="polygon" src="../ui/Images/Polygon 1.png" alt="" />
               <div className="col-md-12 col-lg-6">
-                <div
-                  className="content text-6-responsive" style={{ width: 429, float: "right", paddingLeft: 30 }}
-                >
+                <div className="content text-6-responsive" style={{ width: 429, float: "right", paddingLeft: 30 }} >
                   <h3>Get delivery</h3>
                   <p>
                     It’s the fast, easy way to apply for your mortgage and access
@@ -167,15 +162,11 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <div
-                  className="img card-6-responsive"
-                  style={{
-                    // background: 'url("../ui/Images/card-6.svg") no-repeat center',
-                    background: 'url("../ui/Images/card-6.svg") no-repeat',
-                    backgroundSize: "cover",
-                    height: 275,
-                    width: 441.19
-                  }} />
+                <img className="img card-6-responsive" style={{
+                  backgroundSize: "cover",
+                  height: 275,
+                  width: 441.19
+                }} src="../ui/Images/card-6.svg"></img>
               </div>
             </div>
             <div className="form-row First">
@@ -206,7 +197,12 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <div
+                <img src="../ui/Images/card-8.svg" className="img card-8-responsive" style={{
+                  backgroundSize: "cover",
+                  height: 275,
+                  width: 441.19
+                }}></img>
+                {/* <div
                   className="img card-8-responsive"
                   style={{
                     // background: 'url("../ui/Images/card-8.svg") no-repeat center',
@@ -214,7 +210,7 @@ export const HowItWork = () => {
                     backgroundSize: "cover",
                     height: 275,
                     width: 441.19
-                  }} />
+                  }} /> */}
               </div>
             </div>
           </div>

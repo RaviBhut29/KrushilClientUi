@@ -252,9 +252,19 @@
         width: fit-content !important;
     }
     .PaymentCardText .number{
-        width: 120px;
+        width: 110px;
     }
     .PaymentCard .Paymentterms{
         font-size: 14px;
+    }
+    .ServiceName{
+        max-width: 200px !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .ServiceName{
+        /* background-color: red; */
+        max-width: 370px;
+        word-wrap: break-word;
     }
 }

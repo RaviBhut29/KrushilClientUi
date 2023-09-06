@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { Controller, useForm } from 'react-hook-form';
 import { Country, State, City } from "country-state-city";
 import Select from "react-select";
 import {
@@ -21,12 +22,17 @@ export const User_Profile = () => {
   const [country, setCountry] = useState();
   const [isGoogleUser, setIsGoogleUser] = useState(false);
   const [countryDefaultValue, setCountryDefaultValue] = useState(0);
+  const [value, setValue] = useState()
+  const [stateOptions, setStateOptions] = useState([])
 
+  const AllCountries = useMemo(() => { return Country?.getAllCountries() }, [])
+  const AllStates = useMemo(() => { return State?.getAllStates() }, [])
+  const AllCity = useMemo(() => { return City?.getAllCities() }, [])
   // const isGoogleUser = sessionStorage.getItem("isGoogleUser") || false;
   // console.clear()
   // console.warn(isGoogleUser)
   // const userId = sessionStorage.getItem("userId") || 0;
-
+  const { control, reset, handleSubmit, register, formState: { errors }, setValue: setFormValue } = useForm({});
   const [formData, setFormData] = useState({
     userId: "",
     userFirstName: "",
@@ -224,7 +230,16 @@ export const User_Profile = () => {
   //   utilsScript:
   //     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
   // });
-
+  const onBlurHandler = () => {
+    const code = formatPhoneNumberIntl(value)?.split(" ")?.[0]
+    const country = AllCountries?.find(d => d?.phonecode === code?.substr(1))
+    const states = AllStates?.filter(d => d?.countryCode === country?.isoCode)
+    const options = states?.map((d) => {
+      return { label: d?.name, value: d }
+    })
+    setCountry(country)
+    setStateOptions(options)
+  }
   return (
     <>
       <div className="home userNew">
@@ -338,7 +353,7 @@ export const User_Profile = () => {
                             Enter Number
                             <span style={{ color: "red" }}>*</span>
                           </label>
-                          <input
+                          {/* <input
                             type="tel"
                             // type="tel"
                             className={
@@ -356,6 +371,25 @@ export const User_Profile = () => {
                               handleFormDataChange(e.target.name, e.target.value)
                             }
                             value={formData.userNumber}
+                          /> */}
+                          <Controller
+                            name="mobile"
+                            control={control}
+                            render={({
+                              field,
+                              fieldState: { invalid, isTouched, isDirty, error },
+                              formState,
+                            }) => {
+                              return (
+                                <PhoneInput
+                                  country="US"
+                                  defaultCountry="IN"
+                                  value={value}
+                                  onChange={setValue}
+                                  onBlur={onBlurHandler}
+                                />
+                              );
+                            }}
                           />
 
                           {(validationFormData.userNumber ||

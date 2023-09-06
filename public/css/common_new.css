@@ -3,7 +3,6 @@
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* font-weight: 500; */
     font-size: 48.5px;
     text-align: center;
     line-height: 81px;
@@ -60,4 +59,10 @@
 }
 .ant-notification-notice {
     z-index: 999999999;
+}
+
+@media only screen and (max-width: 1024px){
+    .text-gradient{
+        font-size: 40px;
+    }
 }

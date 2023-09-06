@@ -335,20 +335,22 @@
     }
 
     .home .exploreCategories-serv .brandingCards .col-lg-4 {
-        margin: 10px 0;
+        margin: 10px auto;
+        max-width: initial;
     }
 
     .home .exploreCategories-serv .brandingCards .brands-card {
-        margin: 0;
+        margin: 0 auto;
         text-align: initial;
     }
 }
 
 @media only screen and (max-width: 780px) {
-    .Services .title2{
+    .Services .title2 {
         width: fit-content;
     }
-    .Services .title1{
+
+    .Services .title1 {
         font-size: 42px;
         line-height: normal;
     }
@@ -356,25 +358,37 @@
 
 
 @media only screen and (max-width: 426px) {
-    .Services .title1{
+    .Services .title1 {
         font-size: 22px;
     }
-    .Services .title2{
+
+    .Services .title2 {
         font-size: 12px;
         line-height: 25.37px;
     }
-    .Services .b1{
+
+    .Services .b1 {
         font-size: 22px;
         line-height: 30.94px;
     }
-    .Services .b2{
+
+    .Services .b2 {
         font-size: 12px;
     }
-    .home .exploreCategories-serv{
+
+    .home .exploreCategories-serv {
         margin-bottom: 50px;
     }
-    .margin-def{
+
+    .margin-def {
         margin-bottom: 0px !important;
         margin-top: 0px !important;
+    }
+
+    .Services{}
+
+    .Grow .justify-content-center  {
+        flex: none !important;
+
     }
 }
