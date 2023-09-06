@@ -15,6 +15,7 @@ import { Requirement } from "../Pages/Requirement/Requirement.jsx";
 import { About } from "../Pages/About/About.jsx";
 import { HowItWork } from "../Pages/HowItWork/HowItWork.jsx";
 
+
 const RoutesArray = [
   {
     path: "/",

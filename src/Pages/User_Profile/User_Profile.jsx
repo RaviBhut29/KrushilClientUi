@@ -27,11 +27,7 @@ export const User_Profile = () => {
 
   const AllCountries = useMemo(() => { return Country?.getAllCountries() }, [])
   const AllStates = useMemo(() => { return State?.getAllStates() }, [])
-  const AllCity = useMemo(() => { return City?.getAllCities() }, [])
-  // const isGoogleUser = sessionStorage.getItem("isGoogleUser") || false;
-  // console.clear()
-  // console.warn(isGoogleUser)
-  // const userId = sessionStorage.getItem("userId") || 0;
+  
   const { control, reset, handleSubmit, register, formState: { errors }, setValue: setFormValue } = useForm({});
   const [formData, setFormData] = useState({
     userId: "",
