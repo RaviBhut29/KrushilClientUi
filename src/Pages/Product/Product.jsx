@@ -15,6 +15,8 @@ import { Modal } from "reactstrap";
 import ImagePreview from "../Portfolio/ImagePreview";
 import PlanPackages from "../PlanPackages/PlanPackages";
 import { getProductPlan } from "../../FlysesApi/Plan";
+import ProductFaq from "./ProductFaq";
+import ProductReview from "./ProductReview";
 //import ImagePreview from "./ImagePreview";
 
 export const Product = () => {
@@ -756,8 +758,8 @@ export const Product = () => {
                 <RecommendedForYou />
               </div>
             )}
-            {tabClick === "Rev" && <Review />}
-            {tabClick === "Faq" && <CommanFaq />}
+            {tabClick === "Rev" && <ProductReview />}
+            {tabClick === "Faq" && <ProductFaq />}
           </div>
           {/* Go Faster */}
           <RatingsAndReviews />

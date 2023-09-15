@@ -1,0 +1,55 @@
+.NewMessageAddBox {
+  width: 60px;
+  height: 60px;
+  bottom: 25%;
+  border-color: #fee8f1 !important;
+  position: absolute;
+  right: 5%;
+  border: solid;
+  border-width: 3px;
+  border-radius: 9px;
+  cursor: pointer;
+  background: #fee8f1;
+}
+
+.centered-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.offlineDot {
+  background: #e84848;
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+  position: absolute;
+  top: 33px;
+}
+
+.offlineText {
+  color: #e84848;
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.EmojiModal {
+  width: fit-content !important;
+  position: absolute;
+  left: 3% !important;
+}
+
+.EmojiPickerDiv {
+  position: absolute !important;
+  bottom: 127px !important;
+  left: 36px !important;
+}
+
+.adminMessagePanel{
+  cursor: pointer;
+}
+.adminMessagePanel:hover{
+  background-color: #fafafa;
+}

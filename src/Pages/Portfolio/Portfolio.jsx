@@ -156,12 +156,12 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {totalRecord && totalRecord > 12 && (
+          {totalRecord !== 0 && totalRecord > 12 && (
             <center>
               <Pagination
                 onChange={handlePaginationChange}
                 current={current}
-                total={totalRecord}
+                total={totalRecord !== 0 ? totalRecord : null}
                 pageSizeOptions={[12]}
               />
             </center>

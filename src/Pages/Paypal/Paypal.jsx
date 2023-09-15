@@ -14,6 +14,7 @@ const PayPal = (props) => {
     orderModifyDetails,
     setOrderModifyDetails,
     couponCode,
+    setIsPaypalModal
   } = props;
   const history = useNavigate();
   let path = window.location.pathname;
@@ -74,7 +75,7 @@ const PayPal = (props) => {
         orUserId: userId,
         orNumber: orderID,
         orPrice: paymentDetails?.price,
-        orCouponCode: couponCode,
+        orCouponCode: paymentDetails?.couponCode,
       };
       createPlanOrder(obj)
         .then((response) => {
@@ -83,7 +84,7 @@ const PayPal = (props) => {
             uoOrderId: response?.id,
             planDetail: orderModifyDetails,
           };
-
+          setIsPaypalModal(false);
           insertOrderModifyServices(obj);
           history(`/requirement/${splitdata[splitdata.length - 1]}`);
         })

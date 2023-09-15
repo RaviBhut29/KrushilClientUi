@@ -6,14 +6,17 @@ import BreadCrub from "../../Layout/BreadCrub";
 import { getPlan } from "../../FlysesApi/Plan";
 import { useState } from "react";
 import { setLoadingStatus } from "../../FlysesApi";
-import { toastError } from "../../FlysesApi/FlysesApi";
+import { toastError, toastWarning } from "../../FlysesApi/FlysesApi";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPlanWiseOrderOptionDetails } from "../../FlysesApi/PlanOrderDetailApi";
-import { Button, Drawer, Space } from "antd";
+import {
+  checkRegisterDetails,
+  getPlanWiseOrderOptionDetails,
+} from "../../FlysesApi/PlanOrderDetailApi";
+import { Button, Drawer, Modal, Space } from "antd";
 import CouponCode from "./CouponCode";
 import PayPal from "../Paypal/Paypal";
-import { Checkbox } from 'antd';
+import { Checkbox } from "antd";
 
 const PlanPackages = (props) => {
   const history = useNavigate();
@@ -25,9 +28,13 @@ const PlanPackages = (props) => {
     planId: "",
     price: "",
     planName: "",
+    couponCode: "",
   });
   const [couponCode, setCouponCode] = useState("");
   const [orderModifyDetails, setOrderModifyDetails] = useState([]);
+  const [text, setText] = useState({
+    name: "",
+  });
 
   useEffect(() => {
     setLoadingStatus(true);
@@ -108,6 +115,7 @@ const PlanPackages = (props) => {
 
   const [orderDetails, setOrderDetails] = useState([]);
   const [orderDetailsBCK, setOrderDetailsBCK] = useState([]);
+  const [isApplyCouponCode, setIsApplyCouponCode] = useState(0);
 
   const bindOrderDetails = (id) => {
     setLoadingStatus(true);
@@ -118,9 +126,11 @@ const PlanPackages = (props) => {
           setOrderDetails(response);
           setOrderDetailsBCK(JSON.stringify(response));
           setPlanPrice(response[0]?.pnPrice);
+          setIsApplyCouponCode(response[0]?.pnApplyCoupon);
         } else {
           setOrderDetails([]);
           setOrderDetailsBCK([]);
+          setIsApplyCouponCode(0);
         }
         setLoadingStatus(false);
       })
@@ -312,12 +322,34 @@ const PlanPackages = (props) => {
   };
 
   const handleCheckOutClick = () => {
-    setIsPayPal(true);
-    setPaymentDetails({
-      ...paymentDetails,
-      price: displayTotalPrice(orderDetails[0]["pnPrice"], true),
-    });
+    const loginUserId = sessionStorage.getItem("userId") || 0;
+    checkRegisterDetails(loginUserId)
+      .then((response) => {
+        if (!response) {
+          toastWarning(
+            "Please fill the remaining fields in the user profile information.!"
+          );
+          history(`/profile`);
+        } else {
+          setIsPayPal(true);
+          setPaymentDetails({
+            ...paymentDetails,
+            price: displayTotalPrice(orderDetails[0]["pnPrice"], true),
+            couponCode: text?.name,
+          });
+          setIsPaypalModal(true);
+        }
+        setLoadingStatus(false);
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      });
   };
+
+  const [checkAgreeTermsAndCondition, setCheckAgreeTermsAndCondition] =
+    useState(false);
+
+  const [isPaypalModal, setIsPaypalModal] = useState(false);
 
   return (
     <>
@@ -325,7 +357,7 @@ const PlanPackages = (props) => {
         <div
           className="container logo-design planContainer"
           style={{
-            position: "relative"
+            position: "relative",
           }}
         >
           {/* Navigation */}
@@ -369,10 +401,14 @@ const PlanPackages = (props) => {
                                       }}
                                     >
                                       <img
-                                        src={serItem?.pnIsInclude === 1
-                                          ? "../ui/Images/wrong right icons-01.svg"
-                                          : "../ui/Images/wrong right icons-02.svg"}
-                                        alt="" className="mb-1 me-1" />
+                                        src={
+                                          serItem?.pnIsInclude === 1
+                                            ? "../ui/Images/wrong right icons-01.svg"
+                                            : "../ui/Images/wrong right icons-02.svg"
+                                        }
+                                        alt=""
+                                        className="mb-1 me-1"
+                                      />
                                       <p className="bold-content">
                                         {serItem?.pnIncludedService}
                                       </p>
@@ -430,24 +466,31 @@ const PlanPackages = (props) => {
         //open={true}
         extra={
           <Space>
-            <span className="PaymentCardPopup">
-              Save up to {orderDetails[0]?.pnSaveUpTo}%
-            </span>
+            {orderDetails[0]?.pnSaveUpTo && (
+              <span className="PaymentCardPopup">
+                Save up to {orderDetails[0]?.pnSaveUpTo}%
+              </span>
+            )}
           </Space>
         }
       >
         {open && (
           <div className="container PaymentCard">
             <div className="row">
-              <div className="col-md-12 mb-3 p-3 border rounded-3">
-                <p className="PaymentCardText">
-                  <span className="ServiceName"> {orderDetails[0]?.pnName}</span>
-                  <span className="StanderdPlanPrice">
-                    {planPrice !== 0 && `$${planPrice}`}
-                  </span>
-                </p>
-                <p className="mb-0">{orderDetails[0]?.pnDesc}</p>
-              </div>
+              {orderDetails.length > 0 && (
+                <div className="col-md-12 mb-3 p-3 border rounded-3">
+                  <p className="PaymentCardText">
+                    <span className="ServiceName">
+                      {" "}
+                      {orderDetails[0]?.pnName}
+                    </span>
+                    <span className="StanderdPlanPrice">
+                      {planPrice !== 0 && `$${planPrice}`}
+                    </span>
+                  </p>
+                  <p className="mb-0">{orderDetails[0]?.pnDesc}</p>
+                </div>
+              )}
 
               {orderDetails.length > 0 &&
                 orderDetails.map((item, index) => {
@@ -458,7 +501,9 @@ const PlanPackages = (props) => {
                         key={item?.osId}
                       >
                         <p className="PaymentCardText mb-0">
-                          <span className="ServiceName">{item?.osServiceName}</span>
+                          <span className="ServiceName">
+                            {item?.osServiceName}
+                          </span>
                           <span className="PaymentCharges">
                             ${item?.osServiceCharge} /{" "}
                             {item?.osServiceChargeName}
@@ -476,7 +521,7 @@ const PlanPackages = (props) => {
                               disabled={
                                 JSON.parse(orderDetailsBCK)[index]
                                   ?.osIncrementerDefaultValue ===
-                                item?.osIncrementerDefaultValue &&
+                                  item?.osIncrementerDefaultValue &&
                                 Number(item?.osPriceIncreaseActionType) !== 2
                               }
                             >
@@ -499,7 +544,7 @@ const PlanPackages = (props) => {
                               disabled={
                                 JSON.parse(orderDetailsBCK)[index]
                                   ?.osIncrementerDefaultValue ===
-                                item?.osIncrementerDefaultValue &&
+                                  item?.osIncrementerDefaultValue &&
                                 Number(item?.osPriceIncreaseActionType) === 2
                               }
                             >
@@ -515,27 +560,22 @@ const PlanPackages = (props) => {
                         className="col-md-12 mb-3 p-3 border rounded-3"
                         key={item?.osId}
                       >
-                        {/* <input
-                          type="checkbox"
+                        <Checkbox
                           id={item?.osId}
-                          className="me-3"
                           onChange={(e) =>
                             handleIncludeFeature(
                               e,
                               index,
                               item?.osServiceCharge
                             )
-                          }></input> */}
-                        <Checkbox id={item?.osId} onChange={(e) =>
-                          handleIncludeFeature(
-                            e,
-                            index,
-                            item?.osServiceCharge
-                          )
-                        }></Checkbox>
+                          }
+                        ></Checkbox>
                         <label style={{ margin: "0px" }} htmlFor={item?.osId}>
                           <p className="PaymentCardText mb-0">
-                            <span className="ServiceName"> {item?.osServiceName}</span>
+                            <span className="ServiceName">
+                              {" "}
+                              {item?.osServiceName}
+                            </span>
                             <span className="PaymentCharges">
                               ${item?.osServiceCharge}
                             </span>
@@ -547,24 +587,39 @@ const PlanPackages = (props) => {
                 })}
               <div className="col-md-12 p-3 border mb-3 rounded-3">
                 {/* <input type="checkbox" id="chk_term" className="me-3"></input> */}
-                <Checkbox id="chk_term" className="me-3"></Checkbox>
-                <label htmlFor="chk_term" style={{ margin: "0px" }} >
+                <Checkbox
+                  id="chk_term"
+                  className="me-3"
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setCheckAgreeTermsAndCondition(true);
+                    } else {
+                      setCheckAgreeTermsAndCondition(false);
+                    }
+                  }}
+                ></Checkbox>
+                <label htmlFor="chk_term" style={{ margin: "0px" }}>
                   <p className="Paymentterms mb-0">
                     I Agree to All
                     <a>&nbsp;terms and condition & privacy policy</a>
+                    <span style={{ color: "red" }}>&nbsp;*</span>
                   </p>
                 </label>
               </div>
 
               <div className="col-12 mb-3">{/* Card Here */}</div>
 
-              <CouponCode
-                couponDiscount={couponDiscount}
-                setCouponDiscount={setCouponDiscount}
-                orderDetails={orderDetails}
-                setIsPayPal={setIsPayPal}
-                setCouponCode={setCouponCode}
-              />
+              {Number(isApplyCouponCode) === 1 && (
+                <CouponCode
+                  couponDiscount={couponDiscount}
+                  setCouponDiscount={setCouponDiscount}
+                  orderDetails={orderDetails}
+                  setIsPayPal={setIsPayPal}
+                  setCouponCode={setCouponCode}
+                  text={text}
+                  setText={setText}
+                />
+              )}
 
               <div className="col-md-12 my-3 border-bottom"></div>
               <div className="col-md-12 border Total">
@@ -580,26 +635,34 @@ const PlanPackages = (props) => {
                   className="btn btn-primary rounded-0 w-100 p-2"
                   style={{ border: "#0C0D48" }}
                   onClick={handleCheckOutClick}
+                  disabled={!checkAgreeTermsAndCondition}
                 >
                   Continue to Checkout
                 </button>
               </div>
-
-              {isPayPal && (
-                <div className="col-md-12 my-3 text-center px-0">
-                  <PayPal
-                    paymentDetails={paymentDetails}
-                    setOpen={setOpen}
-                    orderModifyDetails={orderModifyDetails}
-                    setOrderModifyDetails={setOrderModifyDetails}
-                    couponCode={couponCode}
-                  />
-                </div>
-              )}
             </div>
           </div>
         )}
       </Drawer>
+      <Modal
+        open={isPaypalModal}
+        title="PayPal"
+        onCancel={() => setIsPaypalModal(false)}
+        footer={[]}
+      >
+        {isPayPal && (
+          <div className="col-md-12 my-3 text-center px-0 PayPalModalStyle">
+            <PayPal
+              paymentDetails={paymentDetails}
+              setOpen={setOpen}
+              orderModifyDetails={orderModifyDetails}
+              setOrderModifyDetails={setOrderModifyDetails}
+              couponCode={couponCode}
+              setIsPaypalModal={setIsPaypalModal}                  
+            />
+          </div>
+        )}
+      </Modal>
     </>
   );
 };

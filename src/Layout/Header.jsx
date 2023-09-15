@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { setLoadingStatus } from "../FlysesApi";
+import { getChatList, setChatList, setLoadingStatus } from "../FlysesApi";
 import { getService } from "../FlysesApi/Services";
 import { toastError } from "../FlysesApi/FlysesApi";
 import { Radio } from "react-feather";
-import { Switch } from 'antd';
+import { Switch } from "antd";
+import { useAtom } from "@dbeining/react-atom";
+import { getChatDetail, getNotification } from "../FlysesApi/Chat";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const Header = () => {
   const [NotificationPopup, setNotificationPopup] = useState(false);
   const [servicesNameList, setServicesNameList] = useState([]);
   const [servicesNameListBCK, setServicesNameListBCK] = useState([]);
+  const [MessagePopup, setMessagePopup] = useState(false);
+  const { chatList } = useAtom(getChatList);
 
   const handleProfileClick = () => {
     setProfile(!profile);
@@ -78,9 +82,13 @@ const Header = () => {
   const handleClickOutside = (event) => {
     const userProfile = document.getElementsByClassName("userProfile")[0];
     const MenuButton = document.getElementsByClassName("menu-btn")[0];
-    const onMobileNavbar = document.getElementsByClassName("on-mobile-navbar")[0];
-    const Notification = document.getElementsByClassName("general-notification")[0];
-    const NotificationPopup = document.getElementsByClassName("Notification_Popup")[0];
+    const onMobileNavbar =
+      document.getElementsByClassName("on-mobile-navbar")[0];
+    const Notification = document.getElementsByClassName(
+      "general-notification"
+    )[0];
+    const NotificationPopup =
+      document.getElementsByClassName("Notification_Popup")[0];
 
     if (panelRef.current && !panelRef.current.contains(event.target)) {
       setSearchShow(false);
@@ -93,13 +101,19 @@ const Header = () => {
     }
 
     if (onMobileNavbar != undefined) {
-      if (!onMobileNavbar.contains(event.target) && !MenuButton.contains(event.target)) {
+      if (
+        !onMobileNavbar.contains(event.target) &&
+        !MenuButton.contains(event.target)
+      ) {
         setMobileMenu(false);
       }
     }
 
     if (Notification != undefined) {
-      if (!Notification.contains(event.target) && !NotificationPopup.contains(event.target)) {
+      if (
+        !Notification.contains(event.target) &&
+        !NotificationPopup.contains(event.target)
+      ) {
         setNotificationPopup(false);
       }
     }
@@ -116,14 +130,93 @@ const Header = () => {
     console.log(`switch to ${checked}`);
   };
 
+  const getChatMessageList = () => {
+    if (chatList.length > 0) {
+      const array = JSON.stringify(chatList)
+      const data = JSON.parse(array); 
+      return data
+        .sort((a, b) => (a?.ctId < b?.ctId ? 1 : -1))
+        ?.filter((x) => Number(x?.ctIsRead) !== 1 && Number(x?.userRole) === 1);
+    } else {
+      return [];
+    }
+  };
+
+  const getNotificationList = () =>{
+    if (notificationList.length > 0) {
+      const array = JSON.stringify(notificationList)
+      const data = JSON.parse(array); 
+      return data
+        .sort((a, b) => (a?.ntid < b?.ntid ? 1 : -1))        
+    } else {
+      return [];
+    }
+  }
+
+  useEffect(() => {
+    bindChatListFunction();
+    getAllNotification();
+  }, []);
+
+  const [notificationList, setNotificationList] = useState([]);
+
+  const getAllNotification = () => {
+    try {
+      setLoadingStatus(true);
+      getNotification()
+        .then((response) => {
+          if (response.length > 0) {
+            setNotificationList(response);
+          } else {
+            setNotificationList([]);
+          }
+          setLoadingStatus(false);
+        })
+        .catch(() => {
+          toastError("Bad response from server");
+        });
+    } catch {
+      toastError("Bad response from server");
+    }
+  };
+
+  const bindChatListFunction = () => {
+    setLoadingStatus(true);
+    const loginUserId = sessionStorage.getItem("userId") || 0;
+    getChatDetail(loginUserId, 0)
+      .then((response) => {
+        if (response.length > 0) {
+          setChatList(response);
+        } else {
+          setChatList([]);
+        }
+        setLoadingStatus(false);
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      });
+  };
+
+  const handleMessageReadClick = () => {
+    navigate("/chat");
+  };
+
   return (
     // <header style={{ marginTop: "1.1rem" }}>
     <header>
-      <div className="menu-btn" onClick={MobileMenuClick} style={{ cursor: "pointer" }}>
+      <div
+        className="menu-btn"
+        onClick={MobileMenuClick}
+        style={{ cursor: "pointer" }}
+      >
         <img src="../ui/Images/menu-icon.svg" alt="bell" />
       </div>
       <a href="#" className="logo">
-        <img className="logo_img" src="../ui/Images/NewLogo.svg" alt="Main Logo" />
+        <img
+          className="logo_img"
+          src="../ui/Images/NewLogo.svg"
+          alt="Main Logo"
+        />
       </a>
       <nav className="navbar">
         <div className="btn">
@@ -142,9 +235,7 @@ const Header = () => {
               Home
             </Link>
             <Link
-              className={
-                location.pathname === "/portfolio" ? "navActive" : ""
-              }
+              className={location.pathname === "/portfolio" ? "navActive" : ""}
               to={"/portfolio"}
             >
               Portfolio
@@ -153,8 +244,8 @@ const Header = () => {
               <Link
                 className={
                   location.pathname.includes("/services") ||
-                    location.pathname.includes("/category") ||
-                    location.pathname.includes("/product")
+                  location.pathname.includes("/category") ||
+                  location.pathname.includes("/product")
                     ? "navActive"
                     : ""
                 }
@@ -234,8 +325,9 @@ const Header = () => {
           />
 
           <input
-            className={`form-control nav-search ${searchShow ? "nav-search-class" : ""
-              }`}
+            className={`form-control nav-search ${
+              searchShow ? "nav-search-class" : ""
+            }`}
             placeholder="Search"
             onChange={(e) => handleSearchText(e.target.value)}
           />
@@ -269,55 +361,115 @@ const Header = () => {
         </div>
 
         <div className="notifications d-flex justify-content-center align-items-center mb-2">
-          <div className="general-notification" onClick={NotificationClick}>
-            <span className="badge-yellow" />
+          <div
+            className="general-notification"
+            style={{ cursor: "pointer" }}
+            onClick={NotificationClick}
+          >
+            {notificationList.length > 0 && <span className="badge-yellow" />}
             <img src="../ui/Images/bell.svg" alt="bell" />
           </div>
-          <div className="Notification_Popup" style={{ display: NotificationPopup ? "block" : "none" }}>
+
+          <div
+            className="Notification_Popup"
+            style={{ display: NotificationPopup ? "block" : "none" }}
+          >
             <div className="form-row">
               <div className="col-md-12 px-4 mt-3 border-bottom">
-                <p className="Notification_Title">Notification <span>6 New</span></p>
-              </div>
-              {/* <hr style={{ border: "2px solid #CED4DA" }} /> */}
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationLabel">Reminder: please provide details for..</p>
-                <p className="NotificationDate">Mar 15 12:50pm</p>
-              </div>
-              {/* <hr style={{ border: "2px solid #CED4DA" }} /> */}
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationLabel">Get 50% Offer with flyses</p>
-                <p className="NotificationDate">You have 5+ offer in this account</p>
-              </div>
-              {/* <hr style={{ border: "2px solid #CED4DA" }} /> */}
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationLabel">Thanks for filling out form-19.</p>
-                <p className="NotificationDate">Update Sketch to 69</p>
-              </div>
-              {/* <hr style={{ border: "2px solid #CED4DA" }} /> */}
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationLabel">New Customer is registered 👏🏻</p>
-                <p className="NotificationDate">an hour ago</p>
-              </div>
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationAlert">Notification Alert
-                  <Switch defaultChecked onChange={NotificationAlertClick} style={{ float: "right", background: '#0C0D48', height: "24px" }} />
-                  {/* <input type="checkbox" style={{ float: "right" }} /> */}
+                <p className="Notification_Title">
+                  Notification 
+                  {notificationList.length > 0 && <span>{notificationList.length} New</span>}
                 </p>
               </div>
-              <div className="col-md-12 px-4 py-2 border-bottom">
-                <p className="NotificationLabel">Your order has been create successfully</p>
-                <p className="NotificationDate">8 hours ago</p>
-              </div>
-              <div className="col-md-12 px-4 py-3 border-bottom">
-                <button className="me-2 btn-navigation">Read All Notifications</button>
-              </div>
 
+              {notificationList.length > 0 &&
+                getNotificationList().map((item, index) => {
+                  if (index < 5) {
+                    return (
+                      <div
+                        className="col-md-12 px-4 py-2 border-bottom"
+                        key={index}
+                      >
+                        <p className="NotificationLabel">{item?.ntTitle}</p>
+                        <p className="NotificationDate">{item?.ntDesc}</p>
+                      </div>
+                    );
+                  }
+                })}
+
+              {/* <div className="col-md-12 px-4 py-3 border-bottom">
+                <button className="me-2 btn-navigation">
+                  Read All Notifications
+                </button>
+              </div> */}
             </div>
           </div>
-          <div className="mail-notification">
-            <span className="badge-green" />
+
+          <div
+            className="mail-notification"
+            style={{ cursor: "pointer" }}
+            onClick={() => setMessagePopup(!MessagePopup)}
+          >
+            {getChatMessageList().length > 0 && (
+              <span className="badge-green" />
+            )}
             <img src="../ui/Images/mail.svg" alt="mail" />
           </div>
+
+          <div
+            className="Notification_Popup"
+            style={{ display: MessagePopup ? "block" : "none" }}
+          >
+            <div className="form-row">
+              <div className="col-md-12 px-4 mt-3 border-bottom">
+                <p className="Notification_Title">
+                  New messages from Team Flyses
+                  {getChatMessageList().length > 0 && (
+                    <span>{getChatMessageList().length} New</span>
+                  )}
+                </p>
+              </div>
+
+              {getChatMessageList().length > 0 &&
+                getChatMessageList().map((item, index) => {
+                  if (index < 5) {
+                    return (
+                      <div
+                        className="col-md-12 px-4 py-2 border-bottom adminMessagePanel"
+                        key={index}
+                        onClick={handleMessageReadClick}
+                      >
+                        <p className="NotificationLabel">
+                          {item.ctOriginalDocument === null
+                            ? item.ctMessage
+                            : item.ctOriginalDocument}
+                        </p>
+                        <p className="NotificationDate">
+                          {item.messageTime} {item.sendDateStatus}
+                        </p>
+                      </div>
+                    );
+                  }
+                })}
+
+              {getChatMessageList().length > 5 && (
+                <div className="col-md-12 px-4 py-3 border-bottom">
+                  <button
+                    className="me-2 btn-navigation"
+                    onClick={handleMessageReadClick}
+                  >
+                    Read All Messages
+                  </button>
+                </div>
+              )}
+              {getChatMessageList().length <= 0 && (
+                <div className="col-md-12 px-4 py-3 border-bottom">
+                  No New Messages Found
+                </div>
+              )}
+            </div>
+          </div>
+
           {(sessionStorage.getItem("userSortName") || "") === "" && (
             <div className="language">
               <img
@@ -332,7 +484,11 @@ const Header = () => {
           )}
           {(sessionStorage.getItem("userSortName") || "") !== "" && (
             <div className="userProfile" onClick={handleProfileClick}>
-              <div className="LoginProfile img_profile text-center" alt="userProfile" style={{ paddingTop: "10px" }} >
+              <div
+                className="LoginProfile img_profile text-center"
+                alt="userProfile"
+                style={{ paddingTop: "10px" }}
+              >
                 <label className="profileLabel" style={{ cursor: "pointer" }}>
                   {sessionStorage.getItem("userSortName").toUpperCase() || ""}
                 </label>
@@ -376,7 +532,10 @@ const Header = () => {
       <div className="mobile-noti general-notification">
         <img src="../ui/Images/bell.svg" alt="bell" />
       </div>
-      <div className="on-mobile-navbar" style={{ display: MobileMenu ? "block" : "none" }}>
+      <div
+        className="on-mobile-navbar"
+        style={{ display: MobileMenu ? "block" : "none" }}
+      >
         <img src="../ui/Images/NewLogo.svg" style={{ height: 40 }} />
         <div className="btn" onClick={MobileMenuClick}>
           <span className="fa fa-close close-btn" onClick={MobileMenuClick} />
@@ -386,9 +545,11 @@ const Header = () => {
             <li>
               {/* <a href="#">Home</a> */}
               <Link
-                className={location.pathname === "/" || location.pathname.includes("/home")
-                  ? "navActive"
-                  : ""
+                className={
+                  location.pathname === "/" ||
+                  location.pathname.includes("/home")
+                    ? "navActive"
+                    : ""
                 }
                 to={"/home"}
               >
@@ -402,8 +563,8 @@ const Header = () => {
                 <Link
                   className={
                     location.pathname.includes("/services") ||
-                      location.pathname.includes("/category") ||
-                      location.pathname.includes("/product")
+                    location.pathname.includes("/category") ||
+                    location.pathname.includes("/product")
                       ? "navActive"
                       : ""
                   }
@@ -467,20 +628,14 @@ const Header = () => {
           <ul>
             <li>
               {/* <a href="#">Profile</a> */}
-              <Link to="/profile">
-                Profile
-              </Link>
+              <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/chat">
-                Message
-              </Link>
+              <Link to="/chat">Message</Link>
               {/* <a href="#">Message</a> */}
             </li>
             <li>
-              <Link to="/order">
-                Orders
-              </Link>
+              <Link to="/order">Orders</Link>
               {/* <a href="#">Orders</a> */}
             </li>
             {/* <li>

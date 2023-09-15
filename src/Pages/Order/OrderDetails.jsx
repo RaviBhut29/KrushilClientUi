@@ -185,6 +185,10 @@ const OrderDetails = ({
     }
   };
 
+  const includeFeatureValid = (servicesList.length > 0 &&
+    servicesList[0]?.osServiceName !== "" &&
+    servicesList[0]?.osServiceName !== null);
+
   return (
     <>
       <div className="container planContainer Order-status">
@@ -197,7 +201,7 @@ const OrderDetails = ({
           handleSiteMapClick={handlePathClick}
         />
 
-        <p className="order-id" style={{marginBottom:"25px"}}>
+        <p className="order-id" style={{ marginBottom: "25px" }}>
           Order ID :<span> #{orderDetailsList?.orNumber}</span>
           <span className="YourRequi">Your Requirement</span>
         </p>
@@ -217,13 +221,17 @@ const OrderDetails = ({
                       type="button"
                       className="btn-close"
                       aria-label="Close"
-                      style={{ position: "absolute", right: "15px", display:"none" }}
+                      style={{
+                        position: "absolute",
+                        right: "15px",
+                        display: "none",
+                      }}
                       onClick={() => setFeaturePanelShow(false)}
                     />
                   </div>
                 </div>
                 <div className="card-body">
-                  <p style={{marginBottom:"0"}}>
+                  <p style={{ marginBottom: "0" }}>
                     <svg
                       width={20}
                       height={20}
@@ -244,22 +252,22 @@ const OrderDetails = ({
                       {orderDetailsList?.pnName}
                     </span>
                   </p>
-                  {servicesList.length > 0 && (
-                    <>
-                      <p className="card-text mx-2 card1-Features">
-                        Included Features
-                      </p>
-                      <ul
-                        className="mx-2 card1-Features-li"
-                        style={{ height: "fit-content" }}
-                      >
-                        {servicesList.length > 0 &&
-                          servicesList.map((item, index) => {
-                            return <li key={index}>{item?.osServiceName}</li>;
-                          })}
-                      </ul>
-                    </>
-                  )}
+                  {includeFeatureValid && (
+                      <>
+                        <p className="card-text mx-2 card1-Features">
+                          Included Features
+                        </p>
+                        <ul
+                          className="mx-2 card1-Features-li"
+                          style={{ height: "fit-content" }}
+                        >
+                          {servicesList.length > 0 &&
+                            servicesList.map((item, index) => {
+                              return <li key={index}>{item?.osServiceName}</li>;
+                            })}
+                        </ul>
+                      </>
+                    )}
                 </div>
               </div>
               {/* Date:23/08/2023. */}
@@ -390,7 +398,8 @@ const OrderDetails = ({
                                     backgroundImage:
                                       // "url(../ui/Images/upload-list-image-card.png)",
                                       "url(../ui/Images/download-file-logo.svg)",
-                                    backgroundSize: "contain", backgroundRepeat: "no-repeat",
+                                    backgroundSize: "contain",
+                                    backgroundRepeat: "no-repeat",
                                   }}
                                 ></span>
                                 <div className="info-box-content">
@@ -413,28 +422,31 @@ const OrderDetails = ({
 
                         {/* Demo Date:23/08/2023 */}
                         <div className="col-md-6" key="0">
-                        <div className="info-box">
-                          <span
-                            className="info-box-icon"
-                            style={{
-                              backgroundImage:
-                                "url(../ui/Images/download-file-logo.svg)",
-                              backgroundSize: "contain", backgroundRepeat: "no-repeat",
-                            }}
-                          ></span>
-                          <div className="info-box-content">
-                            <span className="info-box-text">
-                              demo
-                            </span>
-                            <span className="info-box-number"></span>
-                          </div>
-                          <div
-                            className="info-box-icon"
-                          >
-                            <img src="../ui/Images/download-file-icon.svg" style={{ backgroundSize: "contain", backgroundRepeat: "no-repeat" }} />
+                          <div className="info-box">
+                            <span
+                              className="info-box-icon"
+                              style={{
+                                backgroundImage:
+                                  "url(../ui/Images/download-file-logo.svg)",
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                              }}
+                            ></span>
+                            <div className="info-box-content">
+                              <span className="info-box-text">demo</span>
+                              <span className="info-box-number"></span>
+                            </div>
+                            <div className="info-box-icon">
+                              <img
+                                src="../ui/Images/download-file-icon.svg"
+                                style={{
+                                  backgroundSize: "contain",
+                                  backgroundRepeat: "no-repeat",
+                                }}
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
                         {/* </div> */}
                       </div>
                     )}
@@ -492,7 +504,10 @@ const OrderDetails = ({
                 <div className="form-row mt-3">
                   <div className="details">Order created</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#00002A" }}>
+                    <span
+                      className="info FontBold"
+                      style={{ color: "#00002A" }}
+                    >
                       {orderDetailsList?.orDate}
                     </span>
                   </div>
@@ -500,7 +515,10 @@ const OrderDetails = ({
                 <div className="form-row mt-3">
                   <div className="details">Order number</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#00002A" }}>
+                    <span
+                      className="info FontBold"
+                      style={{ color: "#00002A" }}
+                    >
                       #{orderDetailsList?.orNumber}
                     </span>
                   </div>
@@ -508,7 +526,10 @@ const OrderDetails = ({
                 <div className="form-row mt-3">
                   <div className="details">Delivery date &amp; time</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#00002A" }}>
+                    <span
+                      className="info FontBold"
+                      style={{ color: "#00002A" }}
+                    >
                       {servicesList[0]?.deliveryDate}
                     </span>
                   </div>
@@ -516,7 +537,10 @@ const OrderDetails = ({
                 <div className="form-row mt-3">
                   <div className="details">Total</div>
                   <div className="ml-auto">
-                    <span className="info FontBold" style={{ color: "#00002A" }}>
+                    <span
+                      className="info FontBold"
+                      style={{ color: "#00002A" }}
+                    >
                       ${orderDetailsList?.orPrice}
                     </span>
                   </div>
@@ -533,9 +557,12 @@ const OrderDetails = ({
               <div className="card-body">
                 <div
                   className="info-box support"
-                  style={{ boxShadow: "none", minHeight: "auto"}}
+                  style={{ boxShadow: "none", minHeight: "auto" }}
                 >
-                  <div className="info-box-content" style={{ paddingLeft:"0px" }}>
+                  <div
+                    className="info-box-content"
+                    style={{ paddingLeft: "0px" }}
+                  >
                     <span className="info-box-text">FAQs</span>
                   </div>
                   <span
@@ -549,7 +576,10 @@ const OrderDetails = ({
                   className="info-box support"
                   style={{ boxShadow: "none", minHeight: "auto" }}
                 >
-                  <div className="info-box-content" style={{ paddingLeft:"0px" }}>
+                  <div
+                    className="info-box-content"
+                    style={{ paddingLeft: "0px" }}
+                  >
                     <span className="info-box-text">Message to our team</span>
                   </div>
                   <span
@@ -595,7 +625,7 @@ const OrderDetails = ({
                   )}
 
                   {/* {orderDeliveryList.length > 0 && ( */}
-                  {/*{orderDeliveryList.length > 0 || 1 == 1 && (
+              {/*{orderDeliveryList.length > 0 || 1 == 1 && (
                     <div className="form-row pending-order">
                       {orderDeliveryNotes !== "" && (
                         <div className="row" style={{ width: "100%" }}>
@@ -609,7 +639,7 @@ const OrderDetails = ({
                       )}
 
                       {/* <div className="row"> */}
-                      {/*{orderDeliveryList.map((item, index) => {
+              {/*{orderDeliveryList.map((item, index) => {
                         return (
                           <div className="col-md-6" key={index}>
                             <div className="info-box">
@@ -633,7 +663,7 @@ const OrderDetails = ({
                                 onClick={() => downloadService(item?.uid)}
                               >
                                 {/* <img src="../ui/Images/Vector.png" /> */}
-                                {/*<img src="../ui/Images/download-file-icon.svg" />
+              {/*<img src="../ui/Images/download-file-icon.svg" />
                               </div>
                             </div>
                           </div>
@@ -641,7 +671,7 @@ const OrderDetails = ({
                       })}
 
                       {/* Demo Date:23/08/2023 */}
-                      {/* <div className="col-md-6" key="0">
+              {/* <div className="col-md-6" key="0">
                         <div className="info-box">
                           <span
                             className="info-box-icon"
@@ -664,8 +694,8 @@ const OrderDetails = ({
                           </div>
                         </div>
                       </div> */}
-                      {/* </div> */}
-                    {/*</div>
+              {/* </div> */}
+              {/*</div>
                   )}
                 </div>
               </div> */}
@@ -1145,42 +1175,46 @@ const OrderDetails = ({
       {(servicesList[0]?.orStatus === "Delivered" ||
         servicesList[0]?.orStatus === "Completed" ||
         servicesList[0]?.orStatus === "Revision") && (
-          <footer className="Order-status-footer">
-            <div className="container">
-              <div className="footer">
-                <div className="form-row">
-                  <div className="confirm-ord">
-                    <p style={{ marginTop: "10px", marginBottom: "0px" }}>
-                      Do you want to revisions this order?
-                    </p>
-                  </div>
-                  <div className="d-flex ml-auto">
-                    {servicesList[0]?.orStatus !== "Revision" && (
-                      <button
-                        className="btn btn-outline-dark"
-                        // style={{ color: "white" }}
-                        onClick={() => handleConfirmClick(5)}
-                      >
-                        Request Revisions
-                      </button>
-                    )}
+        <footer className="Order-status-footer">
+          <div className="container">
+            <div className="footer">
+              <div className="form-row">
+                <div className="confirm-ord">
+                  <p style={{ marginTop: "10px", marginBottom: "0px" }}>
+                    Do you want to revisions this order?
+                  </p>
+                </div>
+                <div className="d-flex ml-auto">
+                  {servicesList[0]?.orStatus !== "Revision" && (
+                    <button
+                      className="btn btn-outline-dark"
+                      // style={{ color: "white" }}
+                      onClick={() => handleConfirmClick(5)}
+                    >
+                      Request Revisions
+                    </button>
+                  )}
 
-                    {(servicesList[0]?.orStatus === "Delivered" ||
-                      servicesList[0]?.orStatus === "Revision") && (
-                        <button
-                          className="btn btn-outline-dark"
-                          style={{ backgroundColor:"#0C0D48",borderColor:"#0C0D48",color:"#FFFFFF" }}
-                          onClick={() => handleConfirmClick(6)}
-                        >
-                          Confirm
-                        </button>
-                      )}
-                  </div>
+                  {(servicesList[0]?.orStatus === "Delivered" ||
+                    servicesList[0]?.orStatus === "Revision") && (
+                    <button
+                      className="btn btn-outline-dark"
+                      style={{
+                        backgroundColor: "#0C0D48",
+                        borderColor: "#0C0D48",
+                        color: "#FFFFFF",
+                      }}
+                      onClick={() => handleConfirmClick(6)}
+                    >
+                      Confirm
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
-          </footer>
-        )}
+          </div>
+        </footer>
+      )}
     </>
   );
 };

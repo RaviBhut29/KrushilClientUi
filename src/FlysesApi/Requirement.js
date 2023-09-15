@@ -1,9 +1,9 @@
-import { apiGet, apiPost } from "./FlysesApi";
+import { apiFormDataPost, apiGet, apiPost } from "./FlysesApi";
 
 export const getRequirementList = (id) => {
     return apiGet(`Requirement/GetRequirement/${id}`);
 };
 
 export const submitFormDetail = (obj) => {
-    return apiPost(`Requirement/UserWiseRequirement`,obj);
+    return apiFormDataPost(`Requirement/UserWiseRequirement`,obj);
 };

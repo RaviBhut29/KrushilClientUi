@@ -175,22 +175,24 @@
     order: 1;
     flex-grow: 0;
 }
-.half-half-image-text .About-Fly-Text{
+
+.half-half-image-text .About-Fly-Text {
     /* width: 628px; */
 }
-.half-half-image-text .faq-illus1{
+
+.half-half-image-text .faq-illus1 {
     background: url("../ui/Images/About us vectors-01.svg") no-repeat center;
     background-size: cover;
     width: 500px;
 }
 
-.half-half-image-text .faq-illus2{
+.half-half-image-text .faq-illus2 {
     background: url("../ui/Images/About us vectors-02.svg") no-repeat center;
     background-size: cover;
     width: 500px;
 }
 
-.half-half-image-text .faq-illus3{
+.half-half-image-text .faq-illus3 {
     background: url("../ui/Images/About us vectors-03.svg") no-repeat center;
     background-size: cover;
     width: 500px;
@@ -286,20 +288,20 @@
     .half-half-image-text p .b1 {
         font-size: 22px;
     }
-    
-    .half-half-image-text .faq-illus1{
+
+    .half-half-image-text .faq-illus1 {
         width: auto;
     }
 
-    .half-half-image-text .faq-illus2{
+    .half-half-image-text .faq-illus2 {
         width: auto;
     }
 
-    .half-half-image-text .faq-illus3{
+    .half-half-image-text .faq-illus3 {
         width: auto;
     }
 
-    .half-half-image-text .Mob-Margin{
+    .half-half-image-text .Mob-Margin {
         margin-top: 20px;
     }
 }
@@ -321,6 +323,36 @@
         display: none;
         position: relative;
     }
+
+}
+
+@media only screen and (min-width: 768px) {
+
+    .half-half-image-text .faq-illus1 {
+        width: auto !important;
+    }
+
+    .half-half-image-text .faq-illus2 {
+        width: auto !important;
+    }
+
+    .half-half-image-text .faq-illus3 {
+        width: auto !important;
+    }
+}
+
+@media only screen and (min-width: 320px) {
+    .half-half-image-text .faq-illus1 {
+        width: auto !important;
+    }
+
+    .half-half-image-text .faq-illus2 {
+        width: auto !important;
+    }
+
+    .half-half-image-text .faq-illus3 {
+        width: auto !important;
+    }
 }
 
 @media only screen and (min-width: 877.71px) {
@@ -329,17 +361,20 @@
     }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     .LineBg {
         width: 984px;
     }
-    .half-half-image-text .faq-illus1{
+
+    .half-half-image-text .faq-illus1 {
         width: 350px;
     }
-    .half-half-image-text .faq-illus2{
+
+    .half-half-image-text .faq-illus2 {
         width: 350px;
     }
-    .half-half-image-text .faq-illus3{
+
+    .half-half-image-text .faq-illus3 {
         width: 350px;
     }
 }

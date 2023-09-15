@@ -7,13 +7,14 @@ import { Product } from "../Pages/Product/Product.jsx";
 import Portfolio from "../Pages/Portfolio/Portfolio.jsx";
 import { Services } from "../Pages/Services/Service.jsx";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword.jsx";
-import { Chat } from "../Pages/Chat/Chat.jsx";
+import { Chat } from "../Pages/ChatPanel/Chat.jsx";
 import PlanPackages from "../Pages/PlanPackages/PlanPackages.jsx";
 import { User_Profile } from "../Pages/User_Profile/User_Profile.jsx";
 import Order from "../Pages/Order/Order.jsx";
 import { Requirement } from "../Pages/Requirement/Requirement.jsx";
 import { About } from "../Pages/About/About.jsx";
 import { HowItWork } from "../Pages/HowItWork/HowItWork.jsx";
+import ConfirmEmailAddress from "../Pages/ConfirmEmailAddress/ConfirmEmailAddress.jsx";
 
 const RoutesArray = [
   {
@@ -22,6 +23,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/home",
@@ -29,6 +31,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/services",
@@ -36,6 +39,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/services/*",
@@ -43,6 +47,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/category",
@@ -50,6 +55,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/about",
@@ -57,6 +63,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/howitwork",
@@ -64,6 +71,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/category/*",
@@ -71,6 +79,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/order/*",
@@ -78,6 +87,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/requirement/*",
@@ -85,6 +95,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : false
   },
   {
     path: "/product/*",
@@ -92,6 +103,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/portfolio",
@@ -99,6 +111,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/login",
@@ -106,6 +119,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "authentication",
+    isChatIconVisible : false
   },
   {
     path: "/register",
@@ -113,6 +127,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "authentication",
+    isChatIconVisible : false
   },
   {
     path: "/forgotpassword",
@@ -120,6 +135,15 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "authentication",
+    isChatIconVisible : false
+  },
+  {
+    path: "/confirmemail",
+    component: ConfirmEmailAddress,
+    exact: true,
+    footer: true,
+    type: "authentication",
+    isChatIconVisible : false
   },
   {
     path: "/chat",
@@ -127,6 +151,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "authentication",
+    isChatIconVisible : false
   },
   {
     path: "/planPackages",
@@ -134,6 +159,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
   {
     path: "/profile",
@@ -141,6 +167,7 @@ const RoutesArray = [
     exact: true,
     footer: true,
     type: "user",
+    isChatIconVisible : true
   },
 ];
 

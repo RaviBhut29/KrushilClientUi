@@ -178,10 +178,13 @@
   box-sizing: border-box;
   background: #F8F9FA;
   border: 1px solid #DCEDFF;
-  border-radius: 0px 10px 10px 10px;
+  border-radius: 10px 10px 10px 0px;
   padding: 8px;
   width: fit-content;
   max-width: 556px;
+  font-size: 15px;
+  margin-bottom: 2px;
+  font-family: var(--Inter_Header);
 }
 
 .chat .card .card-body .chat-box .user-msg-time,
@@ -231,6 +234,15 @@
 .chat .card .card-body .chat-box .admin-msg-time {
   align-self: center;
   margin-right: 5px;
+  margin-bottom: 0px;
+  color: #CED4DA;
+  font-size: 10px;
+  font-family: var(--Inter_Header);
+}
+
+.chat .card .card-body .chat-box .user-msg-time {
+  align-self: center;
+  margin-left: 5px;
   margin-bottom: 0px;
   color: #CED4DA;
   font-size: 10px;
@@ -394,6 +406,10 @@
   cursor: "pointer";
 }
 
+.chat .card .card-body {
+  min-height: 65vh;
+}
+
 @media only screen and (max-width: 426px) {
   /* .chat .card .card-body .chat-box {
     height: 275px;
@@ -425,7 +441,8 @@
 
   .chat .card .card-body .chat-box {
     padding: 0px;
-    max-height: 442px !important;
+    /* max-height: 442px !important; */
+    max-height: 65vh !important;
   }
 
   .Smile-icon {

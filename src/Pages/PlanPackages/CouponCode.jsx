@@ -7,10 +7,8 @@ import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 
 const CouponCode = (props) => {
-  const { couponDiscount,setCouponDiscount, orderDetails,setIsPayPal,setCouponCode } = props;
-  const [text, setText] = useState({
-    name: "",
-  });
+  const { couponDiscount,setCouponDiscount, orderDetails,setIsPayPal,setCouponCode,text, setText } = props;
+  
   const [invalid, setInvalid] = useState("");
   const [codeValid, setCodeValid] = useState(false);
 

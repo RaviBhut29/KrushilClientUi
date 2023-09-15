@@ -32,7 +32,6 @@ const ForgotPassword = () => {
     if (key !== null && key !== undefined && key !== "") {
       checkValidKey(key)
         .then((response) => {
-         
           if (response !== "") {
             setIsResetPassModal(response?.userId);
           } else {

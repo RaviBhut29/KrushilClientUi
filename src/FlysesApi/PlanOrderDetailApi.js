@@ -4,6 +4,10 @@ export const getPlanWiseOrderOptionDetails = (id) => {
     return apiGet(`OrderOption/GetPlanWiseOrderOption/${id}`);
 };
 
+export const checkRegisterDetails = (id) => {
+    return apiGet(`user/checkRegisterDetails/${id}`);
+};
+
 export const getOrderFeature = (userId,orderId) => {
     return apiGet(`userWiseOrderOption/${userId}/${orderId}`);
 };

@@ -312,6 +312,10 @@ export const Chat = () => {
   const togglePanel = () => {
     setShowPanel(!showPanel);
   };
+  
+  let vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
   return (
     <div className="container chat">
       <Header />
@@ -358,10 +362,20 @@ export const Chat = () => {
                 <span className="header">Team Flyses</span>
                 <br />
 
-                <span className={isOnlineStatus === "Online" ? "online-text" : "offlineText"} >
-                  <div className={isOnlineStatus === "Online" ? "dot" : "offlineDot"} />
+                <span
+                  className={
+                    isOnlineStatus === "Online" ? "online-text" : "offlineText"
+                  }
+                >
+                  <div
+                    className={
+                      isOnlineStatus === "Online" ? "dot" : "offlineDot"
+                    }
+                  />
                   {isOnlineStatus}
-                  <span className="ChatLocalTime">&nbsp; Local time: 6:30PM</span>
+                  <span className="ChatLocalTime">
+                    &nbsp; Local time: 6:30PM
+                  </span>
                 </span>
                 <span className="Availability-time">
                   Availability: Weekdays 10:30AM to 8:30PM IST
@@ -371,8 +385,6 @@ export const Chat = () => {
           </h5>
           <div className="card-body">
             <div className="chat-box" ref={innerDivRef} onScroll={handleScroll}>
-              <h5 className="day">Yesterday</h5>
-
               {messageList &&
                 messageList.map((item, value) => {
                   if (String(item.userRole) === "1") {
@@ -397,12 +409,14 @@ export const Chat = () => {
                               {" "}
                               {item.messageTime}
                             </span>
-                            <label
+                            <span
                               className="user-msg-time"
-                              style={{ fontSize: "12px", marginLeft: "5px" }}
+                              style={{
+                                marginLeft: "5px",
+                              }}
                             >
                               {item.sendDateStatus}
-                            </label>
+                            </span>
                           </div>
                         )}
                         {item.ctOriginalDocument === null && (
@@ -411,12 +425,14 @@ export const Chat = () => {
                             <span className="user-msg-time">
                               {item.messageTime}
                             </span>
-                            <label
+                            <span
                               className="user-msg-time"
-                              style={{ fontSize: "12px", marginLeft: "5px" }}
+                              style={{
+                                marginLeft: "5px",
+                              }}
                             >
                               {item.sendDateStatus}
-                            </label>
+                            </span>
                           </div>
                         )}
                       </>
@@ -427,8 +443,7 @@ export const Chat = () => {
                         {item.ctOriginalDocument !== null && (
                           <div className="admin-msg-div">
                             <span className="admin-msg-time">
-                              {" "}
-                              {item.messageTime}
+                              {item.messageTime} {" "} {item.sendDateStatus}
                             </span>
                             {/* <label className="admin-msg-time"style={{ fontSize: "12px", marginLeft: "5px" }}>{item.sendDateStatus}</label> */}
                             <p className="admin-msg">
@@ -449,12 +464,23 @@ export const Chat = () => {
                         {item.ctOriginalDocument === null && (
                           <div className="admin-msg-div">
                             <span className="admin-msg-time">
-                              {item.messageTime}
+                             {item.messageTime} {" "} {item.sendDateStatus}
                             </span>
+                            
                             {/* <label className="admin-msg-time" style={{ fontSize: "12px", marginLeft: "-10px" }} > {item.sendDateStatus} </label> */}
                             <p className="admin-msg">{item.ctMessage}</p>
                           </div>
                         )}
+                        {/* User Test */}
+                        {/* {item.ctOriginalDocument === null && (
+                          <div className="user-msg-div">
+                            <p className="user-msg">{item.ctMessage}</p>
+                            <span className="user-msg-time">
+                              {item.messageTime}
+                            </span>
+                          </div>
+                        )} */}
+                        {/* User Test */}
                       </>
                     );
                   }

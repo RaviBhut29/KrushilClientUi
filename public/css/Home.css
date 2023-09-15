@@ -63,7 +63,7 @@ body ul {
     max-width: 700px;
     min-width: fit-content;
     font-weight: 600;
-    font-size: 55px;
+    font-size: 53px;
     line-height: 80px;
     font-family: var(--Inter_SemiBold);
 }
@@ -2215,15 +2215,16 @@ body ul {
 
 @media only screen and (max-width: 321px) {
     .home .Home-Content-Card-1 {
-        left: 60px !important;
+        /* left: 60px !important; */
+        left: 70px !important;
     }
 
     .home .Home-Content-Card-2 {
-        left: 140px !important;
+        left: 160px !important;
     }
 
     .home .Home-Content-Card-3 {
-        left: 120px !important;
+        left: 130px !important;
     }
 
     .home .Home-Content-Card-4 {
@@ -2231,11 +2232,16 @@ body ul {
     }
 
     .home .Home-Content-Card-5 {
-        left: 0px !important;
+        left: 20px !important;
     }
 
     .home .exploreCategories .brandingCards .brands-card {
         width: fit-content;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .home .Home-Content-Card-2{
+        top: 0 !important;
     }
 }
 

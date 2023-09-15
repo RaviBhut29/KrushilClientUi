@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm } from "react-hook-form";
 import { Country, State, City } from "country-state-city";
 import Select from "react-select";
 import {
@@ -21,14 +21,29 @@ import { updateUser } from "../../FlysesApi/Login";
 export const User_Profile = () => {
   const [country, setCountry] = useState();
   const [isGoogleUser, setIsGoogleUser] = useState(false);
-  const [countryDefaultValue, setCountryDefaultValue] = useState(0);
-  const [value, setValue] = useState()
-  const [stateOptions, setStateOptions] = useState([])
+  const [countryDefaultValue, setCountryDefaultValue] = useState(null);
+  const [value, setValue] = useState();
+  const [stateOptions, setStateOptions] = useState([]);
 
-  const AllCountries = useMemo(() => { return Country?.getAllCountries() }, [])
-  const AllStates = useMemo(() => { return State?.getAllStates() }, [])
-  
-  const { control, reset, handleSubmit, register, formState: { errors }, setValue: setFormValue } = useForm({});
+  const AllCountries = useMemo(() => {
+    return Country?.getAllCountries();
+  }, []);
+  const AllStates = useMemo(() => {
+    return State?.getAllStates();
+  }, []);
+
+  useMemo(() => {
+    console.warn("countryDefaultValue", countryDefaultValue);
+  }, [countryDefaultValue]);
+
+  const {
+    control,
+    reset,
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue: setFormValue,
+  } = useForm({});
   const [formData, setFormData] = useState({
     userId: "",
     userFirstName: "",
@@ -74,7 +89,7 @@ export const User_Profile = () => {
     setIsGoogleUser(isGoogleUserLogin);
 
     const countryArray = Country?.getAllCountries()?.map(function (item) {
-      return { value: item.isoCode, label: item.name };
+      return { value: item?.isoCode, label: item?.name };
     });
 
     setCountry(countryArray);
@@ -97,10 +112,17 @@ export const User_Profile = () => {
             userPassword: response.userPassword,
           });
 
+          setValue(response?.userNumber);
+
           const obj = countryArray.filter(
-            (x) => x.label === response.userState
-          )[0];
-          setCountryDefaultValue(obj);
+            (x) => x?.label === response?.userState
+          );
+
+          if (obj !== null) {
+            setCountryDefaultValue(obj);
+          } else {
+            setCountryDefaultValue("");
+          }
         }
         setLoadingStatus(false);
       })
@@ -124,7 +146,6 @@ export const User_Profile = () => {
   };
 
   const formValidation = () => {
-    debugger;
     const {
       userFirstName,
       userLastName,
@@ -200,7 +221,6 @@ export const User_Profile = () => {
   };
 
   const onLogin = (e) => {
-    debugger;
     setLoadingStatus(true);
     e.preventDefault();
 
@@ -211,7 +231,7 @@ export const User_Profile = () => {
 
     const UserId = sessionStorage.getItem("userId") || 0;
 
-    updateUser(UserId, formData)
+    updateUser(UserId, { ...formData, userNumber: value })
       .then((response) => {
         setLoadingStatus(false);
         toastSuccess("User profile updated successful.");
@@ -227,15 +247,17 @@ export const User_Profile = () => {
   //     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
   // });
   const onBlurHandler = () => {
-    const code = formatPhoneNumberIntl(value)?.split(" ")?.[0]
-    const country = AllCountries?.find(d => d?.phonecode === code?.substr(1))
-    const states = AllStates?.filter(d => d?.countryCode === country?.isoCode)
+    const code = formatPhoneNumberIntl(value)?.split(" ")?.[0];
+    const country = AllCountries?.find((d) => d?.phonecode === code?.substr(1));
+    const states = AllStates?.filter(
+      (d) => d?.countryCode === country?.isoCode
+    );
     const options = states?.map((d) => {
-      return { label: d?.name, value: d }
-    })
-    setCountry(country)
-    setStateOptions(options)
-  }
+      return { label: d?.name, value: d };
+    });
+    setCountry(country);
+    setStateOptions(options);
+  };
   return (
     <>
       <div className="home userNew">
@@ -245,9 +267,11 @@ export const User_Profile = () => {
           {/* Navigation */}
           <BreadCrub siteMapPath={siteMapPath} />
 
-          <p className="user-info">
-            User Information
+          <p className="user-info" style={{ color: "red", fontSize: "15px" }}>
+            Please complete the remaining fields before ordering.
           </p>
+          <br />
+          <p className="user-info">User Information</p>
           <p className="user-info-desc">
             Hare you can edit public information about your self. the changes
             will be displayed for other user within five minutes.
@@ -262,7 +286,10 @@ export const User_Profile = () => {
                   <div className="row justify-content-start Profile-Name">
                     <div className="form-row mt-3">
                       <div className="form-group col-4">
-                        <label htmlFor="inputEmail4" className="Profile-HeadLabel">
+                        <label
+                          htmlFor="inputEmail4"
+                          className="Profile-HeadLabel"
+                        >
                           First Name
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -288,7 +315,10 @@ export const User_Profile = () => {
                         )}
                       </div>
                       <div className="form-group col-4 mx-5">
-                        <label htmlFor="inputPassword4" className="Profile-HeadLabel">
+                        <label
+                          htmlFor="inputPassword4"
+                          className="Profile-HeadLabel"
+                        >
                           Last Name
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -317,7 +347,10 @@ export const User_Profile = () => {
                     {/* </div> */}
                     <div className="form-row mt-3">
                       <div className="form-group col-4">
-                        <label htmlFor="inputEmail4" className="Profile-HeadLabel">
+                        <label
+                          htmlFor="inputEmail4"
+                          className="Profile-HeadLabel"
+                        >
                           Email
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -343,133 +376,135 @@ export const User_Profile = () => {
                           </FormFeedback>
                         )}
                       </div>
-                      {!isGoogleUser && (
-                        <div className="form-group col-4 mx-5">
-                          <label htmlFor="inputPassword4" className="Profile-HeadLabel">
-                            Enter Number
-                            <span style={{ color: "red" }}>*</span>
-                          </label>
-                          {/* <input
-                            type="tel"
-                            // type="tel"
-                            className={
-                              validationFormData.userNumber ||
-                                (!isValidPhoneNumber(formData.userNumber) &&
-                                  formData.userNumber !== "")
-                                ? "form-control is-invalid"
-                                : "form-control"
-                            }
-                            id="phone"
-                            name="userNumber"
-                            // name="phone"
-                            placeholder=""
-                            onChange={(e) =>
-                              handleFormDataChange(e.target.name, e.target.value)
-                            }
-                            value={formData.userNumber}
-                          /> */}
-                          <Controller
-                            name="mobile"
-                            control={control}
-                            render={({
-                              field,
-                              fieldState: { invalid, isTouched, isDirty, error },
-                              formState,
-                            }) => {
-                              return (
-                                <PhoneInput
-                                  country="US"
-                                  defaultCountry="IN"
-                                  value={value}
-                                  onChange={setValue}
-                                  onBlur={onBlurHandler}
-                                />
-                              );
-                            }}
-                          />
 
-                          {(validationFormData.userNumber ||
-                            (!isValidPhoneNumber(formData.userNumber) &&
-                              formData.userNumber !== "")) && (
+                      <div className="form-group col-4 mx-5">
+                        <label
+                          htmlFor="inputPassword4"
+                          className="Profile-HeadLabel"
+                        >
+                          Enter Number
+                          <span style={{ color: "red" }}>*</span>
+                        </label>
+                        <Controller
+                          name="mobile"
+                          control={control}
+                          render={({
+                            field,
+                            fieldState: { invalid, isTouched, isDirty, error },
+                            formState,
+                          }) => {
+                            return (
+                              <PhoneInput
+                                country="US"
+                                defaultCountry="IN"
+                                value={value}
+                                onChange={setValue}
+                                onBlur={onBlurHandler}
+                              />
+                            );
+                          }}
+                        />
+
+                        {(validationFormData?.userNumber ||
+                          (!isValidPhoneNumber(String(formData?.userNumber)) &&
+                            formData.userNumber !== "")) && (
+                          <FormFeedback style={{ display: "block" }}>
+                            {validationFormData?.userNumber
+                              ? "Please enter number"
+                              : !isValidPhoneNumber(
+                                  String(formData?.userNumber)
+                                ) && formData?.userNumber !== ""
+                              ? "Invalid number"
+                              : ""}
+                          </FormFeedback>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="form-row mt-3">
+                      <div className="col-4">
+                        <div className="row justify-content-start">
+                          {/*  */}
+                          <div className="form-group col">
+                            <label
+                              className="Profile-HeadLabel"
+                              htmlFor="inputPassword4"
+                            >
+                              Select City
+                              <span style={{ color: "red" }}>*</span>
+                            </label>
+                            <input
+                              type="text"
+                              className={
+                                validationFormData.userCity
+                                  ? "form-control is-invalid"
+                                  : "form-control"
+                              }
+                              id="inputPassword4"
+                              name="userCity"
+                              placeholder=""
+                              onChange={(e) =>
+                                handleFormDataChange(
+                                  e.target.name,
+                                  e.target.value
+                                )
+                              }
+                              value={formData.userCity}
+                            />
+                            {validationFormData.userCity && (
                               <FormFeedback style={{ display: "block" }}>
-                                {validationFormData.userNumber
-                                  ? "Please enter number"
-                                  : !isValidPhoneNumber(formData.userNumber) &&
-                                    formData.userNumber !== ""
-                                    ? "Invalid number"
-                                    : ""}
+                                Please enter city
                               </FormFeedback>
                             )}
-                        </div>
-                      )}
-                    </div>
-                    {!isGoogleUser && (
-                      <div className="form-row mt-3">
-                        <div className="col-4">
-                          <div className="row justify-content-start">
-                            {/*  */}
-                            <div className="form-group col">
-                              <label className="Profile-HeadLabel" htmlFor="inputPassword4">
-                                Select City
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <input
-                                type="text"
-                                className={
-                                  validationFormData.userCity
-                                    ? "form-control is-invalid"
-                                    : "form-control"
-                                }
-                                id="inputPassword4"
-                                name="userCity"
-                                placeholder=""
-                                onChange={(e) =>
-                                  handleFormDataChange(
-                                    e.target.name,
-                                    e.target.value
-                                  )
-                                }
-                                value={formData.userCity}
-                              />
-                              {validationFormData.userCity && (
-                                <FormFeedback style={{ display: "block" }}>
-                                  Please enter city
-                                </FormFeedback>
-                              )}
-                            </div>
-                            <div className="form-group col">
-                              <label htmlFor="inputEmail4" className="Profile-HeadLabel">
-                                Select Country
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              {countryDefaultValue && country || 1 == 1 && (
-                                <Select
-                                  name="userState"
-                                  className="myDropDown"
-                                  options={country}
-                                  placeholder="Select"
-                                  onChange={(e) =>
-                                    handleFormDataChange("userState", e)
-                                  }
-                                  styles={
-                                    validationFormData.userState &&
-                                    customStylesError
-                                  }
-                                  defaultValue={countryDefaultValue}
-                                />
-                              )}
-
-                              {validationFormData.userState && (
-                                <FormFeedback style={{ display: "block" }}>
-                                  Please enter state
-                                </FormFeedback>
-                              )}
-                            </div>
-                            {/*  */}
                           </div>
+                          <div className="form-group col">
+                            <label
+                              htmlFor="inputEmail4"
+                              className="Profile-HeadLabel"
+                            >
+                              Select Country
+                              <span style={{ color: "red" }}>*</span>
+                            </label>
+
+                            {countryDefaultValue && (
+                              <Select
+                                name="userState"
+                                className="myDropDown"
+                                options={Country?.getAllCountries()?.map(
+                                  function (item) {
+                                    return {
+                                      value: item?.isoCode,
+                                      label: item?.name,
+                                    };
+                                  }
+                                )}
+                                placeholder="Select"
+                                onChange={(e) =>
+                                  handleFormDataChange("userState", e)
+                                }
+                                styles={
+                                  validationFormData?.userState &&
+                                  customStylesError
+                                }
+                                defaultValue={countryDefaultValue}
+                              />
+                            )}
+
+                            {validationFormData.userState && (
+                              <FormFeedback style={{ display: "block" }}>
+                                Please enter state
+                              </FormFeedback>
+                            )}
+                          </div>
+                          {/*  */}
                         </div>
+                      </div>
+                      {!isGoogleUser && (
                         <div className="form-group col-4 mx-5">
-                          <label htmlFor="txt_pswrd" className="Profile-HeadLabel">
+                          <label
+                            htmlFor="txt_pswrd"
+                            className="Profile-HeadLabel"
+                          >
                             Change Password
                             <span style={{ color: "red" }}>*</span>
                           </label>
@@ -498,8 +533,8 @@ export const User_Profile = () => {
                             </Link>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                   {/* /.row */}
                 </section>

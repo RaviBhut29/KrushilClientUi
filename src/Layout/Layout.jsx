@@ -3,9 +3,14 @@ import Home from "../Pages/Home/Home";
 import NotificationHandler from "../Pages/Notification/NotificationHandler";
 import { Navigate } from "react-router-dom";
 
-export const Layout = ({ Component, footer, type,path }) => {
+export const Layout = ({
+  Component,
+  footer,
+  type,
+  path,
+  isChatIconVisible,
+}) => {
   const getLoginToken = sessionStorage.getItem("userSortName");
-
   if (
     (getLoginToken === null || getLoginToken === "") &&
     (path === "/chat" || path.includes("/order"))
@@ -16,6 +21,11 @@ export const Layout = ({ Component, footer, type,path }) => {
       <>
         <NotificationHandler />
         <Component />
+        {isChatIconVisible && (
+          <a href="Chat" class="float-chat-button">
+            <i class="fa fa-comments float-chat fa-2x"></i>
+          </a>
+        )}
       </>
     );
   }

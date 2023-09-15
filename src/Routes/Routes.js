@@ -28,6 +28,7 @@ const RouterComp = () => {
                   footer={res?.footer}
                   type={res?.type}
                   path={res?.path}
+                  isChatIconVisible={res?.isChatIconVisible}
                 />
               }
               exact={res?.exact}

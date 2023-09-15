@@ -16,6 +16,10 @@ export const updatePassword = (obj) => {
   return apiPut("user/UpdateUserPass", obj);
 };
 
+export const ExistsUserByEmail = (userEmail) => {
+  return apiGet(`user/ExistsUserByEmail/${userEmail}`);
+};
+
 export const loginUser = (userEmail, userPassword, role) => {
   return apiGet(`user/Login/${userEmail}/${userPassword}/${role}`);
 };
@@ -24,6 +28,14 @@ export const checkValidKey = (key) => {
   return apiGet(`user/${key}`);
 };
 
+export const UpdateUserStatusByEmail = (obj) => {
+  return apiPut(`user/UpdateUserStatusByEmail`,obj);
+};
+
 export const updateUser = (id, obj) => {
   return apiPut(`user/${id}`, obj);
+};
+
+export const CheckValidEmailValidation = (obj) => {
+  return apiPut(`user/CheckVaidEmailOnRst`, obj);
 };
