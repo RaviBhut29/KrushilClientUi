@@ -61,11 +61,18 @@ const FormGoogleLoginButton = () => {
 
           createUser(userObj)
             .then((response) => {
-              sessionStorage.setItem("userSortName", sortName); 
-              sessionStorage.setItem("authenticationToken", response.token);
-              sessionStorage.setItem("isGoogleUser", true);
-              sessionStorage.setItem("userId", response.userId);
-              navigate("/");
+              debugger;
+              if(Number(response?.userStatus) === 1)
+              {
+                sessionStorage.setItem("userSortName", sortName); 
+                sessionStorage.setItem("authenticationToken", response.token);
+                sessionStorage.setItem("isGoogleUser", true);
+                sessionStorage.setItem("userId", response.userId);
+                navigate("/");
+              }
+              else{
+                toastError("Admin has disabled this user.");  
+              }
             })
             .catch(() => {
               toastError("Bad response from server.");

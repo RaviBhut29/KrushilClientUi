@@ -59,7 +59,7 @@ const ConfirmEmailAddress = () => {
   } = useForm({});
 
   const onLogin = (data) => {
-    navigate("/login");
+    navigate("/Login");
   };
 
   return (

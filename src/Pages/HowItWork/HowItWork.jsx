@@ -25,14 +25,14 @@ export const HowItWork = () => {
           <Header />
 
           <BreadCrub siteMapPath={siteMapPath} />
-          <img src="../ui/Images/Rectangle.svg" className="about-rect"></img>
-          {/* <img className="curlLine" src="../ui/Images/line-curl.svg" alt="" /> */}
+          <img src="/ui/Images/Rectangle.svg" className="about-rect"></img>
+          {/* <img className="curlLine" src="/ui/Images/line-curl.svg" alt="" /> */}
           <div style={{ width: "80%", marginRight: "auto", marginLeft: "auto" }}>
             <div className="form-row">
-              <img className="grp-14" src="../ui/Images/3rect.svg" alt="" />
+              <img className="grp-14" src="/ui/Images/3rect.svg" alt="" />
               <img
                 className="Ellipse-131"
-                src="../ui/Images/Ellipse 131.png"
+                src="/ui/Images/Ellipse 131.png"
                 alt=""
               />
               <div
@@ -54,7 +54,7 @@ export const HowItWork = () => {
             <div className="form-row First">
               <img
                 className="Ellipse-621"
-                src="../ui/Images/Ellipse 621.png"
+                src="/ui/Images/Ellipse 621.png"
                 alt=""
               />
               <div className="col-md-12 col-lg-6">
@@ -67,7 +67,7 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-1.svg" className="card-1-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
+                <img src="/ui/Images/card-1.svg" className="card-1-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
               </div>
             </div>
             <div className="form-row">
@@ -84,7 +84,7 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-2.svg" style={{ width: 492.02, height: 225.94 }} className="img card-2-responsive"></img>
+                <img src="/ui/Images/card-2.svg" style={{ width: 492.02, height: 225.94 }} className="img card-2-responsive"></img>
               </div>
             </div>
             <div className="form-row First">
@@ -98,10 +98,10 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-3.svg" className="card-3-responsive" style={{ float: "right", width: 469.73, height: 276.38 }} />
+                <img src="/ui/Images/card-3.svg" className="card-3-responsive" style={{ float: "right", width: 469.73, height: 276.38 }} />
               </div>
             </div>
-            <img src="../ui/Images/wave-lines.svg" className="img-wave" style={{ position: "absolute", margin: "-60px -220px" }}></img>
+            <img src="/ui/Images/wave-lines.svg" className="img-wave" style={{ position: "absolute", margin: "-60px -220px" }}></img>
             <div className="form-row">
               <div className="col-md-12 col-lg-6">
                 <div
@@ -119,8 +119,8 @@ export const HowItWork = () => {
                 {/* <div
                   className="img card-4-responsive"
                   style={{
-                    background: 'url("../ui/Images/card-4.svg") no-repeat',
-                    // background: 'url("../ui/Images/card-4.svg") no-repeat center',
+                    background: 'url("/ui/Images/card-4.svg") no-repeat',
+                    // background: 'url("/ui/Images/card-4.svg") no-repeat center',
                     backgroundSize: "cover",
                     height: 225.94,
                     width: 492.03
@@ -132,7 +132,7 @@ export const HowItWork = () => {
                     backgroundSize: "cover",
                     height: 225.94,
                     width: 492.03
-                  }} src="../ui/Images/card-4.svg"></img>
+                  }} src="/ui/Images/card-4.svg"></img>
               </div>
             </div>
             <div className="form-row First">
@@ -146,11 +146,11 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-5.svg" className="card-5-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
+                <img src="/ui/Images/card-5.svg" className="card-5-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
               </div>
             </div>
             <div className="form-row">
-              <img className="polygon" src="../ui/Images/Polygon 1.png" alt="" />
+              <img className="polygon" src="/ui/Images/Polygon 1.png" alt="" />
               <div className="col-md-12 col-lg-6">
                 <div className="content text-6-responsive" style={{ width: 429, float: "right", paddingLeft: 30 }} >
                   <h3>Get delivery</h3>
@@ -166,7 +166,7 @@ export const HowItWork = () => {
                   backgroundSize: "cover",
                   height: 275,
                   width: 441.19
-                }} src="../ui/Images/card-6.svg"></img>
+                }} src="/ui/Images/card-6.svg"></img>
               </div>
             </div>
             <div className="form-row First">
@@ -180,7 +180,7 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-7.svg" className="card-7-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
+                <img src="/ui/Images/card-7.svg" className="card-7-responsive" style={{ float: "right", width: 429.73, height: 276.38 }} />
               </div>
             </div>
             <div className="form-row">
@@ -197,7 +197,7 @@ export const HowItWork = () => {
                 </div>
               </div>
               <div className="col-md-12 col-lg-6">
-                <img src="../ui/Images/card-8.svg" className="img card-8-responsive" style={{
+                <img src="/ui/Images/card-8.svg" className="img card-8-responsive" style={{
                   backgroundSize: "cover",
                   height: 275,
                   width: 441.19
@@ -205,8 +205,8 @@ export const HowItWork = () => {
                 {/* <div
                   className="img card-8-responsive"
                   style={{
-                    // background: 'url("../ui/Images/card-8.svg") no-repeat center',
-                    background: 'url("../ui/Images/card-8.svg") no-repeat',
+                    // background: 'url("/ui/Images/card-8.svg") no-repeat center',
+                    background: 'url("/ui/Images/card-8.svg") no-repeat',
                     backgroundSize: "cover",
                     height: 275,
                     width: 441.19

@@ -14,41 +14,40 @@ import {
   toastSuccess,
   toastWarning,
 } from "../../FlysesApi/FlysesApi";
-import { REACT_APP, setLoadingStatus } from "../../FlysesApi";
-import { Link } from "react-router-dom";
+import {
+  REACT_APP,
+  decryptWithRk,
+  encrptWithRk,
+  setLoadingStatus,
+} from "../../FlysesApi";
+import { Link, useNavigate } from "react-router-dom";
 import { MdPendingActions } from "react-icons/md";
 
-const OrderDetails = ({
-  orderDetailsList,
-  setOrderDetailsShow,
-  setOrderDetailsList,
-}) => {
+// const OrderDetails = ({
+//   orderDetailsList,
+//   setOrderDetailsShow,
+//   setOrderDetailsList,
+// }) => {
+
+const OrderDetails = () => {
+  const [orderDetailsList, setOrderDetailsList] = useState({
+    orDate: "",
+    orDateTime: "",
+    orId: "",
+    orNumber: "",
+    orPrice: "",
+    pnName :"",
+    ctTitle:"",
+    ctId : ""
+  });
   const [featurePanelShow, setFeaturePanelShow] = useState(true);
-  const [siteMapPath, setSiteMapPath] = useState([
-    {
-      name: "Home",
-      clickable: true,
-      isHome: true,
-      path: "/home",
-    },
-    {
-      name: "Orders",
-      clickable: true,
-      isHome: false,
-      path: "/order",
-      onClick: true,
-    },
-    {
-      name: "#" + orderDetailsList?.orNumber,
-      clickable: false,
-      isHome: false,
-      path: "/orders",
-    },
-  ]);
-  const userId = sessionStorage.getItem("userId");
+
+  const [siteMapPath, setSiteMapPath] = useState([]);
+
+  const userId = sessionStorage.getItem("userId") || 0;
 
   const handlePathClick = (name) => {
-    setOrderDetailsShow(false);
+    //setOrderDetailsShow(false);
   };
 
   const [servicesList, setServicesList] = useState([]);
@@ -69,21 +68,60 @@ const OrderDetails = ({
         }
       })
       .catch(() => {
-        toastError("Bad response from server");
+        toastError("Bad response from server 1");
       });
   };
 
-  const getAllOrderFeature = () => {
-    getOrderFeature(userId, orderDetailsList?.orId)
-      .then((response) => {
+  let path = window.location.pathname;
+  let splitdata = path.split("/");
+
+  const getAllOrderFeature = async () => {
+    setLoadingStatus(true);
+    const orderId = await decryptWithRk(splitdata[splitdata.length - 1]);
+    getOrderFeature(userId, orderId)
+      .then(async (response) => {
         if (response.length > 0) {
           setServicesList(response);
+          setOrderDetailsList({
+            orDate: response[0]?.orDate,
+            orDateTime: response[0]?.orDateTime,
+            orId: response[0]?.orId,
+            orNumber: response[0]?.orNumber,
+            orPrice: response[0]?.orPrice,
+            pnName : response[0]?.pnName,
+            ctTitle : response[0]?.ctTitle,
+            ctId : response[0]?.categoryId
+          });
+
+          const orderNumber = ("#" + response[0]?.orNumber);
+
+          setSiteMapPath([
+            {
+              name: "Home",
+              clickable: true,
+              isHome: true,
+              path: "/home",
+            },
+            {
+              name: "Orders",
+              clickable: true,
+              isHome: false,
+              path: "/order",
+            },
+            {
+              name: orderNumber,
+              clickable: false,
+              isHome: false,
+              path: "/orders",
+            },
+          ]);
+
           if (
             response[0]?.orStatus === "Delivered" ||
             response[0]?.orStatus === "Completed" ||
             response[0]?.orStatus === "Revision"
           ) {
-            getOrderDeliveryFun();
+            getOrderDeliveryFun(response[0]?.orNumber);
           }
           if (response[0]?.orStatus === "Completed") {
             checkReviewAlreadyExists();
@@ -91,15 +129,15 @@ const OrderDetails = ({
         } else {
           setServicesList([]);
         }
-        setLoadingStatus(false);
       })
       .catch(() => {
-        toastError("Bad response from server");
-      });
+        toastError("Bad response from server 2");
+      })
+      .finally(() => setLoadingStatus(false));
   };
 
-  const getOrderDeliveryFun = () => {
-    getOrderDelivery(orderDetailsList?.orNumber)
+  const getOrderDeliveryFun = (orderNumber) => {
+    getOrderDelivery(orderNumber)
       .then((response) => {
         setOrderDeliveryNotes(response?.odDesc);
         if (response?.orderDeliveryMultiFile.length > 0) {
@@ -110,7 +148,7 @@ const OrderDetails = ({
         setLoadingStatus(false);
       })
       .catch(() => {
-        toastError("Bad response from server");
+        toastError("Bad response from server 3");
       });
   };
 
@@ -136,7 +174,7 @@ const OrderDetails = ({
         toastSuccess("Your order has been confirmed!");
       })
       .catch(() => {
-        toastError("Bad response from server");
+        toastError("Bad response from server 4");
       });
   };
 
@@ -176,7 +214,7 @@ const OrderDetails = ({
           toastSuccess("Thank you for submitting your review!");
         })
         .catch(() => {
-          toastError("Bad response from server");
+          toastError("Bad response from server 5");
           setLoadingStatus(false);
         });
     } else {
@@ -185,25 +223,43 @@ const OrderDetails = ({
     }
   };
 
-  const includeFeatureValid = (servicesList.length > 0 &&
+  const includeFeatureValid =
+    servicesList.length > 0 &&
     servicesList[0]?.osServiceName !== "" &&
-    servicesList[0]?.osServiceName !== null);
+    servicesList[0]?.osServiceName !== null;
+  const history = useNavigate();
+
+  const handleRequirementClick = async (id) => {
+    const key = await encrptWithRk(id);
+    const orderId = await encrptWithRk(orderDetailsList?.orId);
+    history(`/requirement/${key}?key=${orderId}`);
+  };
+
+  const handleRequirementViewClick = async () => {
+    const key = await encrptWithRk(orderDetailsList?.ctId);
+    const orderId = await encrptWithRk(orderDetailsList?.orId);
+    const categoryId = await encrptWithRk(servicesList[0]?.categoryId);
+    history(`/requirement/${key}?key=${orderId}&view=${categoryId}`);
+  };
 
   return (
     <>
       <div className="container planContainer Order-status">
-        {/* Navigation */}
-
         <Header />
-        {/* Navigation */}
-        <BreadCrub
-          siteMapPath={siteMapPath}
-          handleSiteMapClick={handlePathClick}
-        />
+
+        {siteMapPath?.length > 0 && siteMapPath[2]?.name !== "#" && (
+          <BreadCrub siteMapPath={siteMapPath} />
+        )}
 
         <p className="order-id" style={{ marginBottom: "25px" }}>
           Order ID :<span> #{orderDetailsList?.orNumber}</span>
-          <span className="YourRequi">Your Requirement</span>
+          <span
+            className="YourRequi"
+            style={{ cursor: "pointer" }}
+            onClick={handleRequirementViewClick}
+          >
+            Your Requirement
+          </span>
         </p>
 
         <div className="form-row gy-5">
@@ -253,21 +309,21 @@ const OrderDetails = ({
                     </span>
                   </p>
                   {includeFeatureValid && (
-                      <>
-                        <p className="card-text mx-2 card1-Features">
-                          Included Features
-                        </p>
-                        <ul
-                          className="mx-2 card1-Features-li"
-                          style={{ height: "fit-content" }}
-                        >
-                          {servicesList.length > 0 &&
-                            servicesList.map((item, index) => {
-                              return <li key={index}>{item?.osServiceName}</li>;
-                            })}
-                        </ul>
-                      </>
-                    )}
+                    <>
+                      <p className="card-text mx-2 card1-Features mt-3">
+                        Included Features
+                      </p>
+                      <ul
+                        className="mx-2 card1-Features-li"
+                        style={{ height: "fit-content" }}
+                      >
+                        {servicesList.length > 0 &&
+                          servicesList.map((item, index) => {
+                            return <li key={index}>{item?.osServiceName}</li>;
+                          })}
+                      </ul>
+                    </>
+                  )}
                 </div>
               </div>
               {/* Date:23/08/2023. */}
@@ -304,7 +360,7 @@ const OrderDetails = ({
                           <div className="row" style={{ width: "100%" }}>
                             <div className="col-12">
                               <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                                Comment Admin Notifier :
+                                Comment from project manager :
                               </h6>
                               <p className="mt-1">{orderDeliveryNotes}</p>
                             </div>
@@ -320,7 +376,7 @@ const OrderDetails = ({
                                     className="info-box-icon"
                                     style={{
                                       backgroundImage:
-                                        "url(../ui/Images/upload-list-image-card.png)",
+                                        "url(/ui/Images/upload-list-image-card.png)",
                                       backgroundSize: "cover",
                                     }}
                                   ></span>
@@ -334,7 +390,7 @@ const OrderDetails = ({
                                     className="info-box-icon"
                                     onClick={() => downloadService(item?.uid)}
                                   >
-                                    <img src="../ui/Images/Vector.png" />
+                                    <img src="/ui/Images/Vector.png" />
                                   </div>
                                 </div>
                               </div>
@@ -380,7 +436,7 @@ const OrderDetails = ({
                           <div className="row" style={{ width: "100%" }}>
                             <div className="col-12">
                               <h6 className="mt-1" style={{ fontWeight: 600 }}>
-                                Comment Admin Notifier :
+                                Comment from project manager :
                               </h6>
                               <p className="mt-1">{orderDeliveryNotes}</p>
                             </div>
@@ -396,8 +452,8 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   style={{
                                     backgroundImage:
-                                      // "url(../ui/Images/upload-list-image-card.png)",
-                                      "url(../ui/Images/download-file-logo.svg)",
+                                      // "url(/ui/Images/upload-list-image-card.png)",
+                                      "url(/ui/Images/download-file-logo.svg)",
                                     backgroundSize: "contain",
                                     backgroundRepeat: "no-repeat",
                                   }}
@@ -412,8 +468,8 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   onClick={() => downloadService(item?.uid)}
                                 >
-                                  {/* <img src="../ui/Images/Vector.png" /> */}
-                                  <img src="../ui/Images/download-file-icon.svg" />
+                                  {/* <img src="/ui/Images/Vector.png" /> */}
+                                  <img src="/ui/Images/download-file-icon.svg" />
                                 </div>
                               </div>
                             </div>
@@ -427,7 +483,7 @@ const OrderDetails = ({
                               className="info-box-icon"
                               style={{
                                 backgroundImage:
-                                  "url(../ui/Images/download-file-logo.svg)",
+                                  "url(/ui/Images/download-file-logo.svg)",
                                 backgroundSize: "contain",
                                 backgroundRepeat: "no-repeat",
                               }}
@@ -438,7 +494,7 @@ const OrderDetails = ({
                             </div>
                             <div className="info-box-icon">
                               <img
-                                src="../ui/Images/download-file-icon.svg"
+                                src="/ui/Images/download-file-icon.svg"
                                 style={{
                                   backgroundSize: "contain",
                                   backgroundRepeat: "no-repeat",
@@ -490,11 +546,16 @@ const OrderDetails = ({
                       style={{ color: "#198754", marginLeft: "5px" }}
                     >
                       {servicesList[0]?.orStatus === "Requirment pending" && (
-                        <Link to={`/requirement/${orderDetailsList?.ctId}`}>
+                        <a
+                          onClick={() =>
+                            handleRequirementClick(orderDetailsList?.ctId)
+                          }
+                          style={{ cursor: "pointer", color: "blue" }}
+                        >
                           {" "}
                           <MdPendingActions style={{ fontSize: "22px" }} />{" "}
                           Requirment pending
-                        </Link>
+                        </a>
                       )}
                       {servicesList[0]?.orStatus !== "Requirment pending" &&
                         servicesList[0]?.orStatus}
@@ -524,7 +585,7 @@ const OrderDetails = ({
                   </div>
                 </div>
                 <div className="form-row mt-3">
-                  <div className="details">Delivery date &amp; time</div>
+                  <div className="details">Estimated Delivery</div>
                   <div className="ml-auto">
                     <span
                       className="info FontBold"
@@ -569,7 +630,7 @@ const OrderDetails = ({
                     className="info-box-icon"
                     style={{ transition: "0.5s" }}
                   >
-                    <img src="../ui/Images/arrow-right.png" />
+                    <img src="/ui/Images/arrow-right.png" />
                   </span>
                 </div>
                 <div
@@ -586,7 +647,7 @@ const OrderDetails = ({
                     className="info-box-icon"
                     style={{ transition: "0.5s" }}
                   >
-                    <img src="../ui/Images/arrow-right.png" />
+                    <img src="/ui/Images/arrow-right.png" />
                   </span>
                 </div>
               </div>
@@ -647,8 +708,8 @@ const OrderDetails = ({
                                 className="info-box-icon"
                                 style={{
                                   backgroundImage:
-                                    // "url(../ui/Images/upload-list-image-card.png)",
-                                    "url(../ui/Images/download-file-logo.svg)",
+                                    // "url(/ui/Images/upload-list-image-card.png)",
+                                    "url(/ui/Images/download-file-logo.svg)",
                                   backgroundSize: "contain", backgroundRepeat: "no-repeat",
                                 }}
                               ></span>
@@ -662,8 +723,8 @@ const OrderDetails = ({
                                 className="info-box-icon"
                                 onClick={() => downloadService(item?.uid)}
                               >
-                                {/* <img src="../ui/Images/Vector.png" /> */}
-              {/*<img src="../ui/Images/download-file-icon.svg" />
+                                {/* <img src="/ui/Images/Vector.png" /> */}
+              {/*<img src="/ui/Images/download-file-icon.svg" />
                               </div>
                             </div>
                           </div>
@@ -677,7 +738,7 @@ const OrderDetails = ({
                             className="info-box-icon"
                             style={{
                               backgroundImage:
-                                "url(../ui/Images/download-file-logo.svg)",
+                                "url(/ui/Images/download-file-logo.svg)",
                               backgroundSize: "contain", backgroundRepeat: "no-repeat",
                             }}
                           ></span>
@@ -690,7 +751,7 @@ const OrderDetails = ({
                           <div
                             className="info-box-icon"
                           >
-                            <img src="../ui/Images/download-file-icon.svg" style={{ backgroundSize: "contain", backgroundRepeat: "no-repeat" }} />
+                            <img src="/ui/Images/download-file-icon.svg" style={{ backgroundSize: "contain", backgroundRepeat: "no-repeat" }} />
                           </div>
                         </div>
                       </div> */}
@@ -754,7 +815,7 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   style={{
                                     backgroundImage:
-                                      "url(../ui/Images/upload-list-image-card.png)",
+                                      "url(/ui/Images/upload-list-image-card.png)",
                                     backgroundSize: "cover",
                                   }}
                                 ></span>
@@ -768,7 +829,7 @@ const OrderDetails = ({
                                   className="info-box-icon"
                                   onClick={() => downloadService(item?.uid)}
                                 >
-                                  <img src="../ui/Images/Vector.png" />
+                                  <img src="/ui/Images/Vector.png" />
                                 </div>
                               </div>
                             </div>
@@ -804,7 +865,7 @@ const OrderDetails = ({
                     className="info-box-icon"
                     style={{ transition: "0.5s" }}
                   >
-                    <img src="../ui/Images/arrow-right.png" />
+                    <img src="/ui/Images/arrow-right.png" />
                   </span>
                 </div>
                 <div
@@ -818,7 +879,7 @@ const OrderDetails = ({
                     className="info-box-icon"
                     style={{ transition: "0.5s" }}
                   >
-                    <img src="../ui/Images/arrow-right.png" />
+                    <img src="/ui/Images/arrow-right.png" />
                   </span>
                 </div>
               </div>
@@ -1140,7 +1201,7 @@ const OrderDetails = ({
                                 borderRadius: 0,
                               }}
                             >
-                              <img src="../ui/Images/smile-icon-text.svg" />
+                              <img src="/ui/Images/smile-icon-text.svg" />
                             </span>
 
                             <div className="ms-3 input-g">
@@ -1157,7 +1218,7 @@ const OrderDetails = ({
                             </div>
                             <div className="info-box-icon download-triangle">
                               <img
-                                src="../ui/Images/download-tri.png"
+                                src="/ui/Images/download-tri.png"
                                 onClick={reviewSubmit}
                               />
                             </div>
@@ -1173,7 +1234,6 @@ const OrderDetails = ({
         </div>
       </div>
       {(servicesList[0]?.orStatus === "Delivered" ||
-        servicesList[0]?.orStatus === "Completed" ||
         servicesList[0]?.orStatus === "Revision") && (
         <footer className="Order-status-footer">
           <div className="container">
@@ -1185,7 +1245,7 @@ const OrderDetails = ({
                   </p>
                 </div>
                 <div className="d-flex ml-auto">
-                  {servicesList[0]?.orStatus !== "Revision" && (
+                  {servicesList[0]?.orStatus === "Delivered" && (
                     <button
                       className="btn btn-outline-dark"
                       // style={{ color: "white" }}

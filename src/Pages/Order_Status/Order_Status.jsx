@@ -8,10 +8,10 @@ export const Order_Status = () => {
                 <header>
                     <div className="menu-btn">
                         {/* <span class="fa fa-list menu-btn"></span> */}
-                        <img src="../ui/Images/menu-icon.png" alt="bell" />
+                        <img src="/ui/Images/menu-icon.png" alt="bell" />
                     </div>
                     <a href="#" className="logo">
-                        <img className="logo_img" src="../ui/Images/logo.svg" alt="Main Logo" />
+                        <img className="logo_img" src="/ui/Images/logo.svg" alt="Main Logo" />
                     </a>
                     <nav className="navbar">
                         <div className="btn">
@@ -47,7 +47,7 @@ export const Order_Status = () => {
                         <div className="search">
                             <img
                                 className="nav-search-img"
-                                src="../ui/Images/search.svg"
+                                src="/ui/Images/search.svg"
                                 alt="Search icon"
                             />
                             <input className="form-control nav-search" placeholder="Search" />
@@ -89,26 +89,26 @@ export const Order_Status = () => {
                         <div className="notifications d-flex justify-content-center align-items-center mb-2">
                             <div className="general-notification">
                                 <span className="badge-yellow" />
-                                <img src="../ui/Images/bell.svg" alt="bell" />
+                                <img src="/ui/Images/bell.svg" alt="bell" />
                             </div>
                             <div className="mail-notification">
                                 <span className="badge-green" />
-                                <img src="../ui/Images/mail.svg" alt="mail" />
+                                <img src="/ui/Images/mail.svg" alt="mail" />
                             </div>
                             <div className="language">
-                                <img src="../ui/Images/world.svg" alt="world" />
+                                <img src="/ui/Images/world.svg" alt="world" />
                             </div>
                             <div className="userProfile">
                                 <img
                                     className="img_profile"
-                                    src="../ui/Images/userImage.png"
+                                    src="/ui/Images/userImage.png"
                                     alt="userProfile"
                                 />
                                 <div className="userDropdown">
                                     <a href="#">
                                         <img
                                             className="img_profile"
-                                            src="../ui/Images/user-icon.png"
+                                            src="/ui/Images/user-icon.png"
                                             alt="userProfile"
                                         />
                                         {/* <i class="fa fa-user"></i> */}
@@ -117,7 +117,7 @@ export const Order_Status = () => {
                                     <a href="#">
                                         <img
                                             className="img_profile"
-                                            src="../ui/Images/orders-icon.png"
+                                            src="/ui/Images/orders-icon.png"
                                             alt="userProfile"
                                         />
                                         {/* <i class="fa fa-file"></i> */}
@@ -131,7 +131,7 @@ export const Order_Status = () => {
                                     <a href="#">
                                         <img
                                             className="img_profile"
-                                            src="../ui/Images/logout-icon.png"
+                                            src="/ui/Images/logout-icon.png"
                                             alt="userProfile"
                                         />
                                         <span style={{ color: "#dd3d4c" }}>Logout</span>
@@ -141,10 +141,10 @@ export const Order_Status = () => {
                         </div>
                     </nav>
                     <div className="mobile-noti general-notification">
-                        <img src="../ui/Images/bell.svg" alt="bell" />
+                        <img src="/ui/Images/bell.svg" alt="bell" />
                     </div>
                     <div className="on-mobile-navbar">
-                        <img src="../ui/Images/logo.svg" style={{ height: 40 }} />
+                        <img src="/ui/Images/logo.svg" style={{ height: 40 }} />
                         <div className="btn">
                             <span className="fa fa-close close-btn" />
                         </div>
@@ -404,19 +404,19 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             >
                                                 {/* <i class="far fa-envelope"></i> */}
-                                                {/* <img width="100" height="100" src="../ui/Images/upload-list-image-card.png"> */}
+                                                {/* <img width="100" height="100" src="/ui/Images/upload-list-image-card.png"> */}
                                             </span>
                                             <div className="info-box-content">
                                                 <span className="info-box-text">Typography logo</span>
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                                 {/* <i
                   class="fa fa-download p-2"
                   style="border: 1px solid black"></i> */}
@@ -429,7 +429,7 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             />
@@ -438,7 +438,7 @@ export const Order_Status = () => {
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                             </div>
                                         </div>
                                     </div>
@@ -451,19 +451,19 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             >
                                                 {/* <i class="far fa-envelope"></i> */}
-                                                {/* <img width="100" height="100" src="../ui/Images/upload-list-image-card.png"> */}
+                                                {/* <img width="100" height="100" src="/ui/Images/upload-list-image-card.png"> */}
                                             </span>
                                             <div className="info-box-content">
                                                 <span className="info-box-text">Typography logo</span>
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                                 {/* <i
                   class="fa fa-download p-2"
                   style="border: 1px solid black"></i> */}
@@ -476,7 +476,7 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             />
@@ -485,7 +485,7 @@ export const Order_Status = () => {
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                             </div>
                                         </div>
                                     </div>
@@ -499,19 +499,19 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             >
                                                 {/* <i class="far fa-envelope"></i> */}
-                                                {/* <img width="100" height="100" src="../ui/Images/upload-list-image-card.png"> */}
+                                                {/* <img width="100" height="100" src="/ui/Images/upload-list-image-card.png"> */}
                                             </span>
                                             <div className="info-box-content">
                                                 <span className="info-box-text">Typography logo</span>
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                                 {/* <i
                   class="fa fa-download p-2"
                   style="border: 1px solid black"></i> */}
@@ -524,7 +524,7 @@ export const Order_Status = () => {
                                                 className="info-box-icon"
                                                 style={{
                                                     backgroundImage:
-                                                        "url(../ui/Images/upload-list-image-card.png)",
+                                                        "url(/ui/Images/upload-list-image-card.png)",
                                                     backgroundSize: "cover"
                                                 }}
                                             />
@@ -533,7 +533,7 @@ export const Order_Status = () => {
                                                 <span className="info-box-number">Source file (AI)</span>
                                             </div>
                                             <div className="info-box-icon">
-                                                <img src="../ui/Images/Vector.png" />
+                                                <img src="/ui/Images/Vector.png" />
                                             </div>
                                         </div>
                                     </div>
@@ -561,7 +561,7 @@ export const Order_Status = () => {
                                         <span className="info-box-text">FAQs</span>
                                     </div>
                                     <span className="info-box-icon" style={{ transition: "0.5s" }}>
-                                        <img src="../ui/Images/arrow-right.png" />
+                                        <img src="/ui/Images/arrow-right.png" />
                                     </span>
                                 </div>
                                 <div
@@ -572,7 +572,7 @@ export const Order_Status = () => {
                                         <span className="info-box-text">Message to our team</span>
                                     </div>
                                     <span className="info-box-icon" style={{ transition: "0.5s" }}>
-                                        <img src="../ui/Images/arrow-right.png" />
+                                        <img src="/ui/Images/arrow-right.png" />
                                     </span>
                                 </div>
                             </div>
@@ -808,7 +808,7 @@ export const Order_Status = () => {
                                                             borderRadius: 0
                                                         }}
                                                     >
-                                                        <img src="../ui/Images/Smile-group-24.png" />
+                                                        <img src="/ui/Images/Smile-group-24.png" />
                                                     </span>
                                                     <span
                                                         className="info-box-icon"
@@ -818,7 +818,7 @@ export const Order_Status = () => {
                                                             borderRadius: 0
                                                         }}
                                                     >
-                                                        <img src="../ui/Images/icon-paperclip.png" />
+                                                        <img src="/ui/Images/icon-paperclip.png" />
                                                     </span>
                                                     <div className="ms-3 input-g">
                                                         <input
@@ -827,7 +827,7 @@ export const Order_Status = () => {
                                                         />
                                                     </div>
                                                     <div className="info-box-icon download-triangle">
-                                                        <img src="../ui/Images/download-tri.png" />
+                                                        <img src="/ui/Images/download-tri.png" />
                                                     </div>
                                                 </div>
                                             </div>

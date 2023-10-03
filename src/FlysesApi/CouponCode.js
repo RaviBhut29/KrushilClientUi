@@ -1,7 +1,7 @@
-import { apiPost } from "./FlysesApi";
+import { apiGet, apiPost } from "./FlysesApi";
 
 export const applyCode = (obj) => {
-  return apiPost("couponcode/ExistsCouponCode", obj);
+  return apiPost("couponcode/CheckCouponCodeValid", obj);
 };
 
 export const createPlanOrder = (obj) => {
@@ -9,7 +9,10 @@ export const createPlanOrder = (obj) => {
 };
 
 export const CreateUserWiseModifyOrder = (obj) => {
-  console.clear()
-  console.warn(obj)
+ 
   return apiPost("userWiseOrderOption", obj);
+};
+
+export const SendOrderDetailsMail = (orderId,userId) => {
+  return apiGet(`user/SendOrderDetailsMail/${orderId}/${userId}`);
 };

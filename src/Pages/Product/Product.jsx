@@ -8,16 +8,19 @@ import Review from "../../Layout/Review";
 import RecommendedForYou from "../../Layout/RecommendedForYou";
 import { getCategoryImages } from "../../FlysesApi/Services";
 import { useNavigate } from "react-router-dom";
-import { setLoadingStatus } from "../../FlysesApi";
-import { toastError } from "../../FlysesApi/FlysesApi";
+import { decryptWithRk, encrptWithRk, setLoadingStatus } from "../../FlysesApi";
+import { toastError, toastSuccess } from "../../FlysesApi/FlysesApi";
 import BreadCrub from "../../Layout/BreadCrub";
-import { Modal } from "reactstrap";
 import ImagePreview from "../Portfolio/ImagePreview";
 import PlanPackages from "../PlanPackages/PlanPackages";
-import { getProductPlan } from "../../FlysesApi/Plan";
+import { getProductPlan, getProductReview } from "../../FlysesApi/Plan";
 import ProductFaq from "./ProductFaq";
 import ProductReview from "./ProductReview";
-//import ImagePreview from "./ImagePreview";
+import { Modal, Rate } from "antd";
+import copy from "copy-to-clipboard";
+import ProductRecommendedForYou from "./ProductRecommendedForYou";
+import ImageSlider from "../Portfolio/ImageSlider";
+import "./Product.scss";
 
 export const Product = () => {
   useEffect(() => {
@@ -57,21 +60,69 @@ export const Product = () => {
       name: siteMapPathName.serviceName,
       clickable: true,
       isHome: false,
-      path: `/category/${siteMapPathName.serviceId}`,
+      path: `/service/${siteMapPathName?.serviceName
+        .replace(/ /g, "-")
+        .toLowerCase()}/${siteMapPathName.serviceId}`,
     },
     {
       name: siteMapPathName.categoryName,
       clickable: false,
       isHome: false,
-      path: `/product/${splitdata[splitdata.length - 1]}`,
+      path: `/${splitdata[1]}/${splitdata[2]}/${splitdata[3]}/${splitdata[4]}`,
     },
   ];
-  
+
   useEffect(() => {
-    bindProduct(splitdata[splitdata.length - 1]);
-    bindPlan(splitdata[splitdata.length - 1]);
-    console.log(planFeatureList);
+    bindProductAndPlan();
   }, []);
+
+  const bindProductAndPlan = async () => {
+    const categoryId = await decryptWithRk(splitdata[splitdata.length - 1]);
+    bindProduct(categoryId);
+    bindPlan(categoryId);
+    bindProductReview(categoryId);
+  };
+
+  const [productReviewPercentage, setProductReviewPercentage] = useState(0);
+  const bindProductReview = (id) => {
+    setLoadingStatus(true);
+    getProductReview(id)
+      .then((response) => {
+        setProductReviewPercentage(response[0]?.totalReview);
+      })
+      .catch(() => {
+        toastError("Bad response from server");
+      })
+      .finally(() => {
+        setLoadingStatus(false);
+      });
+  };
+
+  const convertPercentageToReview = () => {
+    let reviewCount = 0;
+    if (productReviewPercentage <= 10) {
+      reviewCount = 0.5;
+    } else if (productReviewPercentage <= 20) {
+      reviewCount = 1;
+    } else if (productReviewPercentage <= 30) {
+      reviewCount = 1.5;
+    } else if (productReviewPercentage <= 40) {
+      reviewCount = 2;
+    } else if (productReviewPercentage <= 50) {
+      reviewCount = 2.5;
+    } else if (productReviewPercentage <= 60) {
+      reviewCount = 3;
+    } else if (productReviewPercentage <= 70) {
+      reviewCount = 3.5;
+    } else if (productReviewPercentage <= 80) {
+      reviewCount = 4;
+    } else if (productReviewPercentage <= 90) {
+      reviewCount = 4.5;
+    } else if (productReviewPercentage <= 100) {
+      reviewCount = 5;
+    }
+    return reviewCount;
+  };
 
   const [planFeatureList, setPlanFeatureList] = useState([]);
 
@@ -92,16 +143,17 @@ export const Product = () => {
 
   const bindProduct = (id) => {
     getCategoryImages(id)
-      .then((response) => {
+      .then(async (response) => {
         setCategoryDetails({
           ctName: response?.ctName,
           ctTitle: response?.ctTitle,
           ctDescription: response?.ctDescription,
           ctTags: response?.ctTags,
         });
+        const serviceId = await encrptWithRk(response?.ctService);
         setSiteMapPathName({
           serviceName: response?.ctServiceName,
-          serviceId: response?.ctService,
+          serviceId: serviceId,
           categoryName: response?.ctName,
         });
         if (response?.categoryImageList?.length > 0) {
@@ -133,400 +185,158 @@ export const Product = () => {
     setCentredModal(!centredModal);
   };
 
-  const [pricePlanPackages, setPricePlanPackages] = useState(false);
+  const handlePlanClick = () => {
+    history(
+      `/${splitdata[1]}/${splitdata[2]}/${splitdata[3]}/pricing/${splitdata[4]}`
+    );
+  };
 
   return (
-    <>
-      {pricePlanPackages && (
-        <PlanPackages
-          categorySiteMapPath={siteMapPath}
-          setPricePlanPackages={setPricePlanPackages}
-        />
-      )}
-      {!pricePlanPackages && (
-        <div className={"home productPageC"}>
-          <div
-            className="container minimalist-logo"
-            style={{
-              position: "relative",
-              paddingLeft: "12px",
-              paddingRight: "12px",
-            }}
-          >
-            <Header />
-            <BreadCrub siteMapPath={siteMapPath} />
+    <div className={"home productPageC"}>
+      <div
+        className="container minimalist-logo"
+        style={{
+          position: "relative",
+          paddingLeft: "12px",
+          paddingRight: "12px",
+        }}
+      >
+        <Header />
+        <BreadCrub siteMapPath={siteMapPath} />
 
-            <div className="row on-mobile justify-content-center m-0 d-none">
-              <div className="col col-lg-auto row justify-content-center">
-                <button type="button" className="con-btn">
-                  Start Conversation
-                </button>
-                <button type="button" className="link-btn">
-                  <img src="../ui/Images/share-icon.svg" />
-                </button>
-              </div>
+        <div className="row on-mobile justify-content-center m-0 d-none">
+          <div className="col col-lg-auto row justify-content-center">
+            <button type="button" className="con-btn">
+              Start Conversation
+            </button>
+            <button type="button" className="link-btn">
+              <img src="/ui/Images/share-icon.svg" />
+            </button>
+          </div>
+        </div>
+        <p className="item">{categoryDetails.ctName}</p>
+
+        <div className="row align-items-end p-0 Rating-Row">
+          <div className="col row">
+            <div className="col-12" style={{ width: "760px" }}>
+              <p className="item_title">{categoryDetails.ctTitle}</p>
             </div>
-            <p className="item">{categoryDetails.ctName}</p>
-            {/* Old Date Before 16/08/2023 */}
-            {/* <p className="item_title">{categoryDetails.ctTitle}</p> */}
-            {/* ------Rating--------- */}
-            {/* <div className="row align-items-end p-0 Rating-Row">
-              <div className="col-2 px-0">
-                <fieldset
-                  className="rating"
-                  style={{ display: "inline-table" }}
-                >
-                  <input
-                    type="radio"
-                    id="star5"
-                    name="rating"
-                    defaultValue={5}
+            <div class="col-12 row">
+              <div
+                class="col-2 px-0 Mobile-Margin"
+                style={{
+                  height: "auto",
+                  alignSelf: "center",
+                  marginTop: "-10px",
+                }}
+              >
+                {productReviewPercentage !== 0 && (
+                  <Rate
+                    allowHalf
+                    defaultValue={convertPercentageToReview()}
+                    disabled
                   />
-                  <label
-                    className="full"
-                    htmlFor="star5"
-                    title="Awesome - 5 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star4half"
-                    name="rating"
-                    defaultValue="4 and a half"
-                  />
-                  <label
-                    className="half"
-                    htmlFor="star4half"
-                    title="Pretty good - 4.5 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star4"
-                    name="rating"
-                    defaultValue={4}
-                  />
-                  <label
-                    className="full"
-                    htmlFor="star4"
-                    title="Pretty good - 4 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star3half"
-                    name="rating"
-                    defaultValue="3 and a half"
-                  />
-                  <label
-                    className="half"
-                    htmlFor="star3half"
-                    title="Meh - 3.5 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star3"
-                    name="rating"
-                    defaultValue={3}
-                  />
-                  <label
-                    className="full"
-                    htmlFor="star3"
-                    title="Meh - 3 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star2half"
-                    name="rating"
-                    defaultValue="2 and a half"
-                  />
-                  <label
-                    className="half"
-                    htmlFor="star2half"
-                    title="Kinda bad - 2.5 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star2"
-                    name="rating"
-                    defaultValue={2}
-                  />
-                  <label
-                    className="full"
-                    htmlFor="star2"
-                    title="Kinda bad - 2 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star1half"
-                    name="rating"
-                    defaultValue="1 and a half"
-                  />
-                  <label
-                    className="half"
-                    htmlFor="star1half"
-                    title="Meh - 1.5 stars"
-                  />
-                  <input
-                    type="radio"
-                    id="star1"
-                    name="rating"
-                    defaultValue={1}
-                  />
-                  <label
-                    className="full"
-                    htmlFor="star1"
-                    title="Sucks big time - 1 star"
-                  />
-                  <input
-                    type="radio"
-                    id="starhalf"
-                    name="rating"
-                    defaultValue="half"
-                  />
-                  <label
-                    className="half"
-                    htmlFor="starhalf"
-                    title="Sucks big time - 0.5 stars"
-                  />
-                </fieldset>
+                )}
               </div>
-              <div className="col-2 px-0">
-                <p className="rating_p">4.6 | 45k</p>
+              <div
+                className="col-2 mt-2 px-0"
+                style={{ alignContent: "center" }}
+              >
+                {productReviewPercentage !== 0 && (
+                  <p className="rating_p">{convertPercentageToReview()} ★</p>
+                )}
               </div>
-              <div className="col-2 px-0">
+              <div className="col-2 mt-2 px-0">
                 <p className="rating_p2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width={16}
                     height={16}
                     fill="currentColor"
-                    className="bi bi-dot"
+                    className="bi bi-dot d-none"
                     viewBox="0 0 16 16"
                   >
                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                   </svg>
-                  Avg. response time: Less than 2hr
+                  {/* Avg. response time: Less than 2hr */}
                 </p>
               </div>
-              <div
-                className="col col-lg-auto row on-web"
-                style={{ marginLeft: "auto"}}
-              >
-                <button type="button" className="con-btn mx-4">
-                  Start Conversation
-                </button>
-                <button type="button" className="link-btn">
-                  <img src="../ui/Images/share-icon.png" />
-                </button>
-              </div>
-            </div> */}
-            {/* ------Rating--------- */}
-            {/* Old Date Before 16/08/2023 */}
-            {/* New Date After 16/08/2023  */}
-            <div className="row align-items-end p-0 Rating-Row">
-              <div className="col row">
-                <div className="col-12" style={{width:"760px"}}>
-                  <p className="item_title">{categoryDetails.ctTitle}</p>
-                </div>
-                <div class="col-12 row">
-                  <div class="col-2 px-0 Mobile-Margin" style={{ height: "auto", alignSelf: "center" }}>
-                    <fieldset
-                      className="rating"
-                      style={{ display: "inline-table" }}
-                    >
-                      <input
-                        type="radio"
-                        id="star5"
-                        name="rating"
-                        defaultValue={5}
-                      />
-                      <label
-                        className="full"
-                        htmlFor="star5"
-                        title="Awesome - 5 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star4half"
-                        name="rating"
-                        defaultValue="4 and a half"
-                      />
-                      <label
-                        className="half"
-                        htmlFor="star4half"
-                        title="Pretty good - 4.5 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star4"
-                        name="rating"
-                        defaultValue={4}
-                      />
-                      <label
-                        className="full"
-                        htmlFor="star4"
-                        title="Pretty good - 4 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star3half"
-                        name="rating"
-                        defaultValue="3 and a half"
-                      />
-                      <label
-                        className="half"
-                        htmlFor="star3half"
-                        title="Meh - 3.5 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star3"
-                        name="rating"
-                        defaultValue={3}
-                      />
-                      <label
-                        className="full"
-                        htmlFor="star3"
-                        title="Meh - 3 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star2half"
-                        name="rating"
-                        defaultValue="2 and a half"
-                      />
-                      <label
-                        className="half"
-                        htmlFor="star2half"
-                        title="Kinda bad - 2.5 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star2"
-                        name="rating"
-                        defaultValue={2}
-                      />
-                      <label
-                        className="full"
-                        htmlFor="star2"
-                        title="Kinda bad - 2 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star1half"
-                        name="rating"
-                        defaultValue="1 and a half"
-                      />
-                      <label
-                        className="half"
-                        htmlFor="star1half"
-                        title="Meh - 1.5 stars"
-                      />
-                      <input
-                        type="radio"
-                        id="star1"
-                        name="rating"
-                        defaultValue={1}
-                      />
-                      <label
-                        className="full"
-                        htmlFor="star1"
-                        title="Sucks big time - 1 star"
-                      />
-                      <input
-                        type="radio"
-                        id="starhalf"
-                        name="rating"
-                        defaultValue="half"
-                      />
-                      <label
-                        className="half"
-                        htmlFor="starhalf"
-                        title="Sucks big time - 0.5 stars"
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="col-2 mt-2 px-0" style={{ alignContent: "center" }}>
-                    <p className="rating_p">4.6 | 45k</p>
-                  </div>
-                  <div className="col-2 mt-2 px-0">
-                    <p className="rating_p2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={16}
-                        height={16}
-                        fill="currentColor"
-                        className="bi bi-dot d-none"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                      </svg>
-                      {/* Avg. response time: Less than 2hr */}
-                    </p>
-                  </div>
-
-                </div>
-              </div>
-              <div className="col row align-self-start">
-                <div className="col on-web row">
-                  <button type="button" className="con-btn ml-auto mx-4">
-                    Start Conversation
-                  </button>
-                  <button type="button" className="link-btn">
-                    {/* <img src="../ui/Images/share-icon.png" /> */}
-                    <img src="../ui/Images/share-icon.svg" />
-                  </button>
-                </div>
-              </div>
             </div>
-            {/* New Date After 16/08/2023  */}
+          </div>
+          <div className="col row align-self-start">
+            <div className="col on-web row">
+              <button
+                type="button"
+                className="con-btn ml-auto mx-4"
+                onClick={() => {
+                  history("/chat");
+                }}
+              >
+                Start Conversation
+              </button>
+              <button
+                type="button"
+                className="link-btn"
+                onClick={() => {
+                  copy(window.location.href);
+                  toastSuccess("URL copied to clipboard!");
+                }}
+              >
+                {/* <img src="/ui/Images/share-icon.png" /> */}
+                <img src="/ui/Images/share-icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* New Date After 16/08/2023  */}
 
-            {/* -----------------Product--------------------- */}
-            <div className="row mob-margin">
-              <div className="col-3 wrapper">
-                <div className="image-gallery mb-3 mt-2">
-                {/* <div className="image-gallery my-3 p-3"> */}
-                  <aside className="thumbnails">
-                    {categoryImages.map((item, index) => {
-                      if (index < 4) {
-                        return (
-                          <a
-                            className="selected thumbnail"
-                            data-big={item?.url}
-                            style={{ cursor: "pointer" }}
-                            onClick={() => setMainImage(item?.url)}
-                          >
-                            <div
-                              className="thumbnail-image mt-0"
-                              style={{
-                                backgroundImage: `url(${item?.url})`,
-                              }}
-                            />
-                          </a>
-                        );
-                      }
-                    })}
-                    {categoryImages.length > 4 && (
-                      <button onClick={() => setCentredModal(true)}>
-                        See All
-                      </button>
-                    )}
-                  </aside>
-                  <main
-                    className="primary"
-                    style={{
-                      backgroundImage: `url(${mainImage !== "" ? mainImage : categoryImages[0]?.url
-                        })`,
-                      marginLeft:"auto",
-                      marginRight:"auto"
-                    }}
-                  />
-                </div>
+        {/* -----------------Product--------------------- */}
+        <div className="row mob-margin">
+          <div className="col-3 wrapper">
+            <div className="image-gallery mb-3 mt-2">
+              {/* <div className="image-gallery my-3 p-3"> */}
+              <aside className="thumbnails">
+                {categoryImages.map((item, index) => {
+                  if (index < 4) {
+                    return (
+                      <a
+                        className="selected thumbnail"
+                        data-big={item?.url}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setMainImage(item?.url)}
+                      >
+                        <div
+                          className="thumbnail-image mt-0"
+                          style={{
+                            backgroundImage: `url(${item?.url})`,
+                          }}
+                        />
+                      </a>
+                    );
+                  }
+                })}
+                {categoryImages.length > 4 && (
+                  <button onClick={() => setCentredModal(true)}>See All</button>
+                )}
+              </aside>
+              <main
+                className="primary"
+                style={{
+                  backgroundImage: `url(${
+                    mainImage !== "" ? mainImage : categoryImages[0]?.url
+                  })`,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
+            </div>
 
-                {/* Date:20/08/2023. */}
-                
-                {/* Date:20/08/2023. */}
-              </div>
-              {/* -----------------Krushi Temp--------------------- */}
-              {/* {planFeatureList?.length > 0 && (
+            {/* Date:20/08/2023. */}
+
+            {/* Date:20/08/2023. */}
+          </div>
+          {/* -----------------Krushi Temp--------------------- */}
+          {/* {planFeatureList?.length > 0 && (
                 <div className="col-3 col-lg-auto p-4 Price">
                   <div className="card">
                     <div className="card-body p-4">
@@ -609,57 +419,79 @@ export const Product = () => {
                   </div>
                 </div>
               )} */}
-              <div className="service-pricing-card mt-5 mb-5 planCard col">
-                <div className="">
-                  {planFeatureList?.length > 0 && (
-                    // <div className="col-lg-auto pt-4 Price">
-                    <div className="col-lg-auto Price">
-                      <div className="pricing-card  position-relative">
-                        <div className="pricing-inner-col">
-                          <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
-                            <h4 className="m-0 planTitle">{planFeatureList[0]?.pnName}</h4>
-                            <h1 className="m-0 pink-text planPrice">${planFeatureList[0]?.pnPrice}</h1>
-                          </div>
-                          <div className="pricing-card-body">
-                            <p className="green-text">Save up to {planFeatureList[0]?.pnSaveUpTo}%</p>
-                            <p className="grey-text">{planFeatureList[0]?.pnDesc}</p>
+          <div className="service-pricing-card mt-5 mb-5 planCard col">
+            <div className="">
+              {planFeatureList?.length > 0 && (
+                // <div className="col-lg-auto pt-4 Price">
+                <div className="col-lg-auto Price">
+                  <div className="pricing-card  position-relative">
+                    <div className="pricing-inner-col">
+                      <div className="d-flex align-items-center justify-content-between mb-1 pricing-plan pb-1">
+                        <h4 className="m-0 planTitle">
+                          {planFeatureList[0]?.pnName}
+                        </h4>
+                        <h1 className="m-0 pink-text planPrice">
+                          ${planFeatureList[0]?.pnPrice}
+                        </h1>
+                      </div>
+                      <div className="pricing-card-body">
+                        {Number(planFeatureList[0]?.pnSaveUpTo) !== 0 && (
+                          <p className="green-text">
+                            Save up to {planFeatureList[0]?.pnSaveUpTo}%
+                          </p>
+                        )}
+                        {Number(planFeatureList[0]?.pnSaveUpTo) === 0 && (
+                          <p className="green-text"> </p>
+                        )}
+                        <p className="grey-text">
+                          {planFeatureList[0]?.pnDesc}
+                        </p>
 
-                            <div className="mt-4">
-                              {planFeatureList[0]?.planServiceDetailsList?.length > 0 &&
-                                planFeatureList[0]?.planServiceDetailsList.map(
-                                  (item) => {
-                                    return (
-                                      <div
-                                        className="d-flex align-items-center planInclude"
-                                        key={item.srPdId}
-                                        style={{
-                                          opacity:
-                                            item?.pnIsInclude === 1
-                                              ? ""
-                                              : "0.4",
-                                        }}>
-                                          
-                                        <img
-                                          src={item?.pnIsInclude === 1
-                                                ? "../ui/Images/wrong right icons-01.svg"
-                                                : "../ui/Images/wrong right icons-02.svg"}
-                                          alt="" className="mb-1 me-1"/>
-                                        <p className="bold-content">
-                                          {item.pnIncludedService}
-                                        </p>
-                                      </div>
-                                    );
-                                  }
-                                )}
-                            </div>
+                        <div className="mt-4">
+                          {planFeatureList[0]?.planServiceDetailsList?.length >
+                            0 &&
+                            planFeatureList[0]?.planServiceDetailsList.map(
+                              (item) => {
+                                if (item?.pnIsVisible === 1) {
+                                  return (
+                                    <div
+                                      className="d-flex align-items-center planInclude"
+                                      key={item.srPdId}
+                                      style={{
+                                        opacity:
+                                          item?.pnIsInclude === 1 ? "" : "0.4",
+                                      }}
+                                    >
+                                      <img
+                                        src={
+                                          item?.pnIsInclude === 1
+                                            ? "/ui/Images/wrong right icons-01.svg"
+                                            : "/ui/Images/wrong right icons-02.svg"
+                                        }
+                                        alt=""
+                                        className="mb-1 me-1"
+                                      />
+                                      <p className="bold-content">
+                                        {item.pnIncludedService}
+                                      </p>
+                                    </div>
+                                  );
+                                }
+                              }
+                            )}
+                        </div>
 
+                        {planFeatureList[0]?.planFeatureDetailsList.filter(
+                          (x) => x?.pnIsVisible === 1
+                        )?.length > 0 && (
+                          <>
                             <p className="capital-text-forplan">
                               Included Features
                             </p>
                             <ul className="pricing-list">
-                              {planFeatureList[0]?.planFeatureDetailsList?.length > 0 &&
-                                planFeatureList[0]?.planFeatureDetailsList.map(
-                                  (item, index) => {
+                              {planFeatureList[0]?.planFeatureDetailsList.map(
+                                (item, index) => {
+                                  if (item?.pnIsVisible === 1) {
                                     return (
                                       <li
                                         key={item?.faPdId}
@@ -667,113 +499,120 @@ export const Product = () => {
                                           opacity:
                                             // item?.pnIsInclude === 1
                                             index == 0
-                                              ? "" : index == 1
-                                              ? "0.6" : "0.3",
+                                              ? ""
+                                              : index == 1
+                                              ? "0.6"
+                                              : "0.3",
                                         }}
                                       >
                                         <a href="#" className="dark-text">
-                                          {item?.pnIncludedFeature} </a>
+                                          {item?.pnIncludedFeature}{" "}
+                                        </a>
                                       </li>
                                     );
                                   }
-                                )}
-                              {/* <li className="li-feact opacity-25">
-                              <a href="#" className="dark-text">Vector File</a></li> */}
+                                }
+                              )}
                             </ul>
-                            <button
-                              type="button"
-                              className="blue-btn mt-2 w-100"
-                              onClick={() => setPricePlanPackages(true)}
-                            >
-                              Explore all Package
-                            </button>
-                          </div>
-                        </div>
+                          </>
+                        )}
+
+                        <button
+                          type="button"
+                          className="blue-btn mt-2 w-100"
+                          onClick={handlePlanClick}
+                        >
+                          Explore all Package
+                        </button>
                       </div>
                     </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            {/* --------------Tabs-------------------- */}
-            <ul className="nav nav-tabs">
-              <li className="nav-item">
-                <a
-                  className={`AClick nav-link ${tabClick === "" || tabClick === "Des" ? " active" : ""
-                    }`}
-                  aria-current="page"
-                  onClick={() => setTabClick("Des")}
-                >
-                  Description
-                </a>
-              </li>
-              <li className="AClick nav-item">
-                <a
-                  className={`nav-link ${tabClick === "Rev" ? " active" : ""}`}
-                  onClick={() => setTabClick("Rev")}
-                >
-                  Review
-                </a>
-              </li>
-              <li className="AClick nav-item">
-                <a
-                  className={`nav-link ${tabClick === "Faq" ? " active" : ""}`}
-                  onClick={() => setTabClick("Faq")}
-                >
-                  FAQs
-                </a>
-              </li>
-            </ul>
-            {(tabClick === "" || tabClick === "Des") && (
-              <div className="my-4 desc">
-                <div className="Desc-Text">
-                  {replaceDescription(categoryDetails?.ctDescription)}
-                </div>
-                <p className="m-0 F-inc">Format included:</p>
-                <div
-                  className="btn-toolbar mb-3 mt-2"
-                  role="toolbar"
-                  aria-label="Toolbar with button groups"
-                >
-                  <div
-                    className="btn-group"
-                    role="group"
-                    aria-label="First group"
-                  >
-                    {categoryDetails?.ctTags.split("*").map((itemC, index) => {
-                      return (
-                        <>
-                          <button type="button" className="btn formateBtn">
-                            {itemC}
-                          </button>
-                          {index !==
-                            categoryDetails?.ctTags.split("*").length - 1 && (
-                              <hr />
-                            )}
-                        </>
-                      );
-                    })}
                   </div>
                 </div>
-                <RecommendedForYou />
-              </div>
-            )}
-            {tabClick === "Rev" && <ProductReview />}
-            {tabClick === "Faq" && <ProductFaq />}
+              )}
+            </div>
           </div>
-          {/* Go Faster */}
-          <RatingsAndReviews />
-          {/* Footer */}
-          <Footer />
-          <Modal
-            isOpen={centredModal}
-            toggle={toggleModal}
-            className="modal-dialog-centered image-preview-modals"
-          >
-            <ImagePreview data={categoryImages} />
-          </Modal>
         </div>
-      )}
-    </>
+        {/* --------------Tabs-------------------- */}
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a
+              className={`AClick nav-link ${
+                tabClick === "" || tabClick === "Des" ? " active" : ""
+              }`}
+              aria-current="page"
+              onClick={() => setTabClick("Des")}
+            >
+              Description
+            </a>
+          </li>
+          <li className="AClick nav-item">
+            <a
+              className={`nav-link ${tabClick === "Rev" ? " active" : ""}`}
+              onClick={() => setTabClick("Rev")}
+            >
+              Review
+            </a>
+          </li>
+          <li className="AClick nav-item">
+            <a
+              className={`nav-link ${tabClick === "Faq" ? " active" : ""}`}
+              onClick={() => setTabClick("Faq")}
+            >
+              FAQs
+            </a>
+          </li>
+        </ul>
+        {(tabClick === "" || tabClick === "Des") && (
+          <div className="my-4 desc">
+            <div className="Desc-Text">
+              {replaceDescription(categoryDetails?.ctDescription)}
+            </div>
+            <p className="m-0 F-inc">Format included:</p>
+            <div
+              className="btn-toolbar mb-3 mt-2"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div className="btn-group" role="group" aria-label="First group">
+                {categoryDetails?.ctTags.split("*").map((itemC, index) => {
+                  return (
+                    <>
+                      <button type="button" className="btn formateBtn">
+                        {itemC}
+                      </button>
+                      {index !==
+                        categoryDetails?.ctTags.split("*").length - 1 && <hr />}
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+            <ProductRecommendedForYou serviceId={siteMapPathName.serviceId} />
+          </div>
+        )}
+        {tabClick === "Rev" && <ProductReview />}
+        {tabClick === "Faq" && <ProductFaq />}
+      </div>
+      {/* Go Faster */}
+      <RatingsAndReviews />
+      {/* Footer */}
+      <Footer />
+    
+      <Modal
+        title=""
+        open={centredModal}
+        footer={[]}
+        onCancel={() => setCentredModal(false)}
+        width={1500}
+        style={{
+          top: 20,
+        }}
+      >
+        {categoryImages.length > 0 && (
+          <ImageSlider data={categoryImages} />
+          //<ImagePreview data={categoryImages} />
+        )}
+      </Modal>
+    </div>
   );
 };

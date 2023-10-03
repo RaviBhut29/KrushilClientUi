@@ -56,6 +56,20 @@ export const setNewNotification = (objPer, actionTypePer) => {
   }));
 };
 
+
+export const isNewNotification = { userNotification: false, localNotification: true };
+
+export const getIsNewNotification = Atom.of({
+  ...isNewNotification,
+});
+
+export const setIsNewNotification = (userNotification, localNotification) => {
+  swap(getIsNewNotification, () => ({
+    userNotification: userNotification,
+    localNotification: localNotification,
+  }));
+};
+
 // export const isChatIcon = { isVisible : true };
 
 // export const getIsChatIcon = Atom.of({

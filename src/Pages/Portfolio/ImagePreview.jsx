@@ -3,38 +3,49 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+// import "swiper/css";
+// import "swiper/css/effect-coverflow";
+// import "swiper/css/pagination";
+
+import 'swiper/css';
+import 'swiper/css/effect-flip';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 import "./styles.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectFlip, Pagination,Navigation } from "swiper";
 
 const ImagePreview = ({ data }) => {
   return (
     <div>
       <Swiper
-        effect={"coverflow"}
+        // effect={"coverflow"}
+        // grabCursor={true}
+        // centeredSlides={true}
+        // slidesPerView={"auto"}
+        // coverflowEffect={{
+        //   rotate: 70,
+        //   stretch: 0,
+        //   depth: 100,
+        //   modifier: 1,
+        //   slideShadows: true,
+        // }}
+        // pagination={true}
+        // modules={[EffectCoverflow, Pagination]}
+        // className="mySwiper portfolio-swiper"
+        effect={'flip'}
         grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 70,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
         pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper portfolio-swiper"
+        navigation={true}
+        modules={[EffectFlip, Pagination, Navigation]}
+        className="mySwiper"
       >
         {data && data.map((item) => {
           return (
             <SwiperSlide>
-              <img src={item?.url} />
+              <img src={item?.url} style={{width:"75%"}}/>
             </SwiperSlide>
           );
         })}

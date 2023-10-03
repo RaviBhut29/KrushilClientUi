@@ -5,10 +5,10 @@ import Header from "../../Layout/Header";
 import BreadCrub from "../../Layout/BreadCrub";
 import { getPlan } from "../../FlysesApi/Plan";
 import { useState } from "react";
-import { setLoadingStatus } from "../../FlysesApi";
+import { decryptWithRk, setLoadingStatus } from "../../FlysesApi";
 import { toastError, toastWarning } from "../../FlysesApi/FlysesApi";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   checkRegisterDetails,
   getPlanWiseOrderOptionDetails,
@@ -41,8 +41,11 @@ const PlanPackages = (props) => {
     getAllPlan();
   }, []);
 
-  const getAllPlan = () => {
-    getPlan(categorySiteMapPath[3]?.path.replace("/product/", ""))
+  const getAllPlan = async () => {
+    let path = window.location.pathname;
+    let splitdata = path.split("/");
+    const categoryId = await decryptWithRk(splitdata[splitdata.length - 1]);
+    getPlan(categoryId)
       .then((response) => {
         if (response.length > 0) {
           setPlanDetails(response);
@@ -116,6 +119,7 @@ const PlanPackages = (props) => {
   const [orderDetails, setOrderDetails] = useState([]);
   const [orderDetailsBCK, setOrderDetailsBCK] = useState([]);
   const [isApplyCouponCode, setIsApplyCouponCode] = useState(0);
+  const [deliveryDetails, setDeliveryDetails] = useState({});
 
   const bindOrderDetails = (id) => {
     setLoadingStatus(true);
@@ -382,71 +386,91 @@ const PlanPackages = (props) => {
                             </h1>
                           </div>
                           <div className="pricing-card-body">
-                            <p className="green-text">
-                              Save up to {item?.pnSaveUpTo}%
-                            </p>
+                            {Number(item?.pnSaveUpTo) !== 0 && (
+                              <p className="green-text">
+                                Save up to {item?.pnSaveUpTo}%
+                              </p>
+                            )}
+                            {Number(item?.pnSaveUpTo) === 0 && (
+                              <p className="green-text"></p>
+                            )}
                             <p className="grey-text">{item?.pnDesc}</p>
                             <div className="mt-4">
                               {item?.planServiceDetailsList.length > 0 &&
                                 item?.planServiceDetailsList.map((serItem) => {
-                                  return (
-                                    <div
-                                      className="d-flex align-items-center planInclude"
-                                      key={serItem?.srPdId}
-                                      style={{
-                                        opacity:
-                                          serItem?.pnIsInclude === 1
-                                            ? ""
-                                            : "0.4",
-                                      }}
-                                    >
-                                      <img
-                                        src={
-                                          serItem?.pnIsInclude === 1
-                                            ? "../ui/Images/wrong right icons-01.svg"
-                                            : "../ui/Images/wrong right icons-02.svg"
-                                        }
-                                        alt=""
-                                        className="mb-1 me-1"
-                                      />
-                                      <p className="bold-content">
-                                        {serItem?.pnIncludedService}
-                                      </p>
-                                    </div>
-                                  );
+                                  console.warn("test", serItem?.pnIsVisible);
+                                  if (Number(serItem?.pnIsVisible) === 1) {
+                                    return (
+                                      <div
+                                        className="d-flex align-items-center planInclude"
+                                        key={serItem?.srPdId}
+                                        style={{
+                                          opacity:
+                                            serItem?.pnIsInclude === 1
+                                              ? ""
+                                              : "0.4",
+                                        }}
+                                      >
+                                        <img
+                                          src={
+                                            serItem?.pnIsInclude === 1
+                                              ? "/ui/Images/wrong right icons-01.svg"
+                                              : "/ui/Images/wrong right icons-02.svg"
+                                          }
+                                          alt=""
+                                          className="mb-1 me-1"
+                                        />
+                                        <p className="bold-content">
+                                          {serItem?.pnIncludedService}
+                                        </p>
+                                      </div>
+                                    );
+                                  }
                                 })}
                             </div>
 
-                            <p className="capital-text-forplan">
-                              Included Features
-                            </p>
-                            <ul className="pricing-list">
-                              {item?.planFeatureDetailsList.length > 0 &&
-                                item?.planFeatureDetailsList.map((feaItem) => {
-                                  return (
-                                    <li
-                                      key={feaItem?.faPdId}
-                                      style={{
-                                        opacity:
-                                          feaItem?.pnIsInclude === 1
-                                            ? ""
-                                            : "0.4",
-                                      }}
-                                    >
-                                      <a href="#" className="dark-text">
-                                        {feaItem?.pnIncludedFeature}
-                                      </a>
-                                    </li>
-                                  );
-                                })}
-                            </ul>
-                            <button
-                              type="button"
-                              className="blue-btn mt-2 w-100"
-                              onClick={() => handlePlanClick(item?.pnId)}
-                            >
-                              Order now
-                            </button>
+                            {item?.planFeatureDetailsList.filter(
+                              (x) => x.pnIsVisible === 1
+                            ).length > 0 && (
+                              <>
+                                <p className="capital-text-forplan">
+                                  Included Features
+                                </p>
+                                <ul className="pricing-list">
+                                  {item?.planFeatureDetailsList.map(
+                                    (feaItem) => {
+                                      if (Number(feaItem?.pnIsVisible) === 1) {
+                                        return (
+                                          <li
+                                            key={feaItem?.faPdId}
+                                            style={{
+                                              opacity:
+                                                feaItem?.pnIsInclude === 1
+                                                  ? ""
+                                                  : "0.4",
+                                            }}
+                                          >
+                                            <a href="#" className="dark-text">
+                                              {feaItem?.pnIncludedFeature}
+                                            </a>
+                                          </li>
+                                        );
+                                      }
+                                    }
+                                  )}
+                                </ul>
+                              </>
+                            )}
+
+                            <div className="mt-4">
+                              <button
+                                type="button"
+                                className="blue-btn mt-2 w-100"
+                                onClick={() => handlePlanClick(item?.pnId)}
+                              >
+                                Order now
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -466,11 +490,12 @@ const PlanPackages = (props) => {
         //open={true}
         extra={
           <Space>
-            {orderDetails[0]?.pnSaveUpTo && (
-              <span className="PaymentCardPopup">
-                Save up to {orderDetails[0]?.pnSaveUpTo}%
-              </span>
-            )}
+            {orderDetails?.length > 0 &&
+              Number(orderDetails[0]?.pnSaveUpTo) !== 0 && (
+                <span className="PaymentCardPopup">
+                  Save up to {orderDetails[0]?.pnSaveUpTo}%
+                </span>
+              )}
           </Space>
         }
       >
@@ -492,99 +517,159 @@ const PlanPackages = (props) => {
                 </div>
               )}
 
+              {/* <div
+                className="col-md-12 mb-3 p-3 border rounded-3"
+              >
+                <p className="PaymentCardText mb-0">
+                  <span className="ServiceName">day</span>
+                  <span className="PaymentCharges">
+                    45
+                  </span>
+                  <div className="number">
+                    <Button
+                      classNames="minus"
+                      onClick={() =>
+                        handleMinusClick(
+                          index,
+                          item?.osServiceCharge,
+                          item?.osPriceIncreaseActionType
+                        )
+                      }
+                      disabled={
+                        JSON.parse(orderDetailsBCK)[index]
+                          ?.osIncrementerDefaultValue ===
+                          item?.osIncrementerDefaultValue &&
+                        Number(item?.osPriceIncreaseActionType) !== 2
+                      }
+                    >
+                      -
+                    </Button>
+                    <input
+                      className="NumbersInput"
+                      type="text"
+                      value={item?.osIncrementerDefaultValue}
+                    />
+                    <Button
+                      classNames="plus"
+                      onClick={() =>
+                        handlePlusClick(
+                          index,
+                          item?.osServiceCharge,
+                          item?.osPriceIncreaseActionType
+                        )
+                      }
+                      disabled={
+                        JSON.parse(orderDetailsBCK)[index]
+                          ?.osIncrementerDefaultValue ===
+                          item?.osIncrementerDefaultValue &&
+                        Number(item?.osPriceIncreaseActionType) === 2
+                      }
+                    >
+                      +
+                    </Button>
+                  </div>
+                </p>
+              </div> */}
+
               {orderDetails.length > 0 &&
                 orderDetails.map((item, index) => {
-                  if (String(item?.osType) === "1") {
-                    return (
-                      <div
-                        className="col-md-12 mb-3 p-3 border rounded-3"
-                        key={item?.osId}
-                      >
-                        <p className="PaymentCardText mb-0">
-                          <span className="ServiceName">
-                            {item?.osServiceName}
-                          </span>
-                          <span className="PaymentCharges">
-                            ${item?.osServiceCharge} /{" "}
-                            {item?.osServiceChargeName}
-                          </span>
-                          <div className="number">
-                            <Button
-                              classNames="minus"
-                              onClick={() =>
-                                handleMinusClick(
-                                  index,
-                                  item?.osServiceCharge,
-                                  item?.osPriceIncreaseActionType
-                                )
-                              }
-                              disabled={
-                                JSON.parse(orderDetailsBCK)[index]
-                                  ?.osIncrementerDefaultValue ===
-                                  item?.osIncrementerDefaultValue &&
-                                Number(item?.osPriceIncreaseActionType) !== 2
-                              }
-                            >
-                              -
-                            </Button>
-                            <input
-                              className="NumbersInput"
-                              type="text"
-                              value={item?.osIncrementerDefaultValue}
-                            />
-                            <Button
-                              classNames="plus"
-                              onClick={() =>
-                                handlePlusClick(
-                                  index,
-                                  item?.osServiceCharge,
-                                  item?.osPriceIncreaseActionType
-                                )
-                              }
-                              disabled={
-                                JSON.parse(orderDetailsBCK)[index]
-                                  ?.osIncrementerDefaultValue ===
-                                  item?.osIncrementerDefaultValue &&
-                                Number(item?.osPriceIncreaseActionType) === 2
-                              }
-                            >
-                              +
-                            </Button>
-                          </div>
-                        </p>
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div
-                        className="col-md-12 mb-3 p-3 border rounded-3"
-                        key={item?.osId}
-                      >
-                        <Checkbox
-                          id={item?.osId}
-                          onChange={(e) =>
-                            handleIncludeFeature(
-                              e,
-                              index,
-                              item?.osServiceCharge
-                            )
-                          }
-                        ></Checkbox>
-                        <label style={{ margin: "0px" }} htmlFor={item?.osId}>
+                  if (
+                    item?.osServiceName !== "" &&
+                    item?.osServiceName !== null
+                  ) {
+                    if (String(item?.osType) === "1") {
+                      return (
+                        <div
+                          className="col-md-12 mb-3 p-3 border rounded-3"
+                          key={item?.osId}
+                        >
                           <p className="PaymentCardText mb-0">
                             <span className="ServiceName">
-                              {" "}
                               {item?.osServiceName}
                             </span>
                             <span className="PaymentCharges">
-                              ${item?.osServiceCharge}
+                              ${item?.osServiceCharge} /{" "}
+                              {item?.osServiceChargeName}
                             </span>
+                            <div className="number">
+                              <Button
+                                classNames="minus"
+                                onClick={() =>
+                                  handleMinusClick(
+                                    index,
+                                    item?.osServiceCharge,
+                                    item?.osPriceIncreaseActionType
+                                  )
+                                }
+                                disabled={
+                                  JSON.parse(orderDetailsBCK)[index]
+                                    ?.osIncrementerDefaultValue ===
+                                    item?.osIncrementerDefaultValue &&
+                                  Number(item?.osPriceIncreaseActionType) !== 2
+                                }
+                              >
+                                -
+                              </Button>
+                              <input
+                                className="NumbersInput"
+                                type="text"
+                                value={item?.osIncrementerDefaultValue}
+                              />
+                              <Button
+                                classNames="plus"
+                                onClick={() =>
+                                  handlePlusClick(
+                                    index,
+                                    item?.osServiceCharge,
+                                    item?.osPriceIncreaseActionType
+                                  )
+                                }
+                                disabled={
+                                  JSON.parse(orderDetailsBCK)[index]
+                                    ?.osIncrementerDefaultValue ===
+                                    item?.osIncrementerDefaultValue &&
+                                  Number(item?.osPriceIncreaseActionType) === 2
+                                }
+                              >
+                                +
+                              </Button>
+                            </div>
                           </p>
-                        </label>
-                      </div>
-                    );
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div
+                          className="col-md-12 mb-3 p-3 border rounded-3"
+                          key={item?.osId}
+                        >
+                          <Checkbox
+                            id={item?.osId}
+                            onChange={(e) =>
+                              handleIncludeFeature(
+                                e,
+                                index,
+                                item?.osServiceCharge
+                              )
+                            }
+                          ></Checkbox>
+                          <label style={{ margin: "0px" }} htmlFor={item?.osId}>
+                            <p className="PaymentCardText mb-0">
+                              <span className="ServiceName">
+                                {" "}
+                                {item?.osServiceName}
+                              </span>
+                              <span className="PaymentCharges">
+                                ${item?.osServiceCharge}
+                              </span>
+                            </p>
+                          </label>
+                        </div>
+                      );
+                    }
                   }
                 })}
+
               <div className="col-md-12 p-3 border mb-3 rounded-3">
                 {/* <input type="checkbox" id="chk_term" className="me-3"></input> */}
                 <Checkbox
@@ -600,8 +685,9 @@ const PlanPackages = (props) => {
                 ></Checkbox>
                 <label htmlFor="chk_term" style={{ margin: "0px" }}>
                   <p className="Paymentterms mb-0">
-                    I Agree to All
-                    <a>&nbsp;terms and condition & privacy policy</a>
+                    I Agree to All{" "}
+                    <Link to="/termsandcondition">Terms &amp; Condition.</Link>{" "}
+                    & <Link to="/privacypolicy">Privacy policy</Link>
                     <span style={{ color: "red" }}>&nbsp;*</span>
                   </p>
                 </label>
@@ -626,7 +712,8 @@ const PlanPackages = (props) => {
                 <div className="d-flex py-2">
                   <span className="PaymentCardText">Total</span>
                   <span className="PaymentCardText ms-auto mb-1">
-                    {displayTotalPrice(orderDetails[0]?.pnPrice)}
+                    {orderDetails.length > 0 &&
+                      displayTotalPrice(orderDetails[0]?.pnPrice)}
                   </span>
                 </div>
               </div>
@@ -658,7 +745,7 @@ const PlanPackages = (props) => {
               orderModifyDetails={orderModifyDetails}
               setOrderModifyDetails={setOrderModifyDetails}
               couponCode={couponCode}
-              setIsPaypalModal={setIsPaypalModal}                  
+              setIsPaypalModal={setIsPaypalModal}
             />
           </div>
         )}

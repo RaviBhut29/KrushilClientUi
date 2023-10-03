@@ -1,0 +1,19 @@
+.tagdiv{
+    width: fit-content !important;
+    cursor: pointer;
+}
+
+.tagtext{
+    margin: 0px !important;
+}
+
+.portfolio .TitleDiscription {
+    font-family: var(--Inter_Header);
+    font-style: normal;
+    font-size: 20px;
+    line-height: 35px;
+    font-Weight: 600;
+    color: #e71d7c;
+    margin:0px;
+    text-Align:center;
+}

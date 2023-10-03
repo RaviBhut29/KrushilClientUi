@@ -6,7 +6,7 @@ const RecommendedForYou = () => {
       <h5 className="title3 my-5">Recommended for you</h5>
       <div
         style={{
-          backgroundImage: "url(../ui/Images/background-square.png",
+          backgroundImage: "url(/ui/Images/background-square.png",
         }}
         className="text-center justify-content-center"
       >
@@ -17,7 +17,7 @@ const RecommendedForYou = () => {
           <div className="col-3 d-flex justify-content-center">
             <div className="card">
               <div className="card-body">
-                <img src="../ui/Images/minimalist-logo.png" />
+                <img src="/ui/Images/minimalist-logo.png" />
                 <h5 className="card-title mt-3 px-3 Recommended_Card">
                   Typography logo
                   <span>Like: Airbnb</span>
@@ -39,7 +39,7 @@ const RecommendedForYou = () => {
           <div className="col-3 d-flex justify-content-center mx-5">
             <div className="card">
               <div className="card-body">
-                <img src="../ui/Images/minimalist-logo.png" />
+                <img src="/ui/Images/minimalist-logo.png" />
                 <h5 className="card-title mt-3 px-3 Recommended_Card">
                   Typography logo
                   <span>Like: Airbnb</span>

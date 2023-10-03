@@ -188,6 +188,9 @@ const Register = () => {
     registerUser(formData)
       .then((responce) => {
         //
+        if (responce === 0) {
+          toastError("Admin has disabled this user.");
+        }
         //toastSuccess("User register successfully.");
         //history("/login");
         CheckValidEmailValidation({
@@ -207,8 +210,8 @@ const Register = () => {
       .catch(() => {
         toastError(
           "User could not be register due to a network issue. Please contact the administrator if the issue persists."
-        );
-      });
+        )
+      }).finally(()=>setLoadingStatus(false));;
   };
 
   return (
@@ -222,7 +225,7 @@ const Register = () => {
                 <Back />
                 {/* <img src={logosmall} alt="logo" /> */}
                 {/* Change on Date:20/08/2023. */}
-                <img src="../ui/Images/NewLogo.svg" alt="logo" />
+                <img src="/ui/Images/NewLogo.svg" alt="logo" />
               </div>
               <div className="description">
                 <h2>Hey, Welcome 👋</h2>
@@ -498,7 +501,8 @@ const Register = () => {
               <h2>Email Verification</h2>
               <p style={{ fontSize: "14px" }}>
                 An email with a verification link has been sent to your email
-                address. Please check your inbox and click the link to verify your email.
+                address. Please check your inbox and click the link to verify
+                your email.
               </p>
             </div>
           </div>

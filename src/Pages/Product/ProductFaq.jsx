@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProductWiseFaq } from "../../FlysesApi/Plan";
-import { setLoadingStatus } from "../../FlysesApi";
+import { decryptWithRk, setLoadingStatus } from "../../FlysesApi";
 import { toastError } from "../../FlysesApi/FlysesApi";
 
 const ProductFaq = () => {
@@ -11,11 +11,12 @@ const ProductFaq = () => {
 
   useEffect(() => {
     setLoadingStatus(true);
-    bindFaq(splitdata[splitdata.length - 1]);
+    bindFaq();
   }, []);
 
-  const bindFaq = (id) => {
-    getProductWiseFaq(id)
+  const bindFaq = async() => {
+    const categoryId = await decryptWithRk(splitdata[splitdata.length - 1]);
+    getProductWiseFaq(categoryId)
       .then((response) => {
         if (response?.length > 0) {
           setFaqList(response);

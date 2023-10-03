@@ -181,19 +181,19 @@
 }
 
 .half-half-image-text .faq-illus1 {
-    background: url("../ui/Images/About us vectors-01.svg") no-repeat center;
+    background: url("/ui/Images/About us vectors-01.svg") no-repeat center;
     background-size: cover;
     width: 500px;
 }
 
 .half-half-image-text .faq-illus2 {
-    background: url("../ui/Images/About us vectors-02.svg") no-repeat center;
+    background: url("/ui/Images/About us vectors-02.svg") no-repeat center;
     background-size: cover;
     width: 500px;
 }
 
 .half-half-image-text .faq-illus3 {
-    background: url("../ui/Images/About us vectors-03.svg") no-repeat center;
+    background: url("/ui/Images/About us vectors-03.svg") no-repeat center;
     background-size: cover;
     width: 500px;
 }

@@ -5,7 +5,7 @@ import BreadCrub from "../../Layout/BreadCrub";
 import RatingsAndReviews from "../../Layout/RatingsAndReviews";
 import { useNavigate } from "react-router-dom";
 import { getService } from "../../FlysesApi/Services";
-import { REACT_APP, setLoadingStatus } from "../../FlysesApi";
+import { REACT_APP, encrptWithRk, setLoadingStatus } from "../../FlysesApi";
 import { toastError } from "../../FlysesApi/FlysesApi";
 
 export const Services = () => {
@@ -17,7 +17,12 @@ export const Services = () => {
     let splitdata = path.split("/");
 
     if (splitdata.length > 2) {
-      history(`/category/${splitdata[splitdata.length - 1]}`);
+      //history(`/Service/${splitdata[splitdata.length - 1]}`);
+      history(
+        `/service/${splitdata[splitdata.length - 2]}/${
+          splitdata[splitdata.length - 1]
+        }`
+      );
     }
 
     window.scrollTo(0, 0);
@@ -49,8 +54,18 @@ export const Services = () => {
     );
   };
 
-  const handleServiceClick = (id) => {
-    history(`/category/${id}`);
+  const handleServiceClick = async (id, name, isSkipCategory, categoryId) => {
+    if (isSkipCategory === "true") {
+      const keyCategoryId = await encrptWithRk(categoryId);
+      history(
+        `/services/${name
+          .replace(/ /g, "-")
+          .toLowerCase()}/product/${keyCategoryId}`
+      );
+    } else {
+      const key = await encrptWithRk(id);
+      history(`/service/${name.replace(/ /g, "-").toLowerCase()}/${key}`);
+    }
   };
 
   const siteMapPath = [
@@ -97,7 +112,14 @@ export const Services = () => {
                     <div
                       className="col-lg-4 servicesCard"
                       key={item?.srId}
-                      onClick={() => handleServiceClick(item.srId)}
+                      onClick={() =>
+                        handleServiceClick(
+                          item.srId,
+                          item?.srName,
+                          item?.srSkipCategory,
+                          item?.categoryId
+                        )
+                      }
                     >
                       <div className="brands-card me-0">
                         {getServiceIcon(item.srId)}

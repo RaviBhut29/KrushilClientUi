@@ -9,10 +9,10 @@ export const Logo_Design = () => {
                     <header>
                         <div className="menu-btn">
                             {/* <span class="fa fa-list menu-btn"></span> */}
-                            <img src="../ui/Images/menu-icon.png" alt="bell" />
+                            <img src="/ui/Images/menu-icon.png" alt="bell" />
                         </div>
                         <a href="#" className="logo">
-                            <img className="logo_img" src="../ui/Images/logo.svg" alt="Main Logo" />
+                            <img className="logo_img" src="/ui/Images/logo.svg" alt="Main Logo" />
                         </a>
                         <nav className="navbar">
                             <div className="btn">
@@ -48,7 +48,7 @@ export const Logo_Design = () => {
                             <div className="search">
                                 <img
                                     className="nav-search-img"
-                                    src="../ui/Images/search.svg"
+                                    src="/ui/Images/search.svg"
                                     alt="Search icon"
                                 />
                                 <input className="form-control nav-search" placeholder="Search" />
@@ -90,26 +90,26 @@ export const Logo_Design = () => {
                             <div className="notifications d-flex justify-content-center align-items-center mb-2">
                                 <div className="general-notification">
                                     <span className="badge-yellow" />
-                                    <img src="../ui/Images/bell.svg" alt="bell" />
+                                    <img src="/ui/Images/bell.svg" alt="bell" />
                                 </div>
                                 <div className="mail-notification">
                                     <span className="badge-green" />
-                                    <img src="../ui/Images/mail.svg" alt="mail" />
+                                    <img src="/ui/Images/mail.svg" alt="mail" />
                                 </div>
                                 <div className="language">
-                                    <img src="../ui/Images/world.svg" alt="world" />
+                                    <img src="/ui/Images/world.svg" alt="world" />
                                 </div>
                                 <div className="userProfile">
                                     <img
                                         className="img_profile"
-                                        src="../ui/Images/userImage.png"
+                                        src="/ui/Images/userImage.png"
                                         alt="userProfile"
                                     />
                                     <div className="userDropdown">
                                         <a href="#">
                                             <img
                                                 className="img_profile"
-                                                src="../ui/Images/user-icon.png"
+                                                src="/ui/Images/user-icon.png"
                                                 alt="userProfile"
                                             />
                                             {/* <i class="fa fa-user"></i> */}
@@ -118,7 +118,7 @@ export const Logo_Design = () => {
                                         <a href="#">
                                             <img
                                                 className="img_profile"
-                                                src="../ui/Images/orders-icon.png"
+                                                src="/ui/Images/orders-icon.png"
                                                 alt="userProfile"
                                             />
                                             {/* <i class="fa fa-file"></i> */}
@@ -132,7 +132,7 @@ export const Logo_Design = () => {
                                         <a href="#">
                                             <img
                                                 className="img_profile"
-                                                src="../ui/Images/logout-icon.png"
+                                                src="/ui/Images/logout-icon.png"
                                                 alt="userProfile"
                                             />
                                             <span style={{ color: "#dd3d4c" }}>Logout</span>
@@ -142,10 +142,10 @@ export const Logo_Design = () => {
                             </div>
                         </nav>
                         <div className="mobile-noti general-notification">
-                            <img src="../ui/Images/bell.svg" alt="bell" />
+                            <img src="/ui/Images/bell.svg" alt="bell" />
                         </div>
                         <div className="on-mobile-navbar">
-                            <img src="../ui/Images/logo.svg" style={{ height: 40 }} />
+                            <img src="/ui/Images/logo.svg" style={{ height: 40 }} />
                             <div className="btn">
                                 <span className="fa fa-close close-btn" />
                             </div>
@@ -263,7 +263,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -284,7 +284,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mx-5 mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -305,7 +305,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -329,7 +329,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -350,7 +350,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mx-5 mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -371,7 +371,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -395,7 +395,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -416,7 +416,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mx-5 mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -437,7 +437,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -461,7 +461,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -482,7 +482,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mx-5 mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -503,7 +503,7 @@ export const Logo_Design = () => {
                         <div className="col-3 d-flex justify-content-center mb-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <img src="../ui/Images/minimalist-logo.png" />
+                                    <img src="/ui/Images/minimalist-logo.png" />
                                     <h5 className="card-title my-3 px-3">
                                         Minimalist logo
                                         <span>Like: Airbnb</span>
@@ -541,7 +541,7 @@ export const Logo_Design = () => {
                                 >
                                     <img
                                         className="my-3"
-                                        src="../ui/Images/rating-review.svg"
+                                        src="/ui/Images/rating-review.svg"
                                         alt="Card image cap"
                                     />
                                     <div
@@ -565,7 +565,7 @@ export const Logo_Design = () => {
                                 >
                                     <img
                                         className="my-3"
-                                        src="../ui/Images/rating-review.svg"
+                                        src="/ui/Images/rating-review.svg"
                                         alt="Card image cap"
                                     />
                                     <div
@@ -589,7 +589,7 @@ export const Logo_Design = () => {
                                 >
                                     <img
                                         className="my-3"
-                                        src="../ui/Images/rating-review.svg"
+                                        src="/ui/Images/rating-review.svg"
                                         alt="Card image cap"
                                     />
                                     <div
@@ -629,7 +629,7 @@ export const Logo_Design = () => {
                     <div className="footer">
                         <div className="container">
                             <div className="logo cursor-pointer">
-                                <img src="../ui/Images/logo.svg" alt="main logo" />
+                                <img src="/ui/Images/logo.svg" alt="main logo" />
                             </div>
                             <div className="row mt-1 mb-2">
                                 <div className="col">
@@ -743,7 +743,7 @@ export const Logo_Design = () => {
                                     <div className="footer-ddl me-3">
                                         <select>
                                             <option
-                                                style={{ backgroundImage: "url(../ui/Images/VISA.png)" }}
+                                                style={{ backgroundImage: "url(/ui/Images/VISA.png)" }}
                                             >
                                                 INR
                                             </option>

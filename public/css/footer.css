@@ -4,7 +4,7 @@
 }
 
 .footer-sec .mailing-section {
-    background-image: url("../ui/Images/vector-mailing.png");
+    background-image: url("/ui/Images/vector-mailing.png");
     width: 100%;
     height: 100%;
     padding: 130px 100px 50px 100px;
@@ -16,7 +16,7 @@
 
 .footer-sec .mailing-section:before {
     content: "";
-    background-image: url("../ui/Images/mailing-decorate-1.svg");
+    background-image: url("/ui/Images/mailing-decorate-1.svg");
     width: 300px;
     height: 297.9px;
     position: absolute;
@@ -28,7 +28,7 @@
 
 .footer-sec .mailing-section:after {
     content: "";
-    background-image: url("../ui/Images/mailing-decorate-2.svg");
+    background-image: url("/ui/Images/mailing-decorate-2.svg");
     width: 200px;
     height: 235px;
     position: absolute;

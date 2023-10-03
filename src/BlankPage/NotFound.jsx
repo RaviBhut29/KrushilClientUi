@@ -9,7 +9,7 @@ const NotFound = () => {
     let splitdata = path.split("/");
     if (splitdata[splitdata.length - 1] === "notfound") {
     } else {
-      history("/notfound");
+      history("/Notfound");
       window.location.reload();
     }
   }, []);

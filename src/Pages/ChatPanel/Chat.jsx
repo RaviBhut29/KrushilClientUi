@@ -25,6 +25,7 @@ import Header from "../../Layout/Header";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { VscCheckAll } from "react-icons/vsc";
 import { BiSend } from "react-icons/bi";
+import { PiDownloadSimpleBold } from "react-icons/pi";
 
 export const Chat = () => {
   const loginUserId = sessionStorage.getItem("userId") || 0;
@@ -49,16 +50,13 @@ export const Chat = () => {
   useEffect(() => {
     readChat();
     //call first time
-    setLoadingStatus(true);
+    //setLoadingStatus(true);
     bindChatListFunction();
   }, []);
 
   const readChat = () => {
-    setLoadingStatus(true);
     chatReadApi(loginUserId, 1)
-      .then(() => {
-        setLoadingStatus(false);
-      })
+      .then(() => {})
       .catch(() => {
         toastError("Bad response from server");
       });
@@ -203,7 +201,7 @@ export const Chat = () => {
         ctMessage: messageInputText,
         ctDocument: messageDocument,
         ctIsAdmin: 0,
-        ctIsRead:2
+        ctIsRead: 2,
       };
 
       const userObj = {
@@ -212,7 +210,7 @@ export const Chat = () => {
         ctId: 0,
         ctIsRead: 2,
         ctMessage: messageInputText,
-        ctOriginalDocument: messageDocument,
+        ctOriginalDocument: messageInputText,
         ctUserId: loginUserId,
         messageTime: "",
         sendDateStatus: "",
@@ -222,7 +220,7 @@ export const Chat = () => {
         userRole: "0",
         userSortName: "",
       };
-  
+
       setChatList([...chatList, userObj]);
       const parentDiv = parentRef.current;
       parentDiv.scrollTop = parentDiv.scrollHeight;
@@ -475,7 +473,7 @@ export const Chat = () => {
           <h5 className="card-header" style={{ backgroundColor: "white" }}>
             <div className="row">
               <div className="col-md-1 ChatLogoDiv">
-                <img src="../ui/images/ChatLogo.svg" className="ChatLogo" />
+                <img src="/ui/images/ChatLogo.svg" className="ChatLogo" />
               </div>
               <div className="col">
                 <span className="header">Team Flyses</span>
@@ -492,9 +490,6 @@ export const Chat = () => {
                     }
                   />
                   {isOnlineStatus}
-                  <span className="ChatLocalTime">
-                    &nbsp; Local time: 6:30PM
-                  </span>
                 </span>
                 <span className="Availability-time">
                   Availability: Weekdays 10:30AM to 8:30PM IST
@@ -522,7 +517,8 @@ export const Chat = () => {
                                   handleDownloadDocument(item.ctId)
                                 }
                               >
-                                <img src="../ui/Images/Vector.png" />
+                                {/* <img src="/ui/Images/Vector.png" /> */}
+                                <PiDownloadSimpleBold style={{color:"#2e2530",cursor:"pointer"}}/>
                               </div>
                             </p>
                             <span className="user-msg-time">
@@ -575,17 +571,24 @@ export const Chat = () => {
                                 onClick={() =>
                                   handleDownloadDocument(item.ctId)
                                 }
+                                
                               >
-                                <img src="../ui/Images/Vector.png" />
-                                <span style={{ fontSize: "15px",marginLeft:"5px" }}>
+                                  <PiDownloadSimpleBold style={{color:"white",cursor:"pointer"}}/>
+                                
+                                <span
+                                  style={{
+                                    fontSize: "15px",
+                                    marginLeft: "5px",
+                                  }}
+                                >
                                   {String(item?.ctIsRead) === "2" && (
                                     <MdOutlineWatchLater />
                                   )}
                                   {String(item?.ctIsRead) === "0" && (
-                                    <BiSend style={{ color: "#456883" }} />
+                                    <BiSend style={{ color: "white" }} />
                                   )}
                                   {String(item?.ctIsRead) === "1" && (
-                                    <VscCheckAll style={{ color: "#0090e7" }} />
+                                    <VscCheckAll style={{ color: "white" }} />
                                   )}
                                 </span>
                               </div>
@@ -599,18 +602,21 @@ export const Chat = () => {
                             </span>
 
                             {/* <label className="admin-msg-time" style={{ fontSize: "12px", marginLeft: "-10px" }} > {item.sendDateStatus} </label> */}
-                            <p className="admin-msg">{item.ctMessage}
-                            <span style={{ fontSize: "15px",marginLeft:"5px"  }}>
-                              {String(item?.ctIsRead) === "2" && (
-                                <MdOutlineWatchLater />
-                              )}
-                              {String(item?.ctIsRead) === "0" && (
-                                <BiSend style={{ color: "white" }} />
-                              )}
-                              {String(item?.ctIsRead) === "1" && (
-                                <VscCheckAll style={{ color: "white" }} />
-                              )}
-                            </span>
+                            <p className="admin-msg">
+                              {item.ctMessage}
+                              <span
+                                style={{ fontSize: "15px", marginLeft: "5px" }}
+                              >
+                                {String(item?.ctIsRead) === "2" && (
+                                  <MdOutlineWatchLater />
+                                )}
+                                {String(item?.ctIsRead) === "0" && (
+                                  <BiSend style={{ color: "white" }} />
+                                )}
+                                {String(item?.ctIsRead) === "1" && (
+                                  <VscCheckAll style={{ color: "white" }} />
+                                )}
+                              </span>
                             </p>
                           </div>
                         )}
@@ -682,7 +688,7 @@ export const Chat = () => {
                       }}
                     >
                       <img
-                        src="../ui/Images/smile.svg"
+                        src="/ui/Images/smile.svg"
                         className="Smile-icon"
                         onClick={togglePanel}
                       />
@@ -705,7 +711,7 @@ export const Chat = () => {
                       )}
                       {!fileUpload && (
                         <img
-                          src="../ui/Images/paperclip.svg"
+                          src="/ui/Images/paperclip.svg"
                           className="PaperClip-Icon"
                           onClick={handleAttachmentClick}
                         />
@@ -739,8 +745,8 @@ export const Chat = () => {
                     ></input>
                     <div className="">
                       <img
-                        // src="../ui/Images/download-tri.png"
-                        src="../ui/Images/Send-msg.svg"
+                        // src="/ui/Images/download-tri.png"
+                        src="/ui/Images/Send-msg.svg"
                         style={{
                           borderRadius: "50%",
                           width: "40px",

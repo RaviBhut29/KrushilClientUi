@@ -91,7 +91,7 @@ const Header = () => {
                                         <ApolloConsumer>
                                             {(client) => (
                                                 <DropdownItem onClick={() => { SignOut(client, navigate) }}>
-                                                    <LogOut />Log Out
+                                                    <LogOut />Log Out new
                                                 </DropdownItem>
                                             )}
                                         </ApolloConsumer>

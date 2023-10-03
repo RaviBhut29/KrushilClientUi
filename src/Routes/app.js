@@ -15,6 +15,11 @@ import { Requirement } from "../Pages/Requirement/Requirement.jsx";
 import { About } from "../Pages/About/About.jsx";
 import { HowItWork } from "../Pages/HowItWork/HowItWork.jsx";
 import ConfirmEmailAddress from "../Pages/ConfirmEmailAddress/ConfirmEmailAddress.jsx";
+import TermsAndCondition from "../Pages/TemsAndCondition/TermsAndCondition.jsx";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy.jsx";
+import Blog from "../Pages/Blog/Blog.jsx";
+import Plan from "../Pages/Plan/Plan.jsx";
+import OrderDetails from "../Pages/Order/OrderDetails.jsx";
 
 const RoutesArray = [
   {
@@ -42,7 +47,7 @@ const RoutesArray = [
     isChatIconVisible : true
   },
   {
-    path: "/services/*",
+    path: "/services/:servicename/:serviceid",
     component: Services,
     exact: true,
     footer: true,
@@ -50,7 +55,7 @@ const RoutesArray = [
     isChatIconVisible : true
   },
   {
-    path: "/category",
+    path: "/category/:servicename/:serviceid/:categoryid",
     component: Category,
     exact: true,
     footer: true,
@@ -74,7 +79,31 @@ const RoutesArray = [
     isChatIconVisible : true
   },
   {
-    path: "/category/*",
+    path: "/termsandcondition",
+    component: TermsAndCondition,
+    exact: true,
+    footer: true,
+    type: "user",
+    isChatIconVisible : true
+  },
+  {
+    path: "/privacypolicy",
+    component: PrivacyPolicy,
+    exact: true,
+    footer: true,
+    type: "user",
+    isChatIconVisible : true
+  },
+  {
+    path: "/:id",
+    component: Blog,
+    exact: true,
+    footer: true,
+    type: "user",
+    isChatIconVisible : true
+  },
+  {
+    path: "/service/:servicename/:serviceid",
     component: Category,
     exact: true,
     footer: true,
@@ -82,8 +111,16 @@ const RoutesArray = [
     isChatIconVisible : true
   },
   {
-    path: "/order/*",
+    path: "/order",
     component: Order,
+    exact: true,
+    footer: true,
+    type: "user",
+    isChatIconVisible : true
+  },
+  {
+    path: "/order/*",
+    component: OrderDetails,
     exact: true,
     footer: true,
     type: "user",
@@ -98,8 +135,16 @@ const RoutesArray = [
     isChatIconVisible : false
   },
   {
-    path: "/product/*",
+    path: "/services/:sername/:categoryname/:categoryid",
     component: Product,
+    exact: true,
+    footer: true,
+    type: "user",
+    isChatIconVisible : true
+  },
+  {
+    path: "/services/:sername/:categoryname/pricing/:categoryid",
+    component: Plan,
     exact: true,
     footer: true,
     type: "user",

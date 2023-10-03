@@ -24,7 +24,7 @@ const RatingsAndReviews = (props) => {
               >
                 <img
                   className="my-3"
-                  src="../ui/Images/rating-review.svg"
+                  src="/ui/Images/rating-review.svg"
                   alt="Card image cap"
                 />
                 <div
@@ -48,7 +48,7 @@ const RatingsAndReviews = (props) => {
               >
                 <img
                   className="my-3"
-                  src="../ui/Images/SalesAndMark.svg"
+                  src="/ui/Images/SalesAndMark.svg"
                   alt="Card image cap"
                 />
                 <div
@@ -71,7 +71,7 @@ const RatingsAndReviews = (props) => {
               >
                 <img
                   className="my-3"
-                  src="../ui/Images/CustumerExp.svg"
+                  src="/ui/Images/CustumerExp.svg"
                   alt="Card image cap"
                   style={{height:"59px"}}
                 />

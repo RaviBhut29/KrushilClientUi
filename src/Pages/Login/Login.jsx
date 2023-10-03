@@ -3,13 +3,7 @@ import "./Login.scss";
 // import logosmall from "../../Assets/Images/logo-small.svg";
 // import logosmall from "../../public/ui/Images/logo.svg";
 import AuthLayout from "../AuthLayout/AuthLayout";
-import {
-  Label,
-  Input,
-  FormGroup,
-  Button,
-  FormFeedback,
-} from "reactstrap";
+import { Label, Input, FormGroup, Button, FormFeedback } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
@@ -24,6 +18,7 @@ import {
 } from "../../FlysesApi/FlysesApi";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { setLoadingStatus } from "../../FlysesApi";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -87,8 +82,12 @@ const Login = () => {
   };
 
   const onLogin = (data) => {
-
-    loginUser(data?.email, data?.password, "User")
+    setLoadingStatus(true);
+    loginUser({
+      userEmail: data?.email,
+      userPassword: data?.password,
+      role: "User",
+    })
       .then((response) => {
         if (response === "") {
           toastWarning("You have entered an invalid username or password.");
@@ -100,18 +99,22 @@ const Login = () => {
             sessionStorage.setItem("FlysesUserPass", "");
             sessionStorage.setItem("FlysesUserEmail", "");
           }
-          const sortName = response?.userFirstName?.charAt(0) + response?.userLastName?.charAt(0);
-          sessionStorage.setItem("userSortName", sortName); 
+          const sortName =
+            response?.userFirstName?.charAt(0) +
+            response?.userLastName?.charAt(0);
+          sessionStorage.setItem("userSortName", sortName);
           sessionStorage.setItem("userId", response?.userId);
           sessionStorage.setItem("isGoogleUser", false);
           navigate("/");
+          toastSuccess("Login successfully.");
         }
       })
       .catch(() => {
         toastError(
           "User could not be login due to a network issue. Please contact the administrator if the issue persists."
         );
-      });
+      })
+      .finally(() => setLoadingStatus(false));
   };
 
   return (
@@ -120,7 +123,7 @@ const Login = () => {
       <AuthLayout>
         <div className="LoginForm">
           <div className="header">
-            <img src="../ui/Images/NewLogo.svg" alt="logo" />
+            <img src="/ui/Images/NewLogo.svg" alt="logo" />
           </div>
           <div className="description">
             <h2>Hey, Welcome Back 👋</h2>
@@ -129,7 +132,7 @@ const Login = () => {
               yet?{" "}
               <span
                 style={{ textDecoration: "none" }}
-                onClick={() => navigate("/register")}
+                onClick={() => navigate("/Register")}
               >
                 SignUp
               </span>
@@ -140,7 +143,7 @@ const Login = () => {
               className="auth-login-form mt-2"
               onSubmit={handleSubmit(onLogin)}
             >
-               <FormGroup>
+              <FormGroup>
                 <Label for="examplePassword">
                   Email <span style={{ color: "red" }}>*</span>
                 </Label>
@@ -158,7 +161,7 @@ const Login = () => {
                     </FormFeedback>
                   </div>
                 </div>
-                </FormGroup>
+              </FormGroup>
               <FormGroup>
                 <Label for="examplePassword">
                   Password <span style={{ color: "red" }}>*</span>

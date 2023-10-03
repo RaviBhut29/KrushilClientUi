@@ -3,9 +3,11 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { toastError, toastSuccess } from "../../FlysesApi/FlysesApi";
 import {
   CreateUserWiseModifyOrder,
+  SendOrderDetailsMail,
   createPlanOrder,
 } from "../../FlysesApi/CouponCode";
 import { useNavigate } from "react-router-dom";
+import { encrptWithRk } from "../../FlysesApi";
 
 const PayPal = (props) => {
   const {
@@ -78,15 +80,17 @@ const PayPal = (props) => {
         orCouponCode: paymentDetails?.couponCode,
       };
       createPlanOrder(obj)
-        .then((response) => {
+        .then(async(response) => {
           const obj = {
             uoUserId: Number(userId),
             uoOrderId: response?.id,
             planDetail: orderModifyDetails,
           };
+          sendOrderDetailsMail(response?.id,Number(userId));
           setIsPaypalModal(false);
           insertOrderModifyServices(obj);
-          history(`/requirement/${splitdata[splitdata.length - 1]}`);
+          const key = await encrptWithRk(response?.id);
+          history(`/requirement/${splitdata[splitdata.length - 1]}?key=${key}`);
         })
         .catch(() => {
           toastError("Bad response from server");
@@ -94,6 +98,10 @@ const PayPal = (props) => {
       setOpen(false);
     }
   }, [success]);
+
+  const sendOrderDetailsMail = (orderId,userId) =>{
+    SendOrderDetailsMail(orderId,userId);
+  }
 
   const insertOrderModifyServices = (obj) => {
     CreateUserWiseModifyOrder(obj).then(() => {

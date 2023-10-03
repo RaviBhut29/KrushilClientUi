@@ -81,7 +81,7 @@ const ForgotPassword = () => {
     <AuthLayout>
       <div className="forgot-pass" key={Math.random(6)}>
         <div className="header d-flex align-items-center">
-          <Back onClick={() => navigate("/login")} />
+          <Back onClick={() => navigate("/Login")} />
           <img src={logosmall} alt="logo" />
         </div>
         <div className="description">

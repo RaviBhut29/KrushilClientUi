@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { setLoadingStatus } from "../../FlysesApi";
+import { decryptWithRk, setLoadingStatus } from "../../FlysesApi";
 import { toastError } from "../../FlysesApi/FlysesApi";
 import { getProductWiseReview } from "../../FlysesApi/Plan";
+import { Rate } from "antd";
+import userImage from "./userblue.jpg"
 
 const ProductReview = () => {
   let path = window.location.pathname;
@@ -11,11 +13,12 @@ const ProductReview = () => {
 
   useEffect(() => {
     setLoadingStatus(true);
-    bindReview(splitdata[splitdata.length - 1]);
+    bindReview();
   }, []);
 
-  const bindReview = (id) => {
-    getProductWiseReview(id)
+  const bindReview = async () => {
+    const categoryId = await decryptWithRk(splitdata[splitdata.length - 1]);
+    getProductWiseReview(categoryId)
       .then((response) => {
         if (response?.length > 0) {
           setReviewList(response);
@@ -27,6 +30,32 @@ const ProductReview = () => {
       .catch(() => {
         toastError("Bad response from server");
       });
+  };
+
+  const convertPercentageToReview = (reviewPercentage) => {
+    let reviewCount = 0;
+    if (reviewPercentage <= 10) {
+      reviewCount = 0.5;
+    } else if (reviewPercentage <= 20) {
+      reviewCount = 1;
+    } else if (reviewPercentage <= 30) {
+      reviewCount = 1.5;
+    } else if (reviewPercentage <= 40) {
+      reviewCount = 2;
+    } else if (reviewPercentage <= 50) {
+      reviewCount = 2.5;
+    } else if (reviewPercentage <= 60) {
+      reviewCount = 3;
+    } else if (reviewPercentage <= 70) {
+      reviewCount = 3.5;
+    } else if (reviewPercentage <= 80) {
+      reviewCount = 4;
+    } else if (reviewPercentage <= 90) {
+      reviewCount = 4.5;
+    } else if (reviewPercentage <= 100) {
+      reviewCount = 5;
+    }
+    return reviewCount;
   };
 
   return (
@@ -44,13 +73,13 @@ const ProductReview = () => {
                       <div className="profile">
                         {/*img--*/}
                         <div className="profile-img">
-                          <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
+                          <img src={userImage} />
                         </div>
                         {/*name-and-username*/}
                         <div className="name-user">
                           <strong>{item?.userName}</strong>
                           {item?.fackReview !== "1" && (
-                            <span>{item?.usercountry} 🏳️‍⚧️</span>
+                            <span>{item?.usercountry}</span>
                           )}
                         </div>
                       </div>
@@ -62,124 +91,26 @@ const ProductReview = () => {
                     {/* ------Rating--------- */}
                     <div className="container row align-items-end p-0">
                       <div className="col-2 px-0 Rating-Container-Class">
-                        <fieldset
-                          className="rating"
-                          style={{ display: "inline-table" }}
-                        >
-                          <input
-                            type="radio"
-                            id="star5"
-                            name="rating"
-                            defaultValue={5}
-                          />
-                          <label
-                            className="full"
-                            htmlFor="star5"
-                            title="Awesome - 5 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star4half"
-                            name="rating"
-                            defaultValue="4 and a half"
-                          />
-                          <label
-                            className="half"
-                            htmlFor="star4half"
-                            title="Pretty good - 4.5 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star4"
-                            name="rating"
-                            defaultValue={4}
-                          />
-                          <label
-                            className="full"
-                            htmlFor="star4"
-                            title="Pretty good - 4 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star3half"
-                            name="rating"
-                            defaultValue="3 and a half"
-                          />
-                          <label
-                            className="half"
-                            htmlFor="star3half"
-                            title="Meh - 3.5 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star3"
-                            name="rating"
-                            defaultValue={3}
-                          />
-                          <label
-                            className="full"
-                            htmlFor="star3"
-                            title="Meh - 3 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star2half"
-                            name="rating"
-                            defaultValue="2 and a half"
-                          />
-                          <label
-                            className="half"
-                            htmlFor="star2half"
-                            title="Kinda bad - 2.5 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star2"
-                            name="rating"
-                            defaultValue={2}
-                          />
-                          <label
-                            className="full"
-                            htmlFor="star2"
-                            title="Kinda bad - 2 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star1half"
-                            name="rating"
-                            defaultValue="1 and a half"
-                          />
-                          <label
-                            className="half"
-                            htmlFor="star1half"
-                            title="Meh - 1.5 stars"
-                          />
-                          <input
-                            type="radio"
-                            id="star1"
-                            name="rating"
-                            defaultValue={6}
-                          />
-                          <label
-                            className="full"
-                            htmlFor="star1"
-                            title="Sucks big time - 1 star"
-                          />
-                          <input
-                            type="radio"
-                            id="starhalf"
-                            name="rating"
-                            defaultValue="half"
-                          />
-                          <label
-                            className="half"
-                            htmlFor="starhalf"
-                            title="Sucks big time - 0.5 stars"
-                          />
-                        </fieldset>
+                        <div style={{marginBottom:"12px"}}>
+                          {Number(item?.totalReview) !== 0 && (
+                            <Rate
+                              allowHalf
+                              defaultValue={convertPercentageToReview(
+                                Number(item?.totalReview)
+                              )}
+                              disabled
+                            />
+                          )}
+                        </div>
                       </div>
                       <div className="col-2 px-0 Rating-Container-Class">
-                        <p className="comnt_rating_p">{item?.totalReview}</p>
+                        {Number(item?.totalReview) !== 0 && (
+                          <p className="comnt_rating_p">
+                            {convertPercentageToReview(
+                              Number(item?.totalReview)
+                            )} ★ 
+                          </p>
+                        )}
                       </div>
                       {item?.fackReview !== "1" && (
                         <div className="col-2 px-0 Rating-Container-Class">

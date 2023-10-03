@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import BreadCrub from "../../Layout/BreadCrub";
-import { REACT_APP, setLoadingStatus } from "../../FlysesApi";
+import { REACT_APP, decryptWithRk, encrptWithRk, setLoadingStatus } from "../../FlysesApi";
 import { toastError, toastWarning } from "../../FlysesApi/FlysesApi";
 import { getCategory } from "../../FlysesApi/Category";
 import "./Category.css";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import RatingsAndReviews from "../../Layout/RatingsAndReviews";
 export const Category = () => {
   const history = useNavigate();
-  const [serviceName,setServiceName] = useState("");
+  const [serviceName, setServiceName] = useState("");
 
   const siteMapPath = [
     {
@@ -39,20 +39,24 @@ export const Category = () => {
   let splitdata = path.split("/");
 
   useEffect(() => {
-    window.scrollTo(0,0);
+    if(splitdata[1] === "Category")
+    {
+      history(`/services/${splitdata[2]}/${splitdata[3]}/${splitdata[4]}`);
+    }
+    window.scrollTo(0, 0);
     setLoadingStatus(true);
     // setTimeout(() => {
     getAllCategories();
     // }, 1000);
-
   }, []);
 
-  const getAllCategories = () => {
+  const getAllCategories = async () => {
     try {
-      getCategory(splitdata[splitdata.length - 1])
+      const serviceId = await decryptWithRk(splitdata[splitdata.length - 1]);
+      getCategory(serviceId)
         .then((response) => {
           if (response.length > 0) {
-            setServiceName(response[0]?.ctServiceName)
+            setServiceName(response[0]?.ctServiceName);
             setCategoriesList(response);
           } else {
             setCategoriesList([]);
@@ -85,8 +89,9 @@ export const Category = () => {
     );
   };
 
-  const handleCategoryClick = (id) => {
-    history(`/product/${id}`);
+  const handleCategoryClick = async (id,name) => {
+    const key = await encrptWithRk(id);
+    history(`/services/${splitdata[2]}/${name.replace(/ /g, '-').toLowerCase()}/${key}`);
   };
 
   return (
@@ -112,30 +117,29 @@ export const Category = () => {
           className="row lead text-lg-start justify-content-center"
           style={{ background: "#ffffff" }}
         > Date:09/08/2023. */}
-        <div
-          className="row lead text-lg-start containerT"
-          >
-            {/* style={{ background: "#ffffff" }} */}
+        <div className="row lead text-lg-start containerT">
+          {/* style={{ background: "#ffffff" }} */}
           {categoriesList &&
             categoriesList.map((item) => {
               return (
                 <div
                   className=""
-                  onClick={() => handleCategoryClick(item.ctId)}
-                  style={{ cursor: "pointer"}}
+                  onClick={() => handleCategoryClick(item.ctId,item.ctName)}
+                  style={{ cursor: "pointer" }}
                 >
                   <div className="card">
-                    <div className="card-body" style={{padding:"0px"}}>
+                    <div className="card-body" style={{ padding: "0px" }}>
                       {getCategoryIcon(item.ctImageId)}
                       <h5 className="card-title my-3 px-3">{item?.ctName}</h5>
                       <p className="card-text mx-3">
-                        <span className="amount">₹{item?.ctPrice}</span>
+                        <span className="amount">${item?.ctPrice}</span>
                         <span className="mx-2">from Starting</span>
                       </p>
                       {replaceDescription(item?.ctTitle)}
-                      <p className="card-text discount mx-3 my-3">
+                      {Number(item?.ctDiscount) === 0 && (<div style={{marginBottom:"10px"}}></div>)}
+                      {Number(item?.ctDiscount) !== 0 && (<p className="card-text discount mx-3 my-3">
                         <span>Save up to {item?.ctDiscount}%</span>
-                      </p>
+                      </p>)}
                     </div>
                   </div>
                 </div>

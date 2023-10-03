@@ -63,7 +63,7 @@ const ResetPassword = ({ userId }) => {
     updatePassword(obj)
       .then(() => {
         toastSuccess("Reset password successfully.");
-        navigate("/login");
+        navigate("/Login");
       })
       .catch(() => {
         toastError(
@@ -76,7 +76,7 @@ const ResetPassword = ({ userId }) => {
     <AuthLayout>
       <div className="ResetForm">
         <div className="header d-flex align-items-center">
-          <Back onClick={() => navigate("/login")} />
+          <Back onClick={() => navigate("/Login")} />
           <img src={logosmall} alt="logo" />
         </div>
         <div className="description">

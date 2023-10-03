@@ -32,9 +32,9 @@ export const User_Profile = () => {
     return State?.getAllStates();
   }, []);
 
-  useMemo(() => {
-    console.warn("countryDefaultValue", countryDefaultValue);
-  }, [countryDefaultValue]);
+  const [isValidNumber, setIsValidNumber] = useState("");
+
+ 
 
   const {
     control,
@@ -44,6 +44,7 @@ export const User_Profile = () => {
     formState: { errors },
     setValue: setFormValue,
   } = useForm({});
+
   const [formData, setFormData] = useState({
     userId: "",
     userFirstName: "",
@@ -80,6 +81,14 @@ export const User_Profile = () => {
     },
   ];
 
+  useMemo(() => {
+    setIsValidNumber("");
+    setValidationFormData({
+      ...validationFormData,
+      userNumber : ""
+    })
+  }, [value]);
+
   useEffect(() => {
     const isGoogleUserLogin =
       (sessionStorage.getItem("isGoogleUser") || "false") === "false"
@@ -97,6 +106,7 @@ export const User_Profile = () => {
   }, []);
 
   const bindUserDetails = (id, countryArray = []) => {
+    setLoadingStatus(true);
     getuserdetails(id)
       .then((response) => {
         if (response !== null) {
@@ -124,11 +134,11 @@ export const User_Profile = () => {
             setCountryDefaultValue("");
           }
         }
-        setLoadingStatus(false);
       })
       .catch(() => {
         toastError("Bad response from server");
-      });
+      })
+      .finally(() => setLoadingStatus(false));
   };
 
   useMemo(() => {
@@ -146,6 +156,7 @@ export const User_Profile = () => {
   };
 
   const formValidation = () => {
+   
     const {
       userFirstName,
       userLastName,
@@ -188,11 +199,14 @@ export const User_Profile = () => {
       }
     }
 
-    if (userNumber === "") {
+    if (value === null || value === "" || value === undefined) {
       obj.userNumber = true;
       isValid = true;
-    } else if (userNumber !== null && !isValidPhoneNumber(userNumber)) {
+    }
+    else if(!isValidPhoneNumber(value)) {
+      obj.userNumber = true;
       isValid = true;
+      setIsValidNumber("Please enter valid number.");
     }
 
     if (userState === "") {
@@ -215,16 +229,22 @@ export const User_Profile = () => {
       isValid = true;
     }
 
+    
+    
+
     setValidationFormData(obj);
 
     return isValid;
   };
 
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     setLoadingStatus(true);
     e.preventDefault();
 
-    if (formValidation()) {
+    
+    const isvalid = await formValidation();
+
+    if (isvalid) {
       setLoadingStatus(false);
       return true;
     }
@@ -406,15 +426,13 @@ export const User_Profile = () => {
                         />
 
                         {(validationFormData?.userNumber ||
-                          (!isValidPhoneNumber(String(formData?.userNumber)) &&
+                          (isValidNumber !== "" &&
                             formData.userNumber !== "")) && (
                           <FormFeedback style={{ display: "block" }}>
-                            {validationFormData?.userNumber
+                            {isValidNumber !== ""
+                              ? isValidNumber
+                              : validationFormData?.userNumber
                               ? "Please enter number"
-                              : !isValidPhoneNumber(
-                                  String(formData?.userNumber)
-                                ) && formData?.userNumber !== ""
-                              ? "Invalid number"
                               : ""}
                           </FormFeedback>
                         )}

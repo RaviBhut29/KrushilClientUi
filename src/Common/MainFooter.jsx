@@ -6,7 +6,7 @@ const MainFooter = () => {
         <div className="mailing-section">
           <div className="container">
             <div className="mailing-col">
-              <h3 className="text-gradient">Ready to get started?</h3>
+              <h3 className="text-gradient">Ready to get started hey?</h3>
               <p className="grey-text text-center">
                 Products on online services or over the Internet. Electronic
                 commerce draws on technologies such as mobile commerce

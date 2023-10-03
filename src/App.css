@@ -194,16 +194,93 @@
     padding-left: 5px !important;
     padding-right: 5px !important;
   }
-
 }
 
 @media only screen and (max-width: 426px) {
   .planContainer .service-pricing-card .col-md-4 {
     max-width: 100% !important;
   }
-
 }
 
 .navActive {
   font-weight: bold !important;
+}
+
+.footerAppLink {
+  color: black !important;
+}
+
+.footerAppLink:hover {
+  color: white !important;
+}
+
+/* --------------------------------- */
+.sliderImagesPanel {
+  display: none;
+}
+
+.sliderImg {
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Slideshow container */
+.carousel-container {
+  max-width: 65vw;
+  position: relative;
+  margin: auto;
+}
+
+@media only screen and (max-width: 426px) {
+  .carousel-container {
+    max-width: fit-content !important;
+  }
+}
+/* Next & previous buttons */
+.sliderPreviousBtn,
+.sliderNextBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.sliderNextBtn {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit seethrough */
+.sliderNextBtn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.sliderPreviousBtn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* The dots/bullets/indicators */
+.navigation-dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.sliderActive,
+.navigation-dot:hover {
+  background-color: #717171;
 }

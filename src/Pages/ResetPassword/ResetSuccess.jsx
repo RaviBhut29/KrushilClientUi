@@ -14,7 +14,7 @@ const ResetSuccess = () => {
     return <AuthLayout>
         <div className="ResetForm" key={Math.random(6)}>
             <div className="header d-flex align-items-center">
-                <Back onClick={() => navigate("/login")} /><img src={logosmall} alt="logo" /></div>
+                <Back onClick={() => navigate("/Login")} /><img src={logosmall} alt="logo" /></div>
             <div className="description d-flex flex-column justify-content-center align-items-center">
                 <img src={pinkCheck} alt="successCheckmark" className='mt-2' />
                 <h2>Password reset</h2>

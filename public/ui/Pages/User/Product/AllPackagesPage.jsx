@@ -1,6 +1,6 @@
 import React from 'react'
 // import rightTick from "../../../Images/right-tick.png"
-import rightTick from "../ui/Images/Green-tick.svg"
+import rightTick from "/ui/Images/Green-tick.svg"
 
 const AllPackagesPage = () => {
     return (

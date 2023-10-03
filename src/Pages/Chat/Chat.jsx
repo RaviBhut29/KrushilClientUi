@@ -329,8 +329,8 @@ export const Chat = () => {
           <h5 className="card-header" style={{ backgroundColor: "white" }}>
             {/* <div className="row">
               <div className="col-1">
-                {/* <img src="../ui/images/chat-logo.svg" /> *-/}
-                <img src="../ui/images/ChatLogo.svg" />
+                {/* <img src="/ui/images/chat-logo.svg" /> *-/}
+                <img src="/ui/images/ChatLogo.svg" />
               </div>
               <div className="col" style={{ position: "relative" }}>
                 <span className="header">Team Flyses</span>
@@ -351,12 +351,12 @@ export const Chat = () => {
                 <span className="Availability-time">
                   Availability 9:30AM to 9:30PM IST
                 </span>
-                {/* <img src="../ui/images/dustbin.svg" /> *-/}
+                {/* <img src="/ui/images/dustbin.svg" /> *-/}
               </div>
             </div> */}
             <div className="row">
               <div className="col-md-1 ChatLogoDiv">
-                <img src="../ui/images/ChatLogo.svg" className="ChatLogo" />
+                <img src="/ui/images/ChatLogo.svg" className="ChatLogo" />
               </div>
               <div className="col">
                 <span className="header">Team Flyses</span>
@@ -402,7 +402,7 @@ export const Chat = () => {
                                   handleDownloadDocument(item.ctId)
                                 }
                               >
-                                <img src="../ui/Images/Vector.png" />
+                                <img src="/ui/Images/Vector.png" />
                               </div>
                             </p>
                             <span className="user-msg-time">
@@ -456,7 +456,7 @@ export const Chat = () => {
                                   handleDownloadDocument(item.ctId)
                                 }
                               >
-                                <img src="../ui/Images/Vector.png" />
+                                <img src="/ui/Images/Vector.png" />
                               </div>
                             </p>
                           </div>
@@ -539,7 +539,7 @@ export const Chat = () => {
                       }}
                     >
                       <img
-                        src="../ui/Images/smile.svg"
+                        src="/ui/Images/smile.svg"
                         className="Smile-icon"
                         onClick={togglePanel}
                       />
@@ -562,7 +562,7 @@ export const Chat = () => {
                       )}
                       {!fileUpload && (
                         <img
-                          src="../ui/Images/paperclip.svg"
+                          src="/ui/Images/paperclip.svg"
                           className="PaperClip-Icon"
                           onClick={handleAttachmentClick}
                         />
@@ -589,8 +589,8 @@ export const Chat = () => {
                     ></input>
                     <div className="">
                       <img
-                        // src="../ui/Images/download-tri.png"
-                        src="../ui/Images/Send-msg.svg"
+                        // src="/ui/Images/download-tri.png"
+                        src="/ui/Images/Send-msg.svg"
                         style={{
                           borderRadius: "50%",
                           width: "40px",

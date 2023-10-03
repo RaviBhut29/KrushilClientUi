@@ -51,7 +51,7 @@ export const About = () => {
           <Header />
           {/* Navigation */}
           <BreadCrub siteMapPath={siteMapPath} />
-          <img src="../ui/Images/Rectangle.svg" className="about-rect"></img>
+          <img src="/ui/Images/Rectangle.svg" className="about-rect"></img>
           <div className="row First">
             <div className="col-12 col-lg-6">
               <div className="content Mob-Margin" style={{ display: "block" }}>
@@ -64,8 +64,8 @@ export const About = () => {
             </div>
           </div>
           <div className="row my-5 Second">
-            <img className="grp-14" src="../ui/Images/3rect.svg" alt="" />
-            <img className="dots-24" src="../ui/Images/24.svg" alt="" />
+            <img className="grp-14" src="/ui/Images/3rect.svg" alt="" />
+            <img className="dots-24" src="/ui/Images/24.svg" alt="" />
             <div className="col-12 col-lg-6">
               <div className="content" style={{ display: "block" }}>
                 <h3>{formData[0]?.abNamepanelS}</h3>
@@ -78,13 +78,13 @@ export const About = () => {
                 className="img second-image"
                 style={{
                   background:
-                    'url("../ui/Images/Layer_2.svg") no-repeat center',
+                    'url("/ui/Images/Layer_2.svg") no-repeat center',
                   backgroundSize: "cover",
                 }}
               /> */}
-              {/* <img src="../ui/Images/Layer_2.svg"></img> */}
+              {/* <img src="/ui/Images/Layer_2.svg"></img> */}
               <div className="img  faq-illus2" />
-              {/* <img src="../ui/Images/About us vectors-02.svg"></img> */}
+              {/* <img src="/ui/Images/About us vectors-02.svg"></img> */}
             </div>
           </div>
           <div className="row First">
@@ -104,8 +104,8 @@ export const About = () => {
             <span className="b2">{formData[0]?.abMainDetail}</span>
           </p>
           <div>
-          {/* style={{ backgroundImage: 'url("../ui/Images/wave-lines.svg")' }}> */}
-            <img className="LineBg" src="../ui/Images/wave-lines.svg"></img>
+          {/* style={{ backgroundImage: 'url("/ui/Images/wave-lines.svg")' }}> */}
+            <img className="LineBg" src="/ui/Images/wave-lines.svg"></img>
             <RatingsAndReviews ishideGrowfasterPanel={true} />
           </div>
         </div>

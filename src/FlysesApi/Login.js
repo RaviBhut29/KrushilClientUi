@@ -20,8 +20,8 @@ export const ExistsUserByEmail = (userEmail) => {
   return apiGet(`user/ExistsUserByEmail/${userEmail}`);
 };
 
-export const loginUser = (userEmail, userPassword, role) => {
-  return apiGet(`user/Login/${userEmail}/${userPassword}/${role}`);
+export const loginUser = (obj) => {
+  return apiPost(`user/Login`,obj);
 };
 
 export const checkValidKey = (key) => {

@@ -7,7 +7,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: url("../ui/Images/bg_straigth.png") !important;
+  background: url("/ui/Images/bg_straigth.png") !important;
   background-repeat: no-repeat;
   width: 1669px;
   height: fit-content !important;
@@ -16,7 +16,7 @@
   opacity: 0.3;
 } */
 /* .home:before {
-    background: url("../ui/Images/bg_white.png") !important;
+    background: url("/ui/Images/bg_white.png") !important;
     content: "";
     position: absolute;
     top: -165px;
@@ -29,8 +29,8 @@
 } */
 /* .home:before {
   /* .home:before { *-/
-  background: url(../ui/Images/bg_white.png) !important;
-  /* background: url("../ui/Images/Rectangle 3741.png") !important; *-/
+  background: url(/ui/Images/bg_white.png) !important;
+  /* background: url("/ui/Images/Rectangle 3741.png") !important; *-/
   content: "";
   position: absolute;
   top: 140px;
@@ -45,8 +45,8 @@
 } */
 
 .home:before {
-  /* background-image: url(../ui/Images/Frame-svg-bg.svg) !important; */
-  background-image: url(../ui/Images/bg-31.svg) !important;
+  /* background-image: url(/ui/Images/Frame-svg-bg.svg) !important; */
+  background-image: url(/ui/Images/bg-31.svg) !important;
   content: "" !important;
   position: absolute !important;
   /* top: -142px !important; */
@@ -66,7 +66,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: url(../ui/Images/bg_straigth.png) !important;
+  background: url(/ui/Images/bg_straigth.png) !important;
   background-repeat: no-repeat;
   width: 1669px;
   height: 916px !important;

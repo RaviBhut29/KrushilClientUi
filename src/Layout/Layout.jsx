@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "../Pages/Home/Home";
 import NotificationHandler from "../Pages/Notification/NotificationHandler";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export const Layout = ({
   Component,
@@ -22,9 +22,9 @@ export const Layout = ({
         <NotificationHandler />
         <Component />
         {isChatIconVisible && (
-          <a href="Chat" class="float-chat-button">
+          <Link to="/chat" class="float-chat-button">
             <i class="fa fa-comments float-chat fa-2x"></i>
-          </a>
+          </Link>
         )}
       </>
     );

@@ -14,7 +14,7 @@ export const NewAboutUs = () => {
                 <h1>Section Heading</h1>
                 <article className="row" id="idea-one">
                     <div>
-                        <img src="../ui/Images/card-1.svg" />
+                        <img src="/ui/Images/card-1.svg" />
                     </div>
                     <div>
                         <h3>Idea 1</h3>
@@ -39,12 +39,12 @@ export const NewAboutUs = () => {
                         <a href="#">Link to read more</a>
                     </div>
                     <div>
-                        <img src="../ui/Images/card-2.svg" />
+                        <img src="/ui/Images/card-2.svg" />
                     </div>
                 </article>
                 <article className="row" id="idea-three">
                     <div>
-                        <img src="../ui/Images/card-3.svg" />
+                        <img src="/ui/Images/card-3.svg" />
                     </div>
                     <div>
                         <h3>Idea 3</h3>

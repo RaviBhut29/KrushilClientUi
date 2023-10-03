@@ -1,8 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getChatList, setChatList, setLoadingStatus } from "../FlysesApi";
-import { getService } from "../FlysesApi/Services";
-import { toastError } from "../FlysesApi/FlysesApi";
+import {
+  encrptWithRk,
+  getChatList,
+  getIsNewNotification,
+  setChatList,
+  setIsNewNotification,
+  setLoadingStatus,
+} from "../FlysesApi";
+import {
+  CreateUserWiseReadNotification,
+  getService,
+  getUserWiseReadNotification,
+} from "../FlysesApi/Services";
+import { toastError, toastSuccess } from "../FlysesApi/FlysesApi";
 import { Radio } from "react-feather";
 import { Switch } from "antd";
 import { useAtom } from "@dbeining/react-atom";
@@ -10,6 +21,7 @@ import { getChatDetail, getNotification } from "../FlysesApi/Chat";
 
 const Header = () => {
   const navigate = useNavigate();
+  const loginUserId = sessionStorage.getItem("userId") || 0;
 
   let path = window.location.pathname;
   let splitdata = path.split("/");
@@ -22,6 +34,7 @@ const Header = () => {
   const [servicesNameListBCK, setServicesNameListBCK] = useState([]);
   const [MessagePopup, setMessagePopup] = useState(false);
   const { chatList } = useAtom(getChatList);
+  const { userNotification, localNotification } = useAtom(getIsNewNotification);
 
   const handleProfileClick = () => {
     setProfile(!profile);
@@ -31,17 +44,14 @@ const Header = () => {
     setMobileMenu(!MobileMenu);
   };
 
-  const NotificationClick = () => {
-    setNotificationPopup(!NotificationPopup);
-  };
-
   const handleLogOutClick = () => {
     sessionStorage.setItem("FlysesUserPass", "");
     sessionStorage.setItem("FlysesUserEmail", "");
     sessionStorage.setItem("userSortName", "");
     sessionStorage.setItem("userId", 0);
     sessionStorage.setItem("isGoogleUser", false);
-    navigate("/login");
+    toastSuccess("Logout successfully.");
+    navigate("/Login");
   };
 
   useEffect(() => {
@@ -126,14 +136,10 @@ const Header = () => {
     setServicesNameList(array);
   };
 
-  const NotificationAlertClick = (checked) => {
-    console.log(`switch to ${checked}`);
-  };
-
   const getChatMessageList = () => {
     if (chatList.length > 0) {
-      const array = JSON.stringify(chatList)
-      const data = JSON.parse(array); 
+      const array = JSON.stringify(chatList);
+      const data = JSON.parse(array);
       return data
         .sort((a, b) => (a?.ctId < b?.ctId ? 1 : -1))
         ?.filter((x) => Number(x?.ctIsRead) !== 1 && Number(x?.userRole) === 1);
@@ -142,16 +148,15 @@ const Header = () => {
     }
   };
 
-  const getNotificationList = () =>{
+  const getNotificationList = () => {
     if (notificationList.length > 0) {
-      const array = JSON.stringify(notificationList)
-      const data = JSON.parse(array); 
-      return data
-        .sort((a, b) => (a?.ntid < b?.ntid ? 1 : -1))        
+      const array = JSON.stringify(notificationList);
+      const data = JSON.parse(array);
+      return data.sort((a, b) => (a?.ntid < b?.ntid ? 1 : -1));
     } else {
       return [];
     }
-  }
+  };
 
   useEffect(() => {
     bindChatListFunction();
@@ -163,18 +168,21 @@ const Header = () => {
   const getAllNotification = () => {
     try {
       setLoadingStatus(true);
-      getNotification()
-        .then((response) => {
-          if (response.length > 0) {
-            setNotificationList(response);
-          } else {
-            setNotificationList([]);
-          }
-          setLoadingStatus(false);
-        })
-        .catch(() => {
-          toastError("Bad response from server");
-        });
+      if (notificationList.length === 0) {
+        getNotification()
+          .then((response) => {
+            if (response.length > 0) {
+              setNotificationList(response);
+              getReadNotification(response[response.length - 1]);
+            } else {
+              setNotificationList([]);
+            }
+            setLoadingStatus(false);
+          })
+          .catch(() => {
+            toastError("Bad response from server");
+          });
+      }
     } catch {
       toastError("Bad response from server");
     }
@@ -201,6 +209,69 @@ const Header = () => {
     navigate("/chat");
   };
 
+  const handleAnchorClick = async (id, name) => {
+    let url = "";
+    const key = await encrptWithRk(id);
+    if (splitdata[1] === "service") {
+      url = `/services/${name.replace(/ /g, "-").toLowerCase()}/${key}`;
+    } else {
+      url = `/service/${name.replace(/ /g, "-").toLowerCase()}/${key}`;
+    }
+    navigate(url);
+  };
+
+  const getReadNotification = (notificationArray) => {
+    const UserId = sessionStorage.getItem("userId") || 0;
+    if (Number(UserId) !== 0) {
+      setLoadingStatus(true);
+      getUserWiseReadNotification(Number(UserId), notificationArray?.ntid)
+        .then((response) => {
+          if (Number(response) !== 0) {
+            setIsNewNotification(false, localNotification);
+          } else {
+            setIsNewNotification(true, localNotification);
+          }
+        })
+        .catch(() => {
+          toastError("Bad response from server");
+        })
+        .finally(() => setLoadingStatus(false));
+    }
+  };
+
+  const NotificationClick = () => {
+    setNotificationPopup(!NotificationPopup);
+    if (userNotification) {
+      readNotification();
+    }
+
+    if (Number(loginUserId) === 0) {
+      setIsNewNotification(userNotification, false);
+    }
+  };
+
+  const readNotification = () => {
+    const UserId = sessionStorage.getItem("userId") || 0;
+    if (Number(UserId) !== 0) {
+      const obj = {
+        uwUserId: UserId,
+        uwNotificationId: notificationList[notificationList.length - 1]?.ntid,
+      };
+      CreateUserWiseReadNotification(obj)
+        .then((response) => {
+          setIsNewNotification(false, localNotification);
+        })
+        .catch(() => {
+          toastError("Bad response from server");
+        })
+        .finally(() => setLoadingStatus(false));
+    }
+  };
+
+  useMemo(() => {
+    console.warn("userNotification", userNotification);
+  }, [userNotification]);
+
   return (
     // <header style={{ marginTop: "1.1rem" }}>
     <header>
@@ -209,12 +280,12 @@ const Header = () => {
         onClick={MobileMenuClick}
         style={{ cursor: "pointer" }}
       >
-        <img src="../ui/Images/menu-icon.svg" alt="bell" />
+        <img src="/ui/Images/menu-icon.svg" alt="bell" />
       </div>
       <a href="#" className="logo">
         <img
           className="logo_img"
-          src="../ui/Images/NewLogo.svg"
+          src="/ui/Images/NewLogo.svg"
           alt="Main Logo"
         />
       </a>
@@ -259,16 +330,25 @@ const Header = () => {
                     servicesNameList.map((item, index) => {
                       if (index < 5) {
                         return (
-                          <Link
+                          // <Link
+                          //   key={item?.srId}
+                          //   to={
+                          //     splitdata[1] === "category"
+                          //       ? `/services/${item?.srId}`
+                          //       : `/category/${item?.srId}`
+                          //   }
+                          // >
+                          //   {item.srName}
+                          // </Link>
+                          <a
                             key={item?.srId}
-                            to={
-                              splitdata[1] === "category"
-                                ? `/services/${item?.srId}`
-                                : `/category/${item?.srId}`
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handleAnchorClick(item?.srId, item?.srName)
                             }
                           >
                             {item.srName}
-                          </Link>
+                          </a>
                         );
                       }
                     })}
@@ -278,16 +358,15 @@ const Header = () => {
                     servicesNameList.map((item, index) => {
                       if (index < 10 && index > 4) {
                         return (
-                          <Link
+                          <a
                             key={item?.srId}
-                            to={
-                              splitdata[1] === "category"
-                                ? `/services/${item?.srId}`
-                                : `/category/${item?.srId}`
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handleAnchorClick(item?.srId, item?.srName)
                             }
                           >
                             {item.srName}
-                          </Link>
+                          </a>
                         );
                       }
                     })}
@@ -316,7 +395,7 @@ const Header = () => {
         <div className="search" ref={panelRef} onClick={handleSearchFocusClick}>
           <img
             className="nav-search-img"
-            src="../ui/Images/search.svg"
+            src="/ui/Images/search.svg"
             alt="Search icon"
             style={{
               cursor: "pointer",
@@ -339,15 +418,25 @@ const Header = () => {
                 servicesNameList.map((item) => {
                   return (
                     <div key={item?.srId}>
-                      <Link
+                      {/* <Link
                         to={
-                          splitdata[1] === "category"
-                            ? `/services/${item?.srId}`
-                            : `/category/${item?.srId}`
+                          splitdata[1] === "Category"
+                            ? `/Services/${item?.srId}`
+                            : `/Category/${item?.srId}`
                         }
                       >
                         {item?.srName}
-                      </Link>
+                      
+                      </Link> */}
+                      <a
+                        key={item?.srId}
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          handleAnchorClick(item?.srId, item?.srName)
+                        }
+                      >
+                        {item.srName}
+                      </a>
                     </div>
                   );
                 })
@@ -361,60 +450,59 @@ const Header = () => {
         </div>
 
         <div className="notifications d-flex justify-content-center align-items-center mb-2">
-          <div
-            className="general-notification"
-            style={{ cursor: "pointer" }}
-            onClick={NotificationClick}
-          >
-            {notificationList.length > 0 && <span className="badge-yellow" />}
-            <img src="../ui/Images/bell.svg" alt="bell" />
-          </div>
-
-          <div
-            className="Notification_Popup"
-            style={{ display: NotificationPopup ? "block" : "none" }}
-          >
-            <div className="form-row">
-              <div className="col-md-12 px-4 mt-3 border-bottom">
-                <p className="Notification_Title">
-                  Notification 
-                  {notificationList.length > 0 && <span>{notificationList.length} New</span>}
-                </p>
-              </div>
-
-              {notificationList.length > 0 &&
-                getNotificationList().map((item, index) => {
-                  if (index < 5) {
-                    return (
-                      <div
-                        className="col-md-12 px-4 py-2 border-bottom"
-                        key={index}
-                      >
-                        <p className="NotificationLabel">{item?.ntTitle}</p>
-                        <p className="NotificationDate">{item?.ntDesc}</p>
-                      </div>
-                    );
-                  }
-                })}
-
-              {/* <div className="col-md-12 px-4 py-3 border-bottom">
-                <button className="me-2 btn-navigation">
-                  Read All Notifications
-                </button>
-              </div> */}
+          {Number(loginUserId) !== 0 && (
+            <div
+              className="general-notification"
+              style={{ cursor: "pointer" }}
+              onClick={NotificationClick}
+            >
+              {notificationList.length > 0 && true === userNotification && (
+                <span className="badge-yellow" />
+              )}
+              <img src="/ui/Images/bell.svg" alt="bell" />
             </div>
-          </div>
+          )}
 
-          <div
-            className="mail-notification"
-            style={{ cursor: "pointer" }}
-            onClick={() => setMessagePopup(!MessagePopup)}
-          >
-            {getChatMessageList().length > 0 && (
-              <span className="badge-green" />
-            )}
-            <img src="../ui/Images/mail.svg" alt="mail" />
-          </div>
+          {Number(loginUserId) !== 0 && (
+            <div
+              className="Notification_Popup"
+              style={{ display: NotificationPopup ? "block" : "none" }}
+            >
+              <div className="form-row">
+                <div className="col-md-12 px-4 mt-3 border-bottom">
+                  <p className="Notification_Title">Notification</p>
+                </div>
+
+                {notificationList.length > 0 &&
+                  getNotificationList().map((item, index) => {
+                    if (index < 5) {
+                      return (
+                        <div
+                          className="col-md-12 px-4 py-2 border-bottom"
+                          key={index}
+                        >
+                          <p className="NotificationLabel">{item?.ntTitle}</p>
+                          <p className="NotificationDate">{item?.ntDesc}</p>
+                        </div>
+                      );
+                    }
+                  })}
+              </div>
+            </div>
+          )}
+
+          {Number(loginUserId) !== 0 && (
+            <div
+              className="mail-notification"
+              style={{ cursor: "pointer" }}
+              onClick={() => setMessagePopup(!MessagePopup)}
+            >
+              {getChatMessageList().length > 0 && (
+                <span className="badge-green" />
+              )}
+              <img src="/ui/Images/mail.svg" alt="mail" />
+            </div>
+          )}
 
           <div
             className="Notification_Popup"
@@ -471,13 +559,8 @@ const Header = () => {
           </div>
 
           {(sessionStorage.getItem("userSortName") || "") === "" && (
-            <div className="language">
-              <img
-                src="../ui/Images/world.svg"
-                style={{ marginRight: 7 }}
-                alt="world"
-              />
-              <Link className="Login" to="/login">
+            <div className="language" style={{marginLeft:"10px"}}>
+              <Link className="Login" to="/Login">
                 Login
               </Link>
             </div>
@@ -500,7 +583,7 @@ const Header = () => {
                 <Link to="/profile">
                   <img
                     className="img_profile"
-                    src="../ui/Images/user-icon.svg"
+                    src="/ui/Images/user-icon.svg"
                     alt="userProfile"
                   />
                   Profile
@@ -508,7 +591,7 @@ const Header = () => {
                 <Link to="/order">
                   <img
                     className="img_profile"
-                    src="../ui/Images/All-Order.svg"
+                    src="/ui/Images/All-Order.svg"
                     alt="userProfile"
                   />
                   Orders
@@ -519,7 +602,7 @@ const Header = () => {
                 <a onClick={handleLogOutClick}>
                   <img
                     className="img_profile"
-                    src="../ui/Images/Log-Out.svg"
+                    src="/ui/Images/Log-Out.svg"
                     alt="userProfile"
                   />
                   <span style={{ color: "#dd3d4c" }}>Logout</span>
@@ -530,13 +613,13 @@ const Header = () => {
         </div>
       </nav>
       <div className="mobile-noti general-notification">
-        <img src="../ui/Images/bell.svg" alt="bell" />
+        <img src="/ui/Images/bell.svg" alt="bell" />
       </div>
       <div
         className="on-mobile-navbar"
         style={{ display: MobileMenu ? "block" : "none" }}
       >
-        <img src="../ui/Images/NewLogo.svg" style={{ height: 40 }} />
+        <img src="/ui/Images/NewLogo.svg" style={{ height: 40 }} />
         <div className="btn" onClick={MobileMenuClick}>
           <span className="fa fa-close close-btn" onClick={MobileMenuClick} />
         </div>
